@@ -216,31 +216,30 @@ const CURRICULUM_TOPICS = {
     description: "Journey through time to explore the great civilizations that shaped our world",
     timeline: [
       { name: "Mesopotamia", period: "3500-500 BCE", years: "3500 BCE", color: "bg-amber-600", region: "Middle East" },
-      { name: "Ancient Egypt", period: "3100-30 BCE", years: "3100 BCE", color: "bg-yellow-600", region: "Middle East" },
-      { name: "Indus Valley", period: "3300-1300 BCE", years: "3300 BCE", color: "bg-orange-600", region: "Asia" },
+      { name: "Ancient India", period: "3300 BCE - 500 CE", years: "3300 BCE", color: "bg-amber-700", region: "Middle East" },
+      { name: "Ancient Egypt", period: "3100-30 BCE", years: "3100 BCE", color: "bg-purple-600", region: "Africa" },
+      { name: "Ancient Greece", period: "2700-146 BCE", years: "2700 BCE", color: "bg-blue-600", region: "Europe" },
       { name: "Ancient China", period: "2070 BCE - 220 CE", years: "2070 BCE", color: "bg-red-600", region: "Asia" },
-      { name: "Ancient Japan", period: "300 BCE - 1868 CE", years: "300 BCE", color: "bg-pink-600", region: "Asia" },
-      { name: "Ancient Greece", period: "800-146 BCE", years: "800 BCE", color: "bg-blue-600", region: "Europe" },
-      { name: "Roman Empire", period: "27 BCE - 476 CE", years: "27 BCE", color: "bg-purple-600", region: "Europe" },
-      { name: "Maya", period: "2000 BCE - 1500 CE", years: "2000 BCE", color: "bg-green-600", region: "Americas" },
-      { name: "Inca Empire", period: "1438-1533 CE", years: "1438 CE", color: "bg-teal-600", region: "Americas" },
-      { name: "Aztec Empire", period: "1345-1521 CE", years: "1345 CE", color: "bg-indigo-600", region: "Americas" },
+      { name: "Maya Civilization", period: "2000 BCE - 1500 CE", years: "2000 BCE", color: "bg-green-700", region: "Americas" },
+      { name: "Kingdom of Kush", period: "1070 BCE - 350 CE", years: "1070 BCE", color: "bg-purple-500", region: "Africa" },
+      { name: "Ancient Rome", period: "753 BCE - 476 CE", years: "753 BCE", color: "bg-blue-500", region: "Europe" },
+      { name: "Ancient Japan", period: "300 BCE - 1868 CE", years: "300 BCE", color: "bg-red-500", region: "Asia" },
     ],
     subTopics: [
       { name: "Middle East", emoji: "🏜️", description: "Early civilizations of the Middle East" },
       { name: "Asia", emoji: "🏯", description: "Ancient Asian civilizations" },
       { name: "Europe", emoji: "🏛️", description: "Classical European civilizations" },
       { name: "Americas", emoji: "🌎", description: "Pre-Columbian American civilizations" },
+      { name: "Africa", emoji: "🌍", description: "Ancient African kingdoms" },
       { name: "Mesopotamia", emoji: "🏛️", description: "The cradle of civilization" },
       { name: "Ancient Egypt", emoji: "🔺", description: "Land of pharaohs and pyramids" },
-      { name: "Indus Valley", emoji: "🕌", description: "Advanced urban planning" },
+      { name: "Ancient India", emoji: "🕌", description: "From Indus Valley to Vedic period" },
       { name: "Ancient China", emoji: "🐉", description: "Inventors and dynasties" },
       { name: "Ancient Japan", emoji: "⛩️", description: "Samurai and traditions" },
-      { name: "Ancient Greece", emoji: "⚡", description: "Birthplace of democracy" },
-      { name: "Roman Empire", emoji: "🏟️", description: "Masters of engineering" },
+      { name: "Ancient Greece", emoji: "⚡", description: "From Minoans to Classical Greece" },
+      { name: "Ancient Rome", emoji: "🏟️", description: "From kings to empire" },
+      { name: "Kingdom of Kush", emoji: "👑", description: "Nubian pharaohs and iron workers" },
       { name: "Maya Civilization", emoji: "🌴", description: "Calendar makers and astronomers" },
-      { name: "Inca Empire", emoji: "⛰️", description: "Mountain empire builders" },
-      { name: "Aztec Empire", emoji: "🦅", description: "Warriors and builders" },
     ],
     type: "timeline"
   },
@@ -1148,6 +1147,9 @@ export default function NuggetsApp() {
         setActivityImage(null);
         setView('nugget');
         
+        // Generate image for the nugget
+        generateImage(parsed.fact, parsed.imageSearchTerm, tag);
+        
     } catch(e) {
         console.error("AI Error:", e);
         showNotification("Could not generate nugget. Check your API key!");
@@ -1173,7 +1175,7 @@ export default function NuggetsApp() {
 
 CRITICAL FORMATTING RULES:
 - Use **word**{definition} ONLY for vocabulary words that children should collect (with age-appropriate definitions)
-- Use **topic** ONLY for clickable topics that can generate a new fascinating nugget (like proper nouns, specific concepts)
+- Use **actual topic name** (wrapped in double asterisks) ONLY for clickable topics that can generate a new fascinating nugget (like proper nouns, specific concepts). For example: **Rome**, **Ancient Egypt**, **pyramids**, etc.
 - DO NOT use ** for emphasis, highlighting, or making text bold
 - DO NOT bold random words or phrases for stylistic purposes
 - If a word doesn't fit the above two categories, leave it as plain text
@@ -1650,7 +1652,7 @@ CRITICAL: Respond with ONLY a valid JSON array. No markdown, no explanations, no
                     // Define regions for each civilization
                     const regionMap = {
                         "Mesopotamia": "Middle East",
-                        "Ancient Egypt": "Middle East",
+                        "Ancient Egypt": "Africa",
                         "Indus Valley": "Asia",
                         "Ancient China": "Asia",
                         "Ancient Greece": "Europe",
@@ -1658,14 +1660,16 @@ CRITICAL: Respond with ONLY a valid JSON array. No markdown, no explanations, no
                         "Maya": "Americas",
                         "Ancient Japan": "Asia",
                         "Inca Empire": "Americas",
-                        "Aztec Empire": "Americas"
+                        "Aztec Empire": "Americas",
+                        "Kingdom of Kush": "Africa"
                     };
                     
                     const regionColors = {
-                        "Middle East": { bg: "bg-amber-50 dark:bg-amber-900/20", text: "text-amber-700 dark:text-amber-300", icon: "🏜️" },
-                        "Asia": { bg: "bg-red-50 dark:bg-red-900/20", text: "text-red-700 dark:text-red-300", icon: "🏯" },
-                        "Europe": { bg: "bg-blue-50 dark:bg-blue-900/20", text: "text-blue-700 dark:text-blue-300", icon: "🏛️" },
-                        "Americas": { bg: "bg-green-50 dark:bg-green-900/20", text: "text-green-700 dark:text-green-300", icon: "🌎" }
+                        "Middle East": { bg: "bg-amber-600", text: "text-white", border: "border-amber-700" },
+                        "Asia": { bg: "bg-red-600", text: "text-white", border: "border-red-700" },
+                        "Europe": { bg: "bg-blue-600", text: "text-white", border: "border-blue-700" },
+                        "Americas": { bg: "bg-green-600", text: "text-white", border: "border-green-700" },
+                        "Africa": { bg: "bg-purple-600", text: "text-white", border: "border-purple-700" }
                     };
                     
                     const timelineData = topic.timeline.map((item, index) => ({
@@ -1710,10 +1714,11 @@ CRITICAL: Respond with ONLY a valid JSON array. No markdown, no explanations, no
                                 {Object.entries(regionColors).map(([region, style]) => (
                                     <div 
                                         key={region} 
-                                        onClick={() => setSelectedSubTopic(region)}
-                                        className={`${style.bg} ${style.text} px-4 py-2 rounded-full text-xs font-semibold flex items-center gap-2 border border-current/20 cursor-pointer hover:scale-105 transition-transform`}
+                                        onClick={() => {
+                                            generateNuggetByTag(region + " ancient civilizations", 'history');
+                                        }}
+                                        className={`${style.bg} ${style.text} px-5 py-2.5 rounded-lg text-sm font-bold flex items-center gap-2 border-2 ${style.border} shadow-md cursor-pointer hover:scale-105 transition-transform`}
                                     >
-                                        <span className="text-base">{style.icon}</span>
                                         {region}
                                     </div>
                                 ))}
@@ -1745,7 +1750,9 @@ CRITICAL: Respond with ONLY a valid JSON array. No markdown, no explanations, no
                                             style={{ animationDelay: `${index * 0.1}s` }}
                                         >
                                             <div 
-                                                onClick={() => setSelectedSubTopic(civ.name)}
+                                                onClick={() => {
+                                                    generateNuggetByTag(civ.name, 'history');
+                                                }}
                                                 className={`absolute h-full ${civ.color} rounded-lg shadow-md hover:shadow-lg hover:scale-[1.02] transition-all cursor-pointer flex items-center justify-between px-3 border-2 border-white dark:border-slate-900`}
                                                 style={{ 
                                                     left: `${civ.left}%`, 
