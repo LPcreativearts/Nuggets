@@ -141,7 +141,7 @@ const SUBJECTS = [
   { 
       id: 'history', name: 'History', icon: MapIcon, 
       color: 'bg-amber-100 text-amber-700 dark:bg-amber-900/50 dark:text-amber-200', border: 'border-amber-300 dark:border-amber-700', 
-      subtopics: ["Ancient Civilizations", "Mummies", "Vikings", "Pirates", "Secret Spies", "Titanic", "Castles", "Knights"],
+      subtopics: ["Ancient Civilizations", "Mummies", "Vikings", "Pirates", "Secret Spies", "Titanic", "Castles", "Knights", "Early Humans"],
       imgTerm: "Ancient history"
   },
   { 
@@ -204,7 +204,8 @@ const SUBTOPIC_IMAGES = {
   "Made-up Words": "https://images.unsplash.com/photo-1667980432734-0e662dd989c4?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxkaWN0aW9uYXJ5JTIwY3JlYXRpdmUlMjB3b3Jkc3xlbnwxfHx8fDE3Njc3NDY2NDN8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
   "Secret Languages": "https://images.unsplash.com/photo-1519162721257-18cd195350c2?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxzaWduJTIwbGFuZ3VhZ2UlMjBjb21tdW5pY2F0aW9ufGVufDF8fHx8MTc2NzY5MDAyM3ww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
   "Tongue Twisters": "https://images.unsplash.com/photo-1648204068800-cfcfb9d814ac?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxzcGVha2luZyUyMG1vdXRoJTIwZXhwcmVzc2lvbnxlbnwxfHx8fDE3Njc3NDY2NDN8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
-  "Ancient Writing": "https://images.unsplash.com/photo-1655923478826-ef7c2d40820e?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxhbmNpZW50JTIwaGllcm9nbHlwaGljcyUyMHdyaXRpbmd8ZW58MXx8fHwxNzY3NzQ2NjQ0fDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral"
+  "Ancient Writing": "https://images.unsplash.com/photo-1655923478826-ef7c2d40820e?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxhbmNpZW50JTIwaGllcm9nbHlwaGljcyUyMHdyaXRpbmd8ZW58MXx8fHwxNzY3NzQ2NjQ0fDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
+  "Early Humans": "https://images.unsplash.com/photo-1647705777154-178dafd1e2d7?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxjYXZlJTIwcGFpbnRpbmd8ZW58MXx8fHwxNzY3ODMxNTgyfDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral"
 };
 
 const SHOP_ITEMS = [
