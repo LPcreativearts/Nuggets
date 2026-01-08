@@ -1175,7 +1175,11 @@ export default function NuggetsApp() {
 
 CRITICAL FORMATTING RULES:
 - Use **word**{definition} ONLY for vocabulary words that children should collect (with age-appropriate definitions)
+  - Choose vocabulary words that a 10-year-old might NOT know (e.g., "aqueduct", "amphitheater", "photosynthesis")
+  - DO NOT define simple common words that kids already know (e.g., "roads", "building", "water")
 - Use **actual topic name** (wrapped in double asterisks) ONLY for clickable topics that can generate a new fascinating nugget (like proper nouns, specific concepts). For example: **Rome**, **Ancient Egypt**, **pyramids**, etc.
+- NEVER use both formats on the same word - a word can either be a vocabulary definition OR a clickable topic, not both
+- Only highlight each word ONCE - do not repeat the same word multiple times with formatting
 - DO NOT use ** for emphasis, highlighting, or making text bold
 - DO NOT bold random words or phrases for stylistic purposes
 - If a word doesn't fit the above two categories, leave it as plain text
@@ -1186,12 +1190,20 @@ Keep it under 4 sentences. DO NOT use conversational lead-ins like "Wow", "That'
             systemPrompt = `You are a helpful activity creator for children.`;
             userPrompt = `Create ONE simple hands-on OFF-SCREEN activity for children about: "${currentNugget.text}"
 
+CRITICAL GUIDELINES:
+- Write instructions in SECOND PERSON directly to the child (use "you" and "your", not "the child" or "children")
+- Each step should start with a brief action subhead followed by a colon, then the full instruction
+- Example: "Mix ingredients: Pour the baking soda and vinegar together in the cup."
+- Use ONLY common household items that don't require printing, downloading, or searching online
+- DO NOT include "printable cards", "worksheets", "downloaded templates", or similar materials
+- Keep supplies simple and readily available in most homes
+
 CRITICAL: Respond with ONLY a valid JSON object. No markdown, no explanations, no additional text.
 
 {
   "title": "Activity Name",
   "supplies": ["item1", "item2"],
-  "steps": ["step1", "step2"]
+  "steps": ["Action subhead: Full instruction in second person.", "Another action: Do this step."]
 }`;
         } else if (type === 'trivia') {
              systemPrompt = `You are a quiz creator for children.`;
@@ -1970,26 +1982,46 @@ CRITICAL: Respond with ONLY a valid JSON array. No markdown, no explanations, no
                                         </button>
                                     </div>
                                     
-                                    {activityImage && (
-                                        <div className="rounded-xl overflow-hidden aspect-video">
-                                            <img src={activityImage} className="w-full h-full object-cover" alt={activityResponse.title} />
-                                        </div>
-                                    )}
-                                    
                                     <div className="bg-amber-50 dark:bg-amber-900/20 border border-amber-200 dark:border-amber-700 p-3 rounded-xl flex items-start gap-2">
                                         <AlertTriangle className="w-4 h-4 text-amber-600 dark:text-amber-400 flex-shrink-0 mt-0.5" />
                                         <p className="text-xs text-amber-800 dark:text-amber-300 font-medium">Adult supervision may be required for this activity</p>
                                     </div>
                                     
                                     <div className="bg-white dark:bg-slate-800 p-4 rounded-xl">
-                                        <div className="text-xs font-bold text-slate-400 uppercase mb-2">Supplies</div>
+                                        <div className="text-xs font-bold text-slate-400 uppercase mb-2 tracking-wide">Supplies</div>
                                         <div className="flex flex-wrap gap-2">
-                                            {activityResponse.supplies?.map((s, i) => <span key={i} className="bg-slate-100 dark:bg-slate-700 px-2 py-1 rounded text-sm">{s}</span>)}
+                                            {activityResponse.supplies?.map((s, i) => <span key={i} className="bg-slate-100 dark:bg-slate-700 px-3 py-1.5 rounded-lg text-sm font-medium">{s}</span>)}
                                         </div>
                                     </div>
-                                    <ol className="list-decimal list-inside space-y-2 text-slate-700 dark:text-slate-300">
-                                        {activityResponse.steps?.map((step, i) => <li key={i}>{step.replace(/\*\*/g, '').replace(/###/g, '')}</li>)}
-                                    </ol>
+                                    
+                                    <div className="bg-white dark:bg-slate-800 p-4 rounded-xl">
+                                        <div className="text-xs font-bold text-slate-400 uppercase mb-3 tracking-wide">Instructions</div>
+                                        <ol className="space-y-3">
+                                            {activityResponse.steps?.map((step, i) => {
+                                                const cleanStep = step.replace(/###/g, '');
+                                                // Check if step has a colon to separate subhead from instruction
+                                                const colonIndex = cleanStep.indexOf(':');
+                                                
+                                                return (
+                                                    <li key={i} className="flex gap-3 text-slate-700 dark:text-slate-300">
+                                                        <span className="font-bold text-emerald-600 dark:text-emerald-400 flex-shrink-0">{i + 1}.</span>
+                                                        <span className="flex-1">
+                                                            {colonIndex !== -1 ? (
+                                                                <>
+                                                                    <strong className="font-bold text-slate-900 dark:text-white">
+                                                                        {cleanStep.substring(0, colonIndex)}:
+                                                                    </strong>
+                                                                    {cleanStep.substring(colonIndex + 1)}
+                                                                </>
+                                                            ) : (
+                                                                cleanStep
+                                                            )}
+                                                        </span>
+                                                    </li>
+                                                );
+                                            })}
+                                        </ol>
+                                    </div>
                                     
                                     <button 
                                         onClick={() => {

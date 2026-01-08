@@ -205,6 +205,7 @@
     --font-weight-bold: 700;
     --font-weight-black: 900;
     --tracking-tight: -.025em;
+    --tracking-wide: .025em;
     --tracking-wider: .05em;
     --tracking-widest: .1em;
     --leading-tight: 1.25;
@@ -2067,6 +2068,11 @@
     letter-spacing: var(--tracking-tight);
   }
 
+  .tracking-wide {
+    --tw-tracking: var(--tracking-wide);
+    letter-spacing: var(--tracking-wide);
+  }
+
   .tracking-wider {
     --tw-tracking: var(--tracking-wider);
     letter-spacing: var(--tracking-wider);
@@ -2195,6 +2201,10 @@
 
   .text-slate-800 {
     color: var(--color-slate-800);
+  }
+
+  .text-slate-900 {
+    color: var(--color-slate-900);
   }
 
   .text-transparent {
