@@ -208,6 +208,130 @@ const SUBTOPIC_IMAGES = {
   "Early Humans": "https://images.unsplash.com/photo-1647705777154-178dafd1e2d7?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxjYXZlJTIwcGFpbnRpbmd8ZW58MXx8fHwxNzY3ODMxNTgyfDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral"
 };
 
+// Curriculum Topics - Special topics with sub-categories and timelines
+const CURRICULUM_TOPICS = {
+  "Ancient Civilizations": {
+    id: "ancient-civilizations",
+    name: "Ancient Civilizations",
+    description: "Journey through time to explore the great civilizations that shaped our world",
+    timeline: [
+      { name: "Mesopotamia", period: "3500-500 BCE", years: "3500 BCE", color: "bg-amber-600", region: "Middle East" },
+      { name: "Ancient Egypt", period: "3100-30 BCE", years: "3100 BCE", color: "bg-yellow-600", region: "Middle East" },
+      { name: "Indus Valley", period: "3300-1300 BCE", years: "3300 BCE", color: "bg-orange-600", region: "Asia" },
+      { name: "Ancient China", period: "2070 BCE - 220 CE", years: "2070 BCE", color: "bg-red-600", region: "Asia" },
+      { name: "Ancient Japan", period: "300 BCE - 1868 CE", years: "300 BCE", color: "bg-pink-600", region: "Asia" },
+      { name: "Ancient Greece", period: "800-146 BCE", years: "800 BCE", color: "bg-blue-600", region: "Europe" },
+      { name: "Roman Empire", period: "27 BCE - 476 CE", years: "27 BCE", color: "bg-purple-600", region: "Europe" },
+      { name: "Maya", period: "2000 BCE - 1500 CE", years: "2000 BCE", color: "bg-green-600", region: "Americas" },
+      { name: "Inca Empire", period: "1438-1533 CE", years: "1438 CE", color: "bg-teal-600", region: "Americas" },
+      { name: "Aztec Empire", period: "1345-1521 CE", years: "1345 CE", color: "bg-indigo-600", region: "Americas" },
+    ],
+    subTopics: [
+      { name: "Middle East", emoji: "🏜️", description: "Early civilizations of the Middle East" },
+      { name: "Asia", emoji: "🏯", description: "Ancient Asian civilizations" },
+      { name: "Europe", emoji: "🏛️", description: "Classical European civilizations" },
+      { name: "Americas", emoji: "🌎", description: "Pre-Columbian American civilizations" },
+      { name: "Mesopotamia", emoji: "🏛️", description: "The cradle of civilization" },
+      { name: "Ancient Egypt", emoji: "🔺", description: "Land of pharaohs and pyramids" },
+      { name: "Indus Valley", emoji: "🕌", description: "Advanced urban planning" },
+      { name: "Ancient China", emoji: "🐉", description: "Inventors and dynasties" },
+      { name: "Ancient Japan", emoji: "⛩️", description: "Samurai and traditions" },
+      { name: "Ancient Greece", emoji: "⚡", description: "Birthplace of democracy" },
+      { name: "Roman Empire", emoji: "🏟️", description: "Masters of engineering" },
+      { name: "Maya Civilization", emoji: "🌴", description: "Calendar makers and astronomers" },
+      { name: "Inca Empire", emoji: "⛰️", description: "Mountain empire builders" },
+      { name: "Aztec Empire", emoji: "🦅", description: "Warriors and builders" },
+    ],
+    type: "timeline"
+  },
+  "Elements of Language": {
+    id: "elements-of-language",
+    name: "Elements of Language",
+    description: "Master the building blocks of reading and writing",
+    subTopics: [
+      { name: "Parts of Speech", emoji: "📝", description: "Nouns, verbs, and more", color: "bg-blue-500" },
+      { name: "Sentence Structure", emoji: "🔗", description: "How sentences are built", color: "bg-purple-500" },
+      { name: "Poetry", emoji: "✨", description: "Rhyme, rhythm, and verse", color: "bg-pink-500" },
+      { name: "Persuasive Writing", emoji: "💬", description: "Convince and influence", color: "bg-orange-500" },
+      { name: "Etymology", emoji: "🌱", description: "Word roots and origins", color: "bg-green-500" },
+      { name: "Punctuation", emoji: "❗", description: "Marks that give meaning", color: "bg-yellow-500" },
+      { name: "Literary Devices", emoji: "🎭", description: "Metaphors and similes", color: "bg-indigo-500" },
+      { name: "Story Elements", emoji: "📖", description: "Plot, character, setting", color: "bg-red-500" },
+    ],
+    type: "grid"
+  },
+  "Elements of Math": {
+    id: "elements-of-math",
+    name: "Elements of Math",
+    description: "Build your number skills from the ground up",
+    subTopics: [
+      { name: "Addition", emoji: "➕", description: "Combining numbers", color: "bg-green-500" },
+      { name: "Subtraction", emoji: "➖", description: "Taking away", color: "bg-blue-500" },
+      { name: "Multiplication", emoji: "✖️", description: "Repeated addition", color: "bg-purple-500" },
+      { name: "Division", emoji: "➗", description: "Splitting into parts", color: "bg-orange-500" },
+      { name: "Fractions", emoji: "½", description: "Parts of a whole", color: "bg-pink-500" },
+      { name: "Decimals", emoji: "🔢", description: "Numbers with points", color: "bg-teal-500" },
+      { name: "Geometry", emoji: "📐", description: "Shapes and space", color: "bg-indigo-500" },
+      { name: "Measurement", emoji: "📏", description: "Size and quantity", color: "bg-yellow-500" },
+    ],
+    type: "grid"
+  },
+  "Scientific Method": {
+    id: "scientific-method",
+    name: "Scientific Method",
+    description: "Learn how scientists discover new things",
+    steps: [
+      { name: "Ask a Question", emoji: "❓", description: "What do you want to know?", step: 1 },
+      { name: "Research", emoji: "📚", description: "Learn what's already known", step: 2 },
+      { name: "Hypothesis", emoji: "💡", description: "Make an educated guess", step: 3 },
+      { name: "Experiment", emoji: "🔬", description: "Test your idea", step: 4 },
+      { name: "Observe & Record", emoji: "📊", description: "Collect data carefully", step: 5 },
+      { name: "Analyze Results", emoji: "🧮", description: "What does the data say?", step: 6 },
+      { name: "Draw Conclusions", emoji: "✅", description: "Was your hypothesis right?", step: 7 },
+      { name: "Share Findings", emoji: "📢", description: "Tell others what you learned", step: 8 },
+    ],
+    subTopics: [
+      { name: "Variables", emoji: "🔄", description: "Things that change", color: "bg-blue-500" },
+      { name: "Control Groups", emoji: "⚖️", description: "The comparison group", color: "bg-purple-500" },
+      { name: "Data Collection", emoji: "📝", description: "Recording observations", color: "bg-green-500" },
+      { name: "Lab Safety", emoji: "🥽", description: "Staying safe while experimenting", color: "bg-red-500" },
+    ],
+    type: "process"
+  },
+  "Elements of Music": {
+    id: "elements-of-music",
+    name: "Elements of Music",
+    description: "Discover what makes music come alive",
+    subTopics: [
+      { name: "Rhythm", emoji: "🥁", description: "The beat and timing", color: "bg-red-500" },
+      { name: "Melody", emoji: "🎵", description: "The tune you hum", color: "bg-blue-500" },
+      { name: "Harmony", emoji: "🎹", description: "Notes played together", color: "bg-purple-500" },
+      { name: "Tempo", emoji: "⏱️", description: "Fast or slow", color: "bg-orange-500" },
+      { name: "Dynamics", emoji: "🔊", description: "Loud and soft", color: "bg-yellow-500" },
+      { name: "Instruments of the Orchestra", emoji: "🎻", description: "Strings, brass, woodwinds", color: "bg-green-500" },
+      { name: "Musical Notation", emoji: "🎼", description: "Reading sheet music", color: "bg-indigo-500" },
+      { name: "Pitch", emoji: "🎤", description: "High and low sounds", color: "bg-pink-500" },
+    ],
+    type: "grid"
+  },
+  "Elements of Art": {
+    id: "elements-of-art",
+    name: "Elements of Art",
+    description: "The building blocks artists use to create",
+    subTopics: [
+      { name: "Line", emoji: "📏", description: "Marks that connect points", color: "bg-slate-600" },
+      { name: "Shape", emoji: "⭕", description: "2D enclosed spaces", color: "bg-blue-500" },
+      { name: "Form", emoji: "🧊", description: "3D objects with depth", color: "bg-purple-500" },
+      { name: "Color", emoji: "🎨", description: "Hue, value, and intensity", color: "bg-red-500" },
+      { name: "Texture", emoji: "🖐️", description: "How things feel or look", color: "bg-yellow-500" },
+      { name: "Space", emoji: "🌌", description: "Positive and negative areas", color: "bg-indigo-500" },
+      { name: "Value", emoji: "◐", description: "Light and dark", color: "bg-gray-500" },
+      { name: "Pattern", emoji: "🔲", description: "Repeated elements", color: "bg-teal-500" },
+    ],
+    type: "grid"
+  }
+};
+
 const SHOP_ITEMS = [
   { id: 'partyhat', name: 'Party Hat', cost: 0, currency: 'free', icon: '🎉' },
   { id: 'glasses', name: 'Smart Specs', cost: 50, currency: 'crumbs', icon: '👓' },
@@ -271,6 +395,7 @@ const fetchWikipediaImage = async (term) => {
 
 const SubtopicCard = ({ subtopic, onClick }) => {
     const [imageUrl, setImageUrl] = useState(null);
+    const isCurriculum = CURRICULUM_TOPICS[subtopic] ? true : false;
 
     useEffect(() => {
         let isMounted = true;
@@ -299,18 +424,25 @@ const SubtopicCard = ({ subtopic, onClick }) => {
     }, [subtopic]);
 
     return (
-        <button onClick={onClick} className="group relative overflow-hidden bg-white dark:bg-slate-800 rounded-2xl shadow-sm border border-slate-200 dark:border-slate-700 hover:shadow-xl hover:scale-[1.02] active:scale-95 transition-all flex flex-col items-center justify-center text-center h-32 md:h-40 w-full animate-pop">
+        <button onClick={onClick} className={`group relative overflow-hidden bg-white dark:bg-slate-800 rounded-2xl shadow-sm border-2 ${isCurriculum ? 'border-yellow-400 dark:border-yellow-500 shadow-yellow-400/20 shadow-lg' : 'border-slate-200 dark:border-slate-700'} hover:shadow-xl hover:scale-[1.02] active:scale-95 transition-all flex flex-col items-center justify-center text-center h-32 md:h-40 w-full animate-pop`}>
+            {isCurriculum && (
+                <div className="absolute -top-1 -right-1 z-20">
+                    <div className="bg-yellow-400 dark:bg-yellow-500 text-yellow-900 dark:text-yellow-950 px-2 py-0.5 rounded-bl-lg rounded-tr-xl text-xs font-black uppercase tracking-wider shadow-md">
+                        ⭐
+                    </div>
+                </div>
+            )}
             {imageUrl ? (
                 <>
                     <div className="absolute inset-0">
                         <img src={imageUrl} alt={subtopic} className="w-full h-full object-cover object-center transition-transform duration-700 group-hover:scale-110 opacity-80 group-hover:opacity-100" />
-                        <div className="absolute inset-0 bg-black/40 group-hover:bg-black/30 transition-colors" />
+                        <div className={`absolute inset-0 ${isCurriculum ? 'bg-gradient-to-br from-yellow-600/40 via-black/40 to-black/40' : 'bg-black/40'} group-hover:bg-black/30 transition-colors`} />
                     </div>
                     <span className="relative z-10 font-bold text-white text-lg md:text-xl drop-shadow-md px-2 leading-tight">{subtopic}</span>
                 </>
             ) : (
                 <>
-                    <Sparkles className="w-6 h-6 text-slate-300 dark:text-slate-600 mb-2" />
+                    <Sparkles className={`w-6 h-6 mb-2 ${isCurriculum ? 'text-yellow-400 dark:text-yellow-500' : 'text-slate-300 dark:text-slate-600'}`} />
                     <span className="font-bold text-slate-600 dark:text-slate-300 px-4">{subtopic}</span>
                 </>
             )}
@@ -395,6 +527,7 @@ export default function NuggetsApp() {
   const [selectedSubject, setSelectedSubject] = useState(null);
   const [currentNugget, setCurrentNugget] = useState(null);
   const [searchQuery, setSearchQuery] = useState('');
+  const [selectedCurriculumTopic, setSelectedCurriculumTopic] = useState(null); // For curriculum topics like Ancient Civilizations
   
   const [collection, setCollection] = useState([]);
   const [wordCollection, setWordCollection] = useState([]); 
@@ -1398,7 +1531,11 @@ CRITICAL: Respond with ONLY a valid JSON array. No markdown, no explanations, no
                                     key={topic} 
                                     subtopic={topic} 
                                     onClick={() => {
-                                        if (apiKey) {
+                                        // Check if this is a curriculum topic
+                                        if (CURRICULUM_TOPICS[topic]) {
+                                            setSelectedCurriculumTopic(CURRICULUM_TOPICS[topic]);
+                                            setView('curriculum');
+                                        } else if (apiKey) {
                                             generateNuggetByTag(topic, selectedSubject.id);
                                         } else {
                                             showNotification("Add API key to explore topics!");
@@ -1425,6 +1562,277 @@ CRITICAL: Respond with ONLY a valid JSON array. No markdown, no explanations, no
                                 subjectName={selectedSubject.name} 
                              />
                         </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    );
+  };
+
+  const renderCurriculum = () => {
+    if (!selectedCurriculumTopic) return null;
+    
+    const topic = selectedCurriculumTopic;
+    const type = topic.type || 'grid';
+    
+    // Dynamic gradient based on topic
+    const gradientMap = {
+      'ancient-civilizations': 'from-amber-400 via-orange-500 to-red-600',
+      'elements-of-language': 'from-blue-400 via-indigo-500 to-purple-600',
+      'elements-of-math': 'from-blue-500 via-cyan-500 to-teal-600',
+      'scientific-method': 'from-emerald-400 via-teal-500 to-cyan-600',
+      'elements-of-music': 'from-rose-400 via-pink-500 to-fuchsia-600',
+      'elements-of-art': 'from-purple-400 via-pink-500 to-rose-500'
+    };
+    
+    const iconMap = {
+      'ancient-civilizations': MapIcon,
+      'elements-of-language': BookOpen,
+      'elements-of-math': Calculator,
+      'scientific-method': Microscope,
+      'elements-of-music': Music,
+      'elements-of-art': Palette
+    };
+    
+    const gradient = gradientMap[topic.id] || 'from-blue-400 via-indigo-500 to-purple-600';
+    const Icon = iconMap[topic.id] || BookOpen;
+    
+    return (
+        <div className="min-h-screen bg-slate-50 dark:bg-slate-950 pb-20">
+            {/* Header */}
+            <div className={`relative h-40 md:h-48 bg-gradient-to-br ${gradient} overflow-hidden`}>
+                <div className="absolute inset-0 bg-gradient-to-b from-white/10 to-transparent" />
+                <div className="absolute top-4 left-4 z-10">
+                    <button onClick={() => {
+                        setView('subject-menu');
+                        setSelectedCurriculumTopic(null);
+                    }} className="bg-white/90 p-2 rounded-full shadow-md text-slate-700 hover:scale-110 transition-transform">
+                        <ArrowLeft className="w-6 h-6" />
+                    </button>
+                </div>
+                <div className="absolute bottom-0 left-0 p-6 md:p-8 w-full">
+                    <div className="flex items-end gap-4">
+                        <div className="bg-white/20 backdrop-blur-md p-3 rounded-2xl border border-white/30 hidden md:block">
+                            <Icon className="w-10 h-10 text-white" />
+                        </div>
+                        <div>
+                            <h1 className="text-3xl md:text-4xl font-black text-white tracking-tight drop-shadow-lg">{topic.name}</h1>
+                            <p className="text-white/90 font-medium text-sm md:text-base">{topic.description}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div className="max-w-6xl mx-auto p-4 md:p-6 mt-4">
+                {/* TIMELINE TYPE (Ancient Civilizations) */}
+                {type === 'timeline' && topic.timeline && (() => {
+                    // Parse period ranges for each civilization
+                    const parsePeriod = (periodStr) => {
+                        // Handle formats like "3500-500 BCE", "2070 BCE - 220 CE", "27 BCE - 476 CE"
+                        const parts = periodStr.split('-').map(p => p.trim());
+                        
+                        const parseYear = (yearStr) => {
+                            const match = yearStr.match(/(\d+)\s*(BCE|CE)?/);
+                            if (!match) return 0;
+                            const year = parseInt(match[1]);
+                            const era = match[2] || 'BCE';
+                            return era === 'BCE' ? -year : year;
+                        };
+                        
+                        if (parts.length === 2) {
+                            const start = parseYear(parts[0]);
+                            const end = parseYear(parts[1]);
+                            return { start, end };
+                        }
+                        return { start: 0, end: 0 };
+                    };
+                    
+                    // Define regions for each civilization
+                    const regionMap = {
+                        "Mesopotamia": "Middle East",
+                        "Ancient Egypt": "Middle East",
+                        "Indus Valley": "Asia",
+                        "Ancient China": "Asia",
+                        "Ancient Greece": "Europe",
+                        "Roman Empire": "Europe",
+                        "Maya": "Americas",
+                        "Ancient Japan": "Asia",
+                        "Inca Empire": "Americas",
+                        "Aztec Empire": "Americas"
+                    };
+                    
+                    const regionColors = {
+                        "Middle East": { bg: "bg-amber-50 dark:bg-amber-900/20", text: "text-amber-700 dark:text-amber-300", icon: "🏜️" },
+                        "Asia": { bg: "bg-red-50 dark:bg-red-900/20", text: "text-red-700 dark:text-red-300", icon: "🏯" },
+                        "Europe": { bg: "bg-blue-50 dark:bg-blue-900/20", text: "text-blue-700 dark:text-blue-300", icon: "🏛️" },
+                        "Americas": { bg: "bg-green-50 dark:bg-green-900/20", text: "text-green-700 dark:text-green-300", icon: "🌎" }
+                    };
+                    
+                    const timelineData = topic.timeline.map((item, index) => ({
+                        ...item,
+                        ...parsePeriod(item.period),
+                        region: regionMap[item.name] || "Other",
+                        index
+                    }));
+                    
+                    // Calculate overall range
+                    const allYears = timelineData.flatMap(item => [item.start, item.end]);
+                    const minYear = Math.min(...allYears);
+                    const maxYear = Math.max(...allYears);
+                    const range = maxYear - minYear;
+                    
+                    // Calculate position and width for each civilization
+                    const civilizations = timelineData.map(item => ({
+                        ...item,
+                        left: ((item.start - minYear) / range) * 100,
+                        width: ((item.end - item.start) / range) * 100
+                    }));
+                    
+                    // Generate year markers
+                    const yearMarkers = [];
+                    const markerInterval = 500; // Every 500 years
+                    for (let year = Math.floor(minYear / markerInterval) * markerInterval; year <= maxYear; year += markerInterval) {
+                        if (year >= minYear && year <= maxYear) {
+                            yearMarkers.push({
+                                year,
+                                position: ((year - minYear) / range) * 100,
+                                label: year <= 0 ? `${Math.abs(year)} BCE` : `${year} CE`
+                            });
+                        }
+                    }
+                    
+                    return (
+                        <div className="bg-white dark:bg-slate-800 rounded-3xl p-6 md:p-8 shadow-lg mb-8">
+                            <h2 className="text-2xl font-bold text-slate-800 dark:text-white mb-6 text-center">Timeline of Civilizations</h2>
+                            
+                            {/* Regional Key */}
+                            <div className="flex flex-wrap justify-center gap-3 mb-6">
+                                {Object.entries(regionColors).map(([region, style]) => (
+                                    <div 
+                                        key={region} 
+                                        onClick={() => setSelectedSubTopic(region)}
+                                        className={`${style.bg} ${style.text} px-4 py-2 rounded-full text-xs font-semibold flex items-center gap-2 border border-current/20 cursor-pointer hover:scale-105 transition-transform`}
+                                    >
+                                        <span className="text-base">{style.icon}</span>
+                                        {region}
+                                    </div>
+                                ))}
+                            </div>
+                            
+                            <div className="relative w-full">
+                                {/* Year markers at top */}
+                                <div className="relative h-8 mb-4 border-b-2 border-slate-300 dark:border-slate-600">
+                                    {yearMarkers.map((marker, idx) => (
+                                        <div 
+                                            key={idx}
+                                            className="absolute top-0 transform -translate-x-1/2"
+                                            style={{ left: `${marker.position}%` }}
+                                        >
+                                            <div className="w-0.5 h-3 bg-slate-400 dark:bg-slate-500 mb-1" />
+                                            <div className="text-xs font-semibold text-slate-600 dark:text-slate-400 whitespace-nowrap">
+                                                {marker.label}
+                                            </div>
+                                        </div>
+                                    ))}
+                                </div>
+                                
+                                {/* Stacked civilization bars */}
+                                <div className="space-y-3 mt-8">
+                                    {civilizations.map((civ, index) => (
+                                        <div 
+                                            key={civ.name}
+                                            className="relative h-12 animate-pop"
+                                            style={{ animationDelay: `${index * 0.1}s` }}
+                                        >
+                                            <div 
+                                                onClick={() => setSelectedSubTopic(civ.name)}
+                                                className={`absolute h-full ${civ.color} rounded-lg shadow-md hover:shadow-lg hover:scale-[1.02] transition-all cursor-pointer flex items-center justify-between px-3 border-2 border-white dark:border-slate-900`}
+                                                style={{ 
+                                                    left: `${civ.left}%`, 
+                                                    width: `${civ.width}%`,
+                                                    minWidth: '120px'
+                                                }}
+                                            >
+                                                <div className="text-white font-bold text-sm leading-tight">
+                                                    {civ.name}
+                                                </div>
+                                                <div className="text-lg opacity-80">
+                                                    {regionColors[civ.region]?.icon}
+                                                </div>
+                                            </div>
+                                        </div>
+                                    ))}
+                                </div>
+                            </div>
+                            
+                            <div className="text-center text-xs text-slate-500 dark:text-slate-400 mt-6">
+                                Bar length represents duration of each civilization
+                            </div>
+                        </div>
+                    );
+                })()}
+
+                {/* PROCESS TYPE (Scientific Method) */}
+                {type === 'process' && topic.steps && (
+                    <div className="bg-white dark:bg-slate-800 rounded-3xl p-6 md:p-8 shadow-lg mb-8">
+                        <h2 className="text-2xl font-bold text-slate-800 dark:text-white mb-6 text-center">The Scientific Method Process</h2>
+                        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-4">
+                            {topic.steps.map((step, index) => (
+                                <div key={step.name} className="relative">
+                                    <div className="bg-gradient-to-br from-emerald-50 to-teal-50 dark:from-emerald-900/20 dark:to-teal-900/20 rounded-2xl p-6 border-2 border-emerald-200 dark:border-emerald-700 animate-pop" style={{animationDelay: `${index * 0.1}s`}}>
+                                        <div className="absolute -top-3 -left-3 bg-emerald-500 text-white w-8 h-8 rounded-full flex items-center justify-center font-bold shadow-lg">
+                                            {step.step}
+                                        </div>
+                                        <div className="text-4xl mb-3">{step.emoji}</div>
+                                        <h3 className="font-bold text-slate-800 dark:text-white mb-1">{step.name}</h3>
+                                        <p className="text-xs text-slate-600 dark:text-slate-400">{step.description}</p>
+                                    </div>
+                                    {index < topic.steps.length - 1 && (
+                                        <div className="hidden lg:block absolute top-1/2 -right-2 transform -translate-y-1/2 z-10">
+                                            <ArrowRight className="w-4 h-4 text-emerald-500" />
+                                        </div>
+                                    )}
+                                </div>
+                            ))}
+                        </div>
+                    </div>
+                )}
+
+                {/* Topic Cards Section */}
+                <div className="mb-8">
+                    <h2 className="text-2xl font-bold text-slate-800 dark:text-white mb-6 text-center">
+                        {type === 'timeline' ? 'Explore Civilizations' : type === 'process' ? 'Key Concepts' : 'Explore Topics'}
+                    </h2>
+                    <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+                        {topic.subTopics.map((item, index) => (
+                            <button
+                                key={item.name}
+                                onClick={() => {
+                                    if (apiKey) {
+                                        // Determine subject based on topic id
+                                        const subjectMap = {
+                                            'ancient-civilizations': 'history',
+                                            'elements-of-language': 'words',
+                                            'elements-of-math': 'math',
+                                            'scientific-method': 'science',
+                                            'elements-of-music': 'music',
+                                            'elements-of-art': 'art'
+                                        };
+                                        generateNuggetByTag(item.name, subjectMap[topic.id] || 'science');
+                                    } else {
+                                        showNotification("Add API key to explore topics!");
+                                    }
+                                }}
+                                className={`${item.color ? 'text-white' : 'bg-white dark:bg-slate-800'} rounded-2xl p-6 shadow-md hover:shadow-xl hover:scale-105 transition-all border-2 ${item.color ? item.color : 'border-slate-100 dark:border-slate-700'} hover:border-opacity-80 group animate-pop`}
+                                style={{animationDelay: `${index * 0.05}s`}}
+                            >
+                                <div className="text-5xl mb-3">{item.emoji}</div>
+                                <h3 className={`font-bold mb-1 ${item.color ? 'text-white' : 'text-slate-800 dark:text-white'}`}>
+                                    {item.name}
+                                </h3>
+                                <p className={`text-xs ${item.color ? 'text-white/90' : 'text-slate-600 dark:text-slate-400'}`}>{item.description}</p>
+                            </button>
+                        ))}
                     </div>
                 </div>
             </div>
@@ -1938,6 +2346,7 @@ CRITICAL: Respond with ONLY a valid JSON array. No markdown, no explanations, no
       
       {view === 'home' && renderHome()}
       {view === 'subject-menu' && renderSubjectMenu()}
+      {view === 'curriculum' && renderCurriculum()}
       {view === 'nugget' && renderNugget()}
       {view === 'collection' && renderGridPage("My Collection", collection, (item) => (
           <div key={item.id} className="bg-white dark:bg-slate-800 p-6 rounded-2xl shadow-sm border border-slate-200 dark:border-slate-700 flex flex-col gap-4 group hover:-translate-y-1 transition-transform">
