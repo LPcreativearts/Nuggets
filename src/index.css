@@ -1500,6 +1500,10 @@
     background-color: var(--color-emerald-500);
   }
 
+  .bg-emerald-600 {
+    background-color: var(--color-emerald-600);
+  }
+
   .bg-gray-500 {
     background-color: var(--color-gray-500);
   }

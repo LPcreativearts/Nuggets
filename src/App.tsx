@@ -3111,12 +3111,11 @@ CRITICAL: Respond with ONLY a valid JSON array. No markdown, no explanations, no
                     </>
                   ) : (
                     <>
-                      <Brain className="w-6 h-6 group-hover:rotate-12 transition-transform" />
-                      <span>Word Challenge - Show Your Vocabulary!</span>
-                      <div className="flex items-center gap-1 bg-white/20 px-3 py-1 rounded-full">
-                        <Sparkles className="w-4 h-4" />
-                        <span className="text-sm">+10</span>
-                      </div>
+                      <Sparkles className="w-6 h-6 group-hover:rotate-12 transition-transform" />
+                      Ask About My Collection!
+                      <span className="bg-emerald-600 text-white px-3 py-1 rounded-full text-sm font-bold ml-2">
+                        +10 Stardust
+                      </span>
                     </>
                   )}
                 </button>
