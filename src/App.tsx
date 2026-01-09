@@ -2006,7 +2006,9 @@ CRITICAL: Respond with ONLY a valid JSON array. No markdown, no explanations, no
                     <ArrowLeft className="w-5 h-5" /> Back
                 </button>
                 <div className="font-black text-slate-800 dark:text-white uppercase tracking-widest text-sm">Nugget</div>
-                <div className="w-8" />
+                <button onClick={() => setView('home')} className="flex items-center gap-2 text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 px-3 py-1.5 rounded-full transition-colors font-bold">
+                    Home
+                </button>
             </div>
 
             <div className="flex-1 overflow-y-auto p-4 md:p-8 flex flex-col items-center max-w-3xl mx-auto w-full">
@@ -2276,39 +2278,55 @@ CRITICAL: Respond with ONLY a valid JSON array. No markdown, no explanations, no
                     </div>
                     
                     {/* Bottom Action Bar */}
-                    <div className="bg-slate-50 dark:bg-slate-900/50 p-4 border-t border-slate-200 dark:border-slate-700 flex gap-4">
-                        <button 
-                            onClick={() => {
-                                if(!collection.some(n=>n.text===currentNugget.text)){
-                                    const newCollection = [...collection, {...currentNugget, id: Date.now(), date: new Date().toLocaleDateString()}];
-                                    saveCollection(newCollection);
-                                    updateCrumbs(5);
-                                    showNotification("Collected! +5 Crumbs 🍪");
-                                    // Open Stardust quiz popup
-                                    setShowStardustQuiz(true);
-                                    setStardustQuizType(null);
-                                    setSelectedStardustAnswer(null);
-                                    setWrongAnswers(new Set());
-                                    setFreeformAnswer('');
-                                    setStardustQuestion(null);
-                                } else showNotification("Already collected!");
-                            }}
-                            className="flex-1 bg-yellow-400 hover:bg-yellow-500 text-yellow-900 font-bold py-3 rounded-xl shadow-md hover:shadow-lg hover:-translate-y-1 transition-all flex items-center justify-center gap-2"
-                        >
-                            <Heart className="w-5 h-5 fill-yellow-900" /> Collect Nugget!
-                        </button>
-                        <button 
-                            onClick={() => {
-                                if (apiKey && currentNugget.tags[0]) {
-                                    generateNuggetByTag(currentNugget.tags[0], currentNugget.subjectId);
-                                } else if (currentNugget.subjectId) {
-                                    pickRandomFromSubject(currentNugget.subjectId);
-                                }
-                            }} 
-                            className="px-6 bg-white dark:bg-slate-800 border-2 border-slate-200 dark:border-slate-700 font-bold text-slate-600 dark:text-slate-300 rounded-xl hover:border-blue-400 transition-colors flex items-center gap-2"
-                        >
-                            Next <ArrowRight className="w-4 h-4" />
-                        </button>
+                    <div className="bg-slate-50 dark:bg-slate-900/50 p-4 border-t border-slate-200 dark:border-slate-700 space-y-3">
+                        <div className="flex gap-4">
+                            <button 
+                                onClick={() => {
+                                    if(!collection.some(n=>n.text===currentNugget.text)){
+                                        const newCollection = [...collection, {...currentNugget, id: Date.now(), date: new Date().toLocaleDateString()}];
+                                        saveCollection(newCollection);
+                                        updateCrumbs(5);
+                                        showNotification("Collected! +5 Crumbs 🍪");
+                                        // Open Stardust quiz popup
+                                        setShowStardustQuiz(true);
+                                        setStardustQuizType(null);
+                                        setSelectedStardustAnswer(null);
+                                        setWrongAnswers(new Set());
+                                        setFreeformAnswer('');
+                                        setStardustQuestion(null);
+                                    } else showNotification("Already collected!");
+                                }}
+                                className="flex-1 bg-yellow-400 hover:bg-yellow-500 text-yellow-900 font-bold py-3 rounded-xl shadow-md hover:shadow-lg hover:-translate-y-1 transition-all flex items-center justify-center gap-2"
+                            >
+                                <Heart className="w-5 h-5 fill-yellow-900" /> Collect Nugget!
+                            </button>
+                            <button 
+                                onClick={() => {
+                                    if (apiKey && currentNugget.tags[0]) {
+                                        generateNuggetByTag(currentNugget.tags[0], currentNugget.subjectId);
+                                    } else if (currentNugget.subjectId) {
+                                        pickRandomFromSubject(currentNugget.subjectId);
+                                    }
+                                }} 
+                                className="px-6 bg-white dark:bg-slate-800 border-2 border-slate-200 dark:border-slate-700 font-bold text-slate-600 dark:text-slate-300 rounded-xl hover:border-blue-400 transition-colors flex items-center gap-2"
+                            >
+                                Next <ArrowRight className="w-4 h-4" />
+                            </button>
+                        </div>
+                        <div className="flex gap-3">
+                            <button 
+                                onClick={() => setView('collection')}
+                                className="flex-1 bg-purple-100 hover:bg-purple-200 dark:bg-purple-900/30 dark:hover:bg-purple-900/50 text-purple-700 dark:text-purple-300 font-bold py-3 rounded-xl shadow-sm hover:shadow-md transition-all flex items-center justify-center gap-2"
+                            >
+                                <BookOpen className="w-5 h-5" /> View Nugget Collection
+                            </button>
+                            <button 
+                                onClick={() => setView('activity-collection')}
+                                className="flex-1 bg-green-100 hover:bg-green-200 dark:bg-green-900/30 dark:hover:bg-green-900/50 text-green-700 dark:text-green-300 font-bold py-3 rounded-xl shadow-sm hover:shadow-md transition-all flex items-center justify-center gap-2"
+                            >
+                                <Sparkles className="w-5 h-5" /> View Activity Collection
+                            </button>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -2667,21 +2685,27 @@ CRITICAL: Respond with ONLY a valid JSON array. No markdown, no explanations, no
       {/* Stardust Quiz Modal */}
       {showStardustQuiz && (
         <div className="fixed inset-0 bg-black/60 flex items-center justify-center z-50 p-4 backdrop-blur-sm">
-          <div className="bg-gradient-to-br from-purple-50 to-blue-50 dark:from-purple-900 dark:to-blue-900 rounded-3xl shadow-2xl max-w-lg w-full max-h-[90vh] overflow-y-auto p-6 animate-pop border-4 border-purple-300 dark:border-purple-600">
-            <div className="flex items-center justify-between mb-2">
-              <div className="flex flex-col">
-                <h2 className="text-2xl font-bold text-purple-900 dark:text-purple-100">What Do You Think?</h2>
-                <p className="text-sm text-purple-600 dark:text-purple-300 font-semibold">Answer to Earn Stardust</p>
+          <div className="bg-white dark:bg-slate-800 rounded-3xl shadow-2xl max-w-lg w-full max-h-[90vh] overflow-y-auto animate-pop border border-slate-200 dark:border-slate-700">
+            {/* Header */}
+            <div className="bg-gradient-to-r from-purple-500 to-blue-500 p-6 rounded-t-3xl flex items-center justify-between">
+              <div className="flex items-center gap-3">
+                <div className="bg-white/20 backdrop-blur-sm p-3 rounded-2xl">
+                  <Sparkles className="w-6 h-6 text-white" />
+                </div>
+                <div>
+                  <h2 className="text-2xl font-black text-white">What Do You Think?</h2>
+                  <p className="text-sm text-purple-100 font-semibold">Answer to Earn Stardust ✨</p>
+                </div>
               </div>
-              <button onClick={() => setShowStardustQuiz(false)} className="text-slate-500 hover:text-slate-700 dark:text-slate-400 dark:hover:text-slate-200">
+              <button onClick={() => setShowStardustQuiz(false)} className="text-white/80 hover:text-white transition-colors">
                 <X className="w-6 h-6" />
               </button>
             </div>
 
-            <div className="space-y-4 mt-4">
+            <div className="p-6 space-y-6">
               {/* Text Input Section */}
               <div>
-                <label className="text-sm font-semibold text-slate-700 dark:text-slate-300 mb-2 block">
+                <label className="text-base font-bold text-slate-800 dark:text-white mb-3 block">
                   What did you find most interesting?
                 </label>
                 <div className="relative">
@@ -2689,7 +2713,7 @@ CRITICAL: Respond with ONLY a valid JSON array. No markdown, no explanations, no
                     value={freeformAnswer}
                     onChange={(e) => setFreeformAnswer(e.target.value)}
                     placeholder="Type or speak your thoughts here..."
-                    className="w-full p-4 pr-12 border-2 border-purple-300 dark:border-purple-600 rounded-xl focus:outline-none focus:ring-2 focus:ring-purple-500 dark:bg-slate-800 dark:text-slate-200 min-h-[100px] resize-none"
+                    className="w-full p-4 pr-12 border-2 border-slate-200 dark:border-slate-600 rounded-xl focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent bg-slate-50 dark:bg-slate-900 text-slate-800 dark:text-slate-200 min-h-[100px] resize-none"
                   />
                   <button
                     onClick={startListening}
@@ -2697,7 +2721,7 @@ CRITICAL: Respond with ONLY a valid JSON array. No markdown, no explanations, no
                     className={`absolute right-2 top-2 p-2 rounded-full transition-colors ${
                       isListening 
                         ? 'bg-red-500 animate-pulse' 
-                        : 'bg-purple-100 dark:bg-purple-800 hover:bg-purple-200 dark:hover:bg-purple-700'
+                        : 'bg-purple-100 dark:bg-purple-900 hover:bg-purple-200 dark:hover:bg-purple-800'
                     }`}
                     title="Speech to text"
                   >
@@ -2708,7 +2732,7 @@ CRITICAL: Respond with ONLY a valid JSON array. No markdown, no explanations, no
 
               {/* Multiple Choice Section */}
               <div>
-                <label className="text-sm font-semibold text-slate-700 dark:text-slate-300 mb-2 block">
+                <label className="text-base font-bold text-slate-800 dark:text-white mb-3 block">
                   Or answer this question:
                 </label>
                 {stardustQuizLoading ? (
@@ -2718,9 +2742,9 @@ CRITICAL: Respond with ONLY a valid JSON array. No markdown, no explanations, no
                   </div>
                 ) : stardustQuestion ? (
                   <>
-                    <div className="bg-white dark:bg-slate-800 rounded-xl p-4 mb-3">
+                    <div className="bg-slate-50 dark:bg-slate-900 rounded-xl p-4 mb-3 border border-slate-200 dark:border-slate-700">
                       <div className="flex items-start justify-between gap-2">
-                        <p className="text-base font-semibold text-slate-800 dark:text-slate-200">
+                        <p className="text-base font-bold text-slate-800 dark:text-white">
                           {stardustQuestion.question}
                         </p>
                         <button
@@ -2782,9 +2806,9 @@ CRITICAL: Respond with ONLY a valid JSON array. No markdown, no explanations, no
                             
                             speechSynthesis.speak(utterance);
                           }}
-                          className="flex-shrink-0 p-2 bg-blue-100 dark:bg-blue-800 rounded-full hover:bg-blue-200 dark:hover:bg-blue-700 transition-colors"
+                          className="flex-shrink-0 p-2 bg-purple-100 dark:bg-purple-900 rounded-full hover:bg-purple-200 dark:hover:bg-purple-800 transition-colors"
                         >
-                          <Volume2 className="w-4 h-4 text-blue-600 dark:text-blue-300" />
+                          <Volume2 className="w-4 h-4 text-purple-600 dark:text-purple-300" />
                         </button>
                       </div>
                     </div>
@@ -2800,29 +2824,51 @@ CRITICAL: Respond with ONLY a valid JSON array. No markdown, no explanations, no
                             onClick={() => {
                               if (isWrong) return;
                               setSelectedStardustAnswer(index);
+                              
+                              // Immediate feedback
+                              if (index === stardustQuestion.correctIndex) {
+                                // Correct answer selected
+                              } else {
+                                // Wrong answer - mark as wrong (no notification to avoid confusion)
+                                setWrongAnswers(new Set([...wrongAnswers, index]));
+                              }
                             }}
                             disabled={isWrong}
-                            className={`w-full p-3 rounded-xl font-semibold text-left transition-all text-sm ${
+                            className={`w-full p-4 rounded-xl font-semibold text-left transition-all ${
                               isWrong 
-                                ? 'bg-slate-200 dark:bg-slate-700 text-slate-400 dark:text-slate-500 cursor-not-allowed opacity-50'
+                                ? 'bg-slate-200 dark:bg-slate-700 text-slate-400 dark:text-slate-500 cursor-not-allowed border-2 border-slate-300 dark:border-slate-600 line-through opacity-60'
+                                : isSelected && isCorrect
+                                ? 'bg-green-500 text-white shadow-lg border-2 border-green-600'
                                 : isSelected
-                                ? 'bg-purple-500 text-white shadow-lg'
-                                : 'bg-white dark:bg-slate-800 hover:bg-purple-100 dark:hover:bg-slate-700 text-slate-800 dark:text-slate-200 shadow hover:shadow-lg hover:-translate-y-0.5'
+                                ? 'bg-purple-500 text-white shadow-lg border-2 border-purple-600'
+                                : 'bg-white dark:bg-slate-700 hover:bg-slate-50 dark:hover:bg-slate-600 text-slate-800 dark:text-slate-200 shadow border-2 border-slate-200 dark:border-slate-600 hover:border-purple-300 dark:hover:border-purple-600 hover:shadow-lg hover:-translate-y-0.5'
                             }`}
                           >
-                            {option}
+                            <div className="flex items-center justify-between">
+                              <span>{option}</span>
+                              {isSelected && isCorrect && <Check className="w-5 h-5 flex-shrink-0" />}
+                            </div>
                           </button>
                         );
                       })}
                     </div>
+                    {selectedStardustAnswer === stardustQuestion.correctIndex && (
+                      <div className="bg-green-100 dark:bg-green-900/30 border-2 border-green-500 dark:border-green-700 rounded-xl p-4 text-center animate-pop">
+                        <p className="text-green-800 dark:text-green-200 font-bold flex items-center justify-center gap-2">
+                          <Check className="w-5 h-5" /> Click "Submit" for your reward!
+                        </p>
+                      </div>
+                    )}
                     {wrongAnswers.size > 0 && selectedStardustAnswer !== stardustQuestion.correctIndex && (
-                      <p className="text-center text-sm text-purple-600 dark:text-purple-300 mt-2">
-                        Not quite! Try again - you've got this! 💪
-                      </p>
+                      <div className="text-center">
+                        <p className="text-sm text-slate-600 dark:text-slate-400">
+                          Try again - you've got this! 💪
+                        </p>
+                      </div>
                     )}
                   </>
                 ) : (
-                  <div className="text-center py-4 bg-white dark:bg-slate-800 rounded-xl">
+                  <div className="text-center py-4 bg-slate-50 dark:bg-slate-900 rounded-xl border border-slate-200 dark:border-slate-700">
                     <p className="text-sm text-slate-600 dark:text-slate-400">Question couldn't be generated</p>
                   </div>
                 )}
@@ -2844,11 +2890,8 @@ CRITICAL: Respond with ONLY a valid JSON array. No markdown, no explanations, no
                       setWrongAnswers(new Set());
                       setStardustQuestion(null);
                     }, 1500);
-                  } else if (selectedStardustAnswer !== null && !hasCorrectMCQ) {
-                    setWrongAnswers(new Set([...wrongAnswers, selectedStardustAnswer]));
-                    showNotification("Try again!");
                   } else {
-                    showNotification("Please answer the question or write at least 10 characters!");
+                    showNotification("Please answer the question correctly or write at least 10 characters!");
                   }
                 }}
                 className="w-full bg-gradient-to-r from-purple-500 to-blue-500 hover:from-purple-600 hover:to-blue-600 text-white font-bold py-4 px-6 rounded-xl shadow-lg hover:shadow-xl hover:-translate-y-1 transition-all flex items-center justify-center gap-2"
