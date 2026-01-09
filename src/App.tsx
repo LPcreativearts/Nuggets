@@ -171,7 +171,7 @@ const SUBJECTS = [
   { 
       id: 'words', name: 'Words', icon: Edit3, 
       color: 'bg-pink-100 text-pink-700 dark:bg-pink-900/50 dark:text-pink-200', border: 'border-pink-300 dark:border-pink-700', 
-      subtopics: ["Elements of Language", "Made-up Words", "Secret Languages", "Jokes", "Ancient Writing", "Tongue Twisters", "Palindromes", "Hieroglyphics", "Storytelling"],
+      subtopics: ["Elements of Language", "Silly Words", "Secret Languages", "Jokes", "Ancient Writing", "Tongue Twisters", "Palindromes", "Hieroglyphics", "Storytelling"],
       imgTerm: "Calligraphy"
   },
 ];
@@ -201,7 +201,7 @@ const SUBTOPIC_IMAGES = {
   "Video Game Tester": "https://images.unsplash.com/photo-1610458131353-1f3f843bb0d6?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxnYW1pbmclMjBjb250cm9sbGVyJTIwZGVza3xlbnwxfHx8fDE3Njc3NDY2NDF8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
   "Animal Rescuer": "https://images.unsplash.com/photo-1759164955427-14ca448a839d?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx2ZXRlcmluYXJpYW4lMjBhbmltYWwlMjBjYXJlfGVufDF8fHx8MTc2Nzc0NjY0Mnww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
   "Elements of Language": "https://images.unsplash.com/photo-1620862425686-465a01345cd4?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxhbHBoYWJldCUyMGxldHRlcnMlMjB0eXBvZ3JhcGh5fGVufDF8fHx8MTc2Nzc0NjY0Mnww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
-  "Made-up Words": "https://images.unsplash.com/photo-1667980432734-0e662dd989c4?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxkaWN0aW9uYXJ5JTIwY3JlYXRpdmUlMjB3b3Jkc3xlbnwxfHx8fDE3Njc3NDY2NDN8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
+  "Silly Words": "https://images.unsplash.com/photo-1667980432734-0e662dd989c4?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxkaWN0aW9uYXJ5JTIwY3JlYXRpdmUlMjB3b3Jkc3xlbnwxfHx8fDE3Njc3NDY2NDN8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
   "Secret Languages": "https://images.unsplash.com/photo-1519162721257-18cd195350c2?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxzaWduJTIwbGFuZ3VhZ2UlMjBjb21tdW5pY2F0aW9ufGVufDF8fHx8MTc2NzY5MDAyM3ww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
   "Tongue Twisters": "https://images.unsplash.com/photo-1648204068800-cfcfb9d814ac?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxzcGVha2luZyUyMG1vdXRoJTIwZXhwcmVzc2lvbnxlbnwxfHx8fDE3Njc3NDY2NDN8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
   "Ancient Writing": "https://images.unsplash.com/photo-1655923478826-ef7c2d40820e?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxhbmNpZW50JTIwaGllcm9nbHlwaGljcyUyMHdyaXRpbmd8ZW58MXx8fHwxNzY3NzQ2NjQ0fDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
@@ -523,6 +523,7 @@ const FormattedText = ({ text, onLinkClick, onCollectWord }) => {
 
 export default function NuggetsApp() {
   const [view, setView] = useState('home'); 
+  const [navigationHistory, setNavigationHistory] = useState(['home']); // Track navigation history
   const [selectedSubject, setSelectedSubject] = useState(null);
   const [currentNugget, setCurrentNugget] = useState(null);
   const [searchQuery, setSearchQuery] = useState('');
@@ -531,6 +532,7 @@ export default function NuggetsApp() {
   const [collection, setCollection] = useState([]);
   const [wordCollection, setWordCollection] = useState([]); 
   const [activityCollection, setActivityCollection] = useState([]);
+  const [expandedMissions, setExpandedMissions] = useState([]); // Track which missions are expanded
   const [apiKey, setApiKey] = useState('');
   const [starDust, setStarDust] = useState(0);
   const [crumbs, setCrumbs] = useState(0); 
@@ -573,6 +575,20 @@ export default function NuggetsApp() {
   const [wrongAnswers, setWrongAnswers] = useState(new Set());
   const [freeformAnswer, setFreeformAnswer] = useState('');
   const [stardustQuizLoading, setStardustQuizLoading] = useState(false);
+
+  // Collection Quiz
+  const [showCollectionQuiz, setShowCollectionQuiz] = useState(false);
+  const [collectionQuizQuestions, setCollectionQuizQuestions] = useState([]);
+  const [currentCollectionQuestionIndex, setCurrentCollectionQuestionIndex] = useState(0);
+  const [collectionQuizWrongAnswers, setCollectionQuizWrongAnswers] = useState(new Set());
+  const [usedCollectionFactIds, setUsedCollectionFactIds] = useState(new Set());
+
+  // Word Quiz
+  const [showWordQuiz, setShowWordQuiz] = useState(false);
+  const [wordQuizQuestions, setWordQuizQuestions] = useState([]);
+  const [currentWordQuestionIndex, setCurrentWordQuestionIndex] = useState(0);
+  const [wordQuizWrongAnswers, setWordQuizWrongAnswers] = useState(new Set());
+  const [usedWordIds, setUsedWordIds] = useState(new Set());
 
   // Auth
   const [user, setUser] = useState(null);
@@ -646,7 +662,7 @@ export default function NuggetsApp() {
   useEffect(() => {
     const savedCollection = localStorage.getItem('nuggets_collection');
     if (savedCollection) setCollection(JSON.parse(savedCollection));
-    const savedWordCollection = localStorage.getItem('nuggets_wordbank');
+    const savedWordCollection = localStorage.getItem('nuggets_wordCollection');
     if (savedWordCollection) setWordCollection(JSON.parse(savedWordCollection));
     const savedActivityCollection = localStorage.getItem('nuggets_activityCollection');
     if (savedActivityCollection) setActivityCollection(JSON.parse(savedActivityCollection));
@@ -741,6 +757,13 @@ export default function NuggetsApp() {
     recognition.onerror = (event) => {
       console.error('Speech recognition error:', event.error);
       setIsListening(false);
+      if (event.error === 'not-allowed') {
+        showNotification("Microphone access denied. Please allow microphone access in your browser settings.");
+      } else if (event.error === 'no-speech') {
+        showNotification("No speech detected. Please try again.");
+      } else {
+        showNotification("Voice input error: " + event.error);
+      }
     };
     
     recognition.onend = () => {
@@ -808,6 +831,31 @@ export default function NuggetsApp() {
   const showNotification = (msg) => {
     setNotification(msg);
     setTimeout(() => setNotification(null), 3000);
+  };
+
+  // Navigation helper functions
+  const navigateTo = (newView) => {
+    setNavigationHistory(prev => [...prev, newView]);
+    setView(newView);
+  };
+
+  const goBack = () => {
+    if (navigationHistory.length > 1) {
+      const newHistory = [...navigationHistory];
+      newHistory.pop(); // Remove current page
+      const previousView = newHistory[newHistory.length - 1];
+      setNavigationHistory(newHistory);
+      setView(previousView);
+    } else {
+      // Fallback to home if history is empty
+      setView('home');
+      setNavigationHistory(['home']);
+    }
+  };
+
+  const goHome = () => {
+    setView('home');
+    setNavigationHistory(['home']);
   };
 
   // Save data to server
@@ -955,8 +1003,14 @@ export default function NuggetsApp() {
 
     recognition.onerror = (event) => {
       console.error('Speech recognition error:', event.error);
-      showNotification("Voice input error: " + event.error);
       setIsListening(false);
+      if (event.error === 'not-allowed') {
+        showNotification("Microphone access denied. Please allow microphone access in your browser settings.");
+      } else if (event.error === 'no-speech') {
+        showNotification("No speech detected. Please try again.");
+      } else {
+        showNotification("Voice input error: " + event.error);
+      }
     };
 
     recognition.onend = () => {
@@ -1149,13 +1203,25 @@ export default function NuggetsApp() {
             return;
         }
     }
+    
+    // If Wikipedia failed, use Unsplash as fallback
+    try {
+        const unsplashQuery = searchTerm || text.split(' ').slice(0, 3).join(' ');
+        const unsplashUrl = await fetchUnsplashImage(unsplashQuery);
+        if (unsplashUrl) {
+            setNuggetImage({ url: unsplashUrl });
+        }
+    } catch (error) {
+        console.error('Unsplash fallback error:', error);
+    }
+    
     setImageLoading(false);
   };
 
   const generateNuggetByTag = async (tag, subjectId = null) => {
     if (!apiKey) { 
         showNotification("Add API Key in Settings!"); 
-        setTimeout(() => setView('settings'), 1000);
+        setTimeout(() => navigateTo('settings'), 1000);
         return; 
     }
     setAiLoading(true);
@@ -1217,7 +1283,7 @@ Return ONLY valid JSON in this exact format: { "fact": "The fact text here", "to
         setLearnResponse(null);
         setActivityResponse(null);
         setActivityImage(null);
-        setView('nugget');
+        navigateTo('nugget');
         
         // Generate image for the nugget
         generateImage(parsed.fact, parsed.imageSearchTerm, tag);
@@ -1235,7 +1301,7 @@ Return ONLY valid JSON in this exact format: { "fact": "The fact text here", "to
     
     setStardustQuizLoading(true);
     try {
-        const systemPrompt = `You are a quiz creator for children (ages 7-8). Create ONE simple multiple choice question about the given fact. Keep it age-appropriate and straightforward.`;
+        const systemPrompt = `You are a question creator for children (ages 7-8). Create ONE simple multiple choice question about the given fact. Keep it age-appropriate and straightforward.`;
         const userPrompt = `Create a simple multiple choice question about this fact: "${currentNugget.text}"
 
 CRITICAL: Respond with ONLY a valid JSON object. No markdown, no explanations, no additional text.
@@ -1267,10 +1333,198 @@ CRITICAL: Respond with ONLY a valid JSON object. No markdown, no explanations, n
             setStardustQuestion(null);
         }
     } catch(e) {
-        console.error("Quiz generation error:", e);
+        console.error("Question generation error:", e);
         setStardustQuestion(null);
     } finally {
         setStardustQuizLoading(false);
+    }
+  };
+
+  const startCollectionQuiz = async () => {
+    if (!apiKey) {
+      showNotification("Add API Key in Settings!");
+      setTimeout(() => navigateTo('settings'), 1000);
+      return;
+    }
+    
+    if (collection.length < 4) {
+      showNotification("Collect at least 4 nuggets first!");
+      return;
+    }
+    
+    setAiLoading(true);
+    
+    try {
+      // Select 4 random facts from collection that haven't been used recently
+      const availableFacts = collection.filter(fact => !usedCollectionFactIds.has(fact.id));
+      
+      // If we don't have enough unused facts, reset the used set (but keep using all facts)
+      let factsToUse = availableFacts.length >= 4 ? availableFacts : collection;
+      
+      // Shuffle and pick 4 facts
+      const shuffled = [...factsToUse].sort(() => Math.random() - 0.5);
+      const selectedFacts = shuffled.slice(0, 4);
+      
+      // Generate questions for each fact
+      const questions = [];
+      
+      for (const fact of selectedFacts) {
+        const systemPrompt = `You are a question creator for children (ages 7-8). Create ONE simple multiple choice question about the given fact. Keep it age-appropriate and straightforward.`;
+        const userPrompt = `Create a simple multiple choice question about this fact: "${fact.text}"
+
+CRITICAL: Respond with ONLY a valid JSON object. No markdown, no explanations, no additional text.
+
+{
+  "question": "The question text?",
+  "options": ["Option A", "Option B", "Option C"],
+  "correctIndex": 0
+}`;
+        
+        const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash-exp:generateContent?key=${apiKey}`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            contents: [{ parts: [{ text: userPrompt }] }],
+            systemInstruction: { parts: [{ text: systemPrompt }] }
+          })
+        });
+        
+        const data = await response.json();
+        const content = data.candidates?.[0]?.content?.parts?.[0]?.text;
+        
+        try {
+          const cleaned = content.replace(/```json/g, '').replace(/```/g, '').trim();
+          const parsed = JSON.parse(cleaned);
+          questions.push({ ...parsed, factId: fact.id });
+        } catch(e) {
+          console.error("JSON parse error for fact:", fact.id, e);
+        }
+      }
+      
+      if (questions.length === 4) {
+        setCollectionQuizQuestions(questions);
+        setCurrentCollectionQuestionIndex(0);
+        setCollectionQuizWrongAnswers(new Set());
+        setShowCollectionQuiz(true);
+        
+        // Mark these facts as used
+        setUsedCollectionFactIds(new Set([...usedCollectionFactIds, ...selectedFacts.map(f => f.id)]));
+        
+        // Reset used facts if we've used most of them
+        if (usedCollectionFactIds.size + 4 >= collection.length) {
+          setUsedCollectionFactIds(new Set());
+        }
+      } else {
+        showNotification("Could not generate questions. Try again!");
+      }
+    } catch(e) {
+      console.error("Collection challenge error:", e);
+      showNotification("Could not generate questions. Check your API key!");
+    } finally {
+      setAiLoading(false);
+    }
+  };
+
+  const startWordQuiz = async () => {
+    if (!apiKey) {
+      showNotification("Add API Key in Settings!");
+      setTimeout(() => navigateTo('settings'), 1000);
+      return;
+    }
+    
+    if (wordCollection.length < 4) {
+      showNotification("Collect at least 4 words first!");
+      return;
+    }
+    
+    setAiLoading(true);
+    
+    try {
+      // Select 4 random words from collection that haven't been used recently
+      const availableWords = wordCollection.filter(word => !usedWordIds.has(word.word));
+      
+      // If we don't have enough unused words, reset the used set
+      let wordsToUse = availableWords.length >= 5 ? availableWords : wordCollection;
+      
+      // Shuffle and pick 5 words
+      const shuffled = [...wordsToUse].sort(() => Math.random() - 0.5);
+      const selectedWords = shuffled.slice(0, 5);
+      
+      // Generate questions for each word (mix of definition and spelling questions)
+      const questions = [];
+      
+      for (let i = 0; i < selectedWords.length; i++) {
+        const word = selectedWords[i];
+        const questionType = i % 2 === 0 ? 'definition' : 'spelling';
+        
+        let systemPrompt, userPrompt;
+        
+        if (questionType === 'definition') {
+          systemPrompt = `You are a question creator for children (ages 7-8). Create ONE simple multiple choice question about the definition of a word. Keep it age-appropriate.`;
+          userPrompt = `Create a multiple choice question asking what the word "${word.word}" means. The correct definition is: "${word.definition}"
+
+CRITICAL: Respond with ONLY a valid JSON object. No markdown, no explanations, no additional text.
+
+{
+  "question": "What does the word '${word.word}' mean?",
+  "options": ["Correct definition", "Wrong option 1", "Wrong option 2"],
+  "correctIndex": 0
+}`;
+        } else {
+          systemPrompt = `You are a question creator for children (ages 7-8). Create ONE simple multiple choice question about how to spell a word. Keep it age-appropriate.`;
+          userPrompt = `Create a multiple choice question about how to spell this word. The word is: "${word.word}" which means "${word.definition}"
+
+CRITICAL: Respond with ONLY a valid JSON object. No markdown, no explanations, no additional text.
+
+{
+  "question": "How do you spell the word that means '${word.definition}'?",
+  "options": ["${word.word}", "Wrong spelling 1", "Wrong spelling 2"],
+  "correctIndex": 0
+}`;
+        }
+        
+        const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash-exp:generateContent?key=${apiKey}`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            contents: [{ parts: [{ text: userPrompt }] }],
+            systemInstruction: { parts: [{ text: systemPrompt }] }
+          })
+        });
+        
+        const data = await response.json();
+        const content = data.candidates?.[0]?.content?.parts?.[0]?.text;
+        
+        try {
+          const cleaned = content.replace(/```json/g, '').replace(/```/g, '').trim();
+          const parsed = JSON.parse(cleaned);
+          questions.push({ ...parsed, wordId: word.word, type: questionType });
+        } catch(e) {
+          console.error("JSON parse error for word:", word.word, e);
+        }
+      }
+      
+      if (questions.length === 4) {
+        setWordQuizQuestions(questions);
+        setCurrentWordQuestionIndex(0);
+        setWordQuizWrongAnswers(new Set());
+        setShowWordQuiz(true);
+        
+        // Mark these words as used
+        setUsedWordIds(new Set([...usedWordIds, ...selectedWords.map(w => w.word)]));
+        
+        // Reset used words if we've used most of them
+        if (usedWordIds.size + 4 >= wordCollection.length) {
+          setUsedWordIds(new Set());
+        }
+      } else {
+        showNotification("Could not generate questions. Try again!");
+      }
+    } catch(e) {
+      console.error("Word challenge error:", e);
+      showNotification("Could not generate questions. Check your API key!");
+    } finally {
+      setAiLoading(false);
     }
   };
 
@@ -1332,7 +1586,7 @@ CRITICAL: Respond with ONLY a valid JSON object. No markdown, no explanations, n
   "steps": ["Action subhead: Full instruction in second person.", "Another action: Do this step."]
 }`;
         } else if (type === 'trivia') {
-             systemPrompt = `You are a quiz creator for children.`;
+             systemPrompt = `You are a question creator for children.`;
              userPrompt = `Create 3 multiple choice questions about these facts: ${collection.slice(0, 3).map(n => n.text).join('; ')}
 
 CRITICAL: Respond with ONLY a valid JSON array. No markdown, no explanations, no additional text.
@@ -1458,7 +1712,7 @@ CRITICAL: Respond with ONLY a valid JSON array. No markdown, no explanations, no
       setLearnResponse(null);
       setActivityResponse(null);
       setActivityImage(null);
-      setView('nugget');
+      navigateTo('nugget');
   };
 
   // Login/Logout Handlers
@@ -1497,7 +1751,7 @@ CRITICAL: Respond with ONLY a valid JSON array. No markdown, no explanations, no
              </div>
              {/* Cloud Sync Indicator */}
              <div className={`w-2 h-2 rounded-full ${isSaving ? 'bg-yellow-400 animate-pulse' : !user ? 'bg-slate-300' : 'bg-green-400'}`} title={isSaving ? "Saving..." : !user ? "Guest (Not Saved)" : "Synced to Cloud"} />
-             <button onClick={() => setView('settings')} className="p-2 bg-slate-100 dark:bg-slate-800 rounded-full text-slate-600 dark:text-slate-300 hover:scale-110 transition-transform">
+             <button onClick={() => navigateTo('settings')} className="p-2 bg-slate-100 dark:bg-slate-800 rounded-full text-slate-600 dark:text-slate-300 hover:scale-110 transition-transform">
                 <Settings className="w-5 h-5" />
              </button>
         </div>
@@ -1543,7 +1797,7 @@ CRITICAL: Respond with ONLY a valid JSON array. No markdown, no explanations, no
             {SUBJECTS.map((sub) => (
                 <button 
                     key={sub.id} 
-                    onClick={() => { setSelectedSubject(sub); setView('subject-menu'); }}
+                    onClick={() => { setSelectedSubject(sub); navigateTo('subject-menu'); }}
                     className={`relative p-4 rounded-2xl border-2 ${sub.border} ${sub.color.replace('text', 'bg').replace('100', '50').replace('/50', '/10')} flex flex-col items-center justify-center gap-3 h-32 active:scale-95 transition-transform shadow-sm`}
                 >
                     <div className={`w-12 h-12 rounded-full ${sub.color} flex items-center justify-center shadow-inner`}>
@@ -1574,7 +1828,7 @@ CRITICAL: Respond with ONLY a valid JSON array. No markdown, no explanations, no
                 return (
                     <button
                         key={sub.id}
-                        onClick={() => { setSelectedSubject(sub); setView('subject-menu'); }}
+                        onClick={() => { setSelectedSubject(sub); navigateTo('subject-menu'); }}
                         className="absolute w-20 h-20 -ml-10 -mt-10 rounded-full bg-white dark:bg-slate-800 shadow-xl border-4 flex items-center justify-center hover:scale-125 transition-all duration-300 z-10 group/planet"
                         style={{ left: `${x}%`, top: `${y}%`, borderColor: 'currentColor' }}
                     >
@@ -1591,22 +1845,22 @@ CRITICAL: Respond with ONLY a valid JSON array. No markdown, no explanations, no
 
         {/* Quick Actions Grid */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-            <button onClick={() => setView('collection')} className="p-4 bg-white dark:bg-slate-800 rounded-2xl shadow-sm border border-slate-200 dark:border-slate-700 hover:border-yellow-400 dark:hover:border-yellow-500 transition-colors flex flex-col items-center gap-2 group">
+            <button onClick={() => navigateTo('collection')} className="p-4 bg-white dark:bg-slate-800 rounded-2xl shadow-sm border border-slate-200 dark:border-slate-700 hover:border-yellow-400 dark:hover:border-yellow-500 transition-colors flex flex-col items-center gap-2 group">
                 <Star className="w-8 h-8 text-yellow-400 group-hover:rotate-12 transition-transform" />
                 <span className="font-bold text-slate-700 dark:text-slate-200">Nuggets</span>
                 <span className="text-xs text-slate-400">{collection.length} nuggets</span>
             </button>
-            <button onClick={() => setView('word-bank')} className="p-4 bg-white dark:bg-slate-800 rounded-2xl shadow-sm border border-slate-200 dark:border-slate-700 hover:border-emerald-400 dark:hover:border-emerald-500 transition-colors flex flex-col items-center gap-2 group">
+            <button onClick={() => navigateTo('word-bank')} className="p-4 bg-white dark:bg-slate-800 rounded-2xl shadow-sm border border-slate-200 dark:border-slate-700 hover:border-emerald-400 dark:hover:border-emerald-500 transition-colors flex flex-col items-center gap-2 group">
                 <BookOpen className="w-8 h-8 text-emerald-400 group-hover:scale-110 transition-transform" />
                 <span className="font-bold text-slate-700 dark:text-slate-200">Words</span>
                 <span className="text-xs text-slate-400">{wordCollection.length} words</span>
             </button>
-            <button onClick={() => setView('activities')} className="p-4 bg-white dark:bg-slate-800 rounded-2xl shadow-sm border border-slate-200 dark:border-slate-700 hover:border-orange-400 dark:hover:border-orange-500 transition-colors flex flex-col items-center gap-2 group">
+            <button onClick={() => navigateTo('activities')} className="p-4 bg-white dark:bg-slate-800 rounded-2xl shadow-sm border border-slate-200 dark:border-slate-700 hover:border-orange-400 dark:hover:border-orange-500 transition-colors flex flex-col items-center gap-2 group">
                 <Rocket className="w-8 h-8 text-orange-400 group-hover:rotate-12 transition-transform" />
-                <span className="font-bold text-slate-700 dark:text-slate-200">Activities</span>
-                <span className="text-xs text-slate-400">{activityCollection.length} saved</span>
+                <span className="font-bold text-slate-700 dark:text-slate-200">Missions</span>
+                <span className="text-xs text-slate-400">{activityCollection.length} missions</span>
             </button>
-            <button onClick={() => setView('shop')} className="p-4 bg-white dark:bg-slate-800 rounded-2xl shadow-sm border border-slate-200 dark:border-slate-700 hover:border-purple-400 dark:hover:border-purple-500 transition-colors flex flex-col items-center gap-2 group">
+            <button onClick={() => navigateTo('shop')} className="p-4 bg-white dark:bg-slate-800 rounded-2xl shadow-sm border border-slate-200 dark:border-slate-700 hover:border-purple-400 dark:hover:border-purple-500 transition-colors flex flex-col items-center gap-2 group">
                 <ShoppingBag className="w-8 h-8 text-purple-400 group-hover:-translate-y-1 transition-transform" />
                 <span className="font-bold text-slate-700 dark:text-slate-200">Shop</span>
             </button>
@@ -1642,9 +1896,17 @@ CRITICAL: Respond with ONLY a valid JSON array. No markdown, no explanations, no
             {/* Header */}
             <div className={`relative h-32 md:h-40 ${gradients[selectedSubject.id] || gradients.science} overflow-hidden`}>
                 <div className="absolute inset-0 bg-gradient-to-b from-white/10 to-transparent" />
-                <div className="absolute top-4 left-4 z-10">
-                    <button onClick={() => setView('home')} className="bg-white/90 p-2 rounded-full shadow-md text-slate-700 hover:scale-110 transition-transform">
+                <div className="absolute top-4 left-4 z-10 flex items-center gap-2">
+                    <button onClick={goBack} className="bg-white/90 p-2 rounded-full shadow-md text-slate-700 hover:scale-110 transition-transform">
                         <ArrowLeft className="w-6 h-6" />
+                    </button>
+                </div>
+                <div className="absolute top-4 right-4 z-10 flex items-center gap-2">
+                    <button onClick={() => navigateTo('my-collections')} className="bg-white/90 px-3 py-2 rounded-full shadow-md text-slate-700 hover:scale-110 transition-transform flex items-center gap-2 font-bold text-sm">
+                      <Star className="w-4 h-4 text-yellow-400" />
+                    </button>
+                    <button onClick={goHome} className="bg-white/90 px-3 py-2 rounded-full shadow-md text-slate-700 hover:scale-110 transition-transform font-bold text-sm">
+                      Home
                     </button>
                 </div>
                 <div className="absolute bottom-0 left-0 p-6 md:p-8 w-full">
@@ -1674,7 +1936,7 @@ CRITICAL: Respond with ONLY a valid JSON array. No markdown, no explanations, no
                                         // Check if this is a curriculum topic
                                         if (CURRICULUM_TOPICS[topic]) {
                                             setSelectedCurriculumTopic(CURRICULUM_TOPICS[topic]);
-                                            setView('curriculum');
+                                            navigateTo('curriculum');
                                         } else if (apiKey) {
                                             generateNuggetByTag(topic, selectedSubject.id);
                                         } else {
@@ -1742,12 +2004,17 @@ CRITICAL: Respond with ONLY a valid JSON array. No markdown, no explanations, no
             {/* Header */}
             <div className={`relative h-40 md:h-48 bg-gradient-to-br ${gradient} overflow-hidden`}>
                 <div className="absolute inset-0 bg-gradient-to-b from-white/10 to-transparent" />
-                <div className="absolute top-4 left-4 z-10">
-                    <button onClick={() => {
-                        setView('subject-menu');
-                        setSelectedCurriculumTopic(null);
-                    }} className="bg-white/90 p-2 rounded-full shadow-md text-slate-700 hover:scale-110 transition-transform">
+                <div className="absolute top-4 left-4 z-10 flex items-center gap-2">
+                    <button onClick={goBack} className="bg-white/90 p-2 rounded-full shadow-md text-slate-700 hover:scale-110 transition-transform">
                         <ArrowLeft className="w-6 h-6" />
+                    </button>
+                </div>
+                <div className="absolute top-4 right-4 z-10 flex items-center gap-2">
+                    <button onClick={() => navigateTo('my-collections')} className="bg-white/90 px-3 py-2 rounded-full shadow-md text-slate-700 hover:scale-110 transition-transform flex items-center gap-2 font-bold text-sm">
+                      <Star className="w-4 h-4 text-yellow-400" />
+                    </button>
+                    <button onClick={goHome} className="bg-white/90 px-3 py-2 rounded-full shadow-md text-slate-700 hover:scale-110 transition-transform font-bold text-sm">
+                      Home
                     </button>
                 </div>
                 <div className="absolute bottom-0 left-0 p-6 md:p-8 w-full">
@@ -2002,13 +2269,18 @@ CRITICAL: Respond with ONLY a valid JSON array. No markdown, no explanations, no
     return (
         <div className="min-h-screen bg-slate-100 dark:bg-slate-950 flex flex-col">
             <div className="sticky top-0 z-40 bg-white/80 dark:bg-slate-900/80 backdrop-blur-md border-b border-slate-200 dark:border-slate-800 px-4 py-3 flex justify-between items-center">
-                <button onClick={() => setView('subject-menu')} className="flex items-center gap-2 text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 px-3 py-1.5 rounded-full transition-colors font-bold">
+                <button onClick={goBack} className="flex items-center gap-2 text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 px-3 py-1.5 rounded-full transition-colors font-bold">
                     <ArrowLeft className="w-5 h-5" /> Back
                 </button>
                 <div className="font-black text-slate-800 dark:text-white uppercase tracking-widest text-sm">Nugget</div>
-                <button onClick={() => setView('home')} className="flex items-center gap-2 text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 px-3 py-1.5 rounded-full transition-colors font-bold">
+                <div className="flex items-center gap-2">
+                  <button onClick={() => navigateTo('my-collections')} className="flex items-center gap-2 text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 px-3 py-1.5 rounded-full transition-colors font-bold text-sm">
+                    <Star className="w-4 h-4" /> Collections
+                  </button>
+                  <button onClick={goHome} className="flex items-center gap-2 text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 px-3 py-1.5 rounded-full transition-colors font-bold">
                     Home
-                </button>
+                  </button>
+                </div>
             </div>
 
             <div className="flex-1 overflow-y-auto p-4 md:p-8 flex flex-col items-center max-w-3xl mx-auto w-full">
@@ -2176,14 +2448,14 @@ CRITICAL: Respond with ONLY a valid JSON array. No markdown, no explanations, no
                                                 const newCollection = [...activityCollection, activityData];
                                                 saveActivityCollection(newCollection);
                                                 updateCrumbs(5);
-                                                showNotification("Activity Saved! +5 Crumbs 🍪");
+                                                showNotification("Mission Saved! +5 Crumbs 🍪");
                                             } else {
                                                 showNotification("Already saved!");
                                             }
                                         }}
                                         className="w-full bg-emerald-500 hover:bg-emerald-600 text-white font-bold py-3 rounded-xl shadow-md hover:shadow-lg hover:-translate-y-1 transition-all flex items-center justify-center gap-2"
                                     >
-                                        <Heart className="w-5 h-5 fill-white" /> Save Activity
+                                        <Rocket className="w-5 h-5" /> Save Mission
                                     </button>
                                 </div>
                             </div>
@@ -2260,14 +2532,14 @@ CRITICAL: Respond with ONLY a valid JSON array. No markdown, no explanations, no
                                                     const newCollection = [...activityCollection, activityData];
                                                     saveActivityCollection(newCollection);
                                                     updateCrumbs(5);
-                                                    showNotification("Activity Saved! +5 Crumbs 🍪");
+                                                    showNotification("Mission Saved! +5 Crumbs 🍪");
                                                 } else {
                                                     showNotification("Already saved!");
                                                 }
                                             }}
                                             className="w-full bg-emerald-500 hover:bg-emerald-600 text-white font-bold py-3 rounded-xl shadow-md hover:shadow-lg hover:-translate-y-1 transition-all flex items-center justify-center gap-2"
                                         >
-                                            <Heart className="w-5 h-5 fill-white" /> Save Activity
+                                            <Rocket className="w-5 h-5" /> Save Mission
                                         </button>
                                     </div>
                                 ) : (
@@ -2313,20 +2585,12 @@ CRITICAL: Respond with ONLY a valid JSON array. No markdown, no explanations, no
                                 Next <ArrowRight className="w-4 h-4" />
                             </button>
                         </div>
-                        <div className="flex gap-3">
-                            <button 
-                                onClick={() => setView('collection')}
-                                className="flex-1 bg-purple-100 hover:bg-purple-200 dark:bg-purple-900/30 dark:hover:bg-purple-900/50 text-purple-700 dark:text-purple-300 font-bold py-3 rounded-xl shadow-sm hover:shadow-md transition-all flex items-center justify-center gap-2"
-                            >
-                                <BookOpen className="w-5 h-5" /> View Nugget Collection
-                            </button>
-                            <button 
-                                onClick={() => setView('activity-collection')}
-                                className="flex-1 bg-green-100 hover:bg-green-200 dark:bg-green-900/30 dark:hover:bg-green-900/50 text-green-700 dark:text-green-300 font-bold py-3 rounded-xl shadow-sm hover:shadow-md transition-all flex items-center justify-center gap-2"
-                            >
-                                <Sparkles className="w-5 h-5" /> View Activity Collection
-                            </button>
-                        </div>
+                        <button 
+                            onClick={() => navigateTo('my-collections')}
+                            className="w-full bg-gradient-to-r from-purple-100 to-blue-100 hover:from-purple-200 hover:to-blue-200 dark:from-purple-900/30 dark:to-blue-900/30 dark:hover:from-purple-900/50 dark:hover:to-blue-900/50 text-purple-700 dark:text-purple-300 font-bold py-4 rounded-xl shadow-sm hover:shadow-md transition-all flex items-center justify-center gap-2"
+                        >
+                            <Star className="w-5 h-5" /> View My Collections
+                        </button>
                     </div>
                 </div>
             </div>
@@ -2337,9 +2601,21 @@ CRITICAL: Respond with ONLY a valid JSON array. No markdown, no explanations, no
   const renderGridPage = (title, items, renderItem, emptyMsg) => (
     <div className="min-h-screen bg-slate-50 dark:bg-slate-950 p-4 md:p-8">
         <div className="max-w-6xl mx-auto">
-            <div className="flex items-center gap-4 mb-8">
-                <button onClick={() => setView('home')} className="p-2 bg-white dark:bg-slate-800 rounded-full shadow-sm hover:shadow-md transition-all"><ArrowLeft className="w-6 h-6 text-slate-600 dark:text-slate-400" /></button>
-                <h1 className="text-3xl font-black text-slate-800 dark:text-white tracking-tight">{title}</h1>
+            <div className="flex items-center justify-between gap-4 mb-8">
+                <div className="flex items-center gap-4">
+                  <button onClick={goBack} className="p-2 bg-white dark:bg-slate-800 rounded-full shadow-sm hover:shadow-md transition-all"><ArrowLeft className="w-6 h-6 text-slate-600 dark:text-slate-400" /></button>
+                  <h1 className="text-3xl font-black text-slate-800 dark:text-white tracking-tight">{title}</h1>
+                </div>
+                <div className="flex items-center gap-2">
+                  {title !== 'My Nugget Collection' && title !== 'Word Collection' && title !== 'Mission Log' && (
+                    <button onClick={() => navigateTo('my-collections')} className="px-4 py-2 bg-white dark:bg-slate-800 rounded-full shadow-sm hover:shadow-md transition-all flex items-center gap-2 text-slate-700 dark:text-slate-200 font-bold text-sm">
+                      <Star className="w-4 h-4 text-yellow-400" /> Collections
+                    </button>
+                  )}
+                  <button onClick={goHome} className="px-4 py-2 bg-white dark:bg-slate-800 rounded-full shadow-sm hover:shadow-md transition-all flex items-center gap-2 text-slate-700 dark:text-slate-200 font-bold text-sm">
+                    Home
+                  </button>
+                </div>
             </div>
             {items.length === 0 ? (
                 <div className="text-center py-20 opacity-50">
@@ -2436,9 +2712,19 @@ CRITICAL: Respond with ONLY a valid JSON array. No markdown, no explanations, no
   const renderSettings = () => (
       <div className="min-h-screen bg-slate-50 dark:bg-slate-950 p-4 md:p-8">
           <div className="max-w-2xl mx-auto">
-            <div className="flex items-center gap-4 mb-8">
-                <button onClick={() => setView('home')} className="p-2 bg-white dark:bg-slate-800 rounded-full shadow-sm"><ArrowLeft className="w-6 h-6 text-slate-600 dark:text-slate-400" /></button>
-                <h1 className="text-3xl font-black text-slate-800 dark:text-white">Settings</h1>
+            <div className="flex items-center justify-between gap-4 mb-8">
+                <div className="flex items-center gap-4">
+                  <button onClick={goBack} className="p-2 bg-white dark:bg-slate-800 rounded-full shadow-sm"><ArrowLeft className="w-6 h-6 text-slate-600 dark:text-slate-400" /></button>
+                  <h1 className="text-3xl font-black text-slate-800 dark:text-white">Settings</h1>
+                </div>
+                <div className="flex items-center gap-2">
+                  <button onClick={() => navigateTo('my-collections')} className="px-4 py-2 bg-white dark:bg-slate-800 rounded-full shadow-sm hover:shadow-md transition-all flex items-center gap-2 text-slate-700 dark:text-slate-200 font-bold text-sm">
+                    <Star className="w-4 h-4 text-yellow-400" /> Collections
+                  </button>
+                  <button onClick={goHome} className="px-4 py-2 bg-white dark:bg-slate-800 rounded-full shadow-sm hover:shadow-md transition-all flex items-center gap-2 text-slate-700 dark:text-slate-200 font-bold text-sm">
+                    Home
+                  </button>
+                </div>
             </div>
             <div className="space-y-4">
                 {/* Account Section */}
@@ -2547,18 +2833,177 @@ CRITICAL: Respond with ONLY a valid JSON array. No markdown, no explanations, no
       )}
       
       {view === 'home' && renderHome()}
+      
+      {/* My Collections Hub */}
+      {view === 'my-collections' && (
+        <div className="min-h-screen bg-gradient-to-br from-purple-50 via-blue-50 to-pink-50 dark:from-slate-950 dark:via-slate-900 dark:to-slate-950 p-4 md:p-8">
+          <div className="max-w-4xl mx-auto">
+            <div className="flex items-center justify-between gap-4 mb-8">
+              <div className="flex items-center gap-4">
+                <button onClick={goBack} className="p-2 bg-white/90 dark:bg-slate-800 rounded-full shadow-md hover:shadow-lg transition-all">
+                  <ArrowLeft className="w-6 h-6 text-slate-600 dark:text-slate-400" />
+                </button>
+                <h1 className="text-3xl md:text-4xl font-black text-slate-800 dark:text-white tracking-tight">
+                  My Collections
+                </h1>
+              </div>
+              <button onClick={goHome} className="px-4 py-2 bg-white/90 dark:bg-slate-800 rounded-full shadow-md hover:shadow-lg transition-all flex items-center gap-2 text-slate-700 dark:text-slate-200 font-bold text-sm">
+                Home
+              </button>
+            </div>
+
+            <div className="grid md:grid-cols-3 gap-6">
+              {/* Nuggets Collection Card */}
+              <button
+                onClick={() => navigateTo('collection')}
+                className="group bg-white dark:bg-slate-800 rounded-3xl shadow-lg hover:shadow-2xl transition-all p-8 flex flex-col items-center gap-4 border-2 border-transparent hover:border-yellow-400 dark:hover:border-yellow-500 active:scale-95"
+              >
+                <div className="w-20 h-20 rounded-full bg-gradient-to-br from-yellow-400 to-orange-400 flex items-center justify-center group-hover:rotate-12 transition-transform">
+                  <Star className="w-10 h-10 text-white fill-white" />
+                </div>
+                <div className="text-center">
+                  <h2 className="text-2xl font-black text-slate-800 dark:text-white mb-2">Nuggets</h2>
+                  <p className="text-slate-500 dark:text-slate-400 text-sm mb-3">
+                    All your collected facts
+                  </p>
+                  <div className="inline-flex items-center gap-2 bg-yellow-100 dark:bg-yellow-900/30 text-yellow-700 dark:text-yellow-300 px-4 py-2 rounded-full font-bold">
+                    <span className="text-2xl">{collection.length}</span>
+                    <span className="text-sm">saved</span>
+                  </div>
+                </div>
+              </button>
+
+              {/* Missions Collection Card */}
+              <button
+                onClick={() => navigateTo('activities')}
+                className="group bg-white dark:bg-slate-800 rounded-3xl shadow-lg hover:shadow-2xl transition-all p-8 flex flex-col items-center gap-4 border-2 border-transparent hover:border-orange-400 dark:hover:border-orange-500 active:scale-95"
+              >
+                <div className="w-20 h-20 rounded-full bg-gradient-to-br from-orange-400 to-red-400 flex items-center justify-center group-hover:rotate-12 transition-transform">
+                  <Rocket className="w-10 h-10 text-white" />
+                </div>
+                <div className="text-center">
+                  <h2 className="text-2xl font-black text-slate-800 dark:text-white mb-2">Missions</h2>
+                  <p className="text-slate-500 dark:text-slate-400 text-sm mb-3">
+                    Fun things to try
+                  </p>
+                  <div className="inline-flex items-center gap-2 bg-orange-100 dark:bg-orange-900/30 text-orange-700 dark:text-orange-300 px-4 py-2 rounded-full font-bold">
+                    <span className="text-2xl">{activityCollection.length}</span>
+                    <span className="text-sm">missions</span>
+                  </div>
+                </div>
+              </button>
+
+              {/* Words Collection Card */}
+              <button
+                onClick={() => navigateTo('word-bank')}
+                className="group bg-white dark:bg-slate-800 rounded-3xl shadow-lg hover:shadow-2xl transition-all p-8 flex flex-col items-center gap-4 border-2 border-transparent hover:border-emerald-400 dark:hover:border-emerald-500 active:scale-95"
+              >
+                <div className="w-20 h-20 rounded-full bg-gradient-to-br from-emerald-400 to-teal-400 flex items-center justify-center group-hover:scale-110 transition-transform">
+                  <BookOpen className="w-10 h-10 text-white" />
+                </div>
+                <div className="text-center">
+                  <h2 className="text-2xl font-black text-slate-800 dark:text-white mb-2">Words</h2>
+                  <p className="text-slate-500 dark:text-slate-400 text-sm mb-3">
+                    Your vocabulary list
+                  </p>
+                  <div className="inline-flex items-center gap-2 bg-emerald-100 dark:bg-emerald-900/30 text-emerald-700 dark:text-emerald-300 px-4 py-2 rounded-full font-bold">
+                    <span className="text-2xl">{wordCollection.length}</span>
+                    <span className="text-sm">saved</span>
+                  </div>
+                </div>
+              </button>
+            </div>
+
+            {/* Empty State Message */}
+            {collection.length === 0 && activityCollection.length === 0 && wordCollection.length === 0 && (
+              <div className="text-center mt-12 p-8 bg-white/50 dark:bg-slate-800/50 rounded-3xl">
+                <div className="text-6xl mb-4">🌟</div>
+                <h3 className="text-xl font-bold text-slate-700 dark:text-slate-300 mb-2">
+                  Start Your Collection!
+                </h3>
+                <p className="text-slate-500 dark:text-slate-400">
+                  Explore topics and collect nuggets, activities, and words as you learn.
+                </p>
+              </div>
+            )}
+          </div>
+        </div>
+      )}
+      
       {view === 'subject-menu' && renderSubjectMenu()}
       {view === 'curriculum' && renderCurriculum()}
       {view === 'nugget' && renderNugget()}
-      {view === 'collection' && renderGridPage("My Collection", collection, (item) => (
-          <div key={item.id} className="bg-white dark:bg-slate-800 p-6 rounded-2xl shadow-sm border border-slate-200 dark:border-slate-700 flex flex-col gap-4 group hover:-translate-y-1 transition-transform">
-              <div className="flex justify-between items-start">
-                <span className="bg-slate-100 dark:bg-slate-700 px-2 py-1 rounded text-xs font-bold uppercase tracking-wider text-slate-600 dark:text-slate-300">{item.tags[0]}</span>
-                <span className="text-xs text-slate-400">{item.date}</span>
+      {view === 'collection' && (
+        <div className="min-h-screen bg-slate-50 dark:bg-slate-950 p-4 md:p-8">
+          <div className="max-w-6xl mx-auto">
+            <div className="flex items-center justify-between gap-4 mb-8">
+              <div className="flex items-center gap-4">
+                <button onClick={goBack} className="p-2 bg-white dark:bg-slate-800 rounded-full shadow-sm hover:shadow-md transition-all"><ArrowLeft className="w-6 h-6 text-slate-600 dark:text-slate-400" /></button>
+                <h1 className="text-3xl font-black text-slate-800 dark:text-white tracking-tight">My Nugget Collection</h1>
               </div>
-              <p className="font-medium text-lg dark:text-white line-clamp-3 leading-relaxed">{item.text}</p>
-              <div className="flex gap-2 mt-auto">
-                  <button onClick={() => { setCurrentNugget(item); setLearnResponse(null); setActivityResponse(null); setActivityImage(null); setAiResponse(null); setView('nugget'); }} className="flex-1 py-2 bg-blue-50 dark:bg-blue-900/30 text-blue-600 dark:text-blue-300 font-bold rounded-lg text-sm hover:bg-blue-100 transition-colors">Open</button>
+              <button onClick={goHome} className="px-4 py-2 bg-white dark:bg-slate-800 rounded-full shadow-sm hover:shadow-md transition-all flex items-center gap-2 text-slate-700 dark:text-slate-200 font-bold text-sm">
+                Home
+              </button>
+            </div>
+            
+            {collection.length >= 5 && (
+              <div className="mb-6">
+                <button
+                  onClick={startCollectionQuiz}
+                  disabled={aiLoading}
+                  className="w-full bg-gradient-to-r from-yellow-400 to-yellow-500 hover:from-yellow-500 hover:to-yellow-600 text-yellow-900 font-black text-lg px-8 py-4 rounded-2xl shadow-lg hover:shadow-xl transition-all flex items-center justify-center gap-3 group disabled:opacity-50 disabled:cursor-not-allowed"
+                >
+                  {aiLoading ? (
+                    <>
+                      <Loader className="w-6 h-6 animate-spin" />
+                      Preparing Questions...
+                    </>
+                  ) : (
+                    <>
+                      <Sparkles className="w-6 h-6 group-hover:rotate-12 transition-transform" />
+                      Ask About My Collection!
+                      <span className="bg-yellow-600 text-yellow-50 px-3 py-1 rounded-full text-sm font-bold ml-2">
+                        +10 Stardust
+                      </span>
+                    </>
+                  )}
+                </button>
+              </div>
+            )}
+
+            {collection.length < 5 && (
+              <div className="mb-6 bg-gradient-to-r from-yellow-100 to-amber-100 dark:from-yellow-900/20 dark:to-amber-900/20 border-2 border-yellow-300 dark:border-yellow-700 rounded-2xl p-4 flex items-center justify-between">
+                <div className="flex items-center gap-3">
+                  <div className="bg-yellow-400 dark:bg-yellow-600 p-2 rounded-full">
+                    <Sparkles className="w-5 h-5 text-yellow-900 dark:text-yellow-100" />
+                  </div>
+                  <div>
+                    <p className="font-black text-yellow-900 dark:text-yellow-100 text-sm">Unlock a Challenge!</p>
+                    <p className="text-yellow-700 dark:text-yellow-300 text-xs font-semibold">Collect 5 nuggets to start</p>
+                  </div>
+                </div>
+                <div className="bg-yellow-400 dark:bg-yellow-600 px-4 py-2 rounded-full">
+                  <span className="font-black text-yellow-900 dark:text-yellow-100 text-lg">{collection.length}/5</span>
+                </div>
+              </div>
+            )}
+            
+            {collection.length === 0 ? (
+              <div className="text-center py-20 opacity-50">
+                <div className="w-24 h-24 bg-slate-200 dark:bg-slate-800 rounded-full mx-auto mb-4 flex items-center justify-center"><Search className="w-10 h-10 text-slate-400" /></div>
+                <p className="font-bold text-xl text-slate-600 dark:text-slate-400">No nuggets collected yet!</p>
+              </div>
+            ) : (
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                {collection.map((item) => (
+                  <div key={item.id} className="bg-white dark:bg-slate-800 p-6 rounded-2xl shadow-sm border border-slate-200 dark:border-slate-700 flex flex-col gap-4 group hover:-translate-y-1 transition-transform">
+                    <div className="flex justify-between items-start">
+                      <span className="bg-slate-100 dark:bg-slate-700 px-2 py-1 rounded text-xs font-bold uppercase tracking-wider text-slate-600 dark:text-slate-300">{item.tags[0]}</span>
+                      <span className="text-xs text-slate-400">{item.date}</span>
+                    </div>
+                    <p className="font-medium text-lg dark:text-white line-clamp-3 leading-relaxed">{item.text}</p>
+                    <div className="flex gap-2 mt-auto">
+                      <button onClick={() => { setCurrentNugget(item); setLearnResponse(null); setActivityResponse(null); setActivityImage(null); setAiResponse(null); navigateTo('nugget'); }} className="flex-1 py-2 bg-blue-50 dark:bg-blue-900/30 text-blue-600 dark:text-blue-300 font-bold rounded-lg text-sm hover:bg-blue-100 transition-colors">Open</button>
                   <button 
                     onClick={() => {
                         const newCollection = collection.filter(n => n.id !== item.id);
@@ -2569,9 +3014,14 @@ CRITICAL: Respond with ONLY a valid JSON array. No markdown, no explanations, no
                   >
                     <Trash2 className="w-5 h-5" />
                   </button>
+                </div>
               </div>
+            ))}
           </div>
-      ), "Go explore to find nuggets!")}
+        )}
+      </div>
+    </div>
+  )}
       {view === 'shop' && renderGridPage("Sticker Shop", SHOP_ITEMS, (item) => (
           <div key={item.id} className="bg-white dark:bg-slate-800 p-6 rounded-2xl shadow-sm border border-slate-200 dark:border-slate-700 flex flex-col items-center gap-4">
               <div className="text-5xl">{item.icon}</div>
@@ -2634,55 +3084,175 @@ CRITICAL: Respond with ONLY a valid JSON array. No markdown, no explanations, no
               )}
           </div>
       ), "Check back later for more!")}
-      {view === 'word-bank' && renderGridPage("Word Bank", wordCollection, (item, i) => (
-          <div key={i} className="bg-white dark:bg-slate-800 p-6 rounded-2xl shadow-sm border-l-4 border-emerald-500 dark:border-emerald-400">
-              <h3 className="font-bold text-lg text-emerald-600 dark:text-emerald-400 mb-1">{item.word}</h3>
-              <p className="text-slate-600 dark:text-slate-300 italic text-sm">"{item.definition}"</p>
-          </div>
-      ), "Click green words in nuggets to collect them!")}
-      {view === 'activities' && renderGridPage("Saved Activities", activityCollection, (item) => (
-          <div key={item.id} className="bg-white dark:bg-slate-800 p-6 rounded-2xl shadow-sm border border-emerald-200 dark:border-emerald-700 flex flex-col gap-4">
-              {item.image && (
-                  <div className="rounded-xl overflow-hidden aspect-video -m-6 mb-0">
-                      <img src={item.image} className="w-full h-full object-cover" alt={item.title} />
-                  </div>
-              )}
-              <h3 className="font-bold text-lg text-emerald-600 dark:text-emerald-400">{item.title}</h3>
-              <p className="text-xs text-slate-500 dark:text-slate-400">From: {item.nuggetText}</p>
-              <div className="bg-amber-50 dark:bg-amber-900/20 border border-amber-200 dark:border-amber-700 p-2 rounded-lg flex items-center gap-2">
-                  <AlertTriangle className="w-3 h-3 text-amber-600 dark:text-amber-400 flex-shrink-0" />
-                  <p className="text-xs text-amber-800 dark:text-amber-300 font-medium">Adult supervision may be required</p>
+      {view === 'word-bank' && (
+        <div className="min-h-screen bg-slate-50 dark:bg-slate-950 p-4 md:p-8">
+          <div className="max-w-6xl mx-auto">
+            <div className="flex items-center justify-between gap-4 mb-8">
+              <div className="flex items-center gap-4">
+                <button onClick={goBack} className="p-2 bg-white dark:bg-slate-800 rounded-full shadow-sm hover:shadow-md transition-all"><ArrowLeft className="w-6 h-6 text-slate-600 dark:text-slate-400" /></button>
+                <h1 className="text-3xl font-black text-slate-800 dark:text-white tracking-tight">Word Collection</h1>
               </div>
-              <div className="bg-slate-50 dark:bg-slate-900/50 p-3 rounded-lg">
-                  <div className="text-xs font-bold text-slate-400 uppercase mb-2">Supplies</div>
-                  <div className="flex flex-wrap gap-1">
-                      {item.supplies?.map((s, i) => <span key={i} className="bg-white dark:bg-slate-700 px-2 py-1 rounded text-xs">{s}</span>)}
-                  </div>
-              </div>
-              <div>
-                  <div className="text-xs font-bold text-slate-400 uppercase mb-2">Steps</div>
-                  <ol className="list-decimal list-inside space-y-1 text-sm text-slate-700 dark:text-slate-300">
-                      {item.steps?.map((step, i) => <li key={i}>{step.replace(/\*\*/g, '').replace(/###/g, '')}</li>)}
-                  </ol>
-              </div>
-              <button 
-                onClick={() => {
-                    const newCollection = activityCollection.filter(a => a.id !== item.id);
-                    saveActivityCollection(newCollection);
-                    showNotification("Activity removed");
-                }}
-                className="mt-auto p-2 text-slate-400 hover:text-red-500 hover:bg-red-50 dark:hover:bg-red-900/30 rounded-lg transition-colors flex items-center justify-center gap-2"
-              >
-                <Trash2 className="w-4 h-4" /> Remove
+              <button onClick={goHome} className="px-4 py-2 bg-white dark:bg-slate-800 rounded-full shadow-sm hover:shadow-md transition-all flex items-center gap-2 text-slate-700 dark:text-slate-200 font-bold text-sm">
+                Home
               </button>
+            </div>
+            
+            {wordCollection.length >= 5 && (
+              <div className="mb-6">
+                <button
+                  onClick={startWordQuiz}
+                  disabled={aiLoading}
+                  className="w-full bg-gradient-to-r from-emerald-400 to-teal-500 hover:from-emerald-500 hover:to-teal-600 text-white font-black text-lg px-8 py-4 rounded-2xl shadow-lg hover:shadow-xl transition-all flex items-center justify-center gap-3 group disabled:opacity-50 disabled:cursor-not-allowed"
+                >
+                  {aiLoading ? (
+                    <>
+                      <div className="w-6 h-6 border-3 border-white/30 border-t-white rounded-full animate-spin"></div>
+                      <span>Generating Challenge...</span>
+                    </>
+                  ) : (
+                    <>
+                      <Brain className="w-6 h-6 group-hover:rotate-12 transition-transform" />
+                      <span>Word Challenge - Show Your Vocabulary!</span>
+                      <div className="flex items-center gap-1 bg-white/20 px-3 py-1 rounded-full">
+                        <Sparkles className="w-4 h-4" />
+                        <span className="text-sm">+10</span>
+                      </div>
+                    </>
+                  )}
+                </button>
+              </div>
+            )}
+
+            {wordCollection.length < 5 && (
+              <div className="mb-6 bg-gradient-to-r from-emerald-100 to-teal-100 dark:from-emerald-900/20 dark:to-teal-900/20 border-2 border-emerald-300 dark:border-emerald-700 rounded-2xl p-4 flex items-center justify-between">
+                <div className="flex items-center gap-3">
+                  <div className="bg-emerald-400 dark:bg-emerald-600 p-2 rounded-full">
+                    <Brain className="w-5 h-5 text-white" />
+                  </div>
+                  <div>
+                    <p className="font-black text-emerald-900 dark:text-emerald-100 text-sm">Unlock a Challenge!</p>
+                    <p className="text-emerald-700 dark:text-emerald-300 text-xs font-semibold">Collect 5 words to start</p>
+                  </div>
+                </div>
+                <div className="bg-emerald-400 dark:bg-emerald-600 px-4 py-2 rounded-full">
+                  <span className="font-black text-white text-lg">{wordCollection.length}/5</span>
+                </div>
+              </div>
+            )}
+
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {wordCollection.length > 0 ? (
+                wordCollection.map((item, i) => (
+                  <div key={i} className="bg-white dark:bg-slate-800 p-6 rounded-2xl shadow-sm border-l-4 border-emerald-500 dark:border-emerald-400">
+                    <h3 className="font-bold text-lg text-emerald-600 dark:text-emerald-400 mb-1">{item.word}</h3>
+                    <p className="text-slate-600 dark:text-slate-300 italic text-sm">"{item.definition}"</p>
+                  </div>
+                ))
+              ) : (
+                <div className="col-span-full text-center py-16">
+                  <BookOpen className="w-16 h-16 mx-auto text-slate-300 dark:text-slate-700 mb-4" />
+                  <p className="text-slate-500 dark:text-slate-400 text-lg">Click green words in nuggets to collect them!</p>
+                </div>
+              )}
+            </div>
           </div>
-      ), "Save activities from nuggets to see them here!")}
+        </div>
+      )}
+      {view === 'activities' && renderGridPage("Mission Log", activityCollection, (item) => {
+          const isExpanded = expandedMissions.includes(item.id);
+          return (
+            <div key={item.id} className="bg-white dark:bg-slate-800 rounded-2xl shadow-sm border-2 border-orange-200 dark:border-orange-700 overflow-hidden transition-all">
+              {/* Collapsed View - Always Visible */}
+              <div className="p-6 flex flex-col gap-3">
+                <div className="flex items-start justify-between gap-4">
+                  <div className="flex-1">
+                    <h3 className="font-bold text-xl text-orange-600 dark:text-orange-400 mb-1">{item.title}</h3>
+                    <p className="text-sm text-slate-500 dark:text-slate-400 flex items-center gap-1">
+                      <Sparkles className="w-3 h-3" />
+                      From: {item.nuggetText?.substring(0, 60)}{item.nuggetText?.length > 60 ? '...' : ''}
+                    </p>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <button 
+                      onClick={() => {
+                          const newCollection = activityCollection.filter(a => a.id !== item.id);
+                          saveActivityCollection(newCollection);
+                          showNotification("Mission removed");
+                      }}
+                      className="p-2 text-slate-400 hover:text-red-500 hover:bg-red-50 dark:hover:bg-red-900/30 rounded-lg transition-colors"
+                      title="Remove mission"
+                    >
+                      <Trash2 className="w-4 h-4" />
+                    </button>
+                  </div>
+                </div>
+                
+                {/* Do It! Button */}
+                <button
+                  onClick={() => {
+                    if (isExpanded) {
+                      setExpandedMissions(expandedMissions.filter(id => id !== item.id));
+                    } else {
+                      setExpandedMissions([...expandedMissions, item.id]);
+                    }
+                  }}
+                  className="w-full bg-gradient-to-r from-orange-500 to-red-500 hover:from-orange-600 hover:to-red-600 text-white font-black py-3 rounded-xl shadow-md hover:shadow-lg transition-all flex items-center justify-center gap-2 uppercase tracking-wide"
+                >
+                  <Rocket className={`w-5 h-5 ${isExpanded ? 'rotate-180' : ''} transition-transform`} />
+                  {isExpanded ? 'Hide Details' : 'Do It!'}
+                </button>
+              </div>
+
+              {/* Expanded View - Shows when clicked */}
+              {isExpanded && (
+                <div className="border-t border-orange-200 dark:border-orange-700 p-6 bg-orange-50/50 dark:bg-orange-900/10 space-y-4 animate-pop">
+                  {item.image && (
+                    <div className="rounded-xl overflow-hidden aspect-video -mx-6 -mt-6 mb-4">
+                      <img src={item.image} className="w-full h-full object-cover" alt={item.title} />
+                    </div>
+                  )}
+                  
+                  <div className="bg-amber-50 dark:bg-amber-900/20 border border-amber-200 dark:border-amber-700 p-3 rounded-lg flex items-center gap-2">
+                    <AlertTriangle className="w-4 h-4 text-amber-600 dark:text-amber-400 flex-shrink-0" />
+                    <p className="text-sm text-amber-800 dark:text-amber-300 font-medium">Adult supervision may be required</p>
+                  </div>
+                  
+                  <div className="bg-white dark:bg-slate-800 p-4 rounded-lg border border-orange-200 dark:border-orange-700">
+                    <div className="text-sm font-bold text-orange-600 dark:text-orange-400 uppercase mb-3 flex items-center gap-2">
+                      <Square className="w-4 h-4" /> Supplies Needed
+                    </div>
+                    <div className="flex flex-wrap gap-2">
+                      {item.supplies?.map((s, i) => (
+                        <span key={i} className="bg-orange-100 dark:bg-orange-900/30 text-orange-700 dark:text-orange-300 px-3 py-1.5 rounded-full text-sm font-medium">
+                          {s}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                  
+                  <div className="bg-white dark:bg-slate-800 p-4 rounded-lg border border-orange-200 dark:border-orange-700">
+                    <div className="text-sm font-bold text-orange-600 dark:text-orange-400 uppercase mb-3 flex items-center gap-2">
+                      <Check className="w-4 h-4" /> Mission Steps
+                    </div>
+                    <ol className="list-decimal list-inside space-y-2 text-slate-700 dark:text-slate-300">
+                      {item.steps?.map((step, i) => (
+                        <li key={i} className="pl-2 leading-relaxed">
+                          {step.replace(/\*\*/g, '').replace(/###/g, '')}
+                        </li>
+                      ))}
+                    </ol>
+                  </div>
+                </div>
+              )}
+            </div>
+          );
+      }, "Save missions from nuggets to see them here!")}
       {view === 'settings' && renderSettings()}
       
       {renderShowMeModal()}
       {renderEnlargedImage()}
       
-      {/* Stardust Quiz Modal */}
+      {/* Stardust Question Modal */}
       {showStardustQuiz && (
         <div className="fixed inset-0 bg-black/60 flex items-center justify-center z-50 p-4 backdrop-blur-sm">
           <div className="bg-white dark:bg-slate-800 rounded-3xl shadow-2xl max-w-lg w-full max-h-[90vh] overflow-y-auto animate-pop border border-slate-200 dark:border-slate-700">
@@ -2911,8 +3481,285 @@ CRITICAL: Respond with ONLY a valid JSON array. No markdown, no explanations, no
                 }}
                 className="w-full bg-slate-300 hover:bg-slate-400 dark:bg-slate-700 dark:hover:bg-slate-600 text-slate-700 dark:text-slate-200 font-bold py-3 px-6 rounded-xl transition-all"
               >
-                Skip for Now
+                Skip (No Reward)
               </button>
+            </div>
+          </div>
+        </div>
+      )}
+      
+      {/* Collection Challenge Modal */}
+      {showCollectionQuiz && collectionQuizQuestions.length > 0 && (
+        <div className="fixed inset-0 bg-black/60 flex items-center justify-center z-50 p-4 backdrop-blur-sm">
+          <div className="bg-white dark:bg-slate-800 rounded-3xl shadow-2xl max-w-lg w-full max-h-[90vh] overflow-y-auto animate-pop border border-slate-200 dark:border-slate-700">
+            {/* Header */}
+            <div className="bg-gradient-to-r from-yellow-400 to-yellow-500 p-6 rounded-t-3xl flex items-center justify-between">
+              <div className="flex items-center gap-3">
+                <div className="bg-white/20 backdrop-blur-sm p-3 rounded-2xl">
+                  <Sparkles className="w-6 h-6 text-yellow-900" />
+                </div>
+                <div>
+                  <h2 className="text-2xl font-black text-yellow-900">Collection Challenge</h2>
+                  <p className="text-sm text-yellow-800 font-semibold">
+                    Question {currentCollectionQuestionIndex + 1} of {collectionQuizQuestions.length}
+                  </p>
+                </div>
+              </div>
+              <button 
+                onClick={() => {
+                  setShowCollectionQuiz(false);
+                  setCollectionQuizQuestions([]);
+                  setCurrentCollectionQuestionIndex(0);
+                  setCollectionQuizWrongAnswers(new Set());
+                }} 
+                className="text-yellow-900/80 hover:text-yellow-900 transition-colors"
+              >
+                <X className="w-6 h-6" />
+              </button>
+            </div>
+
+            <div className="p-6 space-y-6">
+              {/* Progress Bar */}
+              <div className="flex gap-2">
+                {collectionQuizQuestions.map((_, i) => (
+                  <div 
+                    key={i} 
+                    className={`h-2 flex-1 rounded-full ${
+                      i < currentCollectionQuestionIndex 
+                        ? 'bg-green-500' 
+                        : i === currentCollectionQuestionIndex 
+                        ? 'bg-yellow-500' 
+                        : 'bg-slate-200 dark:bg-slate-700'
+                    }`}
+                  />
+                ))}
+              </div>
+
+              {/* Question */}
+              <div className="bg-slate-50 dark:bg-slate-900 rounded-xl p-4 border border-slate-200 dark:border-slate-700">
+                <p className="text-lg font-bold text-slate-800 dark:text-white">
+                  {collectionQuizQuestions[currentCollectionQuestionIndex].question}
+                </p>
+              </div>
+
+              {/* Answer Options */}
+              <div className="space-y-3">
+                {collectionQuizQuestions[currentCollectionQuestionIndex].options.map((option, index) => {
+                  const isWrong = collectionQuizWrongAnswers.has(`${currentCollectionQuestionIndex}-${index}`);
+                  const isCorrect = index === collectionQuizQuestions[currentCollectionQuestionIndex].correctIndex;
+                  
+                  return (
+                    <button
+                      key={index}
+                      onClick={() => {
+                        if (isWrong) return;
+                        
+                        if (isCorrect) {
+                          // Correct answer
+                          if (currentCollectionQuestionIndex < collectionQuizQuestions.length - 1) {
+                            // Move to next question
+                            setTimeout(() => {
+                              setCurrentCollectionQuestionIndex(currentCollectionQuestionIndex + 1);
+                            }, 800);
+                          } else {
+                            // All questions complete
+                            updateStarDust(10);
+                            showNotification("Awesome! +10 Stardust ✨");
+                            setTimeout(() => {
+                              setShowCollectionQuiz(false);
+                              setCollectionQuizQuestions([]);
+                              setCurrentCollectionQuestionIndex(0);
+                              setCollectionQuizWrongAnswers(new Set());
+                            }, 1500);
+                          }
+                        } else {
+                          // Wrong answer - mark it
+                          setCollectionQuizWrongAnswers(new Set([...collectionQuizWrongAnswers, `${currentCollectionQuestionIndex}-${index}`]));
+                        }
+                      }}
+                      disabled={isWrong}
+                      className={`w-full p-4 rounded-xl font-semibold text-left transition-all ${
+                        isWrong
+                          ? 'bg-slate-200 dark:bg-slate-700 text-slate-400 dark:text-slate-500 line-through cursor-not-allowed'
+                          : 'bg-white dark:bg-slate-700 hover:bg-yellow-50 dark:hover:bg-yellow-900/20 text-slate-800 dark:text-white border-2 border-slate-200 dark:border-slate-600 hover:border-yellow-400 hover:shadow-md active:scale-[0.98]'
+                      }`}
+                    >
+                      {option}
+                    </button>
+                  );
+                })}
+              </div>
+
+              {/* Feedback */}
+              {collectionQuizWrongAnswers.size > 0 && (
+                <div className="text-center">
+                  <p className="text-sm text-slate-600 dark:text-slate-400">
+                    Try again - you've got this! 💪
+                  </p>
+                </div>
+              )}
+
+              {/* Exit Button */}
+              <div className="pt-4 border-t border-slate-200 dark:border-slate-700">
+                <button
+                  onClick={() => {
+                    setShowCollectionQuiz(false);
+                    setCollectionQuizQuestions([]);
+                    setCurrentCollectionQuestionIndex(0);
+                    setCollectionQuizWrongAnswers(new Set());
+                  }}
+                  className="w-full px-4 py-3 text-slate-500 dark:text-slate-400 hover:text-slate-700 dark:hover:text-slate-200 font-semibold text-sm transition-colors rounded-lg hover:bg-slate-100 dark:hover:bg-slate-700/50"
+                >
+                  Exit Challenge (No Reward)
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+      
+      {/* Word Challenge Modal */}
+      {showWordQuiz && wordQuizQuestions.length > 0 && (
+        <div className="fixed inset-0 bg-black/60 flex items-center justify-center z-50 p-4 backdrop-blur-sm">
+          <div className="bg-white dark:bg-slate-800 rounded-3xl shadow-2xl max-w-lg w-full max-h-[90vh] overflow-y-auto animate-pop border border-slate-200 dark:border-slate-700">
+            {/* Header */}
+            <div className="bg-gradient-to-r from-emerald-400 to-teal-500 p-6 rounded-t-3xl flex items-center justify-between">
+              <div className="flex items-center gap-3">
+                <div className="bg-white/20 backdrop-blur-sm p-3 rounded-2xl">
+                  <Brain className="w-6 h-6 text-white" />
+                </div>
+                <div>
+                  <h2 className="text-2xl font-black text-white">Word Challenge</h2>
+                  <p className="text-sm text-white/90 font-semibold">
+                    Question {currentWordQuestionIndex + 1} of {wordQuizQuestions.length}
+                  </p>
+                </div>
+              </div>
+              <button 
+                onClick={() => {
+                  setShowWordQuiz(false);
+                  setWordQuizQuestions([]);
+                  setCurrentWordQuestionIndex(0);
+                  setWordQuizWrongAnswers(new Set());
+                }} 
+                className="text-white/80 hover:text-white transition-colors"
+              >
+                <X className="w-6 h-6" />
+              </button>
+            </div>
+
+            <div className="p-6 space-y-6">
+              {/* Progress Bar */}
+              <div className="flex gap-2">
+                {wordQuizQuestions.map((_, i) => (
+                  <div 
+                    key={i} 
+                    className={`h-2 flex-1 rounded-full ${
+                      i < currentWordQuestionIndex 
+                        ? 'bg-green-500' 
+                        : i === currentWordQuestionIndex 
+                        ? 'bg-emerald-500' 
+                        : 'bg-slate-200 dark:bg-slate-700'
+                    }`}
+                  />
+                ))}
+              </div>
+
+              {/* Question Type Badge */}
+              <div className="flex justify-center">
+                <span className="inline-flex items-center gap-2 bg-emerald-100 dark:bg-emerald-900/30 text-emerald-700 dark:text-emerald-300 px-4 py-2 rounded-full text-sm font-bold">
+                  {wordQuizQuestions[currentWordQuestionIndex].type === 'definition' ? (
+                    <>
+                      <BookOpen className="w-4 h-4" />
+                      Definition Question
+                    </>
+                  ) : (
+                    <>
+                      <Pencil className="w-4 h-4" />
+                      Spelling Question
+                    </>
+                  )}
+                </span>
+              </div>
+
+              {/* Question */}
+              <div className="bg-slate-50 dark:bg-slate-900 rounded-xl p-4 border border-slate-200 dark:border-slate-700">
+                <p className="text-lg font-bold text-slate-800 dark:text-white">
+                  {wordQuizQuestions[currentWordQuestionIndex].question}
+                </p>
+              </div>
+
+              {/* Answer Options */}
+              <div className="space-y-3">
+                {wordQuizQuestions[currentWordQuestionIndex].options.map((option, index) => {
+                  const isWrong = wordQuizWrongAnswers.has(`${currentWordQuestionIndex}-${index}`);
+                  const isCorrect = index === wordQuizQuestions[currentWordQuestionIndex].correctIndex;
+                  
+                  return (
+                    <button
+                      key={index}
+                      onClick={() => {
+                        if (isWrong) return;
+                        
+                        if (isCorrect) {
+                          // Correct answer
+                          if (currentWordQuestionIndex < wordQuizQuestions.length - 1) {
+                            // Move to next question
+                            setTimeout(() => {
+                              setCurrentWordQuestionIndex(currentWordQuestionIndex + 1);
+                            }, 800);
+                          } else {
+                            // All questions complete
+                            updateStarDust(10);
+                            showNotification("Amazing! +10 Stardust ✨");
+                            setTimeout(() => {
+                              setShowWordQuiz(false);
+                              setWordQuizQuestions([]);
+                              setCurrentWordQuestionIndex(0);
+                              setWordQuizWrongAnswers(new Set());
+                            }, 1500);
+                          }
+                        } else {
+                          // Wrong answer - mark it
+                          setWordQuizWrongAnswers(new Set([...wordQuizWrongAnswers, `${currentWordQuestionIndex}-${index}`]));
+                        }
+                      }}
+                      disabled={isWrong}
+                      className={`w-full p-4 rounded-xl font-semibold text-left transition-all ${
+                        isWrong
+                          ? 'bg-slate-200 dark:bg-slate-700 text-slate-400 dark:text-slate-500 line-through cursor-not-allowed'
+                          : 'bg-white dark:bg-slate-700 hover:bg-emerald-50 dark:hover:bg-emerald-900/20 text-slate-800 dark:text-white border-2 border-slate-200 dark:border-slate-600 hover:border-emerald-400 hover:shadow-md active:scale-[0.98]'
+                      }`}
+                    >
+                      {option}
+                    </button>
+                  );
+                })}
+              </div>
+
+              {/* Feedback */}
+              {wordQuizWrongAnswers.size > 0 && (
+                <div className="text-center">
+                  <p className="text-sm text-slate-600 dark:text-slate-400">
+                    Keep trying - you can do it! 💪
+                  </p>
+                </div>
+              )}
+
+              {/* Exit Button */}
+              <div className="pt-4 border-t border-slate-200 dark:border-slate-700">
+                <button
+                  onClick={() => {
+                    setShowWordQuiz(false);
+                    setWordQuizQuestions([]);
+                    setCurrentWordQuestionIndex(0);
+                    setWordQuizWrongAnswers(new Set());
+                  }}
+                  className="w-full px-4 py-3 text-slate-500 dark:text-slate-400 hover:text-slate-700 dark:hover:text-slate-200 font-semibold text-sm transition-colors rounded-lg hover:bg-slate-100 dark:hover:bg-slate-700/50"
+                >
+                  Exit Challenge (No Reward)
+                </button>
+              </div>
             </div>
           </div>
         </div>
