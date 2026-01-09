@@ -5,7 +5,7 @@ import {
     Calculator, Settings, X, Sparkles, Map as MapIcon, Heart, ArrowLeft, Brain, 
     ShoppingBag, Edit3, Volume2, Image as ImageIcon, Loader, ExternalLink, 
     Square, Search, Trophy, Check, Mic, Shuffle, Moon, Sun, Cookie, HelpCircle, ArrowRight,
-    Maximize2, Minimize2, Book, History as HistoryIcon, Lock, Grid, Trash2, Menu, LogIn, LogOut, User, AlertTriangle
+    Maximize2, Minimize2, Book, History as HistoryIcon, Lock, Grid, Trash2, Menu, LogIn, LogOut, User, AlertTriangle, Pencil
 } from 'lucide-react';
 import { createClient } from '@supabase/supabase-js';
 import { projectId, publicAnonKey } from './utils/supabase/info';
@@ -226,20 +226,20 @@ const CURRICULUM_TOPICS = {
       { name: "Ancient Japan", period: "300 BCE - 1868 CE", years: "300 BCE", color: "bg-red-500", region: "Asia" },
     ],
     subTopics: [
-      { name: "Middle East", emoji: "🏜️", description: "Early civilizations of the Middle East" },
-      { name: "Asia", emoji: "🏯", description: "Ancient Asian civilizations" },
-      { name: "Europe", emoji: "🏛️", description: "Classical European civilizations" },
-      { name: "Americas", emoji: "🌎", description: "Pre-Columbian American civilizations" },
-      { name: "Africa", emoji: "🌍", description: "Ancient African kingdoms" },
-      { name: "Mesopotamia", emoji: "🏛️", description: "The cradle of civilization" },
-      { name: "Ancient Egypt", emoji: "🔺", description: "Land of pharaohs and pyramids" },
-      { name: "Ancient India", emoji: "🕌", description: "From Indus Valley to Vedic period" },
-      { name: "Ancient China", emoji: "🐉", description: "Inventors and dynasties" },
-      { name: "Ancient Japan", emoji: "⛩️", description: "Samurai and traditions" },
-      { name: "Ancient Greece", emoji: "⚡", description: "From Minoans to Classical Greece" },
-      { name: "Ancient Rome", emoji: "🏟️", description: "From kings to empire" },
-      { name: "Kingdom of Kush", emoji: "👑", description: "Nubian pharaohs and iron workers" },
-      { name: "Maya Civilization", emoji: "🌴", description: "Calendar makers and astronomers" },
+      { name: "Middle East", image: "https://images.unsplash.com/photo-1763590897919-308cf0973853?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxNaWRkbGUlMjBFYXN0JTIwZGVzZXJ0JTIwYW5jaWVudCUyMHJ1aW5zfGVufDF8fHx8MTc2Nzg5ODAwNHww&ixlib=rb-4.1.0&q=80&w=1080", description: "Early civilizations of the Middle East" },
+      { name: "Asia", image: "https://images.unsplash.com/photo-1767770801467-f2cff0fdf402?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxBc2lhJTIwYW5jaWVudCUyMHRlbXBsZSUyMHBhZ29kYXxlbnwxfHx8fDE3Njc4OTgwMDR8MA&ixlib=rb-4.1.0&q=80&w=1080", description: "Ancient Asian civilizations" },
+      { name: "Europe", image: "https://images.unsplash.com/photo-1728076992371-659f5540a27c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxHcmVlayUyMHRlbXBsZSUyMEF0aGVucyUyMHJ1aW5zfGVufDF8fHx8MTc2Nzg5ODAwNHww&ixlib=rb-4.1.0&q=80&w=1080", description: "Classical European civilizations" },
+      { name: "Americas", image: "https://images.unsplash.com/photo-1681686587641-45cd5bd876d9?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxBbWVyaWNhbiUyMHB5cmFtaWQlMjBNYXlhfGVufDF8fHx8MTc2Nzg5ODAwNXww&ixlib=rb-4.1.0&q=80&w=1080", description: "Pre-Columbian American civilizations" },
+      { name: "Africa", image: "https://images.unsplash.com/photo-1760199078363-3c31058d5802?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxBZnJpY2ElMjBzYXZhbm5hJTIwYW5jaWVudHxlbnwxfHx8fDE3Njc4OTgwMDV8MA&ixlib=rb-4.1.0&q=80&w=1080", description: "Ancient African kingdoms" },
+      { name: "Mesopotamia", image: "https://images.unsplash.com/photo-1763590897919-308cf0973853?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxNZXNvcG90YW1pYSUyMGFuY2llbnQlMjBydWluc3xlbnwxfHx8fDE3Njc4OTgwMDZ8MA&ixlib=rb-4.1.0&q=80&w=1080", description: "The cradle of civilization" },
+      { name: "Ancient Egypt", image: "https://images.unsplash.com/photo-1630776212743-6d31601fd616?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxFZ3lwdGlhbiUyMHB5cmFtaWRzJTIwc3BoaW54fGVufDF8fHx8MTc2Nzg5ODAwNnww&ixlib=rb-4.1.0&q=80&w=1080", description: "Land of pharaohs and pyramids" },
+      { name: "Ancient India", image: "https://images.unsplash.com/photo-1668948824982-37c263b8dfb4?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxJbmRpYSUyMGFuY2llbnQlMjB0ZW1wbGV8ZW58MXx8fHwxNzY3ODk4MDA3fDA&ixlib=rb-4.1.0&q=80&w=1080", description: "From Indus Valley to Vedic period" },
+      { name: "Ancient China", image: "https://images.unsplash.com/photo-1608037521244-f1c6c7635194?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxDaGluYSUyMEdyZWF0JTIwV2FsbHxlbnwxfHx8fDE3Njc4OTgwMDh8MA&ixlib=rb-4.1.0&q=80&w=1080", description: "Inventors and dynasties" },
+      { name: "Ancient Japan", image: "https://images.unsplash.com/photo-1590414107400-14eb9dc03565?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxKYXBhbiUyMHBhZ29kYSUyMGNhc3RsZXxlbnwxfHx8fDE3Njc4OTg1NTZ8MA&ixlib=rb-4.1.0&q=80&w=1080", description: "Samurai and traditions" },
+      { name: "Ancient Greece", image: "https://images.unsplash.com/photo-1649287710140-95a0dadf3a9b?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxHcmVlayUyMFBhcnRoZW5vbiUyMGNvbHVtbnN8ZW58MXx8fHwxNzY3ODk4MDA4fDA&ixlib=rb-4.1.0&q=80&w=1080", description: "From Minoans to Classical Greece" },
+      { name: "Ancient Rome", image: "https://images.unsplash.com/photo-1566983688369-1e1f002b6976?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxSb21hbiUyMENvbG9zc2V1bSUyMGZvcnVtfGVufDF8fHx8MTc2Nzg5ODAwOHww&ixlib=rb-4.1.0&q=80&w=1080", description: "From kings to empire" },
+      { name: "Kingdom of Kush", image: "https://images.unsplash.com/photo-1764685761992-a6bfb9f241ef?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxOdWJpYW4lMjBweXJhbWlkcyUyMFN1ZGFufGVufDF8fHx8MTc2Nzg5ODAwOHww&ixlib=rb-4.1.0&q=80&w=1080", description: "Nubian pharaohs and iron workers" },
+      { name: "Maya Civilization", image: "https://images.unsplash.com/photo-1681686586861-19013ef8be90?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxNYXlhJTIwcHlyYW1pZCUyMGp1bmdsZXxlbnwxfHx8fDE3Njc4OTgwMDl8MA&ixlib=rb-4.1.0&q=80&w=1080", description: "Calendar makers and astronomers" },
     ],
     type: "timeline"
   },
@@ -565,6 +565,15 @@ export default function NuggetsApp() {
   const [nuggetImage, setNuggetImage] = useState(null);
   const [imageLoading, setImageLoading] = useState(false);
 
+  // Stardust Quiz Popup
+  const [showStardustQuiz, setShowStardustQuiz] = useState(false);
+  const [stardustQuestion, setStardustQuestion] = useState(null);
+  const [stardustQuizType, setStardustQuizType] = useState(null); // 'mcq' or 'freeform'
+  const [selectedStardustAnswer, setSelectedStardustAnswer] = useState(null);
+  const [wrongAnswers, setWrongAnswers] = useState(new Set());
+  const [freeformAnswer, setFreeformAnswer] = useState('');
+  const [stardustQuizLoading, setStardustQuizLoading] = useState(false);
+
   // Auth
   const [user, setUser] = useState(null);
   const [isSaving, setIsSaving] = useState(false);
@@ -699,6 +708,48 @@ export default function NuggetsApp() {
     }
   }, [currentNugget, view]);
 
+  // Generate Stardust question when modal opens
+  useEffect(() => {
+    if (showStardustQuiz && !stardustQuestion && !stardustQuizLoading) {
+      generateStardustQuestion();
+    }
+  }, [showStardustQuiz]);
+
+  // Speech recognition for freeform answer
+  const startListening = () => {
+    if (!('webkitSpeechRecognition' in window) && !('SpeechRecognition' in window)) {
+      showNotification("Speech recognition not supported in this browser");
+      return;
+    }
+    
+    const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+    const recognition = new SpeechRecognition();
+    
+    recognition.continuous = false;
+    recognition.interimResults = false;
+    recognition.lang = 'en-US';
+    
+    recognition.onstart = () => {
+      setIsListening(true);
+    };
+    
+    recognition.onresult = (event) => {
+      const transcript = event.results[0][0].transcript;
+      setFreeformAnswer(prev => prev ? `${prev} ${transcript}` : transcript);
+    };
+    
+    recognition.onerror = (event) => {
+      console.error('Speech recognition error:', event.error);
+      setIsListening(false);
+    };
+    
+    recognition.onend = () => {
+      setIsListening(false);
+    };
+    
+    recognition.start();
+  };
+
   // Load "Show Me" images when modal opens
   useEffect(() => {
       if (isShowMeOpen && showMeImages.length === 0 && !showMeLoading) {
@@ -733,7 +784,20 @@ export default function NuggetsApp() {
                 index === self.findIndex(i => i.url === img.url)
               );
               
-              setShowMeImages(uniqueImages);
+              // Filter out inappropriate content for children
+              const inappropriateWords = [
+                'scandal', 'controversy', 'death', 'murder', 'killing', 'war crime',
+                'assassination', 'terrorism', 'violence', 'attack', 'bombing',
+                'disaster', 'tragedy', 'crash', 'accident', 'victim', 'crime',
+                'arrest', 'convicted', 'guilty', 'trial', 'lawsuit', 'allegations'
+              ];
+              
+              const filteredImages = uniqueImages.filter(img => {
+                const textToCheck = `${img.title} ${img.description}`.toLowerCase();
+                return !inappropriateWords.some(word => textToCheck.includes(word));
+              });
+              
+              setShowMeImages(filteredImages);
               setShowMeLoading(false);
           };
           
@@ -1097,7 +1161,15 @@ export default function NuggetsApp() {
     setAiLoading(true);
     
     try {
-        const systemPrompt = `You are a friendly educational guide for children (ages 7-8). Generate a single fascinating fact about the topic provided. DO NOT start with conversational phrases like "Did you know" or "Here's a fun fact". Launch directly into the fact itself. Return ONLY valid JSON in this exact format: { "fact": "The fact text here", "topic": "Topic Name", "imageSearchTerm": "main subject noun (e.g., anglerfish, volcano, robot)", "relatedTopics": ["Topic 1", "Topic 2", "Topic 3"] }`;
+        const systemPrompt = `You are a friendly educational guide for children (ages 7-8). Generate a single fascinating fact about the topic provided. DO NOT start with conversational phrases like "Did you know" or "Here's a fun fact". Launch directly into the fact itself. 
+
+IMPORTANT CONTENT GUIDELINES:
+- Keep content age-appropriate and positive for young children
+- AVOID topics like: human sacrifice, death rituals, violence, warfare casualties, executions, torture, graphic historical events
+- Focus on fascinating, educational, uplifting aspects of topics
+- When discussing ancient civilizations or historical topics, emphasize culture, achievements, daily life, inventions, and contributions to society
+
+Return ONLY valid JSON in this exact format: { "fact": "The fact text here", "topic": "Topic Name", "imageSearchTerm": "2-3 specific descriptive words about the main subject to avoid ambiguity (e.g., 'Chinese flying kite', 'anglerfish deep sea', 'volcanic eruption', 'humanoid robot')", "relatedTopics": ["Topic 1", "Topic 2", "Topic 3"] }`;
         const userPrompt = `Tell me a cool educational fact about: ${tag}`;
         
         const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash-exp:generateContent?key=${apiKey}`, {
@@ -1158,6 +1230,50 @@ export default function NuggetsApp() {
     }
   };
 
+  const generateStardustQuestion = async () => {
+    if (!apiKey || !currentNugget) return;
+    
+    setStardustQuizLoading(true);
+    try {
+        const systemPrompt = `You are a quiz creator for children (ages 7-8). Create ONE simple multiple choice question about the given fact. Keep it age-appropriate and straightforward.`;
+        const userPrompt = `Create a simple multiple choice question about this fact: "${currentNugget.text}"
+
+CRITICAL: Respond with ONLY a valid JSON object. No markdown, no explanations, no additional text.
+
+{
+  "question": "The question text?",
+  "options": ["Option A", "Option B", "Option C"],
+  "correctIndex": 0
+}`;
+        
+        const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash-exp:generateContent?key=${apiKey}`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                contents: [{ parts: [{ text: userPrompt }] }],
+                systemInstruction: { parts: [{ text: systemPrompt }] }
+            })
+        });
+        
+        const data = await response.json();
+        const content = data.candidates?.[0]?.content?.parts?.[0]?.text;
+        
+        try {
+            const cleaned = content.replace(/```json/g, '').replace(/```/g, '').trim();
+            const parsed = JSON.parse(cleaned);
+            setStardustQuestion(parsed);
+        } catch(e) {
+            console.error("JSON parse error:", e);
+            setStardustQuestion(null);
+        }
+    } catch(e) {
+        console.error("Quiz generation error:", e);
+        setStardustQuestion(null);
+    } finally {
+        setStardustQuizLoading(false);
+    }
+  };
+
   const callGemini = async (type) => {
       if (!apiKey) {
           showNotification("Needs API Key");
@@ -1173,6 +1289,11 @@ export default function NuggetsApp() {
         if (type === 'learn') {
             systemPrompt = `You are a helpful companion for a curious child (ages 7-8). Explain the fact in simple terms. 
 
+IMPORTANT CONTENT GUIDELINES:
+- Keep content age-appropriate and positive for young children
+- AVOID topics like: human sacrifice, death rituals, violence, warfare casualties, executions, torture, graphic historical events
+- Focus on fascinating, educational, uplifting aspects of topics
+
 CRITICAL FORMATTING RULES:
 - Use **word**{definition} ONLY for vocabulary words that children should collect (with age-appropriate definitions)
   - Choose vocabulary words that a 10-year-old might NOT know (e.g., "aqueduct", "amphitheater", "photosynthesis")
@@ -1187,7 +1308,12 @@ CRITICAL FORMATTING RULES:
 Keep it under 4 sentences. DO NOT use conversational lead-ins like "Wow", "That's cool", "Did you know", or comments about how interesting the topic is. Start directly with the educational content.`;
             userPrompt = `Explain more about this fact: "${currentNugget.text}"`;
         } else if (type === 'activity') {
-            systemPrompt = `You are a helpful activity creator for children.`;
+            systemPrompt = `You are a helpful activity creator for children.
+
+IMPORTANT CONTENT GUIDELINES:
+- Keep all activities age-appropriate and safe for young children
+- AVOID topics related to: human sacrifice, death rituals, violence, warfare, or graphic historical events
+- Focus on positive, educational, hands-on learning experiences`;
             userPrompt = `Create ONE simple hands-on OFF-SCREEN activity for children about: "${currentNugget.text}"
 
 CRITICAL GUIDELINES:
@@ -1719,7 +1845,7 @@ CRITICAL: Respond with ONLY a valid JSON array. No markdown, no explanations, no
                     
                     return (
                         <div className="bg-white dark:bg-slate-800 rounded-3xl p-6 md:p-8 shadow-lg mb-8">
-                            <h2 className="text-2xl font-bold text-slate-800 dark:text-white mb-6 text-center">Timeline of Civilizations</h2>
+                            <h2 className="text-2xl font-bold text-slate-800 dark:text-white mb-6 text-center">Timeline of Ancient Civilizations</h2>
                             
                             {/* Regional Key */}
                             <div className="flex flex-wrap justify-center gap-3 mb-6">
@@ -1820,7 +1946,7 @@ CRITICAL: Respond with ONLY a valid JSON array. No markdown, no explanations, no
                 {/* Topic Cards Section */}
                 <div className="mb-8">
                     <h2 className="text-2xl font-bold text-slate-800 dark:text-white mb-6 text-center">
-                        {type === 'timeline' ? 'Explore Civilizations' : type === 'process' ? 'Key Concepts' : 'Explore Topics'}
+                        {type === 'timeline' ? 'Explore Ancient Civilizations' : type === 'process' ? 'Key Concepts' : 'Explore Topics'}
                     </h2>
                     <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
                         {topic.subTopics.map((item, index) => (
@@ -1837,15 +1963,27 @@ CRITICAL: Respond with ONLY a valid JSON array. No markdown, no explanations, no
                                             'elements-of-music': 'music',
                                             'elements-of-art': 'art'
                                         };
-                                        generateNuggetByTag(item.name, subjectMap[topic.id] || 'science');
+                                        // For ancient civilizations timeline type, add context to the tag
+                                        const tag = type === 'timeline' ? `${item.name} ancient civilizations` : item.name;
+                                        generateNuggetByTag(tag, subjectMap[topic.id] || 'science');
                                     } else {
                                         showNotification("Add API key to explore topics!");
                                     }
                                 }}
-                                className={`${item.color ? 'text-white' : 'bg-white dark:bg-slate-800'} rounded-2xl p-6 shadow-md hover:shadow-xl hover:scale-105 transition-all border-2 ${item.color ? item.color : 'border-slate-100 dark:border-slate-700'} hover:border-opacity-80 group animate-pop`}
+                                className={`${item.color ? 'text-white' : 'bg-white dark:bg-slate-800'} rounded-2xl p-6 shadow-md hover:shadow-xl hover:scale-105 transition-all border-2 ${item.color ? item.color : 'border-slate-100 dark:border-slate-700'} hover:border-opacity-80 group animate-pop overflow-hidden`}
                                 style={{animationDelay: `${index * 0.05}s`}}
                             >
-                                <div className="text-5xl mb-3">{item.emoji}</div>
+                                {item.image ? (
+                                    <div className="w-full h-32 mb-3 rounded-lg overflow-hidden">
+                                        <img 
+                                            src={item.image} 
+                                            alt={item.name}
+                                            className="w-full h-full object-cover group-hover:scale-110 transition-transform"
+                                        />
+                                    </div>
+                                ) : (
+                                    <div className="text-5xl mb-3">{item.emoji}</div>
+                                )}
                                 <h3 className={`font-bold mb-1 ${item.color ? 'text-white' : 'text-slate-800 dark:text-white'}`}>
                                     {item.name}
                                 </h3>
@@ -2146,6 +2284,13 @@ CRITICAL: Respond with ONLY a valid JSON array. No markdown, no explanations, no
                                     saveCollection(newCollection);
                                     updateCrumbs(5);
                                     showNotification("Collected! +5 Crumbs 🍪");
+                                    // Open Stardust quiz popup
+                                    setShowStardustQuiz(true);
+                                    setStardustQuizType(null);
+                                    setSelectedStardustAnswer(null);
+                                    setWrongAnswers(new Set());
+                                    setFreeformAnswer('');
+                                    setStardustQuestion(null);
                                 } else showNotification("Already collected!");
                             }}
                             className="flex-1 bg-yellow-400 hover:bg-yellow-500 text-yellow-900 font-bold py-3 rounded-xl shadow-md hover:shadow-lg hover:-translate-y-1 transition-all flex items-center justify-center gap-2"
@@ -2518,6 +2663,217 @@ CRITICAL: Respond with ONLY a valid JSON array. No markdown, no explanations, no
       
       {renderShowMeModal()}
       {renderEnlargedImage()}
+      
+      {/* Stardust Quiz Modal */}
+      {showStardustQuiz && (
+        <div className="fixed inset-0 bg-black/60 flex items-center justify-center z-50 p-4 backdrop-blur-sm">
+          <div className="bg-gradient-to-br from-purple-50 to-blue-50 dark:from-purple-900 dark:to-blue-900 rounded-3xl shadow-2xl max-w-lg w-full max-h-[90vh] overflow-y-auto p-6 animate-pop border-4 border-purple-300 dark:border-purple-600">
+            <div className="flex items-center justify-between mb-2">
+              <div className="flex flex-col">
+                <h2 className="text-2xl font-bold text-purple-900 dark:text-purple-100">What Do You Think?</h2>
+                <p className="text-sm text-purple-600 dark:text-purple-300 font-semibold">Answer to Earn Stardust</p>
+              </div>
+              <button onClick={() => setShowStardustQuiz(false)} className="text-slate-500 hover:text-slate-700 dark:text-slate-400 dark:hover:text-slate-200">
+                <X className="w-6 h-6" />
+              </button>
+            </div>
+
+            <div className="space-y-4 mt-4">
+              {/* Text Input Section */}
+              <div>
+                <label className="text-sm font-semibold text-slate-700 dark:text-slate-300 mb-2 block">
+                  What did you find most interesting?
+                </label>
+                <div className="relative">
+                  <textarea
+                    value={freeformAnswer}
+                    onChange={(e) => setFreeformAnswer(e.target.value)}
+                    placeholder="Type or speak your thoughts here..."
+                    className="w-full p-4 pr-12 border-2 border-purple-300 dark:border-purple-600 rounded-xl focus:outline-none focus:ring-2 focus:ring-purple-500 dark:bg-slate-800 dark:text-slate-200 min-h-[100px] resize-none"
+                  />
+                  <button
+                    onClick={startListening}
+                    disabled={isListening}
+                    className={`absolute right-2 top-2 p-2 rounded-full transition-colors ${
+                      isListening 
+                        ? 'bg-red-500 animate-pulse' 
+                        : 'bg-purple-100 dark:bg-purple-800 hover:bg-purple-200 dark:hover:bg-purple-700'
+                    }`}
+                    title="Speech to text"
+                  >
+                    <Mic className={`w-5 h-5 ${isListening ? 'text-white' : 'text-purple-600 dark:text-purple-300'}`} />
+                  </button>
+                </div>
+              </div>
+
+              {/* Multiple Choice Section */}
+              <div>
+                <label className="text-sm font-semibold text-slate-700 dark:text-slate-300 mb-2 block">
+                  Or answer this question:
+                </label>
+                {stardustQuizLoading ? (
+                  <div className="flex flex-col items-center justify-center py-6 bg-white dark:bg-slate-800 rounded-xl">
+                    <Loader className="w-6 h-6 text-purple-600 animate-spin mb-2" />
+                    <p className="text-sm text-slate-600 dark:text-slate-400">Generating question...</p>
+                  </div>
+                ) : stardustQuestion ? (
+                  <>
+                    <div className="bg-white dark:bg-slate-800 rounded-xl p-4 mb-3">
+                      <div className="flex items-start justify-between gap-2">
+                        <p className="text-base font-semibold text-slate-800 dark:text-slate-200">
+                          {stardustQuestion.question}
+                        </p>
+                        <button
+                          onClick={() => {
+                            const utterance = new SpeechSynthesisUtterance(stardustQuestion.question);
+                            utterance.rate = 0.9;
+                            utterance.pitch = 1.1;
+                            
+                            // Get available voices
+                            const voices = speechSynthesis.getVoices();
+                            
+                            // Preferred voice names (same as rest of app)
+                            const preferredVoices = [
+                              'Samantha', // Mac OS - friendly female
+                              'Google US English Female',
+                              'Microsoft Zira Desktop', // Windows
+                              'Google UK English Female',
+                              'Karen', // Mac OS
+                              'Microsoft Zira',
+                              'Fiona', // Mac OS alternative
+                              'Female', // Generic fallback
+                            ];
+                            
+                            // Try to find a preferred voice
+                            let selectedVoice = null;
+                            for (const preferred of preferredVoices) {
+                              selectedVoice = voices.find(voice => 
+                                voice.name.includes(preferred) && 
+                                (voice.lang.startsWith('en-') || voice.lang === 'en')
+                              );
+                              if (selectedVoice) {
+                                break;
+                              }
+                            }
+                            
+                            // If no preferred voice found, use any English female voice
+                            if (!selectedVoice) {
+                              selectedVoice = voices.find(voice => 
+                                (voice.name.toLowerCase().includes('female') || 
+                                 voice.name.toLowerCase().includes('woman')) &&
+                                (voice.lang.startsWith('en-') || voice.lang === 'en')
+                              );
+                            }
+                            
+                            // Final fallback: use first English voice
+                            if (!selectedVoice) {
+                              selectedVoice = voices.find(voice => 
+                                voice.lang.startsWith('en-') || voice.lang === 'en'
+                              );
+                            }
+                            
+                            // Set the voice if we found one
+                            if (selectedVoice) {
+                              utterance.voice = selectedVoice;
+                              utterance.lang = selectedVoice.lang;
+                            } else {
+                              utterance.lang = 'en-US';
+                            }
+                            
+                            speechSynthesis.speak(utterance);
+                          }}
+                          className="flex-shrink-0 p-2 bg-blue-100 dark:bg-blue-800 rounded-full hover:bg-blue-200 dark:hover:bg-blue-700 transition-colors"
+                        >
+                          <Volume2 className="w-4 h-4 text-blue-600 dark:text-blue-300" />
+                        </button>
+                      </div>
+                    </div>
+                    <div className="space-y-2">
+                      {stardustQuestion.options.map((option, index) => {
+                        const isWrong = wrongAnswers.has(index);
+                        const isSelected = selectedStardustAnswer === index;
+                        const isCorrect = index === stardustQuestion.correctIndex;
+                        
+                        return (
+                          <button
+                            key={index}
+                            onClick={() => {
+                              if (isWrong) return;
+                              setSelectedStardustAnswer(index);
+                            }}
+                            disabled={isWrong}
+                            className={`w-full p-3 rounded-xl font-semibold text-left transition-all text-sm ${
+                              isWrong 
+                                ? 'bg-slate-200 dark:bg-slate-700 text-slate-400 dark:text-slate-500 cursor-not-allowed opacity-50'
+                                : isSelected
+                                ? 'bg-purple-500 text-white shadow-lg'
+                                : 'bg-white dark:bg-slate-800 hover:bg-purple-100 dark:hover:bg-slate-700 text-slate-800 dark:text-slate-200 shadow hover:shadow-lg hover:-translate-y-0.5'
+                            }`}
+                          >
+                            {option}
+                          </button>
+                        );
+                      })}
+                    </div>
+                    {wrongAnswers.size > 0 && selectedStardustAnswer !== stardustQuestion.correctIndex && (
+                      <p className="text-center text-sm text-purple-600 dark:text-purple-300 mt-2">
+                        Not quite! Try again - you've got this! 💪
+                      </p>
+                    )}
+                  </>
+                ) : (
+                  <div className="text-center py-4 bg-white dark:bg-slate-800 rounded-xl">
+                    <p className="text-sm text-slate-600 dark:text-slate-400">Question couldn't be generated</p>
+                  </div>
+                )}
+              </div>
+
+              {/* Submit Button */}
+              <button
+                onClick={() => {
+                  const hasTextAnswer = freeformAnswer.trim().length >= 10;
+                  const hasCorrectMCQ = selectedStardustAnswer === stardustQuestion?.correctIndex;
+                  
+                  if (hasTextAnswer || hasCorrectMCQ) {
+                    updateStarDust(5);
+                    showNotification("Great job! +5 Stardust ✨");
+                    setTimeout(() => {
+                      setShowStardustQuiz(false);
+                      setFreeformAnswer('');
+                      setSelectedStardustAnswer(null);
+                      setWrongAnswers(new Set());
+                      setStardustQuestion(null);
+                    }, 1500);
+                  } else if (selectedStardustAnswer !== null && !hasCorrectMCQ) {
+                    setWrongAnswers(new Set([...wrongAnswers, selectedStardustAnswer]));
+                    showNotification("Try again!");
+                  } else {
+                    showNotification("Please answer the question or write at least 10 characters!");
+                  }
+                }}
+                className="w-full bg-gradient-to-r from-purple-500 to-blue-500 hover:from-purple-600 hover:to-blue-600 text-white font-bold py-4 px-6 rounded-xl shadow-lg hover:shadow-xl hover:-translate-y-1 transition-all flex items-center justify-center gap-2"
+              >
+                <Sparkles className="w-5 h-5" />
+                Submit for Stardust!
+              </button>
+
+              {/* Skip Button */}
+              <button
+                onClick={() => {
+                  setShowStardustQuiz(false);
+                  setFreeformAnswer('');
+                  setSelectedStardustAnswer(null);
+                  setWrongAnswers(new Set());
+                  setStardustQuestion(null);
+                }}
+                className="w-full bg-slate-300 hover:bg-slate-400 dark:bg-slate-700 dark:hover:bg-slate-600 text-slate-700 dark:text-slate-200 font-bold py-3 px-6 rounded-xl transition-all"
+              >
+                Skip for Now
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
       
       {showAuthModal && (
         <AuthModal 
