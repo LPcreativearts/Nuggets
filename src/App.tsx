@@ -5,11 +5,38 @@ import {
     Calculator, Settings, X, Sparkles, Map as MapIcon, Heart, ArrowLeft, Brain, 
     ShoppingBag, Edit3, Volume2, Image as ImageIcon, Loader, ExternalLink, 
     Square, Search, Trophy, Check, Mic, Shuffle, Moon, Sun, Cookie, HelpCircle, ArrowRight,
-    Maximize2, Minimize2, Book, History as HistoryIcon, Lock, Grid, Trash2, Menu, LogIn, LogOut, User, AlertTriangle, Pencil
+    Maximize2, Minimize2, Book, History as HistoryIcon, Lock, Grid, Trash2, Menu, LogIn, LogOut, User, AlertTriangle, Pencil, Save
 } from 'lucide-react';
 import { createClient } from '@supabase/supabase-js';
 import { projectId, publicAnonKey } from './utils/supabase/info';
 import { AuthModal } from './components/AuthModal';
+import { ImageWithFallback } from './components/figma/ImageWithFallback';
+
+// Mascot Images
+import spaceNuggetImg from 'figma:asset/9bc58e8692cbac3863bf7255a7cd29b0e4334a64.png';
+import skyNuggetImg from 'figma:asset/524aa8d812d9a0a6f5c495000fd779e4eae87150.png';
+// Basic and Spicy nugget images
+import baseNuggetImg from 'figma:asset/e23fe5acb66ca864e8e5ca8d62fa1245562b1fd4.png'; // Basic Nugget
+import spicyNuggetImg from 'figma:asset/a3e4544d3442bb9c3e68eb1a33e7a1f69695dda9.png'; // Spicy Nugget
+// Eye accessories
+import eyeVertical from 'figma:asset/e51044114d9d56eb4d00716a8fdfa99f5590ce16.png';
+import eyeAngled from 'figma:asset/936f0a47b985a3d05ca017f04ebf53a12ea0d463.png';
+import angryEyebrows from 'figma:asset/0650c8948efd77365d16a26559017dfaed7dd651.png';
+// Mouth accessories
+import smileMouth from 'figma:asset/5660787e5ba0950ec04a09d7cf7f064f581302a5.png';
+import frownPng from 'figma:asset/9823b22aa4c9af4c84901143b170ac410d1b8e0f.png';
+// Arms accessories
+import armsImg from 'figma:asset/e1cb00a2a60b8725d4265551a68159cb1070e5f5.png';
+// Legs accessories
+import legsImg from 'figma:asset/74f3553160d988436af237bafb15516d03789825.png';
+// Tail accessories
+import rainbowTailImg from 'figma:asset/2bfa5715385880a8a49bbec1db42b853e2dea6de.png';
+import brownTailImg from 'figma:asset/95a24bc7dd74e427be04f134b6b56c8e106afdde.png';
+// Accessory items
+import glassesImg from 'figma:asset/6b16272a922b89d8b73e6fbdcd925544dbeb6eb3.png';
+import crownImg from 'figma:asset/f5146dfa112d42072e9269fb8a42ad1ea8da06eb.png';
+import topHatImg from 'figma:asset/a6075e3e6d5bdb9d91355afecb08d948ac0d741e.png';
+import partyHatImg from 'figma:asset/611e368b479c6c41d505e90461ef11c7f2d40dbe.png';
 
 // -----------------------------------------------------------------------------
 // 🔧 PARENT SETUP: 
@@ -135,7 +162,7 @@ const SUBJECTS = [
   { 
       id: 'science', name: 'Science', icon: Microscope, 
       color: 'bg-emerald-100 text-emerald-700 dark:bg-emerald-900/50 dark:text-emerald-200', border: 'border-emerald-300 dark:border-emerald-700', 
-      subtopics: ["Scientific Method", "Black Holes", "Carnivorous Plants", "Deep Sea Creatures", "Robots", "Slime", "Dinosaurs", "Volcanoes", "Magnets"],
+      subtopics: ["Experiments", "Black Holes", "Carnivorous Plants", "Deep Sea Creatures", "Robots", "Slime", "Dinosaurs", "Volcanoes", "Magnets"],
       imgTerm: "Microscope" 
   },
   { 
@@ -178,34 +205,34 @@ const SUBJECTS = [
 
 // Subtopic Image Mapping - Using Unsplash for better visuals
 const SUBTOPIC_IMAGES = {
-  "Scientific Method": "https://images.unsplash.com/photo-1608037222011-cbf484177126?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxzY2llbmNlJTIwbGFib3JhdG9yeSUyMGV4cGVyaW1lbnR8ZW58MXx8fHwxNzY3NzQ2NjM0fDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
-  "Robots": "https://images.unsplash.com/photo-1760629863094-5b1e8d1aae74?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxtb2Rlcm4lMjByb2JvdCUyMHRlY2hub2xvZ3l8ZW58MXx8fHwxNzY3NzQ2NjM0fDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
-  "Slime": "https://images.unsplash.com/photo-1642035271471-c2f7778908d5?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxjb2xvcmZ1bCUyMHNsaW1lJTIwaGFuZHN8ZW58MXx8fHwxNzY3NzQ2NjM1fDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
-  "Secret Spies": "https://images.unsplash.com/photo-1610449257708-7221b0b39687?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxzcHklMjBkZXRlY3RpdmV8ZW58MXx8fHwxNzY3NzQ2NjM1fDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
-  "Elements of Math": "https://images.unsplash.com/photo-1758685733737-71f8945decf1?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxtYXRoZW1hdGljYWwlMjBlcXVhdGlvbnMlMjBjaGFsa2JvYXJkfGVufDF8fHx8MTc2Nzc0NjYzNXww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
-  "Infinity": "https://images.unsplash.com/photo-1624545607101-17159c56a3c6?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxpbmZpbml0eSUyMHN5bWJvbCUyMHNwaXJhbHxlbnwxfHx8fDE3Njc3NDY2MzZ8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
-  "Secret Codes": "https://images.unsplash.com/photo-1633185075416-c9ef98858411?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxjcnlwdG9ncmFwaHklMjBjb2Rlc3xlbnwxfHx8fDE3Njc3NDY2MzZ8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
-  "Impossible Shapes": "https://images.unsplash.com/photo-1741997852885-33c22514e034?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxvcHRpY2FsJTIwaWxsdXNpb24lMjBnZW9tZXRyeXxlbnwxfHx8fDE3Njc3NDY2MzZ8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
-  "Zero": "https://images.unsplash.com/photo-1623307019152-1ee797183f1d?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxudW1iZXIlMjB6ZXJvJTIwbmVvbnxlbnwxfHx8fDE3Njc3NDY2Mzd8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
-  "Elements of Art": "https://images.unsplash.com/photo-1705154807723-febfd54e0478?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxwYWludCUyMGJydXNoZXMlMjBwYWxldHRlfGVufDF8fHx8MTc2Nzc0NjYzN3ww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
-  "Famous Works of Art": "https://images.unsplash.com/photo-1707261633952-79e36ccd2115?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxmYW1vdXMlMjBwYWludGluZyUyMG11c2V1bXxlbnwxfHx8fDE3Njc3NDY2Mzh8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
-  "Art Movements": "https://images.unsplash.com/photo-1656332694799-5fd721c0c2d8?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxhYnN0cmFjdCUyMG1vZGVybiUyMGFydHxlbnwxfHx8fDE3Njc3MjYyMzl8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
-  "Street Art": "https://images.unsplash.com/photo-1628522994788-53bc1b1502c5?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxzdHJlZXQlMjBhcnQlMjBncmFmZml0aXxlbnwxfHx8fDE3Njc2OTY0NTd8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
-  "Sculpture": "https://images.unsplash.com/photo-1683918891988-caf13254fbe2?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxtYXJibGUlMjBzY3VscHR1cmUlMjBzdGF0dWV8ZW58MXx8fHwxNzY3NzQ2NjM5fDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
-  "Weird Instruments": "https://images.unsplash.com/photo-1762300422098-433973c90357?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx1bnVzdWFsJTIwbXVzaWNhbCUyMGluc3RydW1lbnR8ZW58MXx8fHwxNzY3NzQ2NjM5fDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
-  "Video Game Music": "https://images.unsplash.com/photo-1584013979505-67ba6e45cfda?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxyZXRybyUyMHZpZGVvJTIwZ2FtZXxlbnwxfHx8fDE3Njc3NDY2NDB8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
-  "Animal Sounds": "https://images.unsplash.com/photo-1702323447893-949e93cb51ec?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxhbmltYWwlMjB3aWxkbGlmZSUyMHNvdW5kc3xlbnwxfHx8fDE3Njc3NDY2NDB8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
-  "Rhythm": "https://images.unsplash.com/photo-1612549354052-a91bd7d0bff6?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxkcnVtJTIwcmh5dGhtJTIwbXVzaWN8ZW58MXx8fHwxNzY3NzQ2NjQwfDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
-  "Movie Soundtracks": "https://images.unsplash.com/photo-1739433437912-cca661ba902f?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxtb3ZpZSUyMHRoZWF0ZXIlMjBjaW5lbWF8ZW58MXx8fHwxNzY3NzM4MjU1fDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
-  "Lego Master": "https://images.unsplash.com/photo-1633469924738-52101af51d87?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxjb2xvcmZ1bCUyMGxlZ28lMjBibG9ja3N8ZW58MXx8fHwxNzY3NzQ2NjQxfDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
-  "Video Game Tester": "https://images.unsplash.com/photo-1610458131353-1f3f843bb0d6?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxnYW1pbmclMjBjb250cm9sbGVyJTIwZGVza3xlbnwxfHx8fDE3Njc3NDY2NDF8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
-  "Animal Rescuer": "https://images.unsplash.com/photo-1759164955427-14ca448a839d?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx2ZXRlcmluYXJpYW4lMjBhbmltYWwlMjBjYXJlfGVufDF8fHx8MTc2Nzc0NjY0Mnww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
-  "Elements of Language": "https://images.unsplash.com/photo-1620862425686-465a01345cd4?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxhbHBoYWJldCUyMGxldHRlcnMlMjB0eXBvZ3JhcGh5fGVufDF8fHx8MTc2Nzc0NjY0Mnww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
-  "Silly Words": "https://images.unsplash.com/photo-1667980432734-0e662dd989c4?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxkaWN0aW9uYXJ5JTIwY3JlYXRpdmUlMjB3b3Jkc3xlbnwxfHx8fDE3Njc3NDY2NDN8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
-  "Secret Languages": "https://images.unsplash.com/photo-1519162721257-18cd195350c2?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxzaWduJTIwbGFuZ3VhZ2UlMjBjb21tdW5pY2F0aW9ufGVufDF8fHx8MTc2NzY5MDAyM3ww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
-  "Tongue Twisters": "https://images.unsplash.com/photo-1648204068800-cfcfb9d814ac?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxzcGVha2luZyUyMG1vdXRoJTIwZXhwcmVzc2lvbnxlbnwxfHx8fDE3Njc3NDY2NDN8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
-  "Ancient Writing": "https://images.unsplash.com/photo-1655923478826-ef7c2d40820e?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxhbmNpZW50JTIwaGllcm9nbHlwaGljcyUyMHdyaXRpbmd8ZW58MXx8fHwxNzY3NzQ2NjQ0fDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
-  "Early Humans": "https://images.unsplash.com/photo-1647705777154-178dafd1e2d7?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxjYXZlJTIwcGFpbnRpbmd8ZW58MXx8fHwxNzY3ODMxNTgyfDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral"
+  "Experiments": "https://images.unsplash.com/photo-1608037222011-cbf484177126?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxsYWJvcmF0b3J5JTIwZXhwZXJpbWVudHxlbnwxfHx8fDE3NjgyNTU1Mjh8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
+  "Robots": "https://images.unsplash.com/photo-1737644467636-6b0053476bb2?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxodW1hbm9pZCUyMHJvYm90fGVufDF8fHx8MTc2ODIzNTM2N3ww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
+  "Slime": "https://images.unsplash.com/photo-1671490996266-fa5b32d5f24d?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxjb2xvcmZ1bCUyMHNsaW1lfGVufDF8fHx8MTc2ODI1NTUyOHww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
+  "Secret Spies": "https://images.unsplash.com/photo-1610449257708-7221b0b39687?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxzcHklMjBkZXRlY3RpdmV8ZW58MXx8fHwxNzY4MjU1NTI5fDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
+  "Elements of Math": "https://images.unsplash.com/photo-1758685733737-71f8945decf1?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxtYXRoZW1hdGljYWwlMjBlcXVhdGlvbnN8ZW58MXx8fHwxNzY4MjU1NTI5fDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
+  "Infinity": "https://images.unsplash.com/photo-1606778303039-9fc1488b1d8a?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxpbmZpbml0eSUyMHN5bWJvbHxlbnwxfHx8fDE3NjgyNTU1MzB8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
+  "Secret Codes": "https://images.unsplash.com/photo-1633185075416-c9ef98858411?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxjcnlwdG9ncmFwaHklMjBjb2Rlc3xlbnwxfHx8fDE3NjgyNTU1MzB8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
+  "Impossible Shapes": "https://images.unsplash.com/photo-1760693318333-d3ae15709511?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxpbXBvc3NpYmxlJTIwZ2VvbWV0cnl8ZW58MXx8fHwxNzY4MjU1NTMwfDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
+  "Zero": "https://images.unsplash.com/photo-1609166216058-457ce78d0e23?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxuZW9uJTIwemVyb3xlbnwxfHx8fDE3NjgyNTU1MzB8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
+  "Elements of Art": "https://images.unsplash.com/photo-1658301720419-d1c963f7993b?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxwYWludCUyMHBhbGV0dGV8ZW58MXx8fHwxNzY4MjU1NTMxfDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
+  "Famous Works of Art": "https://images.unsplash.com/photo-1582555172866-f73bb12a2ab3?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxhcnQlMjBtdXNldW18ZW58MXx8fHwxNjgyNTU1MzF8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
+  "Art Movements": "https://images.unsplash.com/photo-1615184697985-c9bde1b07da7?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxhYnN0cmFjdCUyMGFydHxlbnwxfHx8fDE3NjgxODAxMDN8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
+  "Street Art": "https://images.unsplash.com/photo-1611063158871-7dd3ed4a2ac8?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxzdHJlZXQlMjBncmFmZml0aXxlbnwxfHx8fDE3NjgyNTU1MzJ8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
+  "Sculpture": "https://images.unsplash.com/photo-1691957713140-a9a042252202?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxtb2Rlcm4lMjBzY3VscHR1cmV8ZW58MXx8fHwxNzY4MTgwNDA3fDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
+  "Weird Instruments": "https://images.unsplash.com/photo-1651931802891-1e200feafefe?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx1bnVzdWFsJTIwaW5zdHJ1bWVudHN8ZW58MXx8fHwxNzY4MjU1NTMyfDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
+  "Video Game Music": "https://images.unsplash.com/photo-1550745165-9bc0b252726f?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxyZXRybyUyMGdhbWluZ3xlbnwxfHx8fDE3NjgyMjc3NTh8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
+  "Animal Sounds": "https://images.unsplash.com/photo-1702323447893-949e93cb51ec?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx3aWxkbGlmZSUyMHNvdW5kc3xlbnwxfHx8fDE3NjgyNTU1MzN8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
+  "Rhythm": "https://images.unsplash.com/photo-1612549354052-a91bd7d0bff6?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxkcnVtJTIwcmh5dGhtfGVufDF8fHx8MTc2ODI1NTUzNHww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
+  "Movie Soundtracks": "https://images.unsplash.com/photo-1517604931442-7e0c8ed2963c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxtb3ZpZSUyMHRoZWF0ZXJ8ZW58MXx8fHwxNzY4MTkzODcxfDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
+  "Lego Master": "https://images.unsplash.com/photo-1633469924738-52101af51d87?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxjb2xvcmZ1bCUyMGxlZ298ZW58MXx8fHwxNzY4MjU1NTM0fDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
+  "Video Game Tester": "https://images.unsplash.com/photo-1611138290962-2c550ffd4002?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxnYW1pbmclMjBjb250cm9sbGVyfGVufDF8fHx8MTc2ODI1NTUzNHww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
+  "Animal Rescuer": "https://images.unsplash.com/photo-1654119938236-de0d8ed4641d?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx2ZXRlcmluYXJpYW4lMjBhbmltYWx8ZW58MXx8fHwxNzY4MjU1NTM1fDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
+  "Elements of Language": "https://images.unsplash.com/photo-1725043394860-71304ce2b1b6?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxhbHBoYWJldCUyMGxldHRlcnN8ZW58MXx8fHwxNzY4MjU1NTM1fDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
+  "Silly Words": "https://images.unsplash.com/photo-1598983941654-125cc1854744?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxkaWN0aW9uYXJ5JTIwd29yZHN8ZW58MXx8fHwxNzY4MjU1NTM2fDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
+  "Secret Languages": "https://images.unsplash.com/photo-1551240903-154be3f2e18b?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxzaWduJTIwbGFuZ3VhZ2V8ZW58MXx8fHwxNzY4MjU1NTM2fDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
+  "Tongue Twisters": "https://images.unsplash.com/photo-1592758212009-aad46d7b0f23?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxzcGVha2luZyUyMG1vdXRofGVufDF8fHx8MTc2ODI1NTUzNnww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
+  "Ancient Writing": "https://images.unsplash.com/photo-1728242410422-a5893353cac4?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxhbmNpZW50JTIwaGllcm9nbHlwaHN8ZW58MXx8fHwxNzY4MjU1NTM3fDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
+  "Early Humans": "https://images.unsplash.com/photo-1647705777154-178dafd1e2d7?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxjYXZlJTIwcGFpbnRpbmd8ZW58MXx8fHwxNzY4MjU1NTM3fDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral"
 };
 
 // Curriculum Topics - Special topics with sub-categories and timelines
@@ -275,9 +302,9 @@ const CURRICULUM_TOPICS = {
     ],
     type: "grid"
   },
-  "Scientific Method": {
+  "Experiments": {
     id: "scientific-method",
-    name: "Scientific Method",
+    name: "Experiments",
     description: "Learn how scientists discover new things",
     steps: [
       { name: "Ask a Question", emoji: "❓", description: "What do you want to know?", step: 1 },
@@ -294,6 +321,20 @@ const CURRICULUM_TOPICS = {
       { name: "Control Groups", emoji: "⚖️", description: "The comparison group", color: "bg-purple-500" },
       { name: "Data Collection", emoji: "📝", description: "Recording observations", color: "bg-green-500" },
       { name: "Lab Safety", emoji: "🥽", description: "Staying safe while experimenting", color: "bg-red-500" },
+    ],
+    experiments: [
+      { name: "Volcano Eruption", emoji: "🌋", description: "Baking soda + vinegar reaction", image: "https://images.unsplash.com/photo-1713976047691-cac4d1f4fc05?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx2b2xjYW5vJTIwZXJ1cHRpb24lMjBleHBlcmltZW50fGVufDF8fHx8MTc2ODIzNDMwOHww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral" },
+      { name: "Growing Crystals", emoji: "💎", description: "Watch crystals form overnight", image: "https://images.unsplash.com/photo-1765958861048-1aa9b46867eb?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxjcnlzdGFsJTIwZ3Jvd2luZyUyMHNjaWVuY2V8ZW58MXx8fHwxNzY4MjM0MzA4fDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral" },
+      { name: "Rainbow in a Jar", emoji: "🌈", description: "Layer liquids by density", image: "https://images.unsplash.com/photo-1761258454507-3ba336fb2bd3?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxyYWluYm93JTIwbGlxdWlkJTIwbGF5ZXJzfGVufDF8fHx8MTc2ODIzNDMwOXww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral" },
+      { name: "Plant Growth", emoji: "🌱", description: "Track how plants grow with light", image: "https://images.unsplash.com/photo-1682879398507-ea8d66d216f3?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxwbGFudCUyMHNlZWRsaW5nJTIwZ3Jvd2luZ3xlbnwxfHx8fDE3NjgyMzQzMDl8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral" },
+      { name: "Static Electricity", emoji: "⚡", description: "Make things stick with a balloon", image: "https://images.unsplash.com/photo-1665217101903-923e53b74b77?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxzdGF0aWMlMjBlbGVjdHJpY2l0eSUyMGJhbGxvb258ZW58MXx8fHwxNzY4MjM0MzA5fDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral" },
+      { name: "Ice Melting Race", emoji: "🧊", description: "Test what melts ice fastest", image: "https://images.unsplash.com/photo-1767099579555-7f5c80d5024d?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxpY2UlMjBtZWx0aW5nJTIwc2NpZW5jZXxlbnwxfHx8fDE3NjgyMzQzMTB8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral" },
+      { name: "Egg Drop Challenge", emoji: "🥚", description: "Protect an egg from falling", image: "https://images.unsplash.com/photo-1584385695389-f53f8cc13b17?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxlZ2clMjBwcm90ZWN0aW9uJTIwU1RFTXxlbnwxfHx8fDE3NjgyMzQzMTF8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral" },
+      { name: "Bird Watching", emoji: "🐦", description: "Observe and record local birds", image: "https://images.unsplash.com/photo-1703536760770-b5f5cdd838b1?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxiaXJkJTIwd2F0Y2hpbmclMjBuYXR1cmV8ZW58MXx8fHwxNzY4MjM0MzEwfDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral" },
+      { name: "Water Tornado", emoji: "🌪️", description: "Create a vortex in a bottle", image: "https://images.unsplash.com/photo-1698664434322-94a43b98b9ba?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx3YXRlciUyMGJvdHRsZSUyMHRvcm5hZG98ZW58MXx8fHwxNzY4MjM1NDg0fDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral" },
+      { name: "Magnet Magic", emoji: "🧲", description: "Explore magnetic fields", image: "https://images.unsplash.com/photo-1727885348727-47c37ecc710c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxtYWduZXQlMjBzY2llbmNlJTIwZXhwZXJpbWVudHxlbnwxfHx8fDE3NjgyMzU0ODR8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral" },
+      { name: "Solar Oven", emoji: "☀️", description: "Cook with the sun's power", image: "https://images.unsplash.com/photo-1682071308247-04c65c28bba5?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxzb2xhciUyMG92ZW4lMjBjb29raW5nfGVufDF8fHx8MTc2ODIzNTQ4NXww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral" },
+      { name: "Paper Airplanes", emoji: "✈️", description: "Test different wing designs", image: "https://images.unsplash.com/photo-1719985968573-2f002f676a30?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxwYXBlciUyMGFpcnBsYW5lJTIwZmx5aW5nfGVufDF8fHx8MTc2ODIzNTQ4NXww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral" },
     ],
     type: "process"
   },
@@ -327,15 +368,29 @@ const CURRICULUM_TOPICS = {
       { name: "Value", emoji: "◐", description: "Light and dark", color: "bg-gray-500" },
       { name: "Pattern", emoji: "🔲", description: "Repeated elements", color: "bg-teal-500" },
     ],
-    type: "grid"
+    activities: [
+      { name: "Contour Line Drawing", emoji: "✏️", description: "Draw without looking at your paper", element: "Line", image: "https://images.unsplash.com/photo-1659396455630-ad099b6d893a?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxjaGlsZHJlbiUyMGRyYXdpbmclMjBhcnR8ZW58MXx8fHwxNzY4MjU1MTM1fDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral" },
+      { name: "Shape Collage", emoji: "✂️", description: "Cut and arrange geometric shapes", element: "Shape", image: "https://images.unsplash.com/photo-1631519952398-5b1d76b946e8?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxwYXBlciUyMGNvbGxhZ2UlMjBjcmFmdHxlbnwxfHx8fDE3NjgyNTUxMzV8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral" },
+      { name: "Color Wheel Painting", emoji: "🌈", description: "Mix primary colors into secondary", element: "Color", image: "https://images.unsplash.com/photo-1659185541754-c41d7c609e09?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxwYWludCUyMHBhbGV0dGUlMjBjb2xvcnN8ZW58MXx8fHwxNzY4MjU1MTM1fDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral" },
+      { name: "Texture Rubbings", emoji: "🖍️", description: "Capture textures with crayon", element: "Texture", image: "https://images.unsplash.com/photo-1627873828946-44e8b5261d2d?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxjcmF5b24lMjB0ZXh0dXJlJTIwcnViYmluZ3xlbnwxfHx8fDE3NjgyNTUxMzZ8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral" },
+      { name: "Value Scale", emoji: "⬛", description: "Create a gradient from light to dark", element: "Value", image: "https://images.unsplash.com/photo-1559924045-1c34ba930038?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxwZW5jaWwlMjBzaGFkaW5nJTIwZ3JhZGllbnR8ZW58MXx8fHwxNjg4NDg5NjQ1fDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral" },
+      { name: "3D Paper Sculpture", emoji: "📄", description: "Fold and bend paper into forms", element: "Form", image: "https://images.unsplash.com/photo-1765162308598-e67b089969c6?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxwYXBlciUyMGNyYWZ0JTIwc2N1bHB0dXJlfGVufDF8fHx8MTY4ODQ4OTY0NXww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral" },
+      { name: "Negative Space Art", emoji: "🔲", description: "Focus on the space around objects", element: "Space", image: "https://images.unsplash.com/photo-1613946576929-3cc54e1cb5ae?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxjdXRvdXQlMjBzaWxob3VldHRlJTIwYXJ0fGVufDF8fHx8MTc2ODI1NTEzN3ww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral" },
+      { name: "Pattern Design", emoji: "🔶", description: "Repeat shapes to create patterns", element: "Pattern", image: "https://images.unsplash.com/photo-1677032160529-e03edd641cae?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxyZXBlYXRpbmclMjBwYXR0ZXJuJTIwZGVzaWdufGVufDF8fHx8MTY4ODQ4OTY0NXww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral" },
+      { name: "Pointillism Portrait", emoji: "🎨", description: "Paint with dots like Seurat", element: "Color", image: "https://images.unsplash.com/photo-1721527896667-3fe4e55e0ea6?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxwb2ludGlsbGlzbSUyMGRvdHMlMjBhcnR8ZW58MXx8fHwxNzY4MjU1MzE4fDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral" },
+      { name: "Zentangle Patterns", emoji: "🖊️", description: "Create meditative line patterns", element: "Line", image: "https://images.unsplash.com/photo-1594577526227-daccc722bcc3?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx6ZW50YW5nbGUlMjBkb29kbGUlMjBwYXR0ZXJufGVufDF8fHx8MTY4ODQ4OTY0NXww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral" },
+      { name: "Monochromatic Painting", emoji: "🎨", description: "Use one color in different shades", element: "Value", image: "https://images.unsplash.com/photo-1749746766525-eff0b9b50014?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxibHVlJTIwd2F0ZXJjb2xvciUyMHBhaW50aW5nfGVufDF8fHx8MTc2ODI1NTE0MHww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral" },
+      { name: "Foil Relief Sculpture", emoji: "✨", description: "Create raised textures in foil", element: "Texture", image: "https://images.unsplash.com/photo-1645357907258-aa9aba27d98d?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxmb2lsJTIwZW1ib3NzaW5nJTIwY3JhZnR8ZW58MXx8fHwxNjg4NDg5NjQ1fDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral" },
+    ],
+    type: "activities"
   }
 };
 
 const SHOP_ITEMS = [
-  { id: 'partyhat', name: 'Party Hat', cost: 0, currency: 'free', icon: '🎉' },
-  { id: 'glasses', name: 'Smart Specs', cost: 50, currency: 'crumbs', icon: '👓' },
-  { id: 'tophat', name: 'Fancy Hat', cost: 100, currency: 'crumbs', icon: '🎩' },
-  { id: 'crown', name: 'Gold Crown', cost: 20, currency: 'stardust', icon: '👑' },
+  { id: 'partyhat', name: 'Party Hat', cost: 0, currency: 'free', image: partyHatImg },
+  { id: 'glasses', name: 'Smart Specs', cost: 15, currency: 'crumbs', image: glassesImg },
+  { id: 'tophat', name: 'Fancy Hat', cost: 20, currency: 'crumbs', image: topHatImg },
+  { id: 'crown', name: 'Gold Crown', cost: 25, currency: 'crumbs', image: crownImg },
 ];
 
 const STARTER_NUGGETS = {
@@ -358,7 +413,7 @@ const STARTER_NUGGETS = {
   ],
   music: [
     { text: "Termites eat wood twice as fast when listening to heavy metal music.", tags: ["Termites"], searchTerm: "Termite" },
-    { text: "Your heartbeat changes to mimic the music you listen to.", tags: ["Heartbeat"], searchTerm: "Human heart" }
+    { text: "Other people's heartbeats can synchronize to the same musical rhythm when listening together.", tags: ["Heartbeat"], searchTerm: "Human heart" }
   ],
   career: [
     { text: "There is a job called a 'Snake Milker' who collects venom for medicine.", tags: ["Snakes"], searchTerm: "Snake venom" },
@@ -527,6 +582,7 @@ export default function NuggetsApp() {
   const [selectedSubject, setSelectedSubject] = useState(null);
   const [currentNugget, setCurrentNugget] = useState(null);
   const [searchQuery, setSearchQuery] = useState('');
+  const [topicSearchQuery, setTopicSearchQuery] = useState(''); // For searching within topic pages
   const [selectedCurriculumTopic, setSelectedCurriculumTopic] = useState(null); // For curriculum topics like Ancient Civilizations
   
   const [collection, setCollection] = useState([]);
@@ -575,18 +631,42 @@ export default function NuggetsApp() {
   const [wrongAnswers, setWrongAnswers] = useState(new Set());
   const [freeformAnswer, setFreeformAnswer] = useState('');
   const [stardustQuizLoading, setStardustQuizLoading] = useState(false);
+  const [stardustQuizSubmitted, setStardustQuizSubmitted] = useState(false);
+
+  // Mascot Guide
+  const [selectedGuide, setSelectedGuide] = useState(null); // 'space' or 'sky'
+  const [showGuideChat, setShowGuideChat] = useState(false);
+  const [guideChatMessages, setGuideChatMessages] = useState([]);
+  const [guideChatInput, setGuideChatInput] = useState('');
+  const [guideChatLoading, setGuideChatLoading] = useState(false);
+
+  // Avatar Customization
+  const [avatarCustomizationTab, setAvatarCustomizationTab] = useState('eyes');
+  const [avatarNuggetType, setAvatarNuggetType] = useState(null); // 'basic' or 'spicy'
+  const [selectedAccessories, setSelectedAccessories] = useState({
+    eyes: [], // Array to allow multiple eye accessories
+    mouth: null,
+    arms: null,
+    legs: null,
+    accessories: [] // Array to allow multiple accessories at once
+  });
+  const [avatarSaveLoading, setAvatarSaveLoading] = useState(false);
+  const [avatarSaveSuccess, setAvatarSaveSuccess] = useState(false);
 
   // Collection Quiz
   const [showCollectionQuiz, setShowCollectionQuiz] = useState(false);
   const [collectionQuizQuestions, setCollectionQuizQuestions] = useState([]);
   const [currentCollectionQuestionIndex, setCurrentCollectionQuestionIndex] = useState(0);
+  const [selectedCollectionAnswer, setSelectedCollectionAnswer] = useState(null);
   const [collectionQuizWrongAnswers, setCollectionQuizWrongAnswers] = useState(new Set());
   const [usedCollectionFactIds, setUsedCollectionFactIds] = useState(new Set());
+  const [collectionQuizCorrect, setCollectionQuizCorrect] = useState(false);
 
   // Word Quiz
   const [showWordQuiz, setShowWordQuiz] = useState(false);
   const [wordQuizQuestions, setWordQuizQuestions] = useState([]);
   const [currentWordQuestionIndex, setCurrentWordQuestionIndex] = useState(0);
+  const [selectedWordAnswer, setSelectedWordAnswer] = useState(null);
   const [wordQuizWrongAnswers, setWordQuizWrongAnswers] = useState(new Set());
   const [usedWordIds, setUsedWordIds] = useState(new Set());
 
@@ -649,6 +729,8 @@ export default function NuggetsApp() {
           if (data.inventory) setInventory(data.inventory);
           if (data.equipped) setEquipped(data.equipped);
           if (data.dark_mode !== undefined) setDarkMode(data.dark_mode);
+          if (data.selected_guide) setSelectedGuide(data.selected_guide);
+          if (data.avatar_nugget_type) setAvatarNuggetType(data.avatar_nugget_type);
         }
       } catch (error) {
         console.error('Load user data error:', error);
@@ -677,11 +759,21 @@ export default function NuggetsApp() {
     const savedCrumbs = localStorage.getItem('nuggets_crumbs');
     if (savedCrumbs) setCrumbs(parseInt(savedCrumbs));
     const savedInventory = localStorage.getItem('nuggets_inventory');
-    if (savedInventory) setInventory(JSON.parse(savedInventory));
+    if (savedInventory) {
+      setInventory(JSON.parse(savedInventory));
+    } else {
+      // Default inventory includes Party Hat
+      setInventory(['partyhat']);
+      localStorage.setItem('nuggets_inventory', JSON.stringify(['partyhat']));
+    }
     const savedEquipped = localStorage.getItem('nuggets_equipped');
     if (savedEquipped) setEquipped(JSON.parse(savedEquipped));
     const savedTheme = localStorage.getItem('nuggets_theme');
     if (savedTheme === 'dark') setDarkMode(true);
+    const savedGuide = localStorage.getItem('nuggets_selectedGuide');
+    if (savedGuide) setSelectedGuide(savedGuide);
+    const savedAvatarType = localStorage.getItem('nuggets_avatarNuggetType');
+    if (savedAvatarType) setAvatarNuggetType(savedAvatarType);
   }, []);
 
   useEffect(() => {
@@ -689,6 +781,104 @@ export default function NuggetsApp() {
     else document.documentElement.classList.remove('dark');
     localStorage.setItem('nuggets_theme', darkMode ? 'dark' : 'light');
   }, [darkMode]);
+
+  // Utility: Get or create a unique user ID for avatar saving
+  const getOrCreateUserId = () => {
+    let userId = localStorage.getItem('nuggets_userId');
+    if (!userId) {
+      userId = `user_${Date.now()}_${Math.random().toString(36).substring(2, 9)}`;
+      localStorage.setItem('nuggets_userId', userId);
+    }
+    return userId;
+  };
+
+  // Load avatar configuration on mount
+  useEffect(() => {
+    const loadAvatarConfig = async () => {
+      try {
+        const userId = getOrCreateUserId();
+        const response = await fetch(
+          `https://${projectId}.supabase.co/functions/v1/make-server-c9fbfdc0/avatar/load/${userId}`,
+          {
+            headers: {
+              'Authorization': `Bearer ${publicAnonKey}`
+            }
+          }
+        );
+        
+        const result = await response.json();
+        
+        if (result.success && result.data) {
+          const { nuggetType, accessories } = result.data;
+          if (nuggetType) setAvatarNuggetType(nuggetType);
+          if (accessories) setSelectedAccessories(accessories);
+          console.log('Avatar configuration loaded successfully');
+        }
+      } catch (error) {
+        console.error('Failed to load avatar configuration:', error);
+      }
+    };
+    
+    loadAvatarConfig();
+  }, []);
+
+  // Save avatar configuration
+  const saveAvatarConfig = async () => {
+    setAvatarSaveLoading(true);
+    setAvatarSaveSuccess(false);
+    
+    try {
+      const userId = getOrCreateUserId();
+      const response = await fetch(
+        `https://${projectId}.supabase.co/functions/v1/make-server-c9fbfdc0/avatar/save`,
+        {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${publicAnonKey}`
+          },
+          body: JSON.stringify({
+            userId,
+            avatarConfig: {
+              nuggetType: avatarNuggetType,
+              accessories: selectedAccessories
+            }
+          })
+        }
+      );
+      
+      const result = await response.json();
+      
+      if (result.success) {
+        setAvatarSaveSuccess(true);
+        // Also save to localStorage as backup
+        localStorage.setItem('nuggets_avatarNuggetType', avatarNuggetType);
+        console.log('Avatar configuration saved successfully');
+        
+        // Hide success message after 2 seconds
+        setTimeout(() => {
+          setAvatarSaveSuccess(false);
+        }, 2000);
+      } else {
+        throw new Error(result.error || 'Failed to save avatar');
+      }
+    } catch (error) {
+      console.error('Failed to save avatar configuration:', error);
+      alert('Failed to save avatar. Please try again.');
+    } finally {
+      setAvatarSaveLoading(false);
+    }
+  };
+
+  // Initialize chat messages when guide is loaded
+  useEffect(() => {
+    if (selectedGuide && guideChatMessages.length === 0) {
+      const guideName = selectedGuide === 'space' ? 'Space Nugget' : 'Sky Nugget';
+      setGuideChatMessages([
+        { role: 'assistant', content: `Hi! I'm ${guideName}, your guide! 🌟 I can help you explore the app. Just ask me anything, like "How do I collect nuggets?" or "What can I do with Crumbs?"` }
+      ]);
+    }
+  }, [selectedGuide]);
 
   // Load speech synthesis voices
   useEffect(() => {
@@ -807,16 +997,39 @@ export default function NuggetsApp() {
                 index === self.findIndex(i => i.url === img.url)
               );
               
-              // Filter out inappropriate content for children
+              // Filter out inappropriate content for children - COMPREHENSIVE SAFETY
               const inappropriateWords = [
+                // Violence & Crime
                 'scandal', 'controversy', 'death', 'murder', 'killing', 'war crime',
                 'assassination', 'terrorism', 'violence', 'attack', 'bombing',
                 'disaster', 'tragedy', 'crash', 'accident', 'victim', 'crime',
-                'arrest', 'convicted', 'guilty', 'trial', 'lawsuit', 'allegations'
+                'arrest', 'convicted', 'guilty', 'trial', 'lawsuit', 'allegations',
+                'weapon', 'gun', 'knife', 'blood', 'execution', 'torture',
+                
+                // Adult/Inappropriate Content - CRITICAL SAFETY
+                'nude', 'nudity', 'naked', 'underwear', 'lingerie', 'bikini',
+                'sexual', 'adult', 'mature', 'explicit', 'nsfw', 'pornography',
+                'erotic', 'seductive', 'intimate', 'provocative', 'revealing',
+                'undressed', 'topless', 'bottomless', 'bathing', 'shower',
+                'bedroom', 'romantic', 'sensual', 'strip', 'exposed',
+                'models (painting)', 'seurat',
+                
+                // Medical/Body (can be inappropriate in images)
+                'anatomy', 'reproductive', 'genitalia', 'breast', 'buttock',
+                'surgery', 'medical procedure', 'autopsy', 'dissection',
+                
+                // Disturbing Content
+                'horror', 'scary', 'gore', 'graphic', 'disturbing', 'frightening',
+                'monster', 'demon', 'evil', 'haunted', 'nightmare',
+                
+                // Drugs & Alcohol
+                'drug', 'marijuana', 'cocaine', 'alcohol', 'beer', 'wine',
+                'smoking', 'cigarette', 'tobacco', 'vaping', 'drunk', 'intoxicated'
               ];
               
               const filteredImages = uniqueImages.filter(img => {
                 const textToCheck = `${img.title} ${img.description}`.toLowerCase();
+                // Block if ANY inappropriate word is found
                 return !inappropriateWords.some(word => textToCheck.includes(word));
               });
               
@@ -901,6 +1114,8 @@ export default function NuggetsApp() {
       if (updates.inventory !== undefined) dbUpdates.inventory = updates.inventory;
       if (updates.equipped !== undefined) dbUpdates.equipped = updates.equipped;
       if (updates.darkMode !== undefined) dbUpdates.dark_mode = updates.darkMode;
+      if (updates.selectedGuide !== undefined) dbUpdates.selected_guide = updates.selectedGuide;
+      if (updates.avatarNuggetType !== undefined) dbUpdates.avatar_nugget_type = updates.avatarNuggetType;
       
       const response = await fetch(
         `https://${projectId}.supabase.co/functions/v1/make-server-c9fbfdc0/progress/${user.id}`,
@@ -976,6 +1191,41 @@ export default function NuggetsApp() {
   const saveActivityCollection = (newCollection) => {
     setActivityCollection(newCollection);
     saveData({ activityCollection: newCollection });
+  };
+
+  // Validate if text input is meaningful (not random gibberish)
+  const isValidTextInput = (text) => {
+    const trimmed = text.trim().toLowerCase();
+    
+    // Check minimum length
+    if (trimmed.length < 10) return false;
+    
+    // Check for common nonsense patterns
+    const nonsensePatterns = [
+      /^(.)\1{5,}$/, // Same character repeated (e.g., "aaaaaaa")
+      /^(nothing|n\/a|na|none|idk|dunno|whatever|nope|no|yes)$/i, // Non-answers
+      /^[^a-z\s]{10,}$/i, // All special characters/numbers
+      /^(asdf|qwer|zxcv|hjkl|test|blah|meh|ugh|hmm){2,}/i, // Keyboard mashing patterns
+    ];
+    
+    for (const pattern of nonsensePatterns) {
+      if (pattern.test(trimmed)) return false;
+    }
+    
+    // Check if text has reasonable word-to-character ratio
+    const words = trimmed.split(/\s+/).filter(w => w.length > 0);
+    if (words.length < 2) return false; // Need at least 2 words
+    
+    // Check for average word length (should be reasonable, not just random letters)
+    const avgWordLength = trimmed.replace(/\s+/g, '').length / words.length;
+    if (avgWordLength > 15) return false; // Words too long (likely gibberish)
+    
+    // Check for vowel ratio (English text typically has vowels)
+    const vowels = trimmed.match(/[aeiou]/gi) || [];
+    const vowelRatio = vowels.length / trimmed.replace(/\s+/g, '').length;
+    if (vowelRatio < 0.2) return false; // Too few vowels (likely gibberish)
+    
+    return true;
   };
 
   const handleVoiceInput = (callback) => {
@@ -1061,14 +1311,17 @@ export default function NuggetsApp() {
       
       console.log('Available voices:', voices.map(v => v.name));
       
-      // Preferred voice names (in order of preference)
+      // Preferred voice names (in order of preference) - prioritizing British/friendly voices
       const preferredVoices = [
-        'Samantha', // Mac OS - friendly female
+        'Google UK English Female', // British female - web friendly
+        'Microsoft Hazel', // British female Windows
+        'Daniel', // British male Mac OS
+        'Google UK English Male', // British male - web friendly  
+        'Serena', // British female Mac OS
+        'Samantha', // Mac OS - friendly female US
         'Google US English Female',
         'Microsoft Zira Desktop', // Windows
-        'Google UK English Female',
         'Karen', // Mac OS
-        'Microsoft Zira',
         'Fiona', // Mac OS alternative
         'Female', // Generic fallback
       ];
@@ -1204,17 +1457,6 @@ export default function NuggetsApp() {
         }
     }
     
-    // If Wikipedia failed, use Unsplash as fallback
-    try {
-        const unsplashQuery = searchTerm || text.split(' ').slice(0, 3).join(' ');
-        const unsplashUrl = await fetchUnsplashImage(unsplashQuery);
-        if (unsplashUrl) {
-            setNuggetImage({ url: unsplashUrl });
-        }
-    } catch (error) {
-        console.error('Unsplash fallback error:', error);
-    }
-    
     setImageLoading(false);
   };
 
@@ -1227,15 +1469,17 @@ export default function NuggetsApp() {
     setAiLoading(true);
     
     try {
-        const systemPrompt = `You are a friendly educational guide for children (ages 7-8). Generate a single fascinating fact about the topic provided. DO NOT start with conversational phrases like "Did you know" or "Here's a fun fact". Launch directly into the fact itself. 
+        const systemPrompt = `You are an educational guide for children (ages 7-8). Generate a single fascinating fact about the topic provided. DO NOT start with conversational phrases like "Did you know" or "Here's a fun fact". Launch directly into the fact itself. 
 
 IMPORTANT CONTENT GUIDELINES:
 - Keep content age-appropriate and positive for young children
-- AVOID topics like: human sacrifice, death rituals, violence, warfare casualties, executions, torture, graphic historical events
+- Use factual, straightforward language - avoid overly cutesy or conversational phrasing (e.g., prefer "other people's heartbeats" over "your friends' heartbeats")
+- STRICTLY AVOID: human sacrifice, death rituals, violence, warfare, executions, torture, nudity, anatomy, bathing, underwear, classical sculptures/statues (often nude), adult content, medical procedures, drugs, alcohol, horror, crime
+- When generating facts about sculpture as an art form, focus on modern, abstract, or assembled sculptures rather than classical statues
 - Focus on fascinating, educational, uplifting aspects of topics
 - When discussing ancient civilizations or historical topics, emphasize culture, achievements, daily life, inventions, and contributions to society
 
-Return ONLY valid JSON in this exact format: { "fact": "The fact text here", "topic": "Topic Name", "imageSearchTerm": "2-3 specific descriptive words about the main subject to avoid ambiguity (e.g., 'Chinese flying kite', 'anglerfish deep sea', 'volcanic eruption', 'humanoid robot')", "relatedTopics": ["Topic 1", "Topic 2", "Topic 3"] }`;
+Return ONLY valid JSON in this exact format: { "fact": "The fact text here", "topic": "Topic Name", "imageSearchTerm": "3-5 HIGHLY SPECIFIC descriptive words directly related to the fact's main subject (e.g., 'kite flying traditional Chinese', 'anglerfish bioluminescent deep sea', 'volcanic lava eruption', 'humanoid robot technology'). AVOID generic or ambiguous terms. NEVER use just 'sculpture', 'statue', or 'classical art' - instead use 'modern sculpture installation', 'colorful abstract sculpture', or 'large assembled sculpture'.", "relatedTopics": ["Topic 1", "Topic 2", "Topic 3"] }`;
         const userPrompt = `Tell me a cool educational fact about: ${tag}`;
         
         const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash-exp:generateContent?key=${apiKey}`, {
@@ -1261,11 +1505,30 @@ Return ONLY valid JSON in this exact format: { "fact": "The fact text here", "to
             relatedTopics: [tag, "Space", "Science"] 
         };
         
-        try { 
-            const cleaned = content.replace(/```json/g, '').replace(/```/g, '').trim();
-            parsed = JSON.parse(cleaned); 
-        } catch(e) {
-            console.error("JSON parse error:", e);
+        if (content) {
+            try { 
+                const cleaned = content.replace(/```json/g, '').replace(/```/g, '').trim();
+                parsed = JSON.parse(cleaned); 
+            } catch(e) {
+                console.error("JSON parse error:", e.message);
+                // Use fallback values - don't log full content to avoid noise
+            }
+        }
+        
+        // CRITICAL SAFETY: Filter image search terms for inappropriate content
+        const unsafeTerms = [
+            'nude', 'nudity', 'naked', 'underwear', 'lingerie', 'bikini',
+            'body', 'anatomy', 'bathing', 'shower', 'bedroom', 'adult',
+            'classical statue', 'classical sculpture', 'renaissance art'
+        ];
+        
+        let safeSearchTerm = parsed.imageSearchTerm;
+        const lowerSearchTerm = safeSearchTerm.toLowerCase();
+        
+        // If unsafe term detected, replace with safe generic term
+        if (unsafeTerms.some(term => lowerSearchTerm.includes(term))) {
+            console.warn('Unsafe image search term blocked:', safeSearchTerm);
+            safeSearchTerm = tag + ' educational children';
         }
         
         const newNugget = {
@@ -1273,7 +1536,7 @@ Return ONLY valid JSON in this exact format: { "fact": "The fact text here", "to
             tags: parsed.relatedTopics || [tag], 
             subjectId: subjectId || 'science', 
             id: Date.now(),
-            searchTerm: parsed.imageSearchTerm,
+            searchTerm: safeSearchTerm,
             originalTag: tag // Store the original subtopic name for image lookup
         };
         
@@ -1294,6 +1557,495 @@ Return ONLY valid JSON in this exact format: { "fact": "The fact text here", "to
     } finally {
         setAiLoading(false);
     }
+  };
+
+  const openScientificMethodStep = async (step) => {
+    // Predefined educational content for each Scientific Method step
+    const stepContent = {
+      "Ask a Question": {
+        fact: "Every scientific discovery starts with curiosity! Scientists ask questions like 'Why is the sky blue?' or 'How do birds fly?' The best questions often come from observing the world around us and wondering 'why' or 'how' something works.",
+        topic: "Ask a Question - Scientific Method",
+        imageSearchTerm: "child asking question thinking curious",
+        relatedTopics: ["Curiosity", "Observation", "Scientific Method"]
+      },
+      "Research": {
+        fact: "Before starting an experiment, scientists read books, search online, and talk to experts to learn what others have already discovered. This helps them avoid repeating mistakes and build on existing knowledge!",
+        topic: "Research - Scientific Method",
+        imageSearchTerm: "child reading books library research",
+        relatedTopics: ["Research", "Learning", "Libraries"]
+      },
+      "Hypothesis": {
+        fact: "A hypothesis is an educated guess based on what you already know. It's like saying 'I think this will happen because...' Scientists use the word 'if-then' to make predictions, like 'If I water this plant every day, then it will grow taller.'",
+        topic: "Hypothesis - Scientific Method",
+        imageSearchTerm: "scientist thinking lightbulb idea",
+        relatedTopics: ["Predictions", "Logical Thinking", "Problem Solving"]
+      },
+      "Experiment": {
+        fact: "Experiments are tests that help scientists check if their hypothesis is correct. The key is to change only ONE thing at a time so you know what caused the results. This is called testing a variable!",
+        topic: "Experiment - Scientific Method",
+        imageSearchTerm: "children science experiment laboratory",
+        relatedTopics: ["Testing", "Variables", "Lab Safety"]
+      },
+      "Observe & Record": {
+        fact: "Scientists carefully watch what happens during experiments and write everything down in a notebook or take photos. Even tiny details matter! Recording data helps scientists remember exactly what happened so they can share it with others.",
+        topic: "Observe & Record - Scientific Method",
+        imageSearchTerm: "scientist writing notebook data observation",
+        relatedTopics: ["Data Collection", "Observation Skills", "Note-taking"]
+      },
+      "Analyze Results": {
+        fact: "After collecting data, scientists look for patterns and try to understand what the information means. They might make charts, graphs, or tables to see the results more clearly. Sometimes the data shows something totally unexpected!",
+        topic: "Analyze Results - Scientific Method",
+        imageSearchTerm: "data analysis charts graphs colorful",
+        relatedTopics: ["Data Analysis", "Patterns", "Graphs"]
+      },
+      "Draw Conclusions": {
+        fact: "This is when scientists decide if their hypothesis was right or wrong. But here's the cool part: being wrong is actually good in science! When a hypothesis is wrong, scientists learn something new and can ask better questions next time.",
+        topic: "Draw Conclusions - Scientific Method",
+        imageSearchTerm: "child thinking conclusion checklist",
+        relatedTopics: ["Critical Thinking", "Learning from Mistakes", "Problem Solving"]
+      },
+      "Share Findings": {
+        fact: "Scientists share their discoveries by writing reports, giving presentations, or publishing in science journals. Sharing helps other scientists learn from the work and try the experiments themselves. Science is all about working together!",
+        topic: "Share Findings - Scientific Method",
+        imageSearchTerm: "children presenting science project fair",
+        relatedTopics: ["Communication", "Collaboration", "Science Community"]
+      }
+    };
+
+    const content = stepContent[step.name];
+    if (!content) return;
+
+    const newNugget = {
+      text: content.fact,
+      tags: content.relatedTopics,
+      subjectId: 'science',
+      id: Date.now(),
+      searchTerm: content.imageSearchTerm,
+      originalTag: content.topic
+    };
+
+    setCurrentNugget(newNugget);
+    setAiResponse(null);
+    setAiContentImage(null);
+    setLearnResponse(null);
+    setActivityResponse(null);
+    setActivityImage(null);
+    navigateTo('nugget');
+
+    // Generate image for the nugget
+    generateImage(content.fact, content.imageSearchTerm, content.topic);
+  };
+
+  const openScientificExperiment = (experiment) => {
+    // Predefined experiments for the Scientific Method page
+    const experimentData = {
+      "Volcano Eruption": {
+        title: "Volcano Eruption",
+        supplies: ["Baking soda", "Vinegar", "Small cup or bottle", "Red food coloring (optional)", "Dish soap (optional)", "Tray or plate to catch spills"],
+        steps: [
+          "Set up your volcano: Place your cup or bottle on the tray.",
+          "Add baking soda: Put 2-3 tablespoons of baking soda in the cup.",
+          "Add color (optional): Mix in a few drops of red food coloring and a squirt of dish soap for foamy lava.",
+          "Make it erupt: Pour vinegar into the cup and watch the chemical reaction create a foaming eruption!",
+          "Observe: Notice how the baking soda (a base) reacts with the vinegar (an acid) to create carbon dioxide gas.",
+          "Experiment more: Try using different amounts of baking soda or vinegar to see how it changes the eruption."
+        ],
+        imageSearchTerm: "baking soda vinegar volcano experiment"
+      },
+      "Growing Crystals": {
+        title: "Growing Crystals",
+        supplies: ["Sugar or salt", "Hot water (ask an adult)", "Glass jar", "String or pipe cleaner", "Pencil"],
+        steps: [
+          "Make supersaturated solution: Have an adult help you dissolve as much sugar or salt as possible in hot water.",
+          "Prepare crystal starter: Tie a string to a pencil and hang it in the jar so it doesn't touch the bottom.",
+          "Pour and wait: Pour the solution into the jar and place it somewhere it won't be disturbed.",
+          "Observe daily: Watch over the next few days as crystals form on the string!",
+          "Record changes: Take photos or draw pictures each day to track crystal growth.",
+          "Learn: Crystals form when dissolved materials come out of solution and arrange in repeating patterns."
+        ],
+        imageSearchTerm: "sugar crystals growing jar science"
+      },
+      "Rainbow in a Jar": {
+        title: "Rainbow in a Jar",
+        supplies: ["Honey", "Dish soap", "Water", "Vegetable oil", "Rubbing alcohol (ask an adult)", "Tall clear glass or jar", "Food coloring"],
+        steps: [
+          "Start with honey: Pour honey into the bottom of your glass - it's the densest so it sinks.",
+          "Add dish soap: Slowly pour dish soap on top of the honey. Pour it gently down the side of the glass.",
+          "Color some water: Mix water with food coloring and slowly pour it on top.",
+          "Add oil layer: Pour vegetable oil next - it's less dense than water so it floats on top.",
+          "Top with alcohol: Have an adult help add rubbing alcohol with different food coloring as the top layer.",
+          "Observe: Each liquid has a different density, so they stack in layers instead of mixing!"
+        ],
+        imageSearchTerm: "density rainbow jar liquid layers"
+      },
+      "Plant Growth": {
+        title: "Plant Growth Experiment",
+        supplies: ["Bean seeds (3-4)", "Small pots or cups", "Soil", "Water", "Sunny windowsill", "Notebook for observations"],
+        steps: [
+          "Plant your seeds: Fill pots with soil and plant one seed in each pot about 1 inch deep.",
+          "Create different conditions: Put one plant in sunlight, one in partial shade, and one in complete darkness.",
+          "Water regularly: Give each plant the same amount of water every day.",
+          "Observe daily: Measure plant height, count leaves, and note color changes in your notebook.",
+          "Track for 2 weeks: Draw pictures or take photos to document how each plant grows differently.",
+          "Conclude: Which plant grew tallest? How did light affect growth? Plants need sunlight for photosynthesis!"
+        ],
+        imageSearchTerm: "children plant growth experiment beans"
+      },
+      "Static Electricity": {
+        title: "Static Electricity Fun",
+        supplies: ["Balloon", "Wool sweater or your hair", "Small pieces of paper", "Water faucet"],
+        steps: [
+          "Blow up balloon: Inflate a balloon and tie it closed.",
+          "Create static charge: Rub the balloon on your hair or a wool sweater for 30 seconds.",
+          "Pick up paper: Hold the balloon near tiny paper pieces - they'll jump up and stick!",
+          "Bend water: Turn on a faucet to a thin stream, then bring your charged balloon close to it. Watch the water bend!",
+          "Stick to wall: Press your charged balloon against a wall - it should stick there!",
+          "Understand: Rubbing creates static electricity by moving electrons, which creates an electrical charge."
+        ],
+        imageSearchTerm: "static electricity balloon experiment children"
+      },
+      "Ice Melting Race": {
+        title: "Ice Melting Race",
+        supplies: ["Ice cubes (same size)", "Several small plates", "Salt", "Sugar", "Black paper", "White paper", "Stopwatch or timer"],
+        steps: [
+          "Set up your race: Place one ice cube on each plate in different conditions.",
+          "Test salt: Sprinkle salt on one ice cube.",
+          "Test sugar: Sprinkle sugar on another ice cube.",
+          "Test colors: Put one ice cube on black paper and one on white paper in the sun.",
+          "Control group: Leave one ice cube plain as your control.",
+          "Time and record: Use a timer to track which ice cube melts first and why. Salt lowers the freezing point!"
+        ],
+        imageSearchTerm: "ice melting science experiment"
+      },
+      "Egg Drop Challenge": {
+        title: "Egg Drop Challenge",
+        supplies: ["Raw egg", "Various materials: cotton balls, bubble wrap, straws, tape, newspaper, rubber bands, small box or container"],
+        steps: [
+          "Plan your design: Sketch ideas for how to protect your egg from a fall.",
+          "Build your protector: Use your materials to create padding or a structure around the egg.",
+          "Test from low height: Start by dropping from waist height over grass or soft ground.",
+          "Observe results: Did your egg survive? What protected it best?",
+          "Improve design: Based on what you learned, redesign your protector to make it better.",
+          "Challenge yourself: Try dropping from higher heights! Engineers test and improve designs just like this."
+        ],
+        imageSearchTerm: "egg drop challenge STEM activity"
+      },
+      "Bird Watching": {
+        title: "Backyard Bird Watching",
+        supplies: ["Notebook and pencil", "Binoculars (optional)", "Bird identification guide or app", "Camera (optional)", "Patience!"],
+        steps: [
+          "Choose your spot: Find a quiet place outside where you can see trees, bushes, or bird feeders.",
+          "Sit quietly: Birds are more likely to appear if you stay still and quiet.",
+          "Observe carefully: Look for birds and note their size, colors, beak shape, and behavior.",
+          "Record data: Write or draw what you see. What time of day? What was the bird doing? How many did you see?",
+          "Identify species: Use a field guide or app to identify the birds you observed.",
+          "Track patterns: Return to your spot at different times. Do you see different birds in morning vs. evening?"
+        ],
+        imageSearchTerm: "children bird watching nature observation"
+      },
+      "Water Tornado": {
+        title: "Water Tornado in a Bottle",
+        supplies: ["Two 2-liter plastic bottles", "Water", "Duct tape or tornado tube connector", "Glitter (optional)"],
+        steps: [
+          "Fill one bottle: Fill one bottle about 2/3 full with water. Add glitter if you want to see the vortex better!",
+          "Connect bottles: Place the empty bottle upside down on top of the full one and tape them together tightly.",
+          "Flip and swirl: Turn the bottles upside down so the full bottle is on top.",
+          "Create the tornado: Quickly move the bottles in a circular motion to start a swirl.",
+          "Watch the vortex: A spinning funnel of water (vortex) will form as water flows into the bottom bottle!",
+          "Understand: The spinning motion creates centripetal force, pulling the water into a tornado shape."
+        ],
+        imageSearchTerm: "water vortex bottle tornado experiment"
+      },
+      "Magnet Magic": {
+        title: "Exploring Magnetic Fields",
+        supplies: ["Bar magnets (2)", "Iron filings or paper clips", "White paper", "Compass", "Various objects to test"],
+        steps: [
+          "Test objects: Use your magnet to test different household items. Which are magnetic?",
+          "See the field: Place a paper over a bar magnet and sprinkle iron filings on top to see the invisible magnetic field!",
+          "Test poles: Bring two magnets together. Notice how opposite poles attract and same poles repel.",
+          "Make a compass: Float a magnetized needle in water on a cork - it will point north!",
+          "Magnetic strength: Test how many paper clips your magnet can pick up in a chain.",
+          "Understand: Magnets create invisible force fields that can push or pull certain metals."
+        ],
+        imageSearchTerm: "magnet iron filings field experiment children"
+      },
+      "Solar Oven": {
+        title: "Build a Solar Oven",
+        supplies: ["Pizza box", "Aluminum foil", "Plastic wrap", "Black paper", "Tape", "Ruler", "Scissors", "S'mores ingredients"],
+        steps: [
+          "Create the flap: Draw a square on the box lid leaving a 1-inch border. Cut along three sides to make a flap.",
+          "Add reflector: Cover the inside of the flap with aluminum foil (shiny side out) to reflect sunlight.",
+          "Insulate the box: Line the bottom of the box with black paper to absorb heat.",
+          "Seal it up: Tape plastic wrap over the opening you cut to create a greenhouse effect.",
+          "Position in sun: Place s'mores ingredients inside and angle the foil flap to reflect maximum sunlight.",
+          "Cook and learn: Wait 30-60 minutes. The sun's energy is converted to heat, melting your chocolate!"
+        ],
+        imageSearchTerm: "solar oven pizza box science kids"
+      },
+      "Paper Airplanes": {
+        title: "Paper Airplane Engineering",
+        supplies: ["Several sheets of paper", "Ruler", "Tape", "Paper clips", "Measuring tape", "Notebook for data"],
+        steps: [
+          "Design 1 - Classic dart: Fold a standard dart-style plane with a pointed nose.",
+          "Design 2 - Wide wings: Create a plane with broader wings for more lift.",
+          "Design 3 - Modified: Add modifications like paper clips on the nose or bent wing tips.",
+          "Test flights: Throw each design three times and measure the distance traveled.",
+          "Record data: Note which design flew farthest, straightest, or stayed in the air longest.",
+          "Analyze: Which wing design worked best? How did weight affect flight? This is how engineers test designs!"
+        ],
+        imageSearchTerm: "paper airplane designs science experiment"
+      }
+    };
+
+    const data = experimentData[experiment.name];
+    if (!data) return;
+
+    // Educational facts for each experiment
+    const experimentFacts = {
+      "Volcano Eruption": "When baking soda (a base) mixes with vinegar (an acid), they create a chemical reaction that produces carbon dioxide gas! The bubbles you see are actually thousands of tiny CO₂ gas bubbles escaping, just like real volcanic eruptions release gases from deep underground.",
+      "Growing Crystals": "Crystals form when dissolved molecules arrange themselves in repeating geometric patterns as the water evaporates. Each type of crystal has its own unique shape - salt makes cubes while sugar forms long rectangles. Scientists study crystal structures to understand everything from diamonds to snowflakes!",
+      "Rainbow in a Jar": "Density is how tightly packed molecules are in a substance. Honey is very dense (heavy for its size) so it sinks, while oil is less dense so it floats on water. This same principle keeps hot air balloons floating and helps ships stay afloat!",
+      "Plant Growth": "Plants use sunlight, water, and carbon dioxide to make their own food through photosynthesis! The green chemical chlorophyll in leaves captures light energy and converts it into food energy. Without light, plants can't make food and will eventually die - that's why they always grow toward windows.",
+      "Static Electricity": "When you rub a balloon on your hair, electrons (tiny negative particles) transfer from your hair to the balloon. This creates an electrical charge! The balloon now has extra electrons, making it negatively charged, while your hair has fewer electrons and becomes positively charged. Opposites attract, which is why your hair follows the balloon.",
+      "Ice Melting Race": "Salt lowers the freezing point of water, which makes ice melt faster! This happens because salt dissolves into the water on the ice's surface and makes it harder for water molecules to stick together and refreeze. That's why cities put salt on icy roads in winter.",
+      "Egg Drop Challenge": "Engineers use the same problem-solving process you're using! When designing everything from car airbags to phone cases, they test different materials and shapes to absorb impact energy. Crumple zones in cars work like your egg protector - they crush on impact to slow down the force gradually.",
+      "Bird Watching": "Birds are descendants of dinosaurs! Scientists observe and record bird behaviors to learn about migration patterns, communication, and ecosystems. Just like you're doing, real ornithologists (bird scientists) use field notebooks, binoculars, and patience to study these amazing creatures.",
+      "Water Tornado": "The spinning water creates a vortex - a spiral of fluid with low pressure in the center! This centripetal force pulls the water inward while it spins, creating the tornado shape. Real tornadoes and hurricanes work the same way with air instead of water.",
+      "Magnet Magic": "Magnets create an invisible force field called a magnetic field! This field exists all around a magnet and can push or pull on certain metals like iron, nickel, and cobalt. Earth itself is a giant magnet, which is why compass needles always point north - they're being pulled by Earth's magnetic field.",
+      "Solar Oven": "The sun sends energy to Earth in the form of light and heat! Your solar oven works by trapping this heat energy (like a greenhouse) and using the reflective foil to concentrate sunlight onto your food. Solar energy is clean, renewable, and powerful - some solar ovens can reach over 300°F!",
+      "Paper Airplanes": "Airplane wings use Bernoulli's principle - air moving faster over the curved top of a wing creates lower pressure, which generates lift! Engineers test different wing shapes in wind tunnels just like you're testing paper plane designs. Weight, drag, thrust, and lift all work together to make things fly."
+    };
+
+    // Set activity response to show the mission page
+    setActivityResponse(data);
+    setAiResponse({ type: 'activity', content: data });
+    
+    // Navigate to nugget view (which displays activities)
+    // Create a nugget with an educational fact
+    const experimentFact = experimentFacts[experiment.name] || `${experiment.name}: ${experiment.description}`;
+    const experimentNugget = {
+      text: experimentFact,
+      tags: ["Scientific Method", "Experiments", experiment.name],
+      subjectId: 'science',
+      id: Date.now(),
+      searchTerm: data.imageSearchTerm,
+      originalTag: experiment.name
+    };
+    
+    setCurrentNugget(experimentNugget);
+    setAiContentImage(null);
+    setActivityImage(null);
+    setLearnResponse(null);
+    navigateTo('nugget');
+
+    // Generate image for the experiment
+    generateImage(data.title, data.imageSearchTerm, experiment.name);
+  };
+
+  const openArtActivity = (activity) => {
+    // Predefined art activities for the Elements of Art page
+    const activityData = {
+      "Contour Line Drawing": {
+        title: "Contour Line Drawing",
+        supplies: ["Paper", "Pencil or pen", "Object to draw (like your hand, a shoe, or a plant)", "Optional: Mirror"],
+        steps: [
+          "Choose your subject: Pick an interesting object to draw.",
+          "Position yourself: Look at your subject carefully. Don't look down at your paper!",
+          "Start drawing: Put your pencil on the paper and slowly draw the outline while looking only at the object.",
+          "Follow the edges: Let your eyes trace the contours (edges) of the object while your hand draws.",
+          "Don't lift your pencil: Try to draw the entire object without lifting your pencil or looking down.",
+          "Reveal your art: When finished, look at your paper! It might look wonky, but that's the charm of contour drawing."
+        ],
+        imageSearchTerm: "contour drawing"
+      },
+      "Shape Collage": {
+        title: "Shape Collage",
+        supplies: ["Colored paper or magazines", "Scissors", "Glue stick", "Large paper for background", "Pencil for sketching"],
+        steps: [
+          "Cut geometric shapes: Cut out circles, squares, triangles, and rectangles in different colors.",
+          "Arrange shapes: Play with arranging your shapes on the background before gluing.",
+          "Create something: Use shapes to create a picture - animals, buildings, abstract designs, or patterns.",
+          "Layer shapes: Overlap shapes to create new forms and add depth to your design.",
+          "Glue it down: Once you're happy with your arrangement, glue each shape carefully.",
+          "Add details: Use smaller shapes or draw with markers to add finishing touches."
+        ],
+        imageSearchTerm: "geometric collage"
+      },
+      "Color Wheel Painting": {
+        title: "Color Wheel Painting",
+        supplies: ["Red, yellow, and blue paint (primary colors)", "Paintbrush", "Paper plate or palette", "White paper", "Water cup"],
+        steps: [
+          "Draw your wheel: Draw a large circle and divide it into 6 equal sections.",
+          "Primary colors: Paint red, yellow, and blue in every other section, leaving spaces between them.",
+          "Mix secondary colors: Mix red + yellow = orange; yellow + blue = green; blue + red = purple.",
+          "Paint secondaries: Paint your secondary colors in the empty sections between their parent colors.",
+          "Observe relationships: Notice how colors next to each other blend smoothly.",
+          "Experiment more: Try mixing colors in different amounts to create lighter or darker shades."
+        ],
+        imageSearchTerm: "color wheel"
+      },
+      "Texture Rubbings": {
+        title: "Texture Rubbings",
+        supplies: ["Thin paper", "Unwrapped crayons or oil pastels", "Objects with interesting textures (leaves, coins, fabric, tree bark, tiles)"],
+        steps: [
+          "Find textures: Hunt around your home or outside for objects with interesting raised surfaces.",
+          "Position paper: Place your thin paper over the textured object.",
+          "Rub gently: Hold the paper still and rub the side of your crayon over it in one direction.",
+          "Watch it appear: The texture will magically appear on your paper!",
+          "Collect many textures: Create a texture collection by rubbing different surfaces on one page.",
+          "Create art: Combine different textures to make a landscape, animal, or abstract design."
+        ],
+        imageSearchTerm: "texture rubbing"
+      },
+      "Value Scale": {
+        title: "Value Scale",
+        supplies: ["Pencil", "Paper", "Ruler", "Eraser", "Optional: Charcoal or black colored pencil"],
+        steps: [
+          "Draw boxes: Use a ruler to draw 6-8 connected boxes in a row.",
+          "Label ends: Mark one end 'Light' and the other 'Dark'.",
+          "Start with white: Leave the first box completely white (no shading).",
+          "Lightest shade: In the second box, shade very lightly with your pencil.",
+          "Gradually darken: In each box, press harder with your pencil to make darker shades.",
+          "Darkest black: In the last box, shade as dark as possible, pressing hard or using multiple layers."
+        ],
+        imageSearchTerm: "value scale"
+      },
+      "3D Paper Sculpture": {
+        title: "3D Paper Sculpture",
+        supplies: ["Paper (cardstock works best)", "Scissors", "Glue or tape", "Ruler", "Pencil"],
+        steps: [
+          "Cut paper strips: Cut several strips of paper in different widths (1-3 inches wide).",
+          "Create forms: Bend, curl, fold, or twist your paper strips to make 3D shapes.",
+          "Cylinders: Roll a strip into a cylinder and glue the ends.",
+          "Loops and arches: Create curves by bending strips and gluing ends to a base.",
+          "Build upward: Stack and attach your forms to create a tall sculpture.",
+          "Experiment: Try accordion folds, spirals, and cones to add variety to your sculpture."
+        ],
+        imageSearchTerm: "paper sculpture"
+      },
+      "Negative Space Art": {
+        title: "Negative Space Art",
+        supplies: ["Black and white paper", "Pencil", "Scissors", "Glue"],
+        steps: [
+          "Draw a simple shape: On black paper, draw a simple object (leaf, hand, bottle, etc.).",
+          "Cut it out: Carefully cut out your shape.",
+          "Glue the background: Glue the black paper (with the hole) onto white paper.",
+          "See the negative: The white shape showing through is the 'negative space'!",
+          "Try the reverse: Cut shapes from white paper and glue on black backgrounds.",
+          "Create art: Use negative space to create hidden images or optical illusions."
+        ],
+        imageSearchTerm: "negative space"
+      },
+      "Pattern Design": {
+        title: "Pattern Design",
+        supplies: ["Paper", "Pencil, markers, or colored pencils", "Ruler (optional)", "Stamp or stencil (optional)"],
+        steps: [
+          "Choose a motif: Pick a simple shape or design to repeat (star, heart, triangle, etc.).",
+          "Draw your unit: Draw your chosen shape neatly.",
+          "Repeat in rows: Draw the same shape over and over in straight rows.",
+          "Add rhythm: Change colors or sizes to create visual rhythm.",
+          "Try different patterns: Make patterns that repeat, alternate, or radiate from a center point.",
+          "Fill the page: Keep going until your entire paper is filled with your pattern!"
+        ],
+        imageSearchTerm: "repeating pattern"
+      },
+      "Pointillism Portrait": {
+        title: "Pointillism Portrait",
+        supplies: ["Cotton swabs or pencil eraser", "Paints or markers in various colors", "Paper", "Photo reference (optional)"],
+        steps: [
+          "Sketch lightly: Lightly draw a simple portrait or object with pencil.",
+          "Dip and dot: Dip your cotton swab in paint and make small dots on your paper.",
+          "Use new colors: Don't blend colors - place different colored dots next to each other.",
+          "Build shapes: Use dots of different colors to create forms and shading.",
+          "Step back: The magic of pointillism happens when you view it from a distance!",
+          "Fill it in: Cover the entire image with dots until no white space remains."
+        ],
+        imageSearchTerm: "pointillism painting"
+      },
+      "Zentangle Patterns": {
+        title: "Zentangle Patterns",
+        supplies: ["White paper", "Black pen or fine marker", "Pencil"],
+        steps: [
+          "Draw a border: Lightly draw a square or rectangle on your paper.",
+          "Divide the space: Draw random curved lines across your border to divide it into sections.",
+          "Fill with patterns: In each section, draw a different repetitive pattern (dots, lines, swirls, etc.).",
+          "No mistakes: There are no mistakes in Zentangle - every line is intentional!",
+          "Take your time: Work slowly and mindfully, enjoying the meditative process.",
+          "Add variety: Use different line weights, fill some spaces solid, and leave others open."
+        ],
+        imageSearchTerm: "zentangle patterns"
+      },
+      "Monochromatic Painting": {
+        title: "Monochromatic Painting",
+        supplies: ["One color of paint (choose your favorite!)", "White paint", "Black paint (optional)", "Paintbrush", "Paper", "Palette"],
+        steps: [
+          "Choose your color: Pick one color to work with (red, blue, green, etc.).",
+          "Make tints: Mix your color with white paint to create lighter versions (tints).",
+          "Make shades: Mix your color with a tiny bit of black to create darker versions (shades).",
+          "Create your scale: Make 5-7 different values of your chosen color.",
+          "Paint a picture: Use only your one color family to paint a landscape, still life, or abstract design.",
+          "Observe unity: Notice how using one color creates harmony and mood in your artwork."
+        ],
+        imageSearchTerm: "monochromatic painting"
+      },
+      "Foil Relief Sculpture": {
+        title: "Foil Relief Sculpture",
+        supplies: ["Heavy-duty aluminum foil", "Cardboard base", "Glue", "Dull pencil or wooden skewer", "Optional: Markers or paint"],
+        steps: [
+          "Prepare foil: Cut a piece of foil larger than your cardboard base.",
+          "Glue it down: Smooth the foil onto your cardboard, wrapping edges around the back.",
+          "Draw your design: Use a dull pencil to gently draw a design into the foil.",
+          "Create texture: Press different patterns and textures using your tools.",
+          "Build relief: Press from the back to make raised areas, then flip and outline from the front.",
+          "Add color: Color in sections with permanent markers or paint if desired."
+        ],
+        imageSearchTerm: "foil sculpture"
+      }
+    };
+
+    const data = activityData[activity.name];
+    if (!data) return;
+
+    // Educational facts for each art activity
+    const activityFacts = {
+      "Contour Line Drawing": "Contour drawing trains your eye-hand coordination and teaches you to really see objects! Artists use this technique to improve their observation skills. By not looking at your paper, you're forcing your brain to focus on what your eyes see rather than what you think you should draw.",
+      "Shape Collage": "Geometric shapes are the foundation of all art! Artists like Piet Mondrian and Wassily Kandinsky created famous abstract paintings using just simple shapes and colors. Every complex image can be broken down into basic shapes - circles, squares, and triangles.",
+      "Color Wheel Painting": "The color wheel was invented by Sir Isaac Newton in 1666! Understanding color relationships helps artists create harmonious paintings. Colors opposite each other on the wheel (complementary colors) create the strongest contrast and make each other appear brighter.",
+      "Texture Rubbings": "Texture is one of the elements of art that artists use to make flat pictures look and feel real! The artist Max Ernst created a technique called 'frottage' using texture rubbings. You can feel texture with your hands, but artists also create visual texture that you can only see.",
+      "Value Scale": "Value (lightness and darkness) is what makes drawings look three-dimensional! Artists use value to show form, create mood, and guide your eye through a composition. Leonardo da Vinci was a master of value, using gradual shifts from light to dark in his famous paintings.",
+      "3D Paper Sculpture": "Form is the element of art that has three dimensions: height, width, and depth! Unlike flat shapes, forms take up actual space. Sculptors throughout history have used many materials, but paper sculpture shows that amazing art doesn't need expensive supplies.",
+      "Negative Space Art": "Negative space is the space around and between objects! Many famous logos and artworks use negative space cleverly. The FedEx logo hides an arrow in the negative space between letters. Learning to see negative space makes you a better artist.",
+      "Pattern Design": "Patterns appear in nature everywhere - from honeycomb hexagons to leopard spots to spiral galaxies! Artists use patterns to create rhythm and unity in their work. Ancient cultures decorated pottery, textiles, and architecture with meaningful patterns.",
+      "Pointillism Portrait": "Pointillism was invented by French artists Georges Seurat and Paul Signac in the 1880s! They discovered that when you place pure color dots next to each other, your eyes blend them from a distance. This is similar to how pixels create images on screens today!",
+      "Zentangle Patterns": "Line is the most fundamental element of art - it's the path a point makes as it moves! Different types of lines create different feelings: horizontal lines feel calm, vertical lines feel strong, and diagonal lines create movement and tension. Zentangle combines many line patterns into meditative art.",
+      "Monochromatic Painting": "Monochromatic means 'one color'! Pablo Picasso had a 'Blue Period' where he painted mainly in blue tones to express sadness. Using one color family creates a strong mood and teaches you about value (light and dark) better than using many colors.",
+      "Foil Relief Sculpture": "Relief sculpture is raised off a flat surface, unlike sculptures you can walk around! Ancient civilizations carved relief sculptures on temple walls and coins. The Statue of Liberty's face is an example of high relief - parts stick out dramatically from the background."
+    };
+
+    // Set activity response to show the mission page
+    setActivityResponse(data);
+    setAiResponse({ type: 'activity', content: data });
+    
+    // Navigate to nugget view (which displays activities)
+    // Create a nugget with an educational fact
+    const activityFact = activityFacts[activity.name] || `${activity.name}: ${activity.description}`;
+    const activityNugget = {
+      text: activityFact,
+      tags: ["Elements of Art", activity.element, activity.name],
+      subjectId: 'art',
+      id: Date.now(),
+      searchTerm: data.imageSearchTerm,
+      originalTag: activity.name
+    };
+    
+    setCurrentNugget(activityNugget);
+    setAiContentImage(null);
+    setActivityImage(null);
+    setLearnResponse(null);
+    navigateTo('nugget');
+
+    // Generate image for the activity
+    generateImage(data.title, data.imageSearchTerm, activity.name);
   };
 
   const generateStardustQuestion = async () => {
@@ -1324,12 +2076,16 @@ CRITICAL: Respond with ONLY a valid JSON object. No markdown, no explanations, n
         const data = await response.json();
         const content = data.candidates?.[0]?.content?.parts?.[0]?.text;
         
-        try {
-            const cleaned = content.replace(/```json/g, '').replace(/```/g, '').trim();
-            const parsed = JSON.parse(cleaned);
-            setStardustQuestion(parsed);
-        } catch(e) {
-            console.error("JSON parse error:", e);
+        if (content) {
+            try {
+                const cleaned = content.replace(/```json/g, '').replace(/```/g, '').trim();
+                const parsed = JSON.parse(cleaned);
+                setStardustQuestion(parsed);
+            } catch(e) {
+                console.error("JSON parse error:", e.message);
+                setStardustQuestion(null);
+            }
+        } else {
             setStardustQuestion(null);
         }
     } catch(e) {
@@ -1369,14 +2125,20 @@ CRITICAL: Respond with ONLY a valid JSON object. No markdown, no explanations, n
       const questions = [];
       
       for (const fact of selectedFacts) {
-        const systemPrompt = `You are a question creator for children (ages 7-8). Create ONE simple multiple choice question about the given fact. Keep it age-appropriate and straightforward.`;
-        const userPrompt = `Create a simple multiple choice question about this fact: "${fact.text}"
+        const systemPrompt = `You are a question creator for children (ages 8-9). Create ONE multiple choice question about the given fact. Make it challenging but age-appropriate.`;
+        const userPrompt = `Create a multiple choice question about this fact: "${fact.text}"
 
-CRITICAL: Respond with ONLY a valid JSON object. No markdown, no explanations, no additional text.
+CRITICAL REQUIREMENTS:
+- Ensure that ONLY ONE answer could possibly be correct based on the fact
+- Make incorrect options clearly wrong (not just slightly different)
+- Use precise, factual language
+- Target difficulty for ages 8-9 (one grade level higher than the audience)
+
+Respond with ONLY a valid JSON object. No markdown, no explanations, no additional text.
 
 {
   "question": "The question text?",
-  "options": ["Option A", "Option B", "Option C"],
+  "options": ["Correct answer", "Clearly incorrect option 1", "Clearly incorrect option 2"],
   "correctIndex": 0
 }`;
         
@@ -1392,12 +2154,14 @@ CRITICAL: Respond with ONLY a valid JSON object. No markdown, no explanations, n
         const data = await response.json();
         const content = data.candidates?.[0]?.content?.parts?.[0]?.text;
         
-        try {
-          const cleaned = content.replace(/```json/g, '').replace(/```/g, '').trim();
-          const parsed = JSON.parse(cleaned);
-          questions.push({ ...parsed, factId: fact.id });
-        } catch(e) {
-          console.error("JSON parse error for fact:", fact.id, e);
+        if (content) {
+          try {
+            const cleaned = content.replace(/```json/g, '').replace(/```/g, '').trim();
+            const parsed = JSON.parse(cleaned);
+            questions.push({ ...parsed, factId: fact.id });
+          } catch(e) {
+            console.error("JSON parse error for fact:", fact.id, e.message);
+          }
         }
       }
       
@@ -1460,21 +2224,31 @@ CRITICAL: Respond with ONLY a valid JSON object. No markdown, no explanations, n
         let systemPrompt, userPrompt;
         
         if (questionType === 'definition') {
-          systemPrompt = `You are a question creator for children (ages 7-8). Create ONE simple multiple choice question about the definition of a word. Keep it age-appropriate.`;
+          systemPrompt = `You are a question creator for children (ages 8-9). Create ONE multiple choice question about the definition of a word. Make it challenging but age-appropriate.`;
           userPrompt = `Create a multiple choice question asking what the word "${word.word}" means. The correct definition is: "${word.definition}"
 
-CRITICAL: Respond with ONLY a valid JSON object. No markdown, no explanations, no additional text.
+CRITICAL REQUIREMENTS:
+- Ensure that ONLY ONE answer could possibly be correct
+- Make incorrect definitions clearly wrong (not just slightly different)
+- Target difficulty for ages 8-9 (one grade level higher)
+
+Respond with ONLY a valid JSON object. No markdown, no explanations, no additional text.
 
 {
   "question": "What does the word '${word.word}' mean?",
-  "options": ["Correct definition", "Wrong option 1", "Wrong option 2"],
+  "options": ["Correct definition", "Clearly wrong definition 1", "Clearly wrong definition 2"],
   "correctIndex": 0
 }`;
         } else {
-          systemPrompt = `You are a question creator for children (ages 7-8). Create ONE simple multiple choice question about how to spell a word. Keep it age-appropriate.`;
+          systemPrompt = `You are a question creator for children (ages 8-9). Create ONE multiple choice question about how to spell a word. Make it challenging but age-appropriate.`;
           userPrompt = `Create a multiple choice question about how to spell this word. The word is: "${word.word}" which means "${word.definition}"
 
-CRITICAL: Respond with ONLY a valid JSON object. No markdown, no explanations, no additional text.
+CRITICAL REQUIREMENTS:
+- Ensure that ONLY ONE spelling could possibly be correct
+- Make incorrect spellings plausible but clearly wrong
+- Target difficulty for ages 8-9 (one grade level higher)
+
+Respond with ONLY a valid JSON object. No markdown, no explanations, no additional text.
 
 {
   "question": "How do you spell the word that means '${word.definition}'?",
@@ -1495,12 +2269,14 @@ CRITICAL: Respond with ONLY a valid JSON object. No markdown, no explanations, n
         const data = await response.json();
         const content = data.candidates?.[0]?.content?.parts?.[0]?.text;
         
-        try {
-          const cleaned = content.replace(/```json/g, '').replace(/```/g, '').trim();
-          const parsed = JSON.parse(cleaned);
-          questions.push({ ...parsed, wordId: word.word, type: questionType });
-        } catch(e) {
-          console.error("JSON parse error for word:", word.word, e);
+        if (content) {
+          try {
+            const cleaned = content.replace(/```json/g, '').replace(/```/g, '').trim();
+            const parsed = JSON.parse(cleaned);
+            questions.push({ ...parsed, wordId: word.word, type: questionType });
+          } catch(e) {
+            console.error("JSON parse error for word:", word.word, e.message);
+          }
         }
       }
       
@@ -1541,11 +2317,12 @@ CRITICAL: Respond with ONLY a valid JSON object. No markdown, no explanations, n
         let userPrompt = "";
         
         if (type === 'learn') {
-            systemPrompt = `You are a helpful companion for a curious child (ages 7-8). Explain the fact in simple terms. 
+            systemPrompt = `You are an educational companion for a curious child (ages 7-8). Explain the fact in simple, factual terms. 
 
 IMPORTANT CONTENT GUIDELINES:
 - Keep content age-appropriate and positive for young children
-- AVOID topics like: human sacrifice, death rituals, violence, warfare casualties, executions, torture, graphic historical events
+- Use precise, factual language - avoid overly cutesy or conversational phrasing (e.g., prefer "other people's heartbeats" over "your friends' heartbeats")
+- STRICTLY AVOID: human sacrifice, death rituals, violence, warfare, executions, torture, nudity, anatomy, bathing, underwear, classical sculptures/statues, adult content, medical procedures, drugs, alcohol, horror, crime
 - Focus on fascinating, educational, uplifting aspects of topics
 
 CRITICAL FORMATTING RULES:
@@ -1559,14 +2336,14 @@ CRITICAL FORMATTING RULES:
 - DO NOT bold random words or phrases for stylistic purposes
 - If a word doesn't fit the above two categories, leave it as plain text
 
-Keep it under 4 sentences. DO NOT use conversational lead-ins like "Wow", "That's cool", "Did you know", or comments about how interesting the topic is. Start directly with the educational content.`;
+Keep it under 4 sentences. DO NOT use conversational lead-ins like "Wow", "That's cool", "Did you know", or comments about how interesting the topic is. Start directly with factual educational content.`;
             userPrompt = `Explain more about this fact: "${currentNugget.text}"`;
         } else if (type === 'activity') {
             systemPrompt = `You are a helpful activity creator for children.
 
-IMPORTANT CONTENT GUIDELINES:
+CRITICAL CONTENT SAFETY:
 - Keep all activities age-appropriate and safe for young children
-- AVOID topics related to: human sacrifice, death rituals, violence, warfare, or graphic historical events
+- STRICTLY AVOID: human sacrifice, death rituals, violence, warfare, executions, torture, nudity, anatomy, bathing, adult content, medical procedures, drugs, alcohol, horror, crime
 - Focus on positive, educational, hands-on learning experiences`;
             userPrompt = `Create ONE simple hands-on OFF-SCREEN activity for children about: "${currentNugget.text}"
 
@@ -1650,7 +2427,7 @@ CRITICAL: Respond with ONLY a valid JSON array. No markdown, no explanations, no
                     setActivityImage(null);
                 }
             } catch (parseError) {
-                console.error("Activity JSON parse error:", parseError, "Original text:", text);
+                console.error("Activity JSON parse error:", parseError.message);
                 // Fallback: show as text
                 setAiResponse({ type: 'learn', content: text });
             }
@@ -1675,7 +2452,7 @@ CRITICAL: Respond with ONLY a valid JSON array. No markdown, no explanations, no
                 const json = JSON.parse(jsonText.trim());
                 setTriviaQuestions(json);
             } catch (parseError) {
-                console.error("Trivia JSON parse error:", parseError, "Original text:", text);
+                console.error("Trivia JSON parse error:", parseError.message);
                 showNotification("Could not create trivia. Try again!");
             }
         } else {
@@ -1728,6 +2505,83 @@ CRITICAL: Respond with ONLY a valid JSON array. No markdown, no explanations, no
     } catch (error) {
       console.error("Logout error:", error);
     }
+  };
+
+  // Guide Chat Handler
+  const sendGuideMessage = async (userMessage) => {
+    if (!apiKey || !userMessage.trim()) return;
+    
+    const newUserMessage = { role: 'user', content: userMessage };
+    const updatedMessages = [...guideChatMessages, newUserMessage];
+    setGuideChatMessages(updatedMessages);
+    setGuideChatInput('');
+    setGuideChatLoading(true);
+
+    try {
+      const guideName = selectedGuide === 'space' ? 'Space Nugget' : 'Sky Nugget';
+      const systemPrompt = `You are ${guideName}, a friendly and helpful guide for children (ages 7-8) using the "Nuggets of Knowledge" educational app. Your role is to help them navigate and use the app features in a warm, encouraging way.
+
+Available features in the app:
+- Home page with subject planets (Science, History, Geography, Arts, Math, Language)
+- Search bar to discover facts about any topic
+- "My Collections" to view saved nuggets, activities, and words
+- Nugget pages with "Explain", "Do This" (activities), and "Photos" buttons
+- Quiz challenges when you collect 5+ nuggets
+- Crumbs currency earned by completing activities
+- Shop to customize mascots with accessories
+- Dark/light theme toggle in settings
+
+Keep responses:
+- Short and simple (2-3 sentences max)
+- Friendly and encouraging
+- Focused on helping them use the app
+- Age-appropriate for 7-8 year olds
+
+Previous conversation:
+${updatedMessages.slice(-6).map(m => `${m.role === 'user' ? 'Child' : guideName}: ${m.content}`).join('\n')}
+
+Respond as ${guideName} to help the child.`;
+
+      const response = await fetch(
+        `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash-exp:generateContent?key=${apiKey}`,
+        {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            contents: [{ parts: [{ text: systemPrompt }] }],
+            safetySettings: [
+              { category: 'HARM_CATEGORY_HARASSMENT', threshold: 'BLOCK_MEDIUM_AND_ABOVE' },
+              { category: 'HARM_CATEGORY_HATE_SPEECH', threshold: 'BLOCK_MEDIUM_AND_ABOVE' },
+              { category: 'HARM_CATEGORY_SEXUALLY_EXPLICIT', threshold: 'BLOCK_MEDIUM_AND_ABOVE' },
+              { category: 'HARM_CATEGORY_DANGEROUS_CONTENT', threshold: 'BLOCK_MEDIUM_AND_ABOVE' },
+            ],
+          }),
+        }
+      );
+
+      const data = await response.json();
+      const aiMessage = data.candidates?.[0]?.content?.parts?.[0]?.text || "I'm here to help! What would you like to know about the app?";
+      
+      setGuideChatMessages([...updatedMessages, { role: 'assistant', content: aiMessage }]);
+    } catch (error) {
+      console.error('Guide chat error:', error);
+      setGuideChatMessages([...updatedMessages, { role: 'assistant', content: "Oops! I had a little trouble there. Can you ask me again?" }]);
+    } finally {
+      setGuideChatLoading(false);
+    }
+  };
+
+  const handleGuideSelection = (guide) => {
+    setSelectedGuide(guide);
+    const guideName = guide === 'space' ? 'Space Nugget' : 'Sky Nugget';
+    setGuideChatMessages([
+      { role: 'assistant', content: `Hi! I'm ${guideName}, your guide! 🌟 I can help you explore the app. Just ask me anything, like "How do I collect nuggets?" or "What can I do with Crumbs?"` }
+    ]);
+    saveData({ selectedGuide: guide });
+  };
+
+  const openGuideChat = () => {
+    setShowGuideChat(true);
   };
 
   // --- Views ---
@@ -1843,8 +2697,95 @@ CRITICAL: Respond with ONLY a valid JSON array. No markdown, no explanations, no
             })}
         </div>
 
+        {/* Mascot Guide Selection */}
+        <div className="mb-8 bg-gradient-to-r from-purple-100 via-blue-100 to-pink-100 dark:from-purple-900/20 dark:via-blue-900/20 dark:to-pink-900/20 rounded-3xl p-6 border-2 border-purple-200 dark:border-purple-800 shadow-lg animate-pop hover:shadow-2xl transition-shadow">
+          {!selectedGuide ? (
+            <div className="flex flex-col items-center gap-6">
+              <div className="text-center">
+                <h2 className="text-2xl md:text-3xl font-black text-slate-800 dark:text-white mb-2">
+                  Pick a Guide!
+                </h2>
+                <p className="text-slate-600 dark:text-slate-300 font-semibold">
+                  Choose a friend to help you explore 🌟
+                </p>
+              </div>
+              
+              <div className="flex flex-col md:flex-row items-center justify-center gap-8">
+                {/* Space Nugget */}
+                <button 
+                  onClick={() => handleGuideSelection('space')}
+                  className="flex flex-col items-center gap-3 animate-bounce hover:scale-110 transition-transform group"
+                  style={{ animationDuration: '3s' }}
+                >
+                  <img 
+                    src={spaceNuggetImg}
+                    alt="Space Nugget"
+                    className="w-32 h-32 object-contain drop-shadow-xl group-hover:drop-shadow-2xl transition-all"
+                  />
+                  <div className="bg-purple-500 text-white px-4 py-2 rounded-2xl font-bold text-sm shadow-md relative group-hover:bg-purple-600 transition-colors">
+                    <div className="absolute -top-2 left-1/2 -translate-x-1/2 w-0 h-0 border-l-8 border-r-8 border-b-8 border-transparent border-b-purple-500"></div>
+                    Space Nugget 🌙⭐
+                  </div>
+                </button>
+
+                {/* Sky Nugget */}
+                <button 
+                  onClick={() => handleGuideSelection('sky')}
+                  className="flex flex-col items-center gap-3 animate-bounce hover:scale-110 transition-transform group"
+                  style={{ animationDuration: '3s', animationDelay: '0.5s' }}
+                >
+                  <img 
+                    src={skyNuggetImg}
+                    alt="Sky Nugget"
+                    className="w-32 h-32 object-contain drop-shadow-xl group-hover:drop-shadow-2xl transition-all"
+                  />
+                  <div className="bg-blue-500 text-white px-4 py-2 rounded-2xl font-bold text-sm shadow-md relative group-hover:bg-blue-600 transition-colors">
+                    <div className="absolute -top-2 left-1/2 -translate-x-1/2 w-0 h-0 border-l-8 border-r-8 border-b-8 border-transparent border-b-blue-500"></div>
+                    Sky Nugget ☀️☁️
+                  </div>
+                </button>
+              </div>
+            </div>
+          ) : (
+            <div className="flex flex-col md:flex-row items-center justify-center gap-6">
+              {/* Selected Guide */}
+              <button 
+                onClick={openGuideChat}
+                className="flex flex-col items-center gap-3 animate-bounce hover:scale-110 transition-transform group"
+                style={{ animationDuration: '3s' }}
+              >
+                <img 
+                  src={selectedGuide === 'space' ? spaceNuggetImg : skyNuggetImg}
+                  alt={selectedGuide === 'space' ? 'Space Nugget' : 'Sky Nugget'}
+                  className="w-32 h-32 object-contain drop-shadow-xl group-hover:drop-shadow-2xl transition-all"
+                />
+                <div className={`${selectedGuide === 'space' ? 'bg-purple-500 group-hover:bg-purple-600' : 'bg-blue-500 group-hover:bg-blue-600'} text-white px-4 py-2 rounded-2xl font-bold text-sm shadow-md relative transition-colors`}>
+                  <div className={`absolute -top-2 left-1/2 -translate-x-1/2 w-0 h-0 border-l-8 border-r-8 border-b-8 border-transparent ${selectedGuide === 'space' ? 'border-b-purple-500' : 'border-b-blue-500'}`}></div>
+                  I'm here to help! Click me! 💬
+                </div>
+              </button>
+
+              {/* Welcome Message */}
+              <div className="text-center px-4">
+                <h2 className="text-2xl md:text-3xl font-black text-slate-800 dark:text-white mb-2">
+                  {user ? `Welcome Back, ${user.user_metadata?.name?.split(' ')[0] || 'Explorer'}!` : 'Welcome, Explorer!'}
+                </h2>
+                <p className="text-slate-600 dark:text-slate-300 font-semibold">
+                  {selectedGuide === 'space' ? 'Space Nugget' : 'Sky Nugget'} is ready to help you! 🌟
+                </p>
+                <button 
+                  onClick={() => { setSelectedGuide(null); setGuideChatMessages([]); saveData({ selectedGuide: null }); }}
+                  className="mt-2 text-xs text-slate-500 dark:text-slate-400 hover:text-slate-700 dark:hover:text-slate-300 underline"
+                >
+                  Change guide
+                </button>
+              </div>
+            </div>
+          )}
+        </div>
+
         {/* Quick Actions Grid */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+        <div className="grid grid-cols-2 md:grid-cols-5 gap-4">
             <button onClick={() => navigateTo('collection')} className="p-4 bg-white dark:bg-slate-800 rounded-2xl shadow-sm border border-slate-200 dark:border-slate-700 hover:border-yellow-400 dark:hover:border-yellow-500 transition-colors flex flex-col items-center gap-2 group">
                 <Star className="w-8 h-8 text-yellow-400 group-hover:rotate-12 transition-transform" />
                 <span className="font-bold text-slate-700 dark:text-slate-200">Nuggets</span>
@@ -1864,13 +2805,16 @@ CRITICAL: Respond with ONLY a valid JSON array. No markdown, no explanations, no
                 <ShoppingBag className="w-8 h-8 text-purple-400 group-hover:-translate-y-1 transition-transform" />
                 <span className="font-bold text-slate-700 dark:text-slate-200">Shop</span>
             </button>
-            <button className="p-4 bg-white dark:bg-slate-800 rounded-2xl shadow-sm border border-slate-200 dark:border-slate-700 flex flex-col items-center gap-2 relative overflow-hidden">
-                <div className="absolute inset-0 bg-gradient-to-br from-blue-500/10 to-purple-500/10" />
-                <div className="flex gap-2">
-                    <SpaceNugget className="w-8 h-8" accessory={equipped.space} />
-                    <SkyNugget className="w-8 h-8" accessory={equipped.sky} />
+            <button 
+                onClick={() => navigateTo('avatar')} 
+                className="p-4 bg-white dark:bg-slate-800 rounded-2xl shadow-sm border border-slate-200 dark:border-slate-700 hover:border-blue-400 dark:hover:border-blue-500 transition-colors flex flex-col items-center gap-2 relative overflow-hidden group"
+            >
+                <div className="absolute inset-0 bg-gradient-to-br from-blue-500/10 to-purple-500/10 group-hover:from-blue-500/20 group-hover:to-purple-500/20 transition-all" />
+                <div className="flex gap-2 relative">
+                    <img src={spaceNuggetImg} alt="Space Nugget" className="w-8 h-8 object-contain" />
+                    <img src={skyNuggetImg} alt="Sky Nugget" className="w-8 h-8 object-contain" />
                 </div>
-                <span className="font-bold text-slate-700 dark:text-slate-200">Mascots</span>
+                <span className="font-bold text-slate-700 dark:text-slate-200 relative">Avatar</span>
             </button>
         </div>
       </div>
@@ -1924,11 +2868,38 @@ CRITICAL: Respond with ONLY a valid JSON array. No markdown, no explanations, no
 
             <div className="max-w-6xl mx-auto p-4 mt-4 relative z-10">
                 <div className="space-y-6">
+                    {/* Search Bar - Full Width */}
+                    <div className="max-w-5xl mx-auto">
+                        <div className="relative">
+                            <input 
+                                type="text" 
+                                value={topicSearchQuery}
+                                onChange={(e) => setTopicSearchQuery(e.target.value)}
+                                onKeyDown={(e) => e.key === 'Enter' && topicSearchQuery.trim() && apiKey && generateNuggetByTag(topicSearchQuery, selectedSubject.id)}
+                                placeholder={`Search ${selectedSubject.name}...`}
+                                className="w-full pl-5 pr-24 py-3 rounded-full border-2 border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 dark:text-white shadow-sm text-base focus:outline-none focus:border-blue-400 focus:ring-2 focus:ring-blue-400/20 transition-all"
+                            />
+                            <button 
+                                onClick={() => handleVoiceInput((transcript) => setTopicSearchQuery(transcript))} 
+                                className={`absolute right-14 top-1/2 -translate-y-1/2 p-2 rounded-full transition-colors ${isListening ? 'bg-red-500 text-white animate-pulse' : 'bg-slate-200 dark:bg-slate-700 text-slate-600 dark:text-slate-300 hover:bg-slate-300 dark:hover:bg-slate-600'}`}
+                                title="Voice input"
+                            >
+                                <Mic className="w-5 h-5" />
+                            </button>
+                            <button 
+                                onClick={() => topicSearchQuery.trim() && apiKey && generateNuggetByTag(topicSearchQuery, selectedSubject.id)} 
+                                disabled={!apiKey}
+                                className="absolute right-2 top-1/2 -translate-y-1/2 bg-blue-500 hover:bg-blue-600 disabled:bg-slate-300 text-white p-2 rounded-full transition-colors"
+                            >
+                                <Search className="w-5 h-5" />
+                            </button>
+                        </div>
+                    </div>
+
                     {/* Popular Topics - Centered */}
                     <div className="max-w-4xl mx-auto">
                         <h3 className="font-bold text-slate-700 dark:text-slate-300 mb-4 text-center">Popular Topics</h3>
-                        <div className="grid grid-cols-2 sm:grid-cols-3 gap-4">
-                            {selectedSubject.subtopics.map(topic => (
+                        <div className="grid grid-cols-2 sm:grid-cols-3 gap-4">{selectedSubject.subtopics.map(topic => (
                                 <SubtopicCard 
                                     key={topic} 
                                     subtopic={topic} 
@@ -1948,22 +2919,19 @@ CRITICAL: Respond with ONLY a valid JSON array. No markdown, no explanations, no
                         </div>
                     </div>
 
-                    {/* Quick Find - Below Topics */}
+                    {/* Surprise Me Button - Centered */}
                     <div className="max-w-md mx-auto">
-                        <div className="bg-white dark:bg-slate-800 p-4 rounded-3xl shadow-sm border border-slate-100 dark:border-slate-700">
-                             <h3 className="font-bold text-slate-700 dark:text-slate-300 mb-3 text-center">Quick Find</h3>
-                             <SurpriseNuggetButton 
-                                onClick={() => {
-                                    if (apiKey) {
-                                        const randomTopic = selectedSubject.subtopics[Math.floor(Math.random() * selectedSubject.subtopics.length)];
-                                        generateNuggetByTag(randomTopic, selectedSubject.id);
-                                    } else {
-                                        pickRandomFromSubject(selectedSubject.id);
-                                    }
-                                }} 
-                                subjectName={selectedSubject.name} 
-                             />
-                        </div>
+                        <SurpriseNuggetButton 
+                            onClick={() => {
+                                if (apiKey) {
+                                    const randomTopic = selectedSubject.subtopics[Math.floor(Math.random() * selectedSubject.subtopics.length)];
+                                    generateNuggetByTag(randomTopic, selectedSubject.id);
+                                } else {
+                                    pickRandomFromSubject(selectedSubject.id);
+                                }
+                            }} 
+                            subjectName={selectedSubject.name} 
+                        />
                     </div>
                 </div>
             </div>
@@ -2184,21 +3152,109 @@ CRITICAL: Respond with ONLY a valid JSON array. No markdown, no explanations, no
                     );
                 })()}
 
-                {/* PROCESS TYPE (Scientific Method) */}
-                {type === 'process' && topic.steps && (
+                {/* PROCESS TYPE - Special Layout for Experiments */}
+                {type === 'process' && topic.experiments ? (
+                    <>
+                        {/* Fun Experiments at the Top */}
+                        <div className="mb-8">
+                            <h2 className="text-2xl font-bold text-slate-800 dark:text-white mb-6">Fun Experiments to Try</h2>
+                            <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+                                {topic.experiments.map((experiment, index) => (
+                                    <button
+                                        key={experiment.name}
+                                        onClick={() => openScientificExperiment(experiment)}
+                                        className="bg-white dark:bg-slate-800 rounded-2xl shadow-md hover:shadow-xl hover:scale-105 transition-all border-2 border-slate-100 dark:border-slate-700 hover:border-purple-300 dark:hover:border-purple-600 group animate-pop overflow-hidden"
+                                        style={{animationDelay: `${index * 0.05}s`}}
+                                    >
+                                        <div className="relative w-full h-32 bg-slate-200 dark:bg-slate-700 overflow-hidden">
+                                            <img 
+                                                src={experiment.image} 
+                                                alt={experiment.name}
+                                                className="w-full h-full object-cover group-hover:scale-110 transition-transform"
+                                            />
+                                        </div>
+                                        <div className="p-4 text-left">
+                                            <h3 className="font-bold text-slate-800 dark:text-white mb-1">{experiment.name}</h3>
+                                            <p className="text-xs text-slate-600 dark:text-slate-400">{experiment.description}</p>
+                                        </div>
+                                    </button>
+                                ))}
+                            </div>
+                        </div>
+
+                        {/* Two Column Layout: Scientific Method + Key Concepts */}
+                        <div className="grid md:grid-cols-[2fr_1fr] gap-6 mb-8">
+                            {/* Left Column: The Scientific Method Process */}
+                            <div className="bg-white dark:bg-slate-800 rounded-3xl p-6 md:p-8 shadow-lg">
+                                <h2 className="text-2xl font-bold text-slate-800 dark:text-white mb-6 text-center">The Scientific Method</h2>
+                                <div className="grid grid-cols-2 gap-4">
+                                    {topic.steps.map((step, index) => (
+                                        <div key={step.name} className="relative">
+                                            <button 
+                                                onClick={() => openScientificMethodStep(step)}
+                                                className="w-full bg-gradient-to-br from-emerald-50 to-teal-50 dark:from-emerald-900/20 dark:to-teal-900/20 rounded-2xl p-4 border-2 border-emerald-200 dark:border-emerald-700 hover:border-emerald-400 dark:hover:border-emerald-500 animate-pop transition-all hover:shadow-lg hover:scale-105 cursor-pointer text-left" 
+                                                style={{animationDelay: `${index * 0.1}s`}}
+                                            >
+                                                <div className="absolute -top-2 -left-2 bg-emerald-500 text-white w-7 h-7 rounded-full flex items-center justify-center font-bold shadow-lg text-sm">
+                                                    {step.step}
+                                                </div>
+                                                <div className="text-3xl mb-2">{step.emoji}</div>
+                                                <h3 className="font-bold text-slate-800 dark:text-white mb-1 text-sm">{step.name}</h3>
+                                                <p className="text-xs text-slate-600 dark:text-slate-400">{step.description}</p>
+                                            </button>
+                                        </div>
+                                    ))}
+                                </div>
+                            </div>
+
+                            {/* Right Column: Key Concepts */}
+                            <div>
+                                <h2 className="text-2xl font-bold text-slate-800 dark:text-white mb-6">Key Concepts</h2>
+                                <div className="flex flex-col gap-3">
+                                    {topic.subTopics.map((item, index) => (
+                                        <button
+                                            key={item.name}
+                                            onClick={() => {
+                                                if (apiKey) {
+                                                    generateNuggetByTag(item.name, 'science');
+                                                } else {
+                                                    showNotification("Add API key to explore topics!");
+                                                }
+                                            }}
+                                            className={`${item.color} text-white rounded-xl p-4 shadow-md hover:shadow-xl hover:scale-105 transition-all border-2 border-transparent hover:border-white/20 group animate-pop text-left`}
+                                            style={{animationDelay: `${index * 0.05}s`}}
+                                        >
+                                            <div className="flex items-center gap-3">
+                                                <div className="text-3xl">{item.emoji}</div>
+                                                <div className="flex-1">
+                                                    <h3 className="font-bold text-white">{item.name}</h3>
+                                                    <p className="text-xs text-white/90">{item.description}</p>
+                                                </div>
+                                            </div>
+                                        </button>
+                                    ))}
+                                </div>
+                            </div>
+                        </div>
+                    </>
+                ) : type === 'process' && topic.steps ? (
                     <div className="bg-white dark:bg-slate-800 rounded-3xl p-6 md:p-8 shadow-lg mb-8">
                         <h2 className="text-2xl font-bold text-slate-800 dark:text-white mb-6 text-center">The Scientific Method Process</h2>
                         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-4">
                             {topic.steps.map((step, index) => (
                                 <div key={step.name} className="relative">
-                                    <div className="bg-gradient-to-br from-emerald-50 to-teal-50 dark:from-emerald-900/20 dark:to-teal-900/20 rounded-2xl p-6 border-2 border-emerald-200 dark:border-emerald-700 animate-pop" style={{animationDelay: `${index * 0.1}s`}}>
+                                    <button 
+                                        onClick={() => openScientificMethodStep(step)}
+                                        className="w-full bg-gradient-to-br from-emerald-50 to-teal-50 dark:from-emerald-900/20 dark:to-teal-900/20 rounded-2xl p-6 border-2 border-emerald-200 dark:border-emerald-700 hover:border-emerald-400 dark:hover:border-emerald-500 animate-pop transition-all hover:shadow-lg hover:scale-105 cursor-pointer text-left" 
+                                        style={{animationDelay: `${index * 0.1}s`}}
+                                    >
                                         <div className="absolute -top-3 -left-3 bg-emerald-500 text-white w-8 h-8 rounded-full flex items-center justify-center font-bold shadow-lg">
                                             {step.step}
                                         </div>
                                         <div className="text-4xl mb-3">{step.emoji}</div>
                                         <h3 className="font-bold text-slate-800 dark:text-white mb-1">{step.name}</h3>
                                         <p className="text-xs text-slate-600 dark:text-slate-400">{step.description}</p>
-                                    </div>
+                                    </button>
                                     {index < topic.steps.length - 1 && (
                                         <div className="hidden lg:block absolute top-1/2 -right-2 transform -translate-y-1/2 z-10">
                                             <ArrowRight className="w-4 h-4 text-emerald-500" />
@@ -2208,57 +3264,123 @@ CRITICAL: Respond with ONLY a valid JSON array. No markdown, no explanations, no
                             ))}
                         </div>
                     </div>
-                )}
+                ) : null}
 
-                {/* Topic Cards Section */}
-                <div className="mb-8">
-                    <h2 className="text-2xl font-bold text-slate-800 dark:text-white mb-6 text-center">
-                        {type === 'timeline' ? 'Explore Ancient Civilizations' : type === 'process' ? 'Key Concepts' : 'Explore Topics'}
-                    </h2>
-                    <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-                        {topic.subTopics.map((item, index) => (
-                            <button
-                                key={item.name}
-                                onClick={() => {
-                                    if (apiKey) {
-                                        // Determine subject based on topic id
-                                        const subjectMap = {
-                                            'ancient-civilizations': 'history',
-                                            'elements-of-language': 'words',
-                                            'elements-of-math': 'math',
-                                            'scientific-method': 'science',
-                                            'elements-of-music': 'music',
-                                            'elements-of-art': 'art'
-                                        };
-                                        // For ancient civilizations timeline type, add context to the tag
-                                        const tag = type === 'timeline' ? `${item.name} ancient civilizations` : item.name;
-                                        generateNuggetByTag(tag, subjectMap[topic.id] || 'science');
-                                    } else {
-                                        showNotification("Add API key to explore topics!");
-                                    }
-                                }}
-                                className={`${item.color ? 'text-white' : 'bg-white dark:bg-slate-800'} rounded-2xl p-6 shadow-md hover:shadow-xl hover:scale-105 transition-all border-2 ${item.color ? item.color : 'border-slate-100 dark:border-slate-700'} hover:border-opacity-80 group animate-pop overflow-hidden`}
-                                style={{animationDelay: `${index * 0.05}s`}}
-                            >
-                                {item.image ? (
-                                    <div className="w-full h-32 mb-3 rounded-lg overflow-hidden">
-                                        <img 
-                                            src={item.image} 
-                                            alt={item.name}
-                                            className="w-full h-full object-cover group-hover:scale-110 transition-transform"
-                                        />
-                                    </div>
-                                ) : (
-                                    <div className="text-5xl mb-3">{item.emoji}</div>
-                                )}
-                                <h3 className={`font-bold mb-1 ${item.color ? 'text-white' : 'text-slate-800 dark:text-white'}`}>
-                                    {item.name}
-                                </h3>
-                                <p className={`text-xs ${item.color ? 'text-white/90' : 'text-slate-600 dark:text-slate-400'}`}>{item.description}</p>
-                            </button>
-                        ))}
+                {/* ACTIVITIES TYPE - Special Layout for Elements of Art */}
+                {type === 'activities' && topic.activities ? (
+                    <>
+                        {/* Art Activities at the Top */}
+                        <div className="mb-8">
+                            <h2 className="text-2xl font-bold text-slate-800 dark:text-white mb-6">Art Activities to Try</h2>
+                            <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+                                {topic.activities.map((activity, index) => (
+                                    <button
+                                        key={activity.name}
+                                        onClick={() => openArtActivity(activity)}
+                                        className="bg-white dark:bg-slate-800 rounded-2xl shadow-md hover:shadow-xl hover:scale-105 transition-all border-2 border-slate-100 dark:border-slate-700 hover:border-pink-300 dark:hover:border-pink-600 group animate-pop overflow-hidden"
+                                        style={{animationDelay: `${index * 0.05}s`}}
+                                    >
+                                        <div className="relative w-full h-32 bg-slate-200 dark:bg-slate-700 overflow-hidden">
+                                            <img 
+                                                src={activity.image} 
+                                                alt={activity.name}
+                                                className="w-full h-full object-cover group-hover:scale-110 transition-transform"
+                                            />
+                                        </div>
+                                        <div className="p-4 text-left">
+                                            <h3 className="font-bold text-slate-800 dark:text-white mb-1">{activity.name}</h3>
+                                            <p className="text-xs text-slate-600 dark:text-slate-400">{activity.description}</p>
+                                            <div className="mt-2 text-xs font-semibold text-purple-600 dark:text-purple-400">
+                                                {activity.element}
+                                            </div>
+                                        </div>
+                                    </button>
+                                ))}
+                            </div>
+                        </div>
+
+                        {/* Key Concepts: Elements of Art */}
+                        <div>
+                            <h2 className="text-2xl font-bold text-slate-800 dark:text-white mb-6">Key Concepts: Elements of Art</h2>
+                            <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+                                {topic.subTopics.map((item, index) => (
+                                    <button
+                                        key={item.name}
+                                        onClick={() => {
+                                            if (apiKey) {
+                                                generateNuggetByTag(item.name, 'art');
+                                            } else {
+                                                showNotification("Add API key to explore topics!");
+                                            }
+                                        }}
+                                        className={`${item.color} text-white rounded-xl p-4 shadow-md hover:shadow-xl hover:scale-105 transition-all border-2 border-transparent hover:border-white/20 group animate-pop text-left`}
+                                        style={{animationDelay: `${index * 0.05}s`}}
+                                    >
+                                        <div className="flex flex-col items-center text-center gap-2">
+                                            <div className="text-3xl">{item.emoji}</div>
+                                            <div>
+                                                <h3 className="font-bold text-white">{item.name}</h3>
+                                                <p className="text-xs text-white/90">{item.description}</p>
+                                            </div>
+                                        </div>
+                                    </button>
+                                ))}
+                            </div>
+                        </div>
+                    </>
+                ) : null}
+
+                {/* Topic Cards Section - For non-process and non-activities types */}
+                {type !== 'process' && type !== 'activities' && (
+                    <div className="mb-8">
+                        <h2 className="text-2xl font-bold text-slate-800 dark:text-white mb-6 text-center">
+                            {type === 'timeline' ? 'Explore Ancient Civilizations' : 'Explore Topics'}
+                        </h2>
+                        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+                            {topic.subTopics.map((item, index) => (
+                                <button
+                                    key={item.name}
+                                    onClick={() => {
+                                        if (apiKey) {
+                                            // Determine subject based on topic id
+                                            const subjectMap = {
+                                                'ancient-civilizations': 'history',
+                                                'elements-of-language': 'words',
+                                                'elements-of-math': 'math',
+                                                'scientific-method': 'science',
+                                                'elements-of-music': 'music',
+                                                'elements-of-art': 'art'
+                                            };
+                                            // For ancient civilizations timeline type, add context to the tag
+                                            const tag = type === 'timeline' ? `${item.name} ancient civilizations` : item.name;
+                                            generateNuggetByTag(tag, subjectMap[topic.id] || 'science');
+                                        } else {
+                                            showNotification("Add API key to explore topics!");
+                                        }
+                                    }}
+                                    className={`${item.color ? 'text-white' : 'bg-white dark:bg-slate-800'} rounded-2xl p-6 shadow-md hover:shadow-xl hover:scale-105 transition-all border-2 ${item.color ? item.color : 'border-slate-100 dark:border-slate-700'} hover:border-opacity-80 group animate-pop overflow-hidden`}
+                                    style={{animationDelay: `${index * 0.05}s`}}
+                                >
+                                    {item.image ? (
+                                        <div className="w-full h-32 mb-3 rounded-lg overflow-hidden">
+                                            <img 
+                                                src={item.image} 
+                                                alt={item.name}
+                                                className="w-full h-full object-cover group-hover:scale-110 transition-transform"
+                                            />
+                                        </div>
+                                    ) : (
+                                        <div className="text-5xl mb-3">{item.emoji}</div>
+                                    )}
+                                    <h3 className={`font-bold mb-1 ${item.color ? 'text-white' : 'text-slate-800 dark:text-white'}`}>
+                                        {item.name}
+                                    </h3>
+                                    <p className={`text-xs ${item.color ? 'text-white/90' : 'text-slate-600 dark:text-slate-400'}`}>{item.description}</p>
+                                </button>
+                            ))}
+                        </div>
                     </div>
-                </div>
+                )}
             </div>
         </div>
     );
@@ -2269,10 +3391,9 @@ CRITICAL: Respond with ONLY a valid JSON array. No markdown, no explanations, no
     return (
         <div className="min-h-screen bg-slate-100 dark:bg-slate-950 flex flex-col">
             <div className="sticky top-0 z-40 bg-white/80 dark:bg-slate-900/80 backdrop-blur-md border-b border-slate-200 dark:border-slate-800 px-4 py-3 flex justify-between items-center">
-                <button onClick={goBack} className="flex items-center gap-2 text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 px-3 py-1.5 rounded-full transition-colors font-bold">
+                <button onClick={goBack} className="flex items-center gap-2 text-slate-600 dark:text-slate-300 hover:bg-gradient-to-r hover:from-blue-50 hover:to-purple-50 dark:hover:from-blue-900/30 dark:hover:to-purple-900/30 px-4 py-2 rounded-full transition-all font-bold border-2 border-transparent hover:border-blue-200 dark:hover:border-blue-700 shadow-sm hover:shadow-md">
                     <ArrowLeft className="w-5 h-5" /> Back
                 </button>
-                <div className="font-black text-slate-800 dark:text-white uppercase tracking-widest text-sm">Nugget</div>
                 <div className="flex items-center gap-2">
                   <button onClick={() => navigateTo('my-collections')} className="flex items-center gap-2 text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 px-3 py-1.5 rounded-full transition-colors font-bold text-sm">
                     <Star className="w-4 h-4" /> Collections
@@ -2566,11 +3687,13 @@ CRITICAL: Respond with ONLY a valid JSON array. No markdown, no explanations, no
                                         setWrongAnswers(new Set());
                                         setFreeformAnswer('');
                                         setStardustQuestion(null);
+                                        setStardustQuizSubmitted(false);
                                     } else showNotification("Already collected!");
                                 }}
-                                className="flex-1 bg-yellow-400 hover:bg-yellow-500 text-yellow-900 font-bold py-3 rounded-xl shadow-md hover:shadow-lg hover:-translate-y-1 transition-all flex items-center justify-center gap-2"
+                                disabled={collection.some(n=>n.text===currentNugget.text)}
+                                className={`flex-1 ${collection.some(n=>n.text===currentNugget.text) ? 'bg-slate-300 dark:bg-slate-700 text-slate-500 dark:text-slate-400 cursor-not-allowed' : 'bg-yellow-400 hover:bg-yellow-500 text-yellow-900 hover:shadow-lg hover:-translate-y-1'} font-bold py-3 rounded-xl shadow-md transition-all flex items-center justify-center gap-2`}
                             >
-                                <Heart className="w-5 h-5 fill-yellow-900" /> Collect Nugget!
+                                <Heart className={`w-5 h-5 ${collection.some(n=>n.text===currentNugget.text) ? '' : 'fill-yellow-900'}`} /> {collection.some(n=>n.text===currentNugget.text) ? 'Already Collected' : 'Collect Nugget!'}
                             </button>
                             <button 
                                 onClick={() => {
@@ -2603,8 +3726,20 @@ CRITICAL: Respond with ONLY a valid JSON array. No markdown, no explanations, no
         <div className="max-w-6xl mx-auto">
             <div className="flex items-center justify-between gap-4 mb-8">
                 <div className="flex items-center gap-4">
-                  <button onClick={goBack} className="p-2 bg-white dark:bg-slate-800 rounded-full shadow-sm hover:shadow-md transition-all"><ArrowLeft className="w-6 h-6 text-slate-600 dark:text-slate-400" /></button>
+                  <button 
+                    onClick={title === 'Mission Log' || title === 'My Nugget Collection' || title === 'Word Collection' ? () => navigateTo('my-collections') : goBack} 
+                    className="p-2 bg-white dark:bg-slate-800 rounded-full shadow-sm hover:shadow-md transition-all"
+                  >
+                    <ArrowLeft className="w-6 h-6 text-slate-600 dark:text-slate-400" />
+                  </button>
                   <h1 className="text-3xl font-black text-slate-800 dark:text-white tracking-tight">{title}</h1>
+                  {title === 'Accessories Shop' && (
+                    <div className="ml-4 px-4 py-2 bg-gradient-to-r from-orange-400 to-amber-500 rounded-full shadow-lg flex items-center gap-2">
+                      <span className="text-2xl">🍗</span>
+                      <span className="font-black text-white text-lg">{crumbs}</span>
+                      <span className="font-bold text-orange-100 text-sm">Crumbs</span>
+                    </div>
+                  )}
                 </div>
                 <div className="flex items-center gap-2">
                   {title !== 'My Nugget Collection' && title !== 'Word Collection' && title !== 'Mission Log' && (
@@ -2707,6 +3842,456 @@ CRITICAL: Respond with ONLY a valid JSON array. No markdown, no explanations, no
             </div>
         </div>
       );
+  };
+
+  const renderAvatar = () => {
+    const customizationCategories = [
+      { id: 'eyes', label: 'Eyes', icon: '👀' },
+      { id: 'mouth', label: 'Mouth', icon: '👄' },
+      { id: 'arms', label: 'Arms', icon: '💪' },
+      { id: 'legs', label: 'Legs', icon: '🦵' },
+      { id: 'accessories', label: 'Accessories', icon: '✨' }
+    ];
+
+    // Accessory options for each category
+    const accessoryOptions = {
+      eyes: [
+        { id: 'eye-lashes', name: 'Lashes', image: eyeAngled },
+        { id: 'eye-oval', name: 'Oval Eyes', image: eyeVertical },
+        { id: 'eye-angry', name: 'Angry Eyebrows', image: angryEyebrows }
+      ],
+      mouth: [
+        { id: 'mouth-smile', name: 'Smile', image: smileMouth },
+        { id: 'mouth-frown', name: 'Frown', image: frownPng }
+      ],
+      arms: [
+        { id: 'arms-basic', name: 'Arms', image: armsImg }
+      ],
+      legs: [
+        { id: 'legs-basic', name: 'Legs', image: legsImg }
+      ],
+      accessories: [
+        { id: 'partyhat', name: 'Party Hat', image: partyHatImg, requiresUnlock: false },
+        { id: 'rainbowtail', name: 'Rainbow Tail', image: rainbowTailImg, requiresUnlock: false, renderBehind: true },
+        { id: 'browntail', name: 'Brown Tail', image: brownTailImg, requiresUnlock: false, renderBehind: true },
+        { id: 'glasses', name: 'Smart Specs', image: glassesImg, requiresUnlock: true },
+        { id: 'tophat', name: 'Fancy Hat', image: topHatImg, requiresUnlock: true },
+        { id: 'crown', name: 'Gold Crown', image: crownImg, requiresUnlock: true }
+      ]
+    };
+
+    const handleNuggetTypeSelection = (type) => {
+      setAvatarNuggetType(type);
+      localStorage.setItem('nuggets_avatarNuggetType', type);
+      saveData({ avatarNuggetType: type });
+    };
+
+    // Show nugget type selection if not chosen yet
+    if (!avatarNuggetType) {
+      return (
+        <div className="min-h-screen bg-slate-50 dark:bg-slate-950 pattern-bg overflow-x-hidden transition-colors duration-500 flex items-center justify-center p-4">
+          <div className="max-w-4xl w-full">
+            {/* Header */}
+            <div className="text-center mb-12 animate-pop">
+              <h1 className="text-4xl md:text-6xl font-black text-slate-800 dark:text-white mb-4">
+                Choose Your <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-500 to-red-500">Nugget!</span>
+              </h1>
+              <p className="text-lg text-slate-600 dark:text-slate-400">
+                Pick your favorite style to start customizing
+              </p>
+            </div>
+
+            {/* Selection Cards */}
+            <div className="grid md:grid-cols-2 gap-8">
+              {/* Basic Nugget */}
+              <button
+                onClick={() => handleNuggetTypeSelection('basic')}
+                className="group relative bg-white dark:bg-slate-900 rounded-3xl p-8 shadow-xl border-4 border-slate-200 dark:border-slate-700 hover:border-yellow-400 dark:hover:border-yellow-500 transition-all hover:scale-105 hover:shadow-2xl"
+              >
+                <div className="absolute top-4 right-4 bg-yellow-100 dark:bg-yellow-900/30 px-4 py-2 rounded-full">
+                  <span className="text-sm font-black text-yellow-700 dark:text-yellow-400">Classic</span>
+                </div>
+                
+                <div className="bg-gradient-to-br from-yellow-100 to-orange-100 dark:from-yellow-900/20 dark:to-orange-900/20 rounded-2xl p-8 mb-6 border-2 border-yellow-200 dark:border-yellow-800">
+                  <img 
+                    src={baseNuggetImg} 
+                    alt="Basic Nugget"
+                    className="w-full h-64 object-contain drop-shadow-2xl group-hover:scale-110 transition-transform"
+                  />
+                </div>
+
+                <h3 className="text-3xl font-black text-slate-800 dark:text-white mb-3">Basic Nugget</h3>
+                <p className="text-slate-600 dark:text-slate-400 mb-4">
+                  The original golden nugget! Perfect for classic learners who love the traditional look.
+                </p>
+                
+                <div className="flex items-center justify-center gap-2 text-yellow-600 dark:text-yellow-400 font-bold">
+                  <span className="text-2xl">✨</span>
+                  <span>Choose Classic</span>
+                  <span className="text-2xl">✨</span>
+                </div>
+              </button>
+
+              {/* Spicy Nugget */}
+              <button
+                onClick={() => handleNuggetTypeSelection('spicy')}
+                className="group relative bg-white dark:bg-slate-900 rounded-3xl p-8 shadow-xl border-4 border-slate-200 dark:border-slate-700 hover:border-red-400 dark:hover:border-red-500 transition-all hover:scale-105 hover:shadow-2xl"
+              >
+                <div className="absolute top-4 right-4 bg-red-100 dark:bg-red-900/30 px-4 py-2 rounded-full">
+                  <span className="text-sm font-black text-red-700 dark:text-red-400">Hot!</span>
+                </div>
+                
+                <div className="bg-gradient-to-br from-red-100 to-orange-100 dark:from-red-900/20 dark:to-orange-900/20 rounded-2xl p-8 mb-6 border-2 border-red-200 dark:border-red-800">
+                  <img 
+                    src={spicyNuggetImg} 
+                    alt="Spicy Nugget"
+                    className="w-full h-64 object-contain drop-shadow-2xl group-hover:scale-110 transition-transform"
+                  />
+                </div>
+
+                <h3 className="text-3xl font-black text-slate-800 dark:text-white mb-3">Spicy Nugget</h3>
+                <p className="text-slate-600 dark:text-slate-400 mb-4">
+                  Extra crispy and full of flavor! For adventurous learners who like things spicy! 🌶️
+                </p>
+                
+                <div className="flex items-center justify-center gap-2 text-red-600 dark:text-red-400 font-bold">
+                  <span className="text-2xl">🔥</span>
+                  <span>Choose Spicy</span>
+                  <span className="text-2xl">🔥</span>
+                </div>
+              </button>
+            </div>
+
+            {/* Back Button */}
+            <div className="text-center mt-8">
+              <button
+                onClick={goBack}
+                className="px-6 py-3 bg-white dark:bg-slate-800 rounded-full shadow-lg hover:shadow-xl transition-all text-slate-700 dark:text-slate-200 font-bold flex items-center gap-2 mx-auto"
+              >
+                <ArrowLeft className="w-5 h-5" />
+                Go Back
+              </button>
+            </div>
+          </div>
+        </div>
+      );
+    }
+
+    // Show customization interface after selection
+    const currentNuggetImage = avatarNuggetType === 'spicy' ? spicyNuggetImg : baseNuggetImg;
+    const nuggetDisplayName = avatarNuggetType === 'spicy' ? 'Spicy Nugget' : 'Basic Nugget';
+
+    return (
+      <div className="min-h-screen bg-slate-50 dark:bg-slate-950 pattern-bg overflow-x-hidden transition-colors duration-500">
+        {/* Header */}
+        <div className="sticky top-0 z-50 glass-panel border-b border-slate-200 dark:border-slate-800 px-4 py-3 flex justify-between items-center shadow-sm">
+          <div className="flex items-center gap-3">
+            <button onClick={goBack} className="p-2 bg-white dark:bg-slate-800 rounded-full shadow-sm hover:scale-110 transition-transform">
+              <ArrowLeft className="w-6 h-6 text-slate-600 dark:text-slate-400" />
+            </button>
+            <h1 className="text-xl md:text-2xl font-black text-slate-800 dark:text-white">Avatar Studio</h1>
+          </div>
+          <div className="flex gap-2">
+            <div className="flex items-center gap-1 bg-white dark:bg-slate-800 px-3 py-1.5 rounded-full border border-slate-200 dark:border-slate-700 shadow-sm">
+              <span className="font-bold text-slate-700 dark:text-white">{crumbs}</span>
+              <Cookie className="w-4 h-4 text-orange-400 fill-orange-400" />
+            </div>
+            <button onClick={goHome} className="px-4 py-2 bg-white dark:bg-slate-800 rounded-full shadow-sm hover:shadow-md transition-all text-slate-700 dark:text-slate-200 font-bold text-sm">
+              Home
+            </button>
+          </div>
+        </div>
+
+        <div className="max-w-6xl mx-auto p-4 md:p-8">
+          {/* Main Content Grid */}
+          <div className="grid md:grid-cols-2 gap-8">
+            {/* Left Side - Avatar Preview */}
+            <div className="space-y-4">
+              <div className="bg-white dark:bg-slate-900 rounded-3xl p-8 shadow-lg border border-slate-200 dark:border-slate-700">
+                <h2 className="text-2xl font-black text-slate-800 dark:text-white mb-6 text-center">Your Nugget</h2>
+                
+                {/* Avatar Display */}
+                <div className={`relative rounded-2xl p-8 aspect-square flex items-center justify-center border-4 ${
+                  avatarNuggetType === 'spicy' 
+                    ? 'bg-gradient-to-br from-red-100 to-orange-100 dark:from-red-900/20 dark:to-orange-900/20 border-red-200 dark:border-red-800'
+                    : 'bg-gradient-to-br from-yellow-100 to-orange-100 dark:from-yellow-900/20 dark:to-orange-900/20 border-yellow-200 dark:border-yellow-800'
+                }`}>
+                  <div className="relative w-full h-full">
+                    {/* Accessories that render behind the nugget (like tails) */}
+                    {selectedAccessories.accessories.map(accessoryId => {
+                      const accessoryOption = accessoryOptions.accessories.find(a => a.id === accessoryId);
+                      return accessoryOption && accessoryOption.renderBehind ? (
+                        <img 
+                          key={accessoryId}
+                          src={accessoryOption.image}
+                          alt={accessoryOption.name}
+                          className="absolute inset-0 w-full h-full object-contain pointer-events-none"
+                        />
+                      ) : null;
+                    })}
+                    {/* Base Nugget */}
+                    <img 
+                      src={currentNuggetImage} 
+                      alt={nuggetDisplayName}
+                      className="w-full h-full object-contain drop-shadow-2xl"
+                    />
+                    {/* Layered Eye Accessories - Show all selected */}
+                    {selectedAccessories.eyes.map(eyeId => {
+                      const eyeOption = accessoryOptions.eyes.find(e => e.id === eyeId);
+                      return eyeOption ? (
+                        <img 
+                          key={eyeId}
+                          src={eyeOption.image}
+                          alt={eyeOption.name}
+                          className="absolute inset-0 w-full h-full object-contain pointer-events-none"
+                        />
+                      ) : null;
+                    })}
+                    {/* Layered Mouth Accessory */}
+                    {selectedAccessories.mouth && (() => {
+                      const mouthOption = accessoryOptions.mouth.find(m => m.id === selectedAccessories.mouth);
+                      return mouthOption ? (
+                        <img 
+                          src={mouthOption.image}
+                          alt={mouthOption.name}
+                          className="absolute inset-0 w-full h-full object-contain pointer-events-none"
+                        />
+                      ) : null;
+                    })()}
+                    {/* Layered Arms Accessory */}
+                    {selectedAccessories.arms && (() => {
+                      const armsOption = accessoryOptions.arms.find(a => a.id === selectedAccessories.arms);
+                      return armsOption ? (
+                        <img 
+                          src={armsOption.image}
+                          alt={armsOption.name}
+                          className="absolute inset-0 w-full h-full object-contain pointer-events-none"
+                        />
+                      ) : null;
+                    })()}
+                    {/* Layered Legs Accessory */}
+                    {selectedAccessories.legs && (() => {
+                      const legsOption = accessoryOptions.legs.find(l => l.id === selectedAccessories.legs);
+                      return legsOption ? (
+                        <img 
+                          src={legsOption.image}
+                          alt={legsOption.name}
+                          className="absolute inset-0 w-full h-full object-contain pointer-events-none"
+                        />
+                      ) : null;
+                    })()}
+                    {/* Layered Accessories (only those that render in front) */}
+                    {selectedAccessories.accessories.map(accessoryId => {
+                      const accessoryOption = accessoryOptions.accessories.find(a => a.id === accessoryId);
+                      return accessoryOption && !accessoryOption.renderBehind ? (
+                        <img 
+                          key={accessoryId}
+                          src={accessoryOption.image}
+                          alt={accessoryOption.name}
+                          className="absolute inset-0 w-full h-full object-contain pointer-events-none"
+                        />
+                      ) : null;
+                    })}
+                  </div>
+                </div>
+
+                {/* Action Buttons */}
+                <div className="mt-6 space-y-3">
+                  {/* Save Avatar Button */}
+                  <button
+                    onClick={saveAvatarConfig}
+                    disabled={avatarSaveLoading}
+                    className={`w-full px-4 py-3 rounded-2xl font-bold transition-all flex items-center justify-center gap-2 border ${
+                      avatarSaveSuccess
+                        ? 'bg-green-500 dark:bg-green-600 text-white border-green-600 dark:border-green-700'
+                        : 'bg-gradient-to-r from-blue-500 to-purple-500 hover:from-blue-600 hover:to-purple-600 text-white border-transparent shadow-lg hover:shadow-xl'
+                    }`}
+                  >
+                    {avatarSaveLoading ? (
+                      <>
+                        <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin" />
+                        Saving...
+                      </>
+                    ) : avatarSaveSuccess ? (
+                      <>
+                        <Check className="w-4 h-4" />
+                        Saved!
+                      </>
+                    ) : (
+                      <>
+                        <Save className="w-4 h-4" />
+                        Save Avatar
+                      </>
+                    )}
+                  </button>
+                  
+                  {/* Shop Button */}
+                  <button
+                    onClick={() => {
+                      navigateTo('shop');
+                    }}
+                    className="w-full bg-gradient-to-r from-orange-400 to-amber-500 hover:from-orange-500 hover:to-amber-600 text-white px-4 py-3 rounded-2xl font-bold transition-all flex items-center justify-center gap-2 shadow-lg hover:shadow-xl"
+                  >
+                    <ShoppingBag className="w-4 h-4" />
+                    Visit Shop
+                  </button>
+                  
+                  {/* Change Nugget Type Button */}
+                  <button
+                    onClick={() => {
+                      setAvatarNuggetType(null);
+                      localStorage.removeItem('nuggets_avatarNuggetType');
+                    }}
+                    className="w-full bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-200 px-4 py-3 rounded-2xl font-bold transition-all flex items-center justify-center gap-2 border border-slate-200 dark:border-slate-700"
+                  >
+                    <Shuffle className="w-4 h-4" />
+                    Change Nugget Style
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            {/* Right Side - Customization Options */}
+            <div className="space-y-4">
+              <div className="bg-white dark:bg-slate-900 rounded-3xl shadow-lg border border-slate-200 dark:border-slate-700 overflow-hidden">
+                <div className="bg-gradient-to-r from-blue-500 to-purple-500 p-6">
+                  <h2 className="text-2xl font-black text-white">Customize</h2>
+                  <p className="text-sm text-white/80 mt-1">Choose features for your nugget</p>
+                </div>
+
+                {/* Category Tabs */}
+                <div className="grid grid-cols-5 gap-1 p-2 bg-slate-50 dark:bg-slate-800/50">
+                  {customizationCategories.map((category) => (
+                    <button
+                      key={category.id}
+                      onClick={() => setAvatarCustomizationTab(category.id)}
+                      className={`p-3 rounded-xl font-bold text-xs flex flex-col items-center gap-1 transition-all ${
+                        avatarCustomizationTab === category.id
+                          ? 'bg-white dark:bg-slate-700 shadow-md scale-105 text-slate-800 dark:text-white'
+                          : 'bg-transparent text-slate-500 dark:text-slate-400 hover:bg-white/50 dark:hover:bg-slate-700/50'
+                      }`}
+                    >
+                      <span className="text-xl">{category.icon}</span>
+                      <span className="hidden sm:inline">{category.label}</span>
+                    </button>
+                  ))}
+                </div>
+
+                {/* Options Display */}
+                <div className="p-6 min-h-[400px]">
+                  <h3 className="text-lg font-black text-slate-800 dark:text-white mb-4 flex items-center gap-2">
+                    <span className="text-2xl">
+                      {customizationCategories.find(c => c.id === avatarCustomizationTab)?.icon}
+                    </span>
+                    {customizationCategories.find(c => c.id === avatarCustomizationTab)?.label}
+                  </h3>
+
+                  {/* Placeholder for customization options */}
+                  <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
+                    {accessoryOptions[avatarCustomizationTab]?.length > 0 ? (
+                      accessoryOptions[avatarCustomizationTab].map((option) => {
+                        // Check if selected - handle both arrays (eyes) and single values (other categories)
+                        const currentSelection = selectedAccessories[avatarCustomizationTab];
+                        const isSelected = Array.isArray(currentSelection) 
+                          ? currentSelection.includes(option.id)
+                          : currentSelection === option.id;
+                        
+                        // Check if item is locked (for accessories that require unlock)
+                        const isLocked = option.requiresUnlock && !inventory.includes(option.id);
+                        
+                        return (
+                          <button
+                            key={option.id}
+                            disabled={isLocked}
+                            onClick={() => {
+                              if (isLocked) return;
+                              
+                              setSelectedAccessories(prev => {
+                                const currentValue = prev[avatarCustomizationTab];
+                                
+                                // For eyes (array), add/remove from array
+                                if (Array.isArray(currentValue)) {
+                                  const newArray = isSelected
+                                    ? currentValue.filter(id => id !== option.id)
+                                    : [...currentValue, option.id];
+                                  return {
+                                    ...prev,
+                                    [avatarCustomizationTab]: newArray
+                                  };
+                                }
+                                
+                                // For other categories (single value), toggle
+                                return {
+                                  ...prev,
+                                  [avatarCustomizationTab]: isSelected ? null : option.id
+                                };
+                              });
+                            }}
+                            className={`aspect-square bg-white dark:bg-slate-800 rounded-2xl border-2 transition-all group p-4 flex flex-col items-center justify-center gap-2 relative ${
+                              isLocked 
+                                ? 'border-slate-200 dark:border-slate-700 opacity-60 cursor-not-allowed'
+                                : `cursor-pointer hover:scale-105 hover:shadow-lg ${
+                                    isSelected 
+                                      ? 'border-blue-500 dark:border-blue-400 shadow-lg scale-105 ring-2 ring-blue-300 dark:ring-blue-600' 
+                                      : 'border-slate-200 dark:border-slate-700 hover:border-blue-400 dark:hover:border-blue-500'
+                                  }`
+                            }`}
+                          >
+                            {isLocked && (
+                              <div className="absolute inset-0 flex items-center justify-center bg-slate-900/50 rounded-2xl backdrop-blur-sm">
+                                <Lock className="w-8 h-8 text-white" />
+                              </div>
+                            )}
+                            <img 
+                              src={option.image} 
+                              alt={option.name}
+                              className={`w-full h-auto object-contain transition-transform ${!isLocked && 'group-hover:scale-110'}`}
+                            />
+                            <p className={`text-xs font-bold text-center ${
+                              isLocked 
+                                ? 'text-slate-400 dark:text-slate-500'
+                                : isSelected ? 'text-blue-600 dark:text-blue-400' : 'text-slate-600 dark:text-slate-300'
+                            }`}>{option.name}</p>
+                            {isLocked && (
+                              <p className="text-[10px] text-slate-400 dark:text-slate-500 font-semibold">
+                                Earn Crumbs to Unlock!
+                              </p>
+                            )}
+                          </button>
+                        );
+                      })
+                    ) : (
+                      [1, 2, 3, 4, 5, 6].map((i) => (
+                        <div
+                          key={i}
+                          className="aspect-square bg-slate-100 dark:bg-slate-800 rounded-2xl border-2 border-dashed border-slate-300 dark:border-slate-600 flex flex-col items-center justify-center gap-2 hover:border-blue-400 dark:hover:border-blue-500 transition-all cursor-pointer group"
+                        >
+                          <div className="text-3xl group-hover:scale-110 transition-transform">
+                            {customizationCategories.find(c => c.id === avatarCustomizationTab)?.icon}
+                          </div>
+                          <p className="text-xs font-bold text-slate-400 dark:text-slate-500">Coming Soon</p>
+                        </div>
+                      ))
+                    )}
+                  </div>
+
+                  {/* Placeholder Message */}
+                  {accessoryOptions[avatarCustomizationTab]?.length === 0 && (
+                    <div className="mt-8 bg-purple-50 dark:bg-purple-900/20 border border-purple-200 dark:border-purple-800 rounded-2xl p-6 text-center">
+                      <Sparkles className="w-8 h-8 text-purple-500 mx-auto mb-3" />
+                      <h4 className="font-black text-slate-800 dark:text-white mb-2">More Options Coming Soon!</h4>
+                      <p className="text-sm text-slate-600 dark:text-slate-400">
+                        We're working on adding lots of fun {customizationCategories.find(c => c.id === avatarCustomizationTab)?.label.toLowerCase()} options for your nugget.
+                      </p>
+                    </div>
+                  )}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    );
   };
 
   const renderSettings = () => (
@@ -2864,7 +4449,7 @@ CRITICAL: Respond with ONLY a valid JSON array. No markdown, no explanations, no
                 <div className="text-center">
                   <h2 className="text-2xl font-black text-slate-800 dark:text-white mb-2">Nuggets</h2>
                   <p className="text-slate-500 dark:text-slate-400 text-sm mb-3">
-                    All your collected facts
+                    Cool Facts
                   </p>
                   <div className="inline-flex items-center gap-2 bg-yellow-100 dark:bg-yellow-900/30 text-yellow-700 dark:text-yellow-300 px-4 py-2 rounded-full font-bold">
                     <span className="text-2xl">{collection.length}</span>
@@ -2884,7 +4469,7 @@ CRITICAL: Respond with ONLY a valid JSON array. No markdown, no explanations, no
                 <div className="text-center">
                   <h2 className="text-2xl font-black text-slate-800 dark:text-white mb-2">Missions</h2>
                   <p className="text-slate-500 dark:text-slate-400 text-sm mb-3">
-                    Fun things to try
+                    Fun Activities
                   </p>
                   <div className="inline-flex items-center gap-2 bg-orange-100 dark:bg-orange-900/30 text-orange-700 dark:text-orange-300 px-4 py-2 rounded-full font-bold">
                     <span className="text-2xl">{activityCollection.length}</span>
@@ -2904,7 +4489,7 @@ CRITICAL: Respond with ONLY a valid JSON array. No markdown, no explanations, no
                 <div className="text-center">
                   <h2 className="text-2xl font-black text-slate-800 dark:text-white mb-2">Words</h2>
                   <p className="text-slate-500 dark:text-slate-400 text-sm mb-3">
-                    Your vocabulary list
+                    Interesting Words
                   </p>
                   <div className="inline-flex items-center gap-2 bg-emerald-100 dark:bg-emerald-900/30 text-emerald-700 dark:text-emerald-300 px-4 py-2 rounded-full font-bold">
                     <span className="text-2xl">{wordCollection.length}</span>
@@ -2938,7 +4523,7 @@ CRITICAL: Respond with ONLY a valid JSON array. No markdown, no explanations, no
           <div className="max-w-6xl mx-auto">
             <div className="flex items-center justify-between gap-4 mb-8">
               <div className="flex items-center gap-4">
-                <button onClick={goBack} className="p-2 bg-white dark:bg-slate-800 rounded-full shadow-sm hover:shadow-md transition-all"><ArrowLeft className="w-6 h-6 text-slate-600 dark:text-slate-400" /></button>
+                <button onClick={() => navigateTo('my-collections')} className="p-2 bg-white dark:bg-slate-800 rounded-full shadow-sm hover:shadow-md transition-all"><ArrowLeft className="w-6 h-6 text-slate-600 dark:text-slate-400" /></button>
                 <h1 className="text-3xl font-black text-slate-800 dark:text-white tracking-tight">My Nugget Collection</h1>
               </div>
               <button onClick={goHome} className="px-4 py-2 bg-white dark:bg-slate-800 rounded-full shadow-sm hover:shadow-md transition-all flex items-center gap-2 text-slate-700 dark:text-slate-200 font-bold text-sm">
@@ -2962,8 +4547,8 @@ CRITICAL: Respond with ONLY a valid JSON array. No markdown, no explanations, no
                     <>
                       <Sparkles className="w-6 h-6 group-hover:rotate-12 transition-transform" />
                       Ask About My Collection!
-                      <span className="bg-yellow-600 text-yellow-50 px-3 py-1 rounded-full text-sm font-bold ml-2">
-                        +10 Stardust
+                      <span className="bg-orange-600 text-white px-3 py-1 rounded-full text-sm font-bold ml-2">
+                        +20 Crumbs
                       </span>
                     </>
                   )}
@@ -3002,6 +4587,12 @@ CRITICAL: Respond with ONLY a valid JSON array. No markdown, no explanations, no
                       <span className="text-xs text-slate-400">{item.date}</span>
                     </div>
                     <p className="font-medium text-lg dark:text-white line-clamp-3 leading-relaxed">{item.text}</p>
+                    {item.userThoughts && (
+                      <div className="bg-purple-50 dark:bg-purple-900/20 border border-purple-200 dark:border-purple-700 rounded-xl p-3">
+                        <p className="text-xs font-bold text-purple-700 dark:text-purple-300 mb-1">My Thoughts:</p>
+                        <p className="text-sm text-purple-900 dark:text-purple-200 italic">{item.userThoughts}</p>
+                      </div>
+                    )}
                     <div className="flex gap-2 mt-auto">
                       <button onClick={() => { setCurrentNugget(item); setLearnResponse(null); setActivityResponse(null); setActivityImage(null); setAiResponse(null); navigateTo('nugget'); }} className="flex-1 py-2 bg-blue-50 dark:bg-blue-900/30 text-blue-600 dark:text-blue-300 font-bold rounded-lg text-sm hover:bg-blue-100 transition-colors">Open</button>
                   <button 
@@ -3022,13 +4613,15 @@ CRITICAL: Respond with ONLY a valid JSON array. No markdown, no explanations, no
       </div>
     </div>
   )}
-      {view === 'shop' && renderGridPage("Sticker Shop", SHOP_ITEMS, (item) => (
+      {view === 'shop' && renderGridPage("Accessories Shop", SHOP_ITEMS, (item) => (
           <div key={item.id} className="bg-white dark:bg-slate-800 p-6 rounded-2xl shadow-sm border border-slate-200 dark:border-slate-700 flex flex-col items-center gap-4">
-              <div className="text-5xl">{item.icon}</div>
+              <div className="w-32 h-32 flex items-center justify-center">
+                <img src={item.image} alt={item.name} className="w-full h-full object-contain" />
+              </div>
               <div className="text-center">
                   <h3 className="font-bold dark:text-white">{item.name}</h3>
-                  <p className={`text-sm font-bold ${item.currency === 'crumbs' ? 'text-orange-500' : item.currency === 'stardust' ? 'text-yellow-500' : 'text-slate-400'}`}>
-                      {item.cost === 0 ? 'FREE' : `${item.cost} ${item.currency === 'crumbs' ? 'Crumbs' : 'Stardust'}`}
+                  <p className={`text-sm font-bold ${item.currency === 'crumbs' ? 'text-orange-500' : 'text-slate-400'}`}>
+                      {item.cost === 0 ? 'Welcome Gift!' : `${item.cost} Crumbs`}
                   </p>
               </div>
               <button 
@@ -3045,43 +4638,14 @@ CRITICAL: Respond with ONLY a valid JSON array. No markdown, no explanations, no
                         setInventory(newInv);
                         saveData({ inventory: newInv });
                         showNotification(`Purchased ${item.name}!`); 
-                    } else if (item.currency === 'stardust' && starDust >= item.cost) { 
-                        updateStarDust(-item.cost); 
-                        setInventory(newInv);
-                        saveData({ inventory: newInv });
-                        showNotification(`Purchased ${item.name}!`); 
                     } else {
-                        showNotification("Not enough currency!");
+                        showNotification("Not enough Crumbs!");
                     }
                 }}
                 className={`w-full py-2 rounded-lg font-bold text-sm ${inventory.includes(item.id) ? 'bg-slate-100 text-slate-400 cursor-not-allowed' : 'bg-blue-600 text-white hover:bg-blue-700 shadow-lg cursor-pointer'}`}
               >
-                {inventory.includes(item.id) ? 'Owned' : 'Buy'}
+                {inventory.includes(item.id) ? 'Unlocked!' : 'Buy'}
               </button>
-              {inventory.includes(item.id) && (
-                  <div className="w-full flex gap-2">
-                      <button 
-                        onClick={() => {
-                            const newEquipped = {...equipped, space: equipped.space === item.id ? null : item.id};
-                            setEquipped(newEquipped);
-                            saveData({ equipped: newEquipped });
-                        }}
-                        className={`flex-1 py-1 px-2 rounded text-xs font-bold ${equipped.space === item.id ? 'bg-blue-100 text-blue-600' : 'bg-slate-100 text-slate-600'}`}
-                      >
-                        {equipped.space === item.id ? '✓ Space' : 'Space'}
-                      </button>
-                      <button 
-                        onClick={() => {
-                            const newEquipped = {...equipped, sky: equipped.sky === item.id ? null : item.id};
-                            setEquipped(newEquipped);
-                            saveData({ equipped: newEquipped });
-                        }}
-                        className={`flex-1 py-1 px-2 rounded text-xs font-bold ${equipped.sky === item.id ? 'bg-blue-100 text-blue-600' : 'bg-slate-100 text-slate-600'}`}
-                      >
-                        {equipped.sky === item.id ? '✓ Sky' : 'Sky'}
-                      </button>
-                  </div>
-              )}
           </div>
       ), "Check back later for more!")}
       {view === 'word-bank' && (
@@ -3089,7 +4653,7 @@ CRITICAL: Respond with ONLY a valid JSON array. No markdown, no explanations, no
           <div className="max-w-6xl mx-auto">
             <div className="flex items-center justify-between gap-4 mb-8">
               <div className="flex items-center gap-4">
-                <button onClick={goBack} className="p-2 bg-white dark:bg-slate-800 rounded-full shadow-sm hover:shadow-md transition-all"><ArrowLeft className="w-6 h-6 text-slate-600 dark:text-slate-400" /></button>
+                <button onClick={() => navigateTo('my-collections')} className="p-2 bg-white dark:bg-slate-800 rounded-full shadow-sm hover:shadow-md transition-all"><ArrowLeft className="w-6 h-6 text-slate-600 dark:text-slate-400" /></button>
                 <h1 className="text-3xl font-black text-slate-800 dark:text-white tracking-tight">Word Collection</h1>
               </div>
               <button onClick={goHome} className="px-4 py-2 bg-white dark:bg-slate-800 rounded-full shadow-sm hover:shadow-md transition-all flex items-center gap-2 text-slate-700 dark:text-slate-200 font-bold text-sm">
@@ -3113,8 +4677,8 @@ CRITICAL: Respond with ONLY a valid JSON array. No markdown, no explanations, no
                     <>
                       <Sparkles className="w-6 h-6 group-hover:rotate-12 transition-transform" />
                       Ask About My Collection!
-                      <span className="bg-emerald-600 text-white px-3 py-1 rounded-full text-sm font-bold ml-2">
-                        +10 Stardust
+                      <span className="bg-orange-600 text-white px-3 py-1 rounded-full text-sm font-bold ml-2">
+                        +20 Crumbs
                       </span>
                     </>
                   )}
@@ -3246,10 +4810,147 @@ CRITICAL: Respond with ONLY a valid JSON array. No markdown, no explanations, no
             </div>
           );
       }, "Save missions from nuggets to see them here!")}
+      {view === 'avatar' && renderAvatar()}
       {view === 'settings' && renderSettings()}
       
       {renderShowMeModal()}
       {renderEnlargedImage()}
+      
+      {/* Guide Chat Modal */}
+      {showGuideChat && selectedGuide && (
+        <div className="fixed inset-0 bg-black/60 flex items-center justify-center z-50 p-4 backdrop-blur-sm">
+          <div className="bg-white dark:bg-slate-800 rounded-3xl shadow-2xl max-w-2xl w-full max-h-[90vh] flex flex-col animate-pop border border-slate-200 dark:border-slate-700">
+            {/* Header */}
+            <div className={`${selectedGuide === 'space' ? 'bg-gradient-to-r from-purple-500 to-purple-600' : 'bg-gradient-to-r from-blue-500 to-blue-600'} p-6 rounded-t-3xl flex items-center justify-between`}>
+              <div className="flex items-center gap-4">
+                <img 
+                  src={selectedGuide === 'space' ? spaceNuggetImg : skyNuggetImg}
+                  alt={selectedGuide === 'space' ? 'Space Nugget' : 'Sky Nugget'}
+                  className="w-16 h-16 object-contain drop-shadow-xl"
+                />
+                <div>
+                  <h2 className="text-2xl font-black text-white">
+                    {selectedGuide === 'space' ? 'Space Nugget' : 'Sky Nugget'}
+                  </h2>
+                  <p className="text-sm text-white/80 font-semibold">Your Guide</p>
+                </div>
+              </div>
+              <button 
+                onClick={() => setShowGuideChat(false)} 
+                className="text-white/80 hover:text-white transition-colors"
+              >
+                <X className="w-6 h-6" />
+              </button>
+            </div>
+
+            {/* Chat Messages */}
+            <div 
+              className="flex-1 overflow-y-auto p-6 space-y-4 bg-slate-50 dark:bg-slate-900/50"
+              ref={(el) => {
+                if (el) el.scrollTop = el.scrollHeight;
+              }}
+            >
+              {guideChatMessages.map((msg, idx) => (
+                <div 
+                  key={idx}
+                  className={`flex gap-3 ${msg.role === 'user' ? 'justify-end' : 'justify-start'}`}
+                >
+                  {msg.role === 'assistant' && (
+                    <img 
+                      src={selectedGuide === 'space' ? spaceNuggetImg : skyNuggetImg}
+                      alt="Guide"
+                      className="w-10 h-10 object-contain flex-shrink-0"
+                    />
+                  )}
+                  <div 
+                    className={`max-w-[75%] p-4 rounded-2xl ${
+                      msg.role === 'user' 
+                        ? 'bg-blue-500 text-white' 
+                        : selectedGuide === 'space'
+                        ? 'bg-purple-100 dark:bg-purple-900/30 text-slate-800 dark:text-white'
+                        : 'bg-blue-100 dark:bg-blue-900/30 text-slate-800 dark:text-white'
+                    }`}
+                  >
+                    <p className="text-sm leading-relaxed">{msg.content}</p>
+                  </div>
+                  {msg.role === 'user' && (
+                    <div className="w-10 h-10 rounded-full bg-gradient-to-br from-blue-500 to-purple-500 flex items-center justify-center text-white font-bold flex-shrink-0">
+                      {user?.user_metadata?.name?.charAt(0).toUpperCase() || 'U'}
+                    </div>
+                  )}
+                </div>
+              ))}
+              
+              {guideChatLoading && (
+                <div className="flex gap-3 justify-start">
+                  <img 
+                    src={selectedGuide === 'space' ? spaceNuggetImg : skyNuggetImg}
+                    alt="Guide"
+                    className="w-10 h-10 object-contain flex-shrink-0"
+                  />
+                  <div className={`p-4 rounded-2xl ${selectedGuide === 'space' ? 'bg-purple-100 dark:bg-purple-900/30' : 'bg-blue-100 dark:bg-blue-900/30'}`}>
+                    <Loader className="w-5 h-5 animate-spin text-slate-600 dark:text-slate-300" />
+                  </div>
+                </div>
+              )}
+            </div>
+
+            {/* Input Area */}
+            <div className="p-4 border-t border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800">
+              <div className="flex gap-2">
+                <input
+                  type="text"
+                  value={guideChatInput}
+                  onChange={(e) => setGuideChatInput(e.target.value)}
+                  onKeyDown={(e) => e.key === 'Enter' && !guideChatLoading && guideChatInput.trim() && sendGuideMessage(guideChatInput)}
+                  placeholder="Ask me anything about the app..."
+                  className="flex-1 px-4 py-3 rounded-2xl border-2 border-slate-200 dark:border-slate-600 bg-slate-50 dark:bg-slate-900 text-slate-800 dark:text-white focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                  disabled={guideChatLoading || isListening}
+                />
+                <button
+                  onClick={() => handleVoiceInput((transcript) => {
+                    setGuideChatInput(transcript);
+                    sendGuideMessage(transcript);
+                  })}
+                  disabled={guideChatLoading || isListening}
+                  className={`px-4 py-3 rounded-2xl font-bold transition-all flex items-center justify-center ${
+                    isListening 
+                      ? 'bg-red-500 animate-pulse' 
+                      : selectedGuide === 'space'
+                      ? 'bg-purple-100 dark:bg-purple-900/30 hover:bg-purple-200 dark:hover:bg-purple-900/50 text-purple-600 dark:text-purple-400'
+                      : 'bg-blue-100 dark:bg-blue-900/30 hover:bg-blue-200 dark:hover:bg-blue-900/50 text-blue-600 dark:text-blue-400'
+                  } ${isListening ? 'text-white' : ''} disabled:opacity-50 disabled:cursor-not-allowed`}
+                  title="Use voice input"
+                >
+                  <Mic className="w-5 h-5" />
+                </button>
+                <button
+                  onClick={() => guideChatInput.trim() && sendGuideMessage(guideChatInput)}
+                  disabled={guideChatLoading || !guideChatInput.trim() || isListening}
+                  className={`px-6 py-3 rounded-2xl font-bold transition-all flex items-center justify-center ${
+                    selectedGuide === 'space'
+                      ? 'bg-purple-500 hover:bg-purple-600'
+                      : 'bg-blue-500 hover:bg-blue-600'
+                  } text-white disabled:opacity-50 disabled:cursor-not-allowed`}
+                >
+                  {guideChatLoading ? (
+                    <Loader className="w-5 h-5 animate-spin" />
+                  ) : (
+                    <ArrowRight className="w-5 h-5" />
+                  )}
+                </button>
+              </div>
+              <p className="text-xs text-slate-500 dark:text-slate-400 mt-2 text-center">
+                {isListening ? (
+                  <span className="text-red-500 font-bold animate-pulse">🎤 Listening... Speak now!</span>
+                ) : (
+                  <>Try asking: "How do I collect nuggets?" or "What can I do with Crumbs?"</>
+                )}
+              </p>
+            </div>
+          </div>
+        </div>
+      )}
       
       {/* Stardust Question Modal */}
       {showStardustQuiz && (
@@ -3263,7 +4964,7 @@ CRITICAL: Respond with ONLY a valid JSON array. No markdown, no explanations, no
                 </div>
                 <div>
                   <h2 className="text-2xl font-black text-white">What Do You Think?</h2>
-                  <p className="text-sm text-purple-100 font-semibold">Answer to Earn Stardust ✨</p>
+                  <p className="text-sm text-purple-100 font-semibold">Answer to Earn More Crumbs!</p>
                 </div>
               </div>
               <button onClick={() => setShowStardustQuiz(false)} className="text-white/80 hover:text-white transition-colors">
@@ -3282,7 +4983,7 @@ CRITICAL: Respond with ONLY a valid JSON array. No markdown, no explanations, no
                     value={freeformAnswer}
                     onChange={(e) => setFreeformAnswer(e.target.value)}
                     placeholder="Type or speak your thoughts here..."
-                    className="w-full p-4 pr-12 border-2 border-slate-200 dark:border-slate-600 rounded-xl focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent bg-slate-50 dark:bg-slate-900 text-slate-800 dark:text-slate-200 min-h-[100px] resize-none"
+                    className="w-full p-4 pr-12 border-2 border-slate-200 dark:border-slate-600 rounded-xl focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent bg-slate-50 dark:bg-slate-900 text-slate-800 dark:text-slate-200 min-h-[60px] resize-none"
                   />
                   <button
                     onClick={startListening}
@@ -3385,7 +5086,7 @@ CRITICAL: Respond with ONLY a valid JSON array. No markdown, no explanations, no
                       {stardustQuestion.options.map((option, index) => {
                         const isWrong = wrongAnswers.has(index);
                         const isSelected = selectedStardustAnswer === index;
-                        const isCorrect = index === stardustQuestion.correctIndex;
+                        const isCorrect = stardustQuizSubmitted && index === stardustQuestion.correctIndex;
                         
                         return (
                           <button
@@ -3393,14 +5094,6 @@ CRITICAL: Respond with ONLY a valid JSON array. No markdown, no explanations, no
                             onClick={() => {
                               if (isWrong) return;
                               setSelectedStardustAnswer(index);
-                              
-                              // Immediate feedback
-                              if (index === stardustQuestion.correctIndex) {
-                                // Correct answer selected
-                              } else {
-                                // Wrong answer - mark as wrong (no notification to avoid confusion)
-                                setWrongAnswers(new Set([...wrongAnswers, index]));
-                              }
                             }}
                             disabled={isWrong}
                             className={`w-full p-4 rounded-xl font-semibold text-left transition-all ${
@@ -3421,14 +5114,14 @@ CRITICAL: Respond with ONLY a valid JSON array. No markdown, no explanations, no
                         );
                       })}
                     </div>
-                    {selectedStardustAnswer === stardustQuestion.correctIndex && (
+                    {stardustQuizSubmitted && selectedStardustAnswer === stardustQuestion.correctIndex && (
                       <div className="bg-green-100 dark:bg-green-900/30 border-2 border-green-500 dark:border-green-700 rounded-xl p-4 text-center animate-pop">
                         <p className="text-green-800 dark:text-green-200 font-bold flex items-center justify-center gap-2">
-                          <Check className="w-5 h-5" /> Click "Submit" for your reward!
+                          <Check className="w-5 h-5" /> Correct! Here are your Crumbs!
                         </p>
                       </div>
                     )}
-                    {wrongAnswers.size > 0 && selectedStardustAnswer !== stardustQuestion.correctIndex && (
+                    {wrongAnswers.size > 0 && (
                       <div className="text-center">
                         <p className="text-sm text-slate-600 dark:text-slate-400">
                           Try again - you've got this! 💪
@@ -3446,27 +5139,50 @@ CRITICAL: Respond with ONLY a valid JSON array. No markdown, no explanations, no
               {/* Submit Button */}
               <button
                 onClick={() => {
-                  const hasTextAnswer = freeformAnswer.trim().length >= 10;
+                  const hasValidTextAnswer = isValidTextInput(freeformAnswer);
                   const hasCorrectMCQ = selectedStardustAnswer === stardustQuestion?.correctIndex;
                   
-                  if (hasTextAnswer || hasCorrectMCQ) {
-                    updateStarDust(5);
-                    showNotification("Great job! +5 Stardust ✨");
+                  if (hasValidTextAnswer || hasCorrectMCQ) {
+                    setStardustQuizSubmitted(true);
+                    updateCrumbs(10);
+                    showNotification("Great job! +10 Crumbs 🍪");
+                    
+                    // Save the user's answer with the nugget if they provided one
+                    if (hasValidTextAnswer && currentNugget) {
+                      const updatedCollection = collection.map(nugget => {
+                        if (nugget.text === currentNugget.text) {
+                          return { ...nugget, userThoughts: freeformAnswer };
+                        }
+                        return nugget;
+                      });
+                      saveCollection(updatedCollection);
+                    }
+                    
                     setTimeout(() => {
                       setShowStardustQuiz(false);
                       setFreeformAnswer('');
                       setSelectedStardustAnswer(null);
                       setWrongAnswers(new Set());
                       setStardustQuestion(null);
+                      setStardustQuizSubmitted(false);
                     }, 1500);
+                  } else if (selectedStardustAnswer !== null && selectedStardustAnswer !== stardustQuestion?.correctIndex) {
+                    // Wrong MCQ answer - mark it and show feedback
+                    setStardustQuizSubmitted(true);
+                    setWrongAnswers(new Set([...wrongAnswers, selectedStardustAnswer]));
+                    setSelectedStardustAnswer(null);
+                    showNotification("Not quite! Try again - you've got this! 💪");
+                    setTimeout(() => setStardustQuizSubmitted(false), 500);
+                  } else if (freeformAnswer.trim().length > 0 && !hasValidTextAnswer) {
+                    showNotification("Please provide a thoughtful answer!");
                   } else {
-                    showNotification("Please answer the question correctly or write at least 10 characters!");
+                    showNotification("Please answer the question or write something thoughtful!");
                   }
                 }}
                 className="w-full bg-gradient-to-r from-purple-500 to-blue-500 hover:from-purple-600 hover:to-blue-600 text-white font-bold py-4 px-6 rounded-xl shadow-lg hover:shadow-xl hover:-translate-y-1 transition-all flex items-center justify-center gap-2"
               >
                 <Sparkles className="w-5 h-5" />
-                Submit for Stardust!
+                Submit for +10 Crumbs!
               </button>
 
               {/* Skip Button */}
@@ -3477,10 +5193,11 @@ CRITICAL: Respond with ONLY a valid JSON array. No markdown, no explanations, no
                   setSelectedStardustAnswer(null);
                   setWrongAnswers(new Set());
                   setStardustQuestion(null);
+                  setStardustQuizSubmitted(false);
                 }}
                 className="w-full bg-slate-300 hover:bg-slate-400 dark:bg-slate-700 dark:hover:bg-slate-600 text-slate-700 dark:text-slate-200 font-bold py-3 px-6 rounded-xl transition-all"
               >
-                Skip (No Reward)
+                Skip
               </button>
             </div>
           </div>
@@ -3544,43 +5261,23 @@ CRITICAL: Respond with ONLY a valid JSON array. No markdown, no explanations, no
               {/* Answer Options */}
               <div className="space-y-3">
                 {collectionQuizQuestions[currentCollectionQuestionIndex].options.map((option, index) => {
+                  const isSelected = selectedCollectionAnswer === index;
                   const isWrong = collectionQuizWrongAnswers.has(`${currentCollectionQuestionIndex}-${index}`);
-                  const isCorrect = index === collectionQuizQuestions[currentCollectionQuestionIndex].correctIndex;
                   
                   return (
                     <button
                       key={index}
                       onClick={() => {
                         if (isWrong) return;
-                        
-                        if (isCorrect) {
-                          // Correct answer
-                          if (currentCollectionQuestionIndex < collectionQuizQuestions.length - 1) {
-                            // Move to next question
-                            setTimeout(() => {
-                              setCurrentCollectionQuestionIndex(currentCollectionQuestionIndex + 1);
-                            }, 800);
-                          } else {
-                            // All questions complete
-                            updateStarDust(10);
-                            showNotification("Awesome! +10 Stardust ✨");
-                            setTimeout(() => {
-                              setShowCollectionQuiz(false);
-                              setCollectionQuizQuestions([]);
-                              setCurrentCollectionQuestionIndex(0);
-                              setCollectionQuizWrongAnswers(new Set());
-                            }, 1500);
-                          }
-                        } else {
-                          // Wrong answer - mark it
-                          setCollectionQuizWrongAnswers(new Set([...collectionQuizWrongAnswers, `${currentCollectionQuestionIndex}-${index}`]));
-                        }
+                        setSelectedCollectionAnswer(index);
                       }}
                       disabled={isWrong}
                       className={`w-full p-4 rounded-xl font-semibold text-left transition-all ${
                         isWrong
-                          ? 'bg-slate-200 dark:bg-slate-700 text-slate-400 dark:text-slate-500 line-through cursor-not-allowed'
-                          : 'bg-white dark:bg-slate-700 hover:bg-yellow-50 dark:hover:bg-yellow-900/20 text-slate-800 dark:text-white border-2 border-slate-200 dark:border-slate-600 hover:border-yellow-400 hover:shadow-md active:scale-[0.98]'
+                          ? 'bg-slate-200 dark:bg-slate-700 text-slate-400 dark:text-slate-500 cursor-not-allowed border-2 border-slate-300 dark:border-slate-600 line-through opacity-60'
+                          : isSelected
+                          ? 'bg-yellow-100 dark:bg-yellow-900/30 text-slate-800 dark:text-white border-2 border-yellow-400 shadow-md'
+                          : 'bg-white dark:bg-slate-700 hover:bg-slate-50 dark:hover:bg-slate-600 text-slate-800 dark:text-white border-2 border-slate-200 dark:border-slate-600 hover:border-yellow-300 hover:shadow-md active:scale-[0.98]'
                       }`}
                     >
                       {option}
@@ -3589,14 +5286,61 @@ CRITICAL: Respond with ONLY a valid JSON array. No markdown, no explanations, no
                 })}
               </div>
 
-              {/* Feedback */}
-              {collectionQuizWrongAnswers.size > 0 && (
-                <div className="text-center">
-                  <p className="text-sm text-slate-600 dark:text-slate-400">
-                    Try again - you've got this! 💪
-                  </p>
-                </div>
-              )}
+              {/* Submit Button */}
+              <button
+                onClick={() => {
+                  if (selectedCollectionAnswer === null) {
+                    showNotification("Please select an answer!");
+                    return;
+                  }
+                  
+                  const isCorrect = selectedCollectionAnswer === collectionQuizQuestions[currentCollectionQuestionIndex].correctIndex;
+                  
+                  if (isCorrect) {
+                    // Correct answer - show green button
+                    setCollectionQuizCorrect(true);
+                    showNotification("Correct! 🎉");
+                    
+                    if (currentCollectionQuestionIndex < collectionQuizQuestions.length - 1) {
+                      // Move to next question
+                      setTimeout(() => {
+                        setCurrentCollectionQuestionIndex(currentCollectionQuestionIndex + 1);
+                        setSelectedCollectionAnswer(null);
+                        setCollectionQuizWrongAnswers(new Set());
+                        setCollectionQuizCorrect(false);
+                      }, 1200);
+                    } else {
+                      // All questions complete
+                      updateCrumbs(20);
+                      showNotification("Awesome! +20 Crumbs 🍪");
+                      setTimeout(() => {
+                        setShowCollectionQuiz(false);
+                        setCollectionQuizQuestions([]);
+                        setCurrentCollectionQuestionIndex(0);
+                        setSelectedCollectionAnswer(null);
+                        setCollectionQuizWrongAnswers(new Set());
+                        setCollectionQuizCorrect(false);
+                      }, 1500);
+                    }
+                  } else {
+                    // Wrong answer - mark it and let them try again
+                    setCollectionQuizWrongAnswers(new Set([...collectionQuizWrongAnswers, `${currentCollectionQuestionIndex}-${selectedCollectionAnswer}`]));
+                    setSelectedCollectionAnswer(null);
+                    showNotification("Not quite! Try again - you've got this! 💪");
+                  }
+                }}
+                disabled={selectedCollectionAnswer === null || collectionQuizCorrect}
+                className={`w-full py-4 rounded-xl font-bold text-lg transition-all flex items-center justify-center gap-2 ${
+                  collectionQuizCorrect
+                    ? 'bg-gradient-to-r from-green-500 to-green-600 text-white shadow-lg cursor-default'
+                    : selectedCollectionAnswer === null
+                    ? 'bg-slate-300 dark:bg-slate-700 text-slate-500 cursor-not-allowed'
+                    : 'bg-gradient-to-r from-yellow-400 to-orange-400 hover:from-yellow-500 hover:to-orange-500 text-yellow-900 shadow-lg hover:shadow-xl active:scale-[0.98]'
+                }`}
+              >
+                {collectionQuizCorrect && <Check className="w-6 h-6" />}
+                {collectionQuizCorrect ? 'Correct!' : 'Submit Answer'}
+              </button>
 
               {/* Exit Button */}
               <div className="pt-4 border-t border-slate-200 dark:border-slate-700">
@@ -3605,11 +5349,12 @@ CRITICAL: Respond with ONLY a valid JSON array. No markdown, no explanations, no
                     setShowCollectionQuiz(false);
                     setCollectionQuizQuestions([]);
                     setCurrentCollectionQuestionIndex(0);
+                    setSelectedCollectionAnswer(null);
                     setCollectionQuizWrongAnswers(new Set());
                   }}
                   className="w-full px-4 py-3 text-slate-500 dark:text-slate-400 hover:text-slate-700 dark:hover:text-slate-200 font-semibold text-sm transition-colors rounded-lg hover:bg-slate-100 dark:hover:bg-slate-700/50"
                 >
-                  Exit Challenge (No Reward)
+                  Exit Challenge
                 </button>
               </div>
             </div>
@@ -3691,43 +5436,28 @@ CRITICAL: Respond with ONLY a valid JSON array. No markdown, no explanations, no
               {/* Answer Options */}
               <div className="space-y-3">
                 {wordQuizQuestions[currentWordQuestionIndex].options.map((option, index) => {
+                  const isSelected = selectedWordAnswer === index;
                   const isWrong = wordQuizWrongAnswers.has(`${currentWordQuestionIndex}-${index}`);
                   const isCorrect = index === wordQuizQuestions[currentWordQuestionIndex].correctIndex;
+                  const showFeedback = wordQuizWrongAnswers.size > 0;
                   
                   return (
                     <button
                       key={index}
                       onClick={() => {
-                        if (isWrong) return;
-                        
-                        if (isCorrect) {
-                          // Correct answer
-                          if (currentWordQuestionIndex < wordQuizQuestions.length - 1) {
-                            // Move to next question
-                            setTimeout(() => {
-                              setCurrentWordQuestionIndex(currentWordQuestionIndex + 1);
-                            }, 800);
-                          } else {
-                            // All questions complete
-                            updateStarDust(10);
-                            showNotification("Amazing! +10 Stardust ✨");
-                            setTimeout(() => {
-                              setShowWordQuiz(false);
-                              setWordQuizQuestions([]);
-                              setCurrentWordQuestionIndex(0);
-                              setWordQuizWrongAnswers(new Set());
-                            }, 1500);
-                          }
-                        } else {
-                          // Wrong answer - mark it
-                          setWordQuizWrongAnswers(new Set([...wordQuizWrongAnswers, `${currentWordQuestionIndex}-${index}`]));
+                        if (!showFeedback) {
+                          setSelectedWordAnswer(index);
                         }
                       }}
-                      disabled={isWrong}
+                      disabled={showFeedback && !isCorrect}
                       className={`w-full p-4 rounded-xl font-semibold text-left transition-all ${
-                        isWrong
-                          ? 'bg-slate-200 dark:bg-slate-700 text-slate-400 dark:text-slate-500 line-through cursor-not-allowed'
-                          : 'bg-white dark:bg-slate-700 hover:bg-emerald-50 dark:hover:bg-emerald-900/20 text-slate-800 dark:text-white border-2 border-slate-200 dark:border-slate-600 hover:border-emerald-400 hover:shadow-md active:scale-[0.98]'
+                        showFeedback && isCorrect
+                          ? 'bg-green-500 text-white border-2 border-green-600 shadow-lg'
+                          : showFeedback && isWrong
+                          ? 'bg-red-500 text-white border-2 border-red-600 line-through'
+                          : isSelected
+                          ? 'bg-emerald-100 dark:bg-emerald-900/30 text-slate-800 dark:text-white border-2 border-emerald-400 shadow-md'
+                          : 'bg-white dark:bg-slate-700 hover:bg-slate-50 dark:hover:bg-slate-600 text-slate-800 dark:text-white border-2 border-slate-200 dark:border-slate-600 hover:border-emerald-300 hover:shadow-md active:scale-[0.98]'
                       }`}
                     >
                       {option}
@@ -3737,6 +5467,52 @@ CRITICAL: Respond with ONLY a valid JSON array. No markdown, no explanations, no
               </div>
 
               {/* Feedback */}
+              {/* Submit Button */}
+              <button
+                onClick={() => {
+                  if (selectedWordAnswer === null) {
+                    showNotification("Please select an answer!");
+                    return;
+                  }
+                  
+                  const isCorrect = selectedWordAnswer === wordQuizQuestions[currentWordQuestionIndex].correctIndex;
+                  
+                  if (isCorrect) {
+                    // Correct answer
+                    if (currentWordQuestionIndex < wordQuizQuestions.length - 1) {
+                      // Move to next question
+                      setTimeout(() => {
+                        setCurrentWordQuestionIndex(currentWordQuestionIndex + 1);
+                        setSelectedWordAnswer(null);
+                        setWordQuizWrongAnswers(new Set());
+                      }, 1200);
+                    } else {
+                      // All questions complete
+                      updateCrumbs(20);
+                      showNotification("Amazing! +20 Crumbs 🍪");
+                      setTimeout(() => {
+                        setShowWordQuiz(false);
+                        setWordQuizQuestions([]);
+                        setCurrentWordQuestionIndex(0);
+                        setSelectedWordAnswer(null);
+                        setWordQuizWrongAnswers(new Set());
+                      }, 1500);
+                    }
+                  } else {
+                    // Wrong answer - mark it
+                    setWordQuizWrongAnswers(new Set([...wordQuizWrongAnswers, `${currentWordQuestionIndex}-${selectedWordAnswer}`]));
+                  }
+                }}
+                disabled={selectedWordAnswer === null || wordQuizWrongAnswers.size > 0}
+                className={`w-full py-4 rounded-xl font-bold text-lg transition-all ${
+                  selectedWordAnswer === null || wordQuizWrongAnswers.size > 0
+                    ? 'bg-slate-300 dark:bg-slate-700 text-slate-500 cursor-not-allowed'
+                    : 'bg-gradient-to-r from-emerald-400 to-green-400 hover:from-emerald-500 hover:to-green-500 text-emerald-900 shadow-lg hover:shadow-xl active:scale-[0.98]'
+                }`}
+              >
+                {wordQuizWrongAnswers.size > 0 ? 'Try Another Answer!' : 'Submit Answer'}
+              </button>
+
               {wordQuizWrongAnswers.size > 0 && (
                 <div className="text-center">
                   <p className="text-sm text-slate-600 dark:text-slate-400">
@@ -3752,11 +5528,12 @@ CRITICAL: Respond with ONLY a valid JSON array. No markdown, no explanations, no
                     setShowWordQuiz(false);
                     setWordQuizQuestions([]);
                     setCurrentWordQuestionIndex(0);
+                    setSelectedWordAnswer(null);
                     setWordQuizWrongAnswers(new Set());
                   }}
                   className="w-full px-4 py-3 text-slate-500 dark:text-slate-400 hover:text-slate-700 dark:hover:text-slate-200 font-semibold text-sm transition-colors rounded-lg hover:bg-slate-100 dark:hover:bg-slate-700/50"
                 >
-                  Exit Challenge (No Reward)
+                  Exit Challenge
                 </button>
               </div>
             </div>

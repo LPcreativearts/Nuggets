@@ -64,6 +64,12 @@ app.post("/make-server-c9fbfdc0/signup", async (c) => {
 
     if (error) {
       console.error('Signup error:', error);
+      
+      // If user already exists, provide a helpful message
+      if (error.message.includes('already been registered') || error.code === 'email_exists') {
+        return c.json({ error: 'This email is already registered. Please sign in instead.' }, 400);
+      }
+      
       return c.json({ error: error.message }, 400);
     }
 
@@ -233,6 +239,56 @@ app.post("/make-server-c9fbfdc0/progress/:userId", async (c) => {
   } catch (error) {
     console.error('Save progress error:', error);
     return c.json({ error: 'Failed to save progress: ' + error.message, success: false }, 500);
+  }
+});
+
+// Save avatar configuration (no auth required - uses localStorage userId)
+app.post("/make-server-c9fbfdc0/avatar/save", async (c) => {
+  try {
+    const { userId, avatarConfig } = await c.req.json();
+    
+    if (!userId || !avatarConfig) {
+      return c.json({ error: 'userId and avatarConfig are required' }, 400);
+    }
+    
+    const avatarKey = `avatar_config:${userId}`;
+    await kv.set(avatarKey, {
+      ...avatarConfig,
+      userId,
+      savedAt: new Date().toISOString()
+    });
+    
+    console.log('Successfully saved avatar config for user:', userId);
+    
+    return c.json({ 
+      success: true,
+      message: 'Avatar configuration saved successfully'
+    });
+  } catch (error) {
+    console.error('Save avatar config error:', error);
+    return c.json({ error: 'Failed to save avatar configuration: ' + error.message }, 500);
+  }
+});
+
+// Load avatar configuration (no auth required - uses localStorage userId)
+app.get("/make-server-c9fbfdc0/avatar/load/:userId", async (c) => {
+  try {
+    const userId = c.req.param('userId');
+    
+    if (!userId) {
+      return c.json({ error: 'userId is required' }, 400);
+    }
+    
+    const avatarKey = `avatar_config:${userId}`;
+    const avatarConfig = await kv.get(avatarKey);
+    
+    return c.json({ 
+      success: true,
+      data: avatarConfig || null
+    });
+  } catch (error) {
+    console.error('Load avatar config error:', error);
+    return c.json({ error: 'Failed to load avatar configuration: ' + error.message }, 500);
   }
 });
 
