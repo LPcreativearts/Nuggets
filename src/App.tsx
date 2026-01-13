@@ -18,6 +18,8 @@ import skyNuggetImg from 'figma:asset/524aa8d812d9a0a6f5c495000fd779e4eae87150.p
 // Basic and Spicy nugget images
 import baseNuggetImg from 'figma:asset/e23fe5acb66ca864e8e5ca8d62fa1245562b1fd4.png'; // Basic Nugget
 import spicyNuggetImg from 'figma:asset/a3e4544d3442bb9c3e68eb1a33e7a1f69695dda9.png'; // Spicy Nugget
+// Math Nugget for homepage
+import mathNuggetImg from 'figma:asset/6b61b99df97372873886ee032fadd2390c4bbb0c.png';
 // Eye accessories
 import eyeVertical from 'figma:asset/e51044114d9d56eb4d00716a8fdfa99f5590ce16.png';
 import eyeAngled from 'figma:asset/936f0a47b985a3d05ca017f04ebf53a12ea0d463.png';
@@ -27,6 +29,7 @@ import smileMouth from 'figma:asset/5660787e5ba0950ec04a09d7cf7f064f581302a5.png
 import frownPng from 'figma:asset/9823b22aa4c9af4c84901143b170ac410d1b8e0f.png';
 // Arms accessories
 import armsImg from 'figma:asset/e1cb00a2a60b8725d4265551a68159cb1070e5f5.png';
+import strongArmsImg from 'figma:asset/aa83107b2cac8a78372e1416c21c4e5425dd0d08.png';
 // Legs accessories
 import legsImg from 'figma:asset/74f3553160d988436af237bafb15516d03789825.png';
 // Tail accessories
@@ -37,6 +40,12 @@ import glassesImg from 'figma:asset/6b16272a922b89d8b73e6fbdcd925544dbeb6eb3.png
 import crownImg from 'figma:asset/f5146dfa112d42072e9269fb8a42ad1ea8da06eb.png';
 import topHatImg from 'figma:asset/a6075e3e6d5bdb9d91355afecb08d948ac0d741e.png';
 import partyHatImg from 'figma:asset/611e368b479c6c41d505e90461ef11c7f2d40dbe.png';
+import gamerHeadsetImg from 'figma:asset/4d54b6c32044d2cd0525631f5243f89d7610803e.png';
+import pencilImg from 'figma:asset/ae24e2649373f3497eda6b88f13d72260f5b9858.png';
+import piNumbersImg from 'figma:asset/66f766bd23d1170e675b0f47042dd9d41de761b3.png';
+import butterflyWingsImg from 'figma:asset/1c6d812fcc1678b6c79aa04a0bae243e4229c95b.png';
+import eyebrowsImg from 'figma:asset/43d27e6bd06248eac0ec3ad4c33bba18e964a80f.png';
+import mouthImg from 'figma:asset/b411a3156aefa4cccb96eaa7ff2888e020789f95.png';
 
 // -----------------------------------------------------------------------------
 // 🔧 PARENT SETUP: 
@@ -168,7 +177,7 @@ const SUBJECTS = [
   { 
       id: 'history', name: 'History', icon: MapIcon, 
       color: 'bg-amber-100 text-amber-700 dark:bg-amber-900/50 dark:text-amber-200', border: 'border-amber-300 dark:border-amber-700', 
-      subtopics: ["Ancient Civilizations", "Mummies", "Vikings", "Pirates", "Secret Spies", "Titanic", "Castles", "Knights", "Early Humans"],
+      subtopics: ["Ancient Civilizations", "Wonders of the World", "Mummies", "Vikings", "Pirates", "Secret Spies", "Titanic", "Castles", "Knights", "Early Humans"],
       imgTerm: "Ancient history"
   },
   { 
@@ -192,7 +201,7 @@ const SUBJECTS = [
   { 
       id: 'career', name: 'Careers', icon: Briefcase, 
       color: 'bg-slate-200 text-slate-700 dark:bg-slate-700 dark:text-slate-200', border: 'border-slate-300 dark:border-slate-600', 
-      subtopics: ["Lego Master", "Video Game Tester", "Astronaut", "Paleontologist", "Special Effects", "Animal Rescuer", "Firefighter", "Robot Engineer"],
+      subtopics: ["Lego Master", "Video Game Tester", "Astronaut", "Paleontologist", "Special Effects", "Animal Rescuer", "Firefighter", "Robot Engineer", "Marine Biologist"],
       imgTerm: "Astronaut"
   },
   { 
@@ -215,8 +224,10 @@ const SUBTOPIC_IMAGES = {
   "Impossible Shapes": "https://images.unsplash.com/photo-1760693318333-d3ae15709511?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxpbXBvc3NpYmxlJTIwZ2VvbWV0cnl8ZW58MXx8fHwxNzY4MjU1NTMwfDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
   "Zero": "https://images.unsplash.com/photo-1609166216058-457ce78d0e23?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxuZW9uJTIwemVyb3xlbnwxfHx8fDE3NjgyNTU1MzB8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
   "Elements of Art": "https://images.unsplash.com/photo-1658301720419-d1c963f7993b?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxwYWludCUyMHBhbGV0dGV8ZW58MXx8fHwxNzY4MjU1NTMxfDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
+  "Elements of Music": "https://images.unsplash.com/photo-1677533606085-f01c472408e7?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxtdXNpYyUyMG5vdGVzJTIwaW5zdHJ1bWVudHN8ZW58MXx8fHwxNzY4MzMwMTA2fDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
   "Famous Works of Art": "https://images.unsplash.com/photo-1582555172866-f73bb12a2ab3?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxhcnQlMjBtdXNldW18ZW58MXx8fHwxNjgyNTU1MzF8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
   "Art Movements": "https://images.unsplash.com/photo-1615184697985-c9bde1b07da7?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxhYnN0cmFjdCUyMGFydHxlbnwxfHx8fDE3NjgxODAxMDN8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
+  "Wonders of the World": "https://images.unsplash.com/photo-1702036394924-9c079b10c4e4?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxncmVhdCUyMHB5cmFtaWRzJTIwZ2l6YXxlbnwxfHx8fDE3NjgyNjQ4Njl8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
   "Street Art": "https://images.unsplash.com/photo-1611063158871-7dd3ed4a2ac8?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxzdHJlZXQlMjBncmFmZml0aXxlbnwxfHx8fDE3NjgyNTU1MzJ8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
   "Sculpture": "https://images.unsplash.com/photo-1691957713140-a9a042252202?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxtb2Rlcm4lMjBzY3VscHR1cmV8ZW58MXx8fHwxNzY4MTgwNDA3fDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
   "Weird Instruments": "https://images.unsplash.com/photo-1651931802891-1e200feafefe?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx1bnVzdWFsJTIwaW5zdHJ1bWVudHN8ZW58MXx8fHwxNzY4MjU1NTMyfDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
@@ -227,6 +238,7 @@ const SUBTOPIC_IMAGES = {
   "Lego Master": "https://images.unsplash.com/photo-1633469924738-52101af51d87?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxjb2xvcmZ1bCUyMGxlZ298ZW58MXx8fHwxNzY4MjU1NTM0fDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
   "Video Game Tester": "https://images.unsplash.com/photo-1611138290962-2c550ffd4002?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxnYW1pbmclMjBjb250cm9sbGVyfGVufDF8fHx8MTc2ODI1NTUzNHww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
   "Animal Rescuer": "https://images.unsplash.com/photo-1654119938236-de0d8ed4641d?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx2ZXRlcmluYXJpYW4lMjBhbmltYWx8ZW58MXx8fHwxNzY4MjU1NTM1fDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
+  "Marine Biologist": "https://images.unsplash.com/photo-1563437060545-52c4198b7fc7?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxtYXJpbmUlMjBiaW9sb2dpc3QlMjBvY2VhbnxlbnwxfHx8fDE3NjgyNTcwMjF8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
   "Elements of Language": "https://images.unsplash.com/photo-1725043394860-71304ce2b1b6?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxhbHBoYWJldCUyMGxldHRlcnN8ZW58MXx8fHwxNzY4MjU1NTM1fDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
   "Silly Words": "https://images.unsplash.com/photo-1598983941654-125cc1854744?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxkaWN0aW9uYXJ5JTIwd29yZHN8ZW58MXx8fHwxNzY4MjU1NTM2fDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
   "Secret Languages": "https://images.unsplash.com/photo-1551240903-154be3f2e18b?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxzaWduJTIwbGFuZ3VhZ2V8ZW58MXx8fHwxNzY4MjU1NTM2fDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
@@ -284,7 +296,21 @@ const CURRICULUM_TOPICS = {
       { name: "Literary Devices", emoji: "🎭", description: "Metaphors and similes", color: "bg-indigo-500" },
       { name: "Story Elements", emoji: "📖", description: "Plot, character, setting", color: "bg-red-500" },
     ],
-    type: "grid"
+    activities: [
+      { name: "Alphabet Scavenger Hunt", emoji: "🔍", description: "Find objects for each letter", concept: "Parts of Speech", image: "https://images.unsplash.com/photo-1545558014-8692077e9b5c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxjaGlsZHJlbiUyMGFscGhhYmV0JTIwYmxvY2tzfGVufDF8fHx8MTc2ODMzMjE0Mnww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral" },
+      { name: "Story Starter Dice", emoji: "🎲", description: "Roll dice to create random stories", concept: "Story Elements", image: "https://images.unsplash.com/photo-1612969307625-3e1a6ec6081a?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxjaGlsZCUyMHdyaXRpbmclMjBzdG9yeXxlbnwxfHx8fDE3NjgzMzIxNDN8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral" },
+      { name: "Poetry Slam", emoji: "🎤", description: "Write and perform your own poems", concept: "Poetry", image: "https://images.unsplash.com/photo-1733671805619-1a1563c006bc?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxraWRzJTIwcmVhZGluZyUyMHBvZXRyeXxlbnwxfHx8fDE3NjgzMzIxNDN8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral" },
+      { name: "Word Family Trees", emoji: "🌳", description: "Explore word roots and branches", concept: "Etymology", image: "https://images.unsplash.com/photo-1759678444821-565ff103465c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxjaGlsZHJlbiUyMHdvcmQlMjBnYW1lfGVufDF8fHx8MTc2ODMzMjE0M3ww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral" },
+      { name: "Magnetic Poetry", emoji: "🧲", description: "Arrange words to create poems", concept: "Parts of Speech", image: "https://images.unsplash.com/photo-1756906441837-1f1b6d1add73?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxsZXR0ZXIlMjBtYWduZXRzJTIwbGVhcm5pbmd8ZW58MXx8fHwxNzY4MzMyMTQ0fDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral" },
+      { name: "Puppet Show Theater", emoji: "🎭", description: "Act out stories with puppets", concept: "Story Elements", image: "https://images.unsplash.com/photo-1646838633217-a9d36ddc2f37?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxraWRzJTIwc3Rvcnl0ZWxsaW5nJTIwcHVwcGV0fGVufDF8fHx8MTc2ODMzMjE0NHww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral" },
+      { name: "Rhyme Time Match", emoji: "🎵", description: "Match words that rhyme", concept: "Poetry", image: "https://images.unsplash.com/photo-1552321046-a54642dc0cb8?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxyaHltaW5nJTIwd29yZCUyMGNhcmRzfGVufDF8fHx8MTc2ODMzMjE0NXww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral" },
+      { name: "Persuasive Letter Writing", emoji: "✉️", description: "Write a letter to convince someone", concept: "Persuasive Writing", image: "https://images.unsplash.com/photo-1633442495686-e8b67cffab53?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxjaGlsZCUyMGNyZWF0aXZlJTIwd3JpdGluZ3xlbnwxfHx8fDE3NjgzMzIxNDV8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral" },
+      { name: "Sentence Building Game", emoji: "🔨", description: "Build complete sentences", concept: "Sentence Structure", image: "https://images.unsplash.com/photo-1560113562-a0a37ada6d91?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxzZW50ZW5jZSUyMGJ1aWxkaW5nJTIwYmxvY2tzfGVufDF8fHx8MTc2ODMzMjE0NXww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral" },
+      { name: "Word Detective", emoji: "🔎", description: "Discover word meanings and origins", concept: "Etymology", image: "https://images.unsplash.com/photo-1695238666585-ce8de2f39004?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxkaWN0aW9uYXJ5JTIwd29yZHMlMjBib29rfGVufDF8fHx8MTc2ODMzMjE0Nnww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral" },
+      { name: "Punctuation Practice", emoji: "❓", description: "Add punctuation to sentences", concept: "Punctuation", image: "https://images.unsplash.com/photo-1612425506252-50b73402c822?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxwdW5jdHVhdGlvbiUyMG1hcmtzJTIwdHlwb2dyYXBoeXxlbnwxfHx8fDE3NjgzMzIxNDZ8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral" },
+      { name: "Simile & Metaphor Comics", emoji: "💭", description: "Create comics with figurative language", concept: "Literary Devices", image: "https://images.unsplash.com/photo-1764885519030-9dc98ab1ee0f?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxjb21pYyUyMHNwZWVjaCUyMGJ1YmJsZXN8ZW58MXx8fHwxNzY4MzMyMTQ2fDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral" },
+    ],
+    type: "activities"
   },
   "Elements of Math": {
     id: "elements-of-math",
@@ -300,7 +326,17 @@ const CURRICULUM_TOPICS = {
       { name: "Geometry", emoji: "📐", description: "Shapes and space", color: "bg-indigo-500" },
       { name: "Measurement", emoji: "📏", description: "Size and quantity", color: "bg-yellow-500" },
     ],
-    type: "grid"
+    activities: [
+      { name: "Fraction Pizza Party", emoji: "🍕", description: "Divide pizzas into equal slices", concept: "Fractions", image: "https://images.unsplash.com/photo-1712603166215-28416254392e?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxmcmFjdGlvbiUyMHBpenphJTIwdmlzdWFsfGVufDF8fHx8MTc2ODMyODg1M3ww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral" },
+      { name: "Shape Pattern Builder", emoji: "🔷", description: "Create repeating geometric patterns", concept: "Geometry", image: "https://images.unsplash.com/photo-1651410603527-73ef3b396399?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxnZW9tZXRyaWMlMjBwYXR0ZXJuJTIwc2hhcGVzfGVufDF8fHx8MTc2ODMyODg1M3ww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral" },
+      { name: "Real-World Measurement", emoji: "📏", description: "Measure objects around you", concept: "Measurement", image: "https://images.unsplash.com/photo-1760030428004-60a033044f81?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxtZWFzdXJpbmclMjBydWxlciUyMHRvb2xzfGVufDF8fHx8MTc2ODMyODg1M3ww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral" },
+      { name: "Multiplication Arrays", emoji: "✖️", description: "Build visual arrays with objects", concept: "Multiplication", image: "https://images.unsplash.com/photo-1558907353-ceb54f3882ed?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxtdWx0aXBsaWNhdGlvbiUyMG1hdGglMjBibG9ja3N8ZW58MXx8fHwxNzY4MzI4ODU0fDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral" },
+      { name: "Decimal Number Line", emoji: "🔢", description: "Place decimals on a number line", concept: "Decimals", image: "https://images.unsplash.com/photo-1634287847376-06de6b0132bc?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxkZWNpbWFsJTIwbnVtYmVyJTIwbGluZXxlbnwxfHx8fDE3NjgzMjg4NTR8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral" },
+      { name: "Addition Story Problems", emoji: "➕", description: "Solve real-life addition challenges", concept: "Addition", image: "https://images.unsplash.com/photo-1611923973164-e0e5f7f69872?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxhZGRpdGlvbiUyMGNvdW50aW5nJTIwaGFuZHN8ZW58MXx8fHwxNzY4MzI4ODU1fDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral" },
+      { name: "Division Game", emoji: "➗", description: "Share items equally among groups", concept: "Division", image: "https://images.unsplash.com/photo-1674027392842-29f8354e236c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxkaXZpc2lvbiUyMHNoYXJpbmclMjBvYmplY3RzfGVufDF8fHx8MTc2ODMyODg1NXww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral" },
+      { name: "Subtraction Detective", emoji: "🔍", description: "Find the missing numbers", concept: "Subtraction", image: "https://images.unsplash.com/photo-1764700754052-afc4e11c5c64?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxzdWJ0cmFjdGlvbiUyMG1hdGglMjBjb3VudGluZ3xlbnwxfHx8fDE3NjgzMjg4NTV8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral" },
+    ],
+    type: "activities"
   },
   "Experiments": {
     id: "scientific-method",
@@ -352,7 +388,21 @@ const CURRICULUM_TOPICS = {
       { name: "Musical Notation", emoji: "🎼", description: "Reading sheet music", color: "bg-indigo-500" },
       { name: "Pitch", emoji: "🎤", description: "High and low sounds", color: "bg-pink-500" },
     ],
-    type: "grid"
+    activities: [
+      { name: "Rhythm Clapping Game", emoji: "👏", description: "Create and copy rhythm patterns", concept: "Rhythm", image: "https://images.unsplash.com/photo-1696483150935-2f719f1dfa6a?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxjaGlsZHJlbiUyMGNsYXBwaW5nJTIwaGFuZHN8ZW58MXx8fHwxNzY4MjI2MDQwfDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral" },
+      { name: "Water Glass Xylophone", emoji: "🥛", description: "Make music with water-filled glasses", concept: "Pitch", image: "https://images.unsplash.com/photo-1599225745889-5697ac8ed5d2?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxnbGFzcyUyMHdhdGVyJTIwZXhwZXJpbWVudHxlbnwxfHx8fDE3NjgzMzAyNDh8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral" },
+      { name: "Shaker Instruments", emoji: "🥁", description: "Create percussion from household items", concept: "Rhythm", image: "https://images.unsplash.com/photo-1600719599374-e9a7c7940714?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxwZXJjdXNzaW9uJTIwc2hha2VyJTIwaW5zdHJ1bWVudHxlbnwxfHx8fDE3NjgzMzAyNTJ8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral" },
+      { name: "Tempo Walk", emoji: "🚶", description: "Move to different speeds of music", concept: "Tempo", image: "https://images.unsplash.com/photo-1759734802071-98fbb4c4467a?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxjaGlsZHJlbiUyMGRhbmNpbmclMjBtb3ZlbWVudHxlbnwxfHx8fDE3NjgzMzAyNTV8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral" },
+      { name: "Melody Maker", emoji: "🎹", description: "Compose your own simple tune", concept: "Melody", image: "https://images.unsplash.com/photo-1670255022693-37f1be72bfcb?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxwaWFubyUyMGtleWJvYXJkJTIwbXVzaWN8ZW58MXx8fHwxNzY4Mjc2NDA3fDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral" },
+      { name: "Loud & Soft Challenge", emoji: "🔊", description: "Explore volume and dynamics", concept: "Dynamics", image: "https://images.unsplash.com/photo-1645020089405-ee44c2cd7c58?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxzcGVha2VyJTIwdm9sdW1lJTIwc291bmR8ZW58MXx8fHwxNzY4MzMwMjYyfDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral" },
+      { name: "Musical Notation Art", emoji: "🎼", description: "Draw and decode music symbols", concept: "Musical Notation", image: "https://images.unsplash.com/photo-1638534958793-b198c7635575?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxzaGVldCUyMG11c2ljJTIwbm90ZXN8ZW58MXx8fHwxNzY4MzAwODExfDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral" },
+      { name: "Harmony Humming", emoji: "🎶", description: "Sing notes that blend together", concept: "Harmony", image: "https://images.unsplash.com/photo-1763627516727-2ca3e324fa59?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxjaG9pciUyMHNpbmdpbmclMjBoYXJtb255fGVufDF8fHx8MTc2ODMzMDI2OXww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral" },
+      { name: "Rubber Band Guitar", emoji: "🎸", description: "Build a stringed instrument", concept: "Pitch", image: "https://images.unsplash.com/photo-1752849994062-ebe2000f5aca?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxhY291c3RpYyUyMGd1aXRhciUyMHN0cmluZ3N8ZW58MXx8fHwxNzY4MjEzMTc3fDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral" },
+      { name: "Soundwalk Adventure", emoji: "🎧", description: "Listen to sounds in your environment", concept: "Pitch", image: "https://images.unsplash.com/photo-1526662092594-e98c1e356d6a?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxjaGlsZCUyMGxpc3RlbmluZyUyMGhlYWRwaG9uZXN8ZW58MXx8fHwxNzY4MzMwMjc2fDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral" },
+      { name: "Stomp & Clap Patterns", emoji: "🦶", description: "Create body percussion rhythms", concept: "Rhythm", image: "https://images.unsplash.com/photo-1645160474426-23b89ff598cc?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxmZWV0JTIwc3RvbXBpbmclMjBkYW5jZXxlbnwxfHx8fDE3NjgzMzAyNzl8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral" },
+      { name: "Echo Song Game", emoji: "🗣️", description: "Sing and repeat melodies", concept: "Melody", image: "https://images.unsplash.com/photo-1680553436932-34a9505aff7b?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxraWRzJTIwc2luZ2luZyUyMHRvZ2V0aGVyfGVufDF8fHx8MTc2ODMzMDI4M3ww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral" },
+    ],
+    type: "activities"
   },
   "Elements of Art": {
     id: "elements-of-art",
@@ -383,6 +433,76 @@ const CURRICULUM_TOPICS = {
       { name: "Foil Relief Sculpture", emoji: "✨", description: "Create raised textures in foil", element: "Texture", image: "https://images.unsplash.com/photo-1645357907258-aa9aba27d98d?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxmb2lsJTIwZW1ib3NzaW5nJTIwY3JhZnR8ZW58MXx8fHwxNjg4NDg5NjQ1fDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral" },
     ],
     type: "activities"
+  },
+  "Famous Works of Art": {
+    id: "famous-works-of-art",
+    name: "Famous Works of Art",
+    description: "Explore masterpieces that changed the world",
+    subTopics: [
+      { name: "Mona Lisa", description: "Leonardo da Vinci's mysterious portrait", color: "bg-amber-600", imageSearchTerm: "mona lisa", image: "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ec/Mona_Lisa%2C_by_Leonardo_da_Vinci%2C_from_C2RMF_retouched.jpg/960px-Mona_Lisa%2C_by_Leonardo_da_Vinci%2C_from_C2RMF_retouched.jpg" },
+      { name: "Starry Night", description: "Van Gogh's swirling night sky", color: "bg-blue-600", imageSearchTerm: "starry night", image: "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ea/Van_Gogh_-_Starry_Night_-_Google_Art_Project.jpg/960px-Van_Gogh_-_Starry_Night_-_Google_Art_Project.jpg" },
+      { name: "The Scream", description: "Edvard Munch's iconic expression", color: "bg-orange-600", imageSearchTerm: "scream painting", image: "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c5/Edvard_Munch%2C_1893%2C_The_Scream%2C_oil%2C_tempera_and_pastel_on_cardboard%2C_91_x_73_cm%2C_National_Gallery_of_Norway.jpg/960px-Edvard_Munch%2C_1893%2C_The_Scream%2C_oil%2C_tempera_and_pastel_on_cardboard%2C_91_x_73_cm%2C_National_Gallery_of_Norway.jpg" },
+      { name: "Girl with a Pearl Earring", description: "Vermeer's Dutch Golden Age gem", color: "bg-indigo-600", imageSearchTerm: "girl pearl", image: "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0f/1665_Girl_with_a_Pearl_Earring.jpg/960px-1665_Girl_with_a_Pearl_Earring.jpg" },
+      { name: "The Great Wave", description: "Hokusai's powerful Japanese print", color: "bg-cyan-600", imageSearchTerm: "great wave", image: "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a5/Tsunami_by_hokusai_19th_century.jpg/960px-Tsunami_by_hokusai_19th_century.jpg" },
+      { name: "The Last Supper", description: "Da Vinci's biblical scene", color: "bg-purple-600", imageSearchTerm: "last supper", image: "https://upload.wikimedia.org/wikipedia/commons/thumb/4/48/The_Last_Supper_-_Leonardo_Da_Vinci_-_High_Resolution_32x16.jpg/960px-The_Last_Supper_-_Leonardo_Da_Vinci_-_High_Resolution_32x16.jpg" },
+      { name: "American Gothic", description: "Grant Wood's farmer portrait", color: "bg-yellow-700", imageSearchTerm: "american gothic", image: "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cc/Grant_Wood_-_American_Gothic_-_Google_Art_Project.jpg/960px-Grant_Wood_-_American_Gothic_-_Google_Art_Project.jpg" },
+      { name: "The Persistence of Memory", description: "Dalí's melting clocks", color: "bg-pink-600", imageSearchTerm: "dali clocks", image: "https://upload.wikimedia.org/wikipedia/en/d/dd/The_Persistence_of_Memory.jpg" },
+      { name: "Guernica", description: "Picasso's anti-war statement", color: "bg-gray-700", imageSearchTerm: "guernica picasso", image: "https://www.pablopicasso.org/assets/img/paintings/guernica3.jpg" },
+      { name: "The Swing", description: "Fragonard's playful Rococo scene", color: "bg-pink-500", imageSearchTerm: "fragonard swing", image: "https://mymodernmet.com/wp/wp-content/uploads/2019/11/fragonard-the-swing-1.jpg" },
+      { name: "The Kiss", description: "Klimt's golden embrace", color: "bg-yellow-600", imageSearchTerm: "klimt kiss", image: "https://mymodernmet.com/wp/wp-content/uploads/2017/07/the-kiss-gustav-klimt-1.jpg" },
+      { name: "Composition II in Red, Blue, and Yellow", description: "Mondrian's geometric abstraction", color: "bg-red-600", imageSearchTerm: "mondrian composition", image: "https://mymodernmet.com/wp/wp-content/uploads/2019/05/Piet-Mondrian-1930-Mondrian-Composition-II-in-Red-Blue-and-Yellow.jpg" },
+    ],
+    type: "grid"
+  },
+  "Art Movements": {
+    id: "art-movements",
+    name: "Art Movements",
+    description: "Discover the styles that defined art history",
+    subTopics: [
+      { name: "Renaissance", description: "Rebirth of classical art (1400s-1600s)", color: "bg-amber-700", imageSearchTerm: "renaissance painting", image: "https://images.unsplash.com/photo-1570569977384-be17f90f1a10?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxyZW5haXNzYW5jZSUyMHBhaW50aW5nfGVufDF8fHx8MTc2ODIyMDE2Mnww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral" },
+      { name: "Impressionism", description: "Capturing light and moment", color: "bg-blue-400", imageSearchTerm: "impressionist painting", image: "https://images.unsplash.com/photo-1699391202798-bec3f1c894bc?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxpbXByZXNzaW9uaXN0JTIwcGFpbnRpbmd8ZW58MXx8fHwxNzY4MTYzOTg2fDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral" },
+      { name: "Cubism", description: "Geometric shapes and perspectives", color: "bg-purple-600", imageSearchTerm: "cubist art", image: "https://images.unsplash.com/photo-1699568542264-fcf19d17254f?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxjdWJpc3QlMjBhcnR8ZW58MXx8fHwxNzY4MjU3Mzc3fDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral" },
+      { name: "Surrealism", description: "Dreams and the unconscious", color: "bg-pink-500", imageSearchTerm: "surrealist painting", image: "https://images.unsplash.com/photo-1614278092029-5a4c98659375?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxzdXJyZWFsaXN0JTIwcGFpbnRpbmd8ZW58MXx8fHwxNzY4MjU3Mzc3fDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral" },
+      { name: "Abstract Expressionism", description: "Emotion through color and form", color: "bg-red-600", imageSearchTerm: "abstract expressionism", image: "https://images.unsplash.com/photo-1532540983331-3260f8487880?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxhYnN0cmFjdCUyMGV4cHJlc3Npb25pc218ZW58MXx8fHwxNzY4MjU3Mzc3fDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral" },
+      { name: "Pop Art", description: "Popular culture as art", color: "bg-yellow-500", imageSearchTerm: "pop art", image: "https://images.unsplash.com/photo-1619632973808-4acf8041df42?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxwb3AlMjBhcnR8ZW58MXx8fHwxNzY4MjA1NzA5fDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral" },
+      { name: "Baroque", description: "Drama and grandeur (1600s-1700s)", color: "bg-purple-800", imageSearchTerm: "baroque painting", image: "https://images.unsplash.com/photo-1694123598708-312a31dcfbc9?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxiYXJvcXVlJTIwcGFpbnRpbmd8ZW58MXx8fHwxNzY4MTcxNDAwfDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral" },
+      { name: "Romanticism", description: "Emotion and nature's power", color: "bg-emerald-600", imageSearchTerm: "romantic painting", image: "https://images.unsplash.com/photo-1763064859614-a648b4fe1685?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxyb21hbnRpY2lzbSUyMGxhbmRzY2FwZXxlbnwxfHx8fDE3NjgyNTc2NTl8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral" },
+      { name: "Art Nouveau", description: "Flowing, organic decorative style", color: "bg-teal-500", imageSearchTerm: "art nouveau", image: "https://images.unsplash.com/photo-1577083165633-14ebcdb0f658?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxhcnQlMjBub3V2ZWF1fGVufDF8fHx8MTc2ODI1NzM4MXww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral" },
+      { name: "Minimalism", description: "Less is more", color: "bg-slate-400", imageSearchTerm: "minimalist art", image: "https://images.unsplash.com/photo-1683659635051-39336c5476b8?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxtaW5pbWFsaXN0JTIwYXJ0fGVufDF8fHx8MTc2ODI1NzM4MXww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral" },
+      { name: "Street Art", description: "Urban walls as canvas", color: "bg-orange-500", imageSearchTerm: "street art", image: "https://images.unsplash.com/photo-1530406831759-15c5c0cbce8b?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxzdHJlZXQlMjBhcnR8ZW58MXx8fHwxNzY4MTQ0MjkzfDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral" },
+      { name: "Japanese Ukiyo-e", description: "Traditional woodblock prints", color: "bg-red-500", imageSearchTerm: "ukiyo-e print", image: "https://images.unsplash.com/photo-1743482709788-8cb9d9779816?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx1a2l5by1lJTIwcHJpbnR8ZW58MXx8fHwxNzY4MjU3MzgyfDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral" },
+    ],
+    activities: [
+      { name: "Impressionist Landscape", emoji: "🌸", description: "Quick brushstrokes and light", movement: "Impressionism", image: "https://images.unsplash.com/photo-1689016466318-02714dd3283c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxtb25ldCUyMGxhbmRzY2FwZSUyMHBhaW50aW5nfGVufDF8fHx8MTc2ODMyNjgyMnww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral" },
+      { name: "Cubist Portrait Collage", emoji: "📐", description: "Multiple perspectives at once", movement: "Cubism", image: "https://images.unsplash.com/photo-1616793815079-59c1eefeaed7?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxjdWJpc3QlMjBjb2xsYWdlJTIwYXJ0fGVufDF8fHx8MTc2ODMyNTI3MHww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral" },
+      { name: "Pop Art Self-Portrait", emoji: "🎨", description: "Bold colors like Andy Warhol", movement: "Pop Art", image: "https://images.unsplash.com/photo-1597463286033-8fe6040319a9?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxwb3AlMjBhcnQlMjBwb3J0cmFpdHxlbnwxfHx8fDE3NjgzMjUyNzF8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral" },
+      { name: "Action Painting", emoji: "💥", description: "Splatter paint like Pollock", movement: "Abstract Expressionism", image: "https://images.unsplash.com/photo-1764563896103-1b6a45662dd5?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxzcGxhdHRlciUyMHBhaW50JTIwYWJzdHJhY3R8ZW58MXx8fHwxNzY4MzI1MjczfDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral" },
+      { name: "Surrealist Dream Drawing", emoji: "🌙", description: "Impossible dream worlds", movement: "Surrealism", image: "https://images.unsplash.com/photo-1732996909435-f1918cd4bf8b?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxzdXJyZWFsJTIwZHJlYW0lMjBhcnR8ZW58MXx8fHwxNzY4MzI1MjcyfDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral" },
+      { name: "Minimalist Design", emoji: "⬜", description: "Simple shapes, maximum impact", movement: "Minimalism", image: "https://images.unsplash.com/photo-1616197151293-7e61c6237c21?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxtaW5pbWFsaXN0JTIwZ2VvbWV0cmljJTIwZGVzaWdufGVufDF8fHx8MTc2ODMyNTI3Mnww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral" },
+      { name: "Graffiti Name Design", emoji: "✍️", description: "Bold street art letters", movement: "Street Art", image: "https://images.unsplash.com/photo-1728219686377-509f37ff9cb9?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxncmFmZml0aSUyMHN0cmVldCUyMGFydCUyMHdhbGx8ZW58MXx8fHwxNzY4MzI2ODIyfDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral" },
+      { name: "Renaissance Portrait Study", emoji: "🖼️", description: "Realistic shading techniques", movement: "Renaissance", image: "https://images.unsplash.com/photo-1735842466504-81e3e4797fad?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxyZW5haXNzYW5jZSUyMHBvcnRyYWl0JTIwZHJhd2luZ3xlbnwxfHx8fDE3NjgzMjUyNzN8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral" },
+    ],
+    type: "activities"
+  },
+  "Wonders of the World": {
+    id: "wonders-of-the-world",
+    name: "Wonders of the World",
+    description: "Explore humanity's greatest architectural marvels",
+    subTopics: [
+      { name: "Great Pyramids of Giza", description: "Egypt's ancient tombs", color: "bg-yellow-700", imageSearchTerm: "pyramids giza", image: "https://images.unsplash.com/photo-1702036394924-9c079b10c4e4?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxncmVhdCUyMHB5cmFtaWRzJTIwZ2l6YXxlbnwxfHx8fDE3NjgyNjQ4Njl8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral" },
+      { name: "Great Wall of China", description: "China's legendary fortress", color: "bg-slate-700", imageSearchTerm: "great wall", image: "https://images.unsplash.com/photo-1583405584623-58f4b7d1380f?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxncmVhdCUyMHdhbGwlMjBjaGluYXxlbnwxfHx8fDE3NjgxOTg5ODl8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral" },
+      { name: "Taj Mahal", description: "India's marble monument of love", color: "bg-sky-300", imageSearchTerm: "taj mahal", image: "https://images.unsplash.com/photo-1554396845-44d04673140a?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx0YWolMjBtYWhhbCUyMGluZGlhJTIwYXJjaGl0ZWN0dXJlfGVufDF8fHx8MTc2ODI2NDYxM3ww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral" },
+      { name: "Colosseum", description: "Rome's ancient amphitheater", color: "bg-orange-700", imageSearchTerm: "colosseum rome", image: "https://images.unsplash.com/photo-1662898290891-a6c7f022e851?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxjb2xvc3NldW0lMjByb21lJTIwYW5jaWVudHxlbnwxfHx8fDE3NjgyNjQ4Njl8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral" },
+      { name: "Machu Picchu", description: "Peru's Incan citadel in the clouds", color: "bg-green-700", imageSearchTerm: "machu picchu", image: "https://images.unsplash.com/photo-1580619305218-8423a7ef79b4?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxtYWNodSUyMHBpY2NodSUyMHBlcnV8ZW58MXx8fHwxNzY4MTk3MTA3fDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral" },
+      { name: "Petra", description: "Jordan's rose-red city carved in stone", color: "bg-rose-600", imageSearchTerm: "petra jordan", image: "https://images.unsplash.com/photo-1575650693902-8ead804c0732?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxwZXRyYSUyMGpvcmRhbiUyMGFuY2llbnR8ZW58MXx8fHwxNzY4MjM1NTk1fDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral" },
+      { name: "Chichen Itza", description: "Mayan pyramid in Mexico", color: "bg-amber-600", imageSearchTerm: "chichen itza", image: "https://images.unsplash.com/photo-1675963076290-905240c83cb0?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxjaGljaGVuJTIwaXR6YSUyMHB5cmFtaWR8ZW58MXx8fHwxNzY4MjY0ODcxfDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral" },
+      { name: "Christ the Redeemer", description: "Brazil's iconic statue", color: "bg-blue-500", imageSearchTerm: "christ redeemer", image: "https://images.unsplash.com/photo-1705937565504-212dd419fda3?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxjaHJpc3QlMjByZWRlZW1lciUyMHN0YXR1ZXxlbnwxfHx8fDE3NjgyNjQ4NzF8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral" },
+      { name: "Stonehenge", description: "England's mysterious prehistoric circle", color: "bg-gray-600", imageSearchTerm: "stonehenge england", image: "https://images.unsplash.com/photo-1646248463466-36afc75dcdab?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxzdG9uZWhlbmdlJTIwZW5nbGFuZCUyMHByZWhpc3RvcmljfGVufDF8fHx8MTc2ODI2NDg3MXww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral" },
+      { name: "Terracotta Warriors", description: "China's ancient clay army", color: "bg-amber-700", imageSearchTerm: "terracotta warriors", image: "https://images.unsplash.com/photo-1648726444582-6d108b5d13dc?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx0ZXJyYWNvdHRhJTIwd2FycmlvcnMlMjBjaGluYXxlbnwxfHx8fDE3NjgyNjQ2MTJ8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral" },
+      { name: "Angkor Wat", description: "Cambodia's temple complex", color: "bg-purple-700", imageSearchTerm: "angkor wat", image: "https://images.unsplash.com/photo-1680960964783-cc3a22c141b1?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxhbmdrb3IlMjB3YXQlMjBjYW1ib2RpYSUyMHRlbXBsZXxlbnwxfHx8fDE3NjgyNjUyMjd8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral" },
+      { name: "Eiffel Tower", description: "Paris's iron lady", color: "bg-indigo-600", imageSearchTerm: "eiffel tower", image: "https://images.unsplash.com/photo-1511739001486-6bfe10ce785f?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxlaWZmZWwlMjB0b3dlcnxlbnwxfHx8fDE3NjgyNjQ5Njd8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral" },
+    ],
+    type: "grid"
   }
 };
 
@@ -391,6 +511,13 @@ const SHOP_ITEMS = [
   { id: 'glasses', name: 'Smart Specs', cost: 15, currency: 'crumbs', image: glassesImg },
   { id: 'tophat', name: 'Fancy Hat', cost: 20, currency: 'crumbs', image: topHatImg },
   { id: 'crown', name: 'Gold Crown', cost: 25, currency: 'crumbs', image: crownImg },
+  { id: 'gamerheadset', name: 'Gamer Headset', cost: 30, currency: 'crumbs', image: gamerHeadsetImg },
+  { id: 'pencil', name: 'Pencil', cost: 20, currency: 'crumbs', image: pencilImg },
+  { id: 'pinumbers', name: 'Pi Numbers', cost: 35, currency: 'crumbs', image: piNumbersImg },
+  { id: 'butterflywings', name: 'Butterfly Wings', cost: 40, currency: 'crumbs', image: butterflyWingsImg },
+  { id: 'strongarms', name: 'Strong Arms', cost: 25, currency: 'crumbs', image: strongArmsImg },
+  { id: 'eyebrows', name: 'Eyebrows', cost: 15, currency: 'crumbs', image: eyebrowsImg },
+  { id: 'mouth', name: 'Mouth', cost: 15, currency: 'crumbs', image: mouthImg },
 ];
 
 const STARTER_NUGGETS = {
@@ -968,7 +1095,21 @@ export default function NuggetsApp() {
       if (isShowMeOpen && showMeImages.length === 0 && !showMeLoading) {
           setShowMeLoading(true);
           const loadImages = async () => {
-              const searches = [showMeTopic, currentNugget?.searchTerm].filter(Boolean);
+              // Helper function to extract key search terms (2-3 words max)
+              const extractKeyTerms = (text) => {
+                  if (!text) return '';
+                  // Remove common filler words
+                  const fillerWords = ['the', 'a', 'an', 'is', 'are', 'was', 'were', 'in', 'on', 'at', 'to', 'for', 'of', 'with', 'by', 'from', 'that', 'this', 'these', 'those', 'and', 'or', 'but'];
+                  const words = text.toLowerCase().split(/\s+/)
+                      .filter(word => word.length > 2 && !fillerWords.includes(word));
+                  // Take first 2-3 important words
+                  return words.slice(0, 3).join(' ');
+              };
+              
+              const searches = [showMeTopic, currentNugget?.searchTerm]
+                  .filter(Boolean)
+                  .map(extractKeyTerms)
+                  .filter(term => term.length > 0);
               const allImages = [];
               
               for (const term of searches) {
@@ -1211,6 +1352,22 @@ export default function NuggetsApp() {
     for (const pattern of nonsensePatterns) {
       if (pattern.test(trimmed)) return false;
     }
+    
+    // Check for silly/inappropriate words commonly used by children
+    const sillyWords = [
+      'poop', 'poopy', 'fart', 'farts', 'butt', 'pee', 'poo', 'toot', 'burp',
+      'booger', 'snot', 'dumb', 'stupid', 'doo doo', 'doodoo', 'caca', 'peepee',
+      'weewee', 'stinky', 'smelly', 'gross', 'yuck', 'icky'
+    ];
+    
+    // Check if answer contains primarily silly words
+    const wordsArray = trimmed.split(/\s+/);
+    const sillyWordCount = wordsArray.filter(word => 
+      sillyWords.some(silly => word.includes(silly))
+    ).length;
+    
+    // If more than 30% of words are silly, reject it
+    if (sillyWordCount > 0 && sillyWordCount / wordsArray.length > 0.3) return false;
     
     // Check if text has reasonable word-to-character ratio
     const words = trimmed.split(/\s+/).filter(w => w.length > 0);
@@ -2000,6 +2157,110 @@ Return ONLY valid JSON in this exact format: { "fact": "The fact text here", "to
           "Add color: Color in sections with permanent markers or paint if desired."
         ],
         imageSearchTerm: "foil sculpture"
+      },
+      "Impressionist Landscape": {
+        title: "Impressionist Landscape",
+        supplies: ["Paints (watercolor or acrylic)", "Paintbrush", "Paper or canvas", "Water cup", "Palette or paper plate"],
+        steps: [
+          "Choose your scene: Pick a simple landscape - a garden, park, or view from your window.",
+          "Work quickly: Impressionists captured moments in time, so paint fast without overthinking!",
+          "Use broken color: Instead of mixing colors perfectly, dab different colors side by side.",
+          "Focus on light: Think about how sunlight affects the colors and creates shadows.",
+          "Visible brushstrokes: Don't blend too much - let your brushstrokes show!",
+          "Step back often: View your painting from a distance to see how the colors blend in your eyes."
+        ],
+        imageSearchTerm: "impressionist landscape"
+      },
+      "Cubist Portrait Collage": {
+        title: "Cubist Portrait Collage",
+        supplies: ["Magazines or colored paper", "Scissors", "Glue stick", "Paper for background", "Pencil", "Ruler (optional)"],
+        steps: [
+          "Take a photo: Use a photo of yourself or draw a simple face outline.",
+          "Cut it up: Cut the face into geometric shapes - triangles, rectangles, circles.",
+          "Rearrange pieces: Place face parts at different angles, showing multiple viewpoints at once.",
+          "Add extra shapes: Cut more geometric shapes from colored paper to fill spaces.",
+          "Layer and overlap: Create depth by overlapping pieces at various angles.",
+          "Glue it down: Once you like your arrangement, glue everything in place."
+        ],
+        imageSearchTerm: "cubist portrait"
+      },
+      "Pop Art Self-Portrait": {
+        title: "Pop Art Self-Portrait",
+        supplies: ["Photo of yourself (or draw one)", "Bright markers or paints", "Paper", "Pencil", "Black marker for outlines"],
+        steps: [
+          "Draw or trace: Create a simple outline drawing of your face with bold features.",
+          "Outline everything: Use thick black marker to outline all shapes like comic books.",
+          "Choose bold colors: Pick 3-4 bright, unrealistic colors (green skin, purple hair, etc.).",
+          "Fill in flat colors: Color each area with solid, flat colors - no shading or blending.",
+          "Repeat it: Create 4 versions of the same portrait with different color combinations.",
+          "Arrange like Warhol: Place your 4 portraits in a grid like Andy Warhol's famous style."
+        ],
+        imageSearchTerm: "pop art portrait"
+      },
+      "Action Painting": {
+        title: "Action Painting",
+        supplies: ["Large paper or canvas", "Acrylic or tempera paints", "Various tools: brushes, sticks, old toothbrushes", "Drop cloth or work outside", "Cups for paint"],
+        steps: [
+          "Prepare your space: Lay down newspapers or work outside - this gets messy!",
+          "Thin your paint: Mix paint with a little water so it splatters and drips well.",
+          "Flick and drip: Dip your brush or stick in paint and flick it across the canvas.",
+          "Layer colors: Use multiple colors, letting each layer dry slightly before adding more.",
+          "Try different motions: Swing, drip, pour, and splatter paint with energetic movements.",
+          "Express yourself: Let your emotions guide your movements - there are no mistakes!"
+        ],
+        imageSearchTerm: "splatter painting"
+      },
+      "Surrealist Dream Drawing": {
+        title: "Surrealist Dream Drawing",
+        supplies: ["Paper", "Pencil and eraser", "Colored pencils or markers", "Your imagination!"],
+        steps: [
+          "Think of a dream: Recall a strange dream or imagine an impossible world.",
+          "Combine odd things: Draw objects that don't normally go together (fish with wings, clocks melting).",
+          "Change scale: Make tiny things huge or giant things tiny.",
+          "Create impossible scenes: Draw gravity working backwards, objects floating, or landscapes upside down.",
+          "Add realistic details: Make your impossible things look realistic and detailed.",
+          "Tell a strange story: Your artwork should make people wonder and ask questions!"
+        ],
+        imageSearchTerm: "surrealist dream art"
+      },
+      "Minimalist Design": {
+        title: "Minimalist Design",
+        supplies: ["White paper", "Ruler", "Pencil", "Black marker or paint", "Optional: 2-3 colored markers"],
+        steps: [
+          "Keep it simple: Minimalism is about using the least to express the most.",
+          "Choose basic shapes: Use only simple geometric shapes - circles, squares, lines.",
+          "Limited colors: Use only 1-3 colors plus black and white.",
+          "Lots of white space: Leave most of your paper empty - negative space is important!",
+          "Perfect placement: Think carefully about where each element goes.",
+          "Remove extras: If you can take something away without losing meaning, remove it."
+        ],
+        imageSearchTerm: "minimalist art"
+      },
+      "Graffiti Name Design": {
+        title: "Graffiti Name Design",
+        supplies: ["Paper", "Pencil", "Colored markers or paint", "Black marker for outlines"],
+        steps: [
+          "Write your name: Start by writing your name in bubble letters or block letters.",
+          "Make it bold: Thicken all the letters so they're chunky and bold.",
+          "Add style: Give letters personality - make them lean, connect them, overlap them.",
+          "Create depth: Add 3D effects by drawing parallel lines to one side of each letter.",
+          "Outline in black: Use thick black marker to outline everything.",
+          "Add colors and effects: Fill with bright colors, add highlights, stars, drips, or patterns!"
+        ],
+        imageSearchTerm: "graffiti letters"
+      },
+      "Renaissance Portrait Study": {
+        title: "Renaissance Portrait Study",
+        supplies: ["Paper", "Pencil (2B or 4B for darker shading)", "Eraser", "Mirror or photo reference", "Optional: Colored pencils"],
+        steps: [
+          "Study proportions: Renaissance artists carefully measured faces - eyes are halfway down the head.",
+          "Draw lightly: Start with very light guidelines for the face shape and features.",
+          "Observe carefully: Look closely at how light and shadow define the face.",
+          "Build gradual tones: Use gentle shading, gradually building darker values.",
+          "Blend smoothly: Renaissance portraits show smooth, realistic skin - blend your shading gently.",
+          "Add details last: Add details like individual hairs, eyelashes, and fine lines at the end."
+        ],
+        imageSearchTerm: "renaissance portrait"
       }
     };
 
@@ -2019,7 +2280,15 @@ Return ONLY valid JSON in this exact format: { "fact": "The fact text here", "to
       "Pointillism Portrait": "Pointillism was invented by French artists Georges Seurat and Paul Signac in the 1880s! They discovered that when you place pure color dots next to each other, your eyes blend them from a distance. This is similar to how pixels create images on screens today!",
       "Zentangle Patterns": "Line is the most fundamental element of art - it's the path a point makes as it moves! Different types of lines create different feelings: horizontal lines feel calm, vertical lines feel strong, and diagonal lines create movement and tension. Zentangle combines many line patterns into meditative art.",
       "Monochromatic Painting": "Monochromatic means 'one color'! Pablo Picasso had a 'Blue Period' where he painted mainly in blue tones to express sadness. Using one color family creates a strong mood and teaches you about value (light and dark) better than using many colors.",
-      "Foil Relief Sculpture": "Relief sculpture is raised off a flat surface, unlike sculptures you can walk around! Ancient civilizations carved relief sculptures on temple walls and coins. The Statue of Liberty's face is an example of high relief - parts stick out dramatically from the background."
+      "Foil Relief Sculpture": "Relief sculpture is raised off a flat surface, unlike sculptures you can walk around! Ancient civilizations carved relief sculptures on temple walls and coins. The Statue of Liberty's face is an example of high relief - parts stick out dramatically from the background.",
+      "Impressionist Landscape": "Impressionism started in France in the 1860s-1870s! Artists like Claude Monet and Pierre-Auguste Renoir painted outdoors to capture changing light and atmosphere. The name came from Monet's painting 'Impression, Sunrise' - critics meant it as an insult, but the artists embraced it!",
+      "Cubist Portrait Collage": "Cubism was invented by Pablo Picasso and Georges Braque around 1907! They wanted to show objects from multiple viewpoints at the same time - like seeing all sides of a face at once. This revolutionary idea changed modern art forever.",
+      "Pop Art Self-Portrait": "Pop Art emerged in the 1950s-1960s, celebrating everyday objects and popular culture! Andy Warhol made his famous portraits of Marilyn Monroe and Campbell's Soup cans. Pop artists wanted to blur the line between 'high art' and commercial art.",
+      "Action Painting": "Abstract Expressionism began in 1940s New York! Jackson Pollock became famous for dripping and splattering paint on huge canvases laid on the floor. He said he wanted to literally be 'in' his paintings, expressing pure emotion through energetic gestures.",
+      "Surrealist Dream Drawing": "Surrealism started in the 1920s, inspired by dreams and the unconscious mind! Artists like Salvador Dalí and René Magritte painted impossible, dreamlike scenes with realistic detail. They believed dreams revealed deeper truths about reality.",
+      "Minimalist Design": "Minimalism emerged in the 1960s with artists saying 'less is more'! Artists like Donald Judd and Agnes Martin used simple shapes, lines, and limited colors. Minimalist art asks viewers to focus on pure form, color, and space without distraction.",
+      "Graffiti Name Design": "Street Art and Graffiti became recognized as legitimate art in the 1970s-1980s! Artists like Jean-Michel Basquiat and Keith Haring started on city walls before becoming famous gallery artists. Graffiti originated from 'graffito,' Italian for 'scratched.'",
+      "Renaissance Portrait Study": "The Renaissance (1400s-1600s) means 'rebirth'! Artists like Leonardo da Vinci studied anatomy, mathematics, and perspective to create realistic paintings. They developed techniques like sfumato (soft, smoky shading) and chiaroscuro (strong light-dark contrast) still used today!"
     };
 
     // Set activity response to show the mission page
@@ -2029,10 +2298,583 @@ Return ONLY valid JSON in this exact format: { "fact": "The fact text here", "to
     // Navigate to nugget view (which displays activities)
     // Create a nugget with an educational fact
     const activityFact = activityFacts[activity.name] || `${activity.name}: ${activity.description}`;
+    // Extract first sentence for the nugget text (to keep it concise)
+    const firstSentence = activityFact.split(/[.!?]/)[0] + '.';
     const activityNugget = {
-      text: activityFact,
+      text: firstSentence,
       tags: ["Elements of Art", activity.element, activity.name],
       subjectId: 'art',
+      id: Date.now(),
+      searchTerm: data.imageSearchTerm,
+      originalTag: activity.name
+    };
+    
+    setCurrentNugget(activityNugget);
+    setAiContentImage(null);
+    setActivityImage(null);
+    setLearnResponse(null);
+    navigateTo('nugget');
+
+    // Generate image for the activity
+    generateImage(data.title, data.imageSearchTerm, activity.name);
+  };
+
+  const openMathActivity = (activity) => {
+    // Predefined math activities for the Elements of Math page
+    const activityData = {
+      "Fraction Pizza Party": {
+        title: "Fraction Pizza Party",
+        supplies: ["Paper plates or circles cut from paper", "Scissors", "Markers or crayons", "Ruler (optional)"],
+        steps: [
+          "Make your pizzas: Draw or use paper plates to represent whole pizzas.",
+          "Choose fractions: Decide what fractions to practice (halves, thirds, quarters, eighths).",
+          "Divide carefully: Fold and cut your pizza into equal slices.",
+          "Label each slice: Write the fraction on each piece (1/4, 1/8, etc.).",
+          "Practice combinations: Try putting slices together - what does 1/4 + 1/4 equal?",
+          "Share fairly: Use your pizza fractions to practice equal sharing problems!"
+        ],
+        imageSearchTerm: "fraction pizza"
+      },
+      "Shape Pattern Builder": {
+        title: "Shape Pattern Builder",
+        supplies: ["Colored paper", "Scissors", "Glue stick", "Large paper for base", "Pattern blocks or cut shapes"],
+        steps: [
+          "Cut basic shapes: Cut out circles, triangles, squares, and hexagons in different colors.",
+          "Start a pattern: Choose 2-3 shapes to repeat (circle, square, circle, square...).",
+          "Glue your pattern: Place and glue your repeating pattern in a row.",
+          "Try different patterns: Make ABAB patterns, ABCABC patterns, or growing patterns.",
+          "Create symmetry: Make mirror patterns or rotational designs.",
+          "Challenge yourself: Design your own tessellation pattern that fits together perfectly!"
+        ],
+        imageSearchTerm: "geometric patterns"
+      },
+      "Real-World Measurement": {
+        title: "Real-World Measurement",
+        supplies: ["Ruler or measuring tape", "Paper and pencil", "Objects around the house"],
+        steps: [
+          "Choose your objects: Select 5-10 items to measure (book, shoe, table, etc.).",
+          "Estimate first: Before measuring, guess how long each object is.",
+          "Measure carefully: Use your ruler to measure in inches or centimeters.",
+          "Record data: Write down your estimates and actual measurements.",
+          "Compare results: How close were your estimates? Calculate the difference.",
+          "Find relationships: Are some objects exactly twice as long as others?"
+        ],
+        imageSearchTerm: "measuring objects"
+      },
+      "Multiplication Arrays": {
+        title: "Multiplication Arrays",
+        supplies: ["Small objects (coins, buttons, pasta, or beans)", "Paper", "Pencil", "Grid paper (optional)"],
+        steps: [
+          "Choose a multiplication: Pick a multiplication fact like 3 × 4.",
+          "Build rows: Arrange 3 rows with 4 objects in each row.",
+          "Count them all: Count the total - that's your answer!",
+          "Draw your array: Sketch the array on paper with circles or dots.",
+          "Try different facts: Build arrays for 2×5, 4×3, 5×5, and more.",
+          "Discover patterns: Notice how 3×4 and 4×3 give the same answer (commutative property)!"
+        ],
+        imageSearchTerm: "multiplication array"
+      },
+      "Decimal Number Line": {
+        title: "Decimal Number Line",
+        supplies: ["Long paper strip", "Ruler", "Marker or pencil", "Number cards with decimals"],
+        steps: [
+          "Draw your line: Make a long horizontal line across your paper.",
+          "Mark whole numbers: Label 0, 1, 2, 3, etc. evenly spaced along the line.",
+          "Add decimals: Divide the space between each whole number into 10 equal parts.",
+          "Place tenths: Mark 0.1, 0.2, 0.3... up to 0.9 between 0 and 1.",
+          "Practice placement: Write decimal numbers on cards and place them correctly on your line.",
+          "Compare decimals: Use your number line to see which decimals are bigger or smaller!"
+        ],
+        imageSearchTerm: "decimal number line"
+      },
+      "Addition Story Problems": {
+        title: "Addition Story Problems",
+        supplies: ["Paper", "Pencil", "Counters or small objects", "Your imagination!"],
+        steps: [
+          "Create a scenario: Think of a real situation (shopping, collecting things, etc.).",
+          "Write your story: 'Maya has 12 stickers. Her friend gives her 8 more. How many does she have now?'",
+          "Draw a picture: Illustrate your story problem to help visualize it.",
+          "Solve it: Use objects, drawings, or mental math to find the answer.",
+          "Write the equation: 12 + 8 = 20",
+          "Make it harder: Create multi-step problems with 3 or more numbers to add!"
+        ],
+        imageSearchTerm: "addition math"
+      },
+      "Division Game": {
+        title: "Division Game",
+        supplies: ["20-30 small objects (candies, crackers, toys)", "Small containers or plates", "Paper and pencil"],
+        steps: [
+          "Start with a collection: Count out 24 objects.",
+          "Choose groups: Decide to divide them equally among 4 people.",
+          "Share equally: Give one to each person, then another, until all are shared.",
+          "Count shares: How many did each person get? That's 24 ÷ 4 = 6!",
+          "Try different divisions: Use the same 24 objects and divide by 3, 2, 6, or 8.",
+          "Discover remainders: What happens when you try to divide 25 by 4?"
+        ],
+        imageSearchTerm: "division sharing"
+      },
+      "Subtraction Detective": {
+        title: "Subtraction Detective",
+        supplies: ["Paper", "Pencil", "Number cards 1-20", "Counters or blocks"],
+        steps: [
+          "Set up the mystery: Start with a number like 15.",
+          "Create the puzzle: 'I had some apples. I gave away 7. Now I have 8 left. How many did I start with?'",
+          "Work backwards: Start with the ending number (8) and add back what was taken (7).",
+          "Use models: Draw circles to represent the problem visually.",
+          "Write the equation: 15 - 7 = 8 or 8 + 7 = 15",
+          "Create detective mysteries: Make up 'missing number' puzzles for friends and family!"
+        ],
+        imageSearchTerm: "subtraction math"
+      }
+    };
+
+    const data = activityData[activity.name];
+    if (!data) return;
+
+    // Educational facts for each math activity
+    const activityFacts = {
+      "Fraction Pizza Party": "Fractions represent parts of a whole! The top number (numerator) tells how many pieces you have, and the bottom number (denominator) tells how many equal pieces the whole is divided into. Pizza is perfect for learning fractions because we naturally cut it into equal slices. Ancient Egyptians were the first to write fractions, and they only used unit fractions (fractions with 1 on top)!",
+      "Shape Pattern Builder": "Patterns are the foundation of mathematics! Recognizing and creating patterns helps develop algebraic thinking. Patterns exist everywhere in nature - from flower petals to bee honeycombs. The famous mathematician Leonardo Fibonacci discovered a number pattern (1, 1, 2, 3, 5, 8...) that appears in spirals found in shells, galaxies, and sunflowers!",
+      "Real-World Measurement": "Measurement helps us describe and understand the world! The metric system (centimeters, meters) is based on units of 10, making it easy to convert. The imperial system (inches, feet) comes from ancient measurements - an inch was originally the width of a thumb! Scientists need precise measurements - NASA's Mars Climate Orbiter crashed because of a measurement mix-up between metric and imperial units!",
+      "Multiplication Arrays": "Arrays show that multiplication is really repeated addition! A 3×4 array means '3 groups of 4' or '4 groups of 3' - the answer is the same! This property is called 'commutative.' Arrays help us understand area too - a 3×4 rectangle has an area of 12 square units. Computer screens use arrays of pixels to display images!",
+      "Decimal Number Line": "Decimals are another way to write fractions based on powers of 10! The decimal point separates whole numbers from parts smaller than one. Place value extends to the right of the decimal: tenths, hundredths, thousandths. Money uses decimals - $1.50 means 1 dollar and 50 hundredths of a dollar. Understanding decimals is essential for science, engineering, and financial literacy!",
+      "Addition Story Problems": "Word problems connect math to real life! Addition combines quantities to find a total. Creating your own story problems develops critical thinking and helps you understand when to add in real situations. Mathematicians call addition an 'operation' - it's one of the fundamental operations in arithmetic. The commutative property means 5+3 equals 3+5!",
+      "Division Game": "Division is sharing equally or splitting into equal groups! It's the opposite (inverse) of multiplication. Division shows up everywhere - cutting a pizza, sharing toys, or splitting into teams. When a number doesn't divide evenly, we get remainders. Division is crucial for cooking (halving recipes), shopping (unit prices), and understanding fractions!",
+      "Subtraction Detective": "Subtraction means taking away or finding the difference between numbers! It's the inverse of addition. Mathematicians use subtraction to solve 'missing addend' problems by working backwards. Understanding subtraction helps with time (elapsed time), money (making change), and measurement (comparing lengths). The number line is a powerful tool for visualizing subtraction!"
+    };
+
+    // Set activity response to show the mission page
+    setActivityResponse(data);
+    setAiResponse({ type: 'activity', content: data });
+    
+    // Navigate to nugget view (which displays activities)
+    // Create a nugget with an educational fact
+    const activityFact = activityFacts[activity.name] || `${activity.name}: ${activity.description}`;
+    // Extract first sentence for the nugget text (to keep it concise)
+    const firstSentence = activityFact.split(/[.!?]/)[0] + '.';
+    const activityNugget = {
+      text: firstSentence,
+      tags: ["Elements of Math", activity.concept, activity.name],
+      subjectId: 'math',
+      id: Date.now(),
+      searchTerm: data.imageSearchTerm,
+      originalTag: activity.name
+    };
+    
+    setCurrentNugget(activityNugget);
+    setAiContentImage(null);
+    setActivityImage(null);
+    setLearnResponse(null);
+    navigateTo('nugget');
+
+    // Generate image for the activity
+    generateImage(data.title, data.imageSearchTerm, activity.name);
+  };
+
+  const openMusicActivity = (activity) => {
+    // Predefined music activities for the Elements of Music page
+    const activityData = {
+      "Rhythm Clapping Game": {
+        title: "Rhythm Clapping Game",
+        supplies: ["Your hands", "A friend or family member (optional)", "Timer or clock"],
+        steps: [
+          "Start simple: Clap a basic pattern like CLAP-CLAP-pause-CLAP.",
+          "Listen carefully: Have someone repeat your pattern back to you.",
+          "Add complexity: Try patterns with different speeds or volumes (loud-soft-loud).",
+          "Use body percussion: Add stomps, snaps, or thigh slaps to your patterns.",
+          "Create a rhythm chain: Each person adds one clap to build a longer pattern.",
+          "Challenge yourself: Try to remember and repeat increasingly complex rhythms!"
+        ],
+        imageSearchTerm: "children clapping rhythm"
+      },
+      "Water Glass Xylophone": {
+        title: "Water Glass Xylophone",
+        supplies: ["5-8 identical glass cups or jars", "Water", "Spoon or pencil", "Food coloring (optional)"],
+        steps: [
+          "Line up your glasses: Arrange them in a row on a safe surface.",
+          "Add water levels: Fill each glass with different amounts of water.",
+          "Test the pitch: Gently tap each glass with your spoon - notice the different sounds!",
+          "Order by pitch: Arrange glasses from lowest to highest pitch.",
+          "Play a tune: Try to play 'Mary Had a Little Lamb' or 'Twinkle Twinkle.'",
+          "Experiment: Add or remove water to fine-tune your 'notes' into a musical scale."
+        ],
+        imageSearchTerm: "water glass xylophone"
+      },
+      "Shaker Instruments": {
+        title: "Shaker Instruments",
+        supplies: ["Empty plastic bottles or containers with lids", "Rice, beans, pasta, or small pebbles", "Tape or glue", "Decorative materials (stickers, markers)"],
+        steps: [
+          "Choose your container: Find a plastic bottle, jar, or small container with a secure lid.",
+          "Add filling: Put rice, beans, pasta, or pebbles inside (try different amounts).",
+          "Seal it tight: Make sure the lid is secure - you can tape it for extra safety.",
+          "Decorate: Make it colorful with stickers, markers, or paint.",
+          "Test the sounds: Shake gently, then shake harder - notice how dynamics change!",
+          "Play along: Use your shaker to play rhythms to your favorite songs!"
+        ],
+        imageSearchTerm: "homemade shaker instrument"
+      },
+      "Tempo Walk": {
+        title: "Tempo Walk",
+        supplies: ["Music player or someone to clap rhythms", "Open space to walk", "Different tempo music tracks"],
+        steps: [
+          "Start slow: Play slow music or clap a slow, steady beat.",
+          "Walk to the beat: Take one step for each beat you hear.",
+          "Speed up gradually: Increase the tempo and walk faster to match.",
+          "Try different tempos: Walk to slow (adagio), medium (moderato), and fast (allegro) music.",
+          "Freeze game: When the music stops, freeze in place!",
+          "Create a tempo story: Walk like a turtle (slow), then a person (medium), then a cheetah (fast)!"
+        ],
+        imageSearchTerm: "children walking dancing"
+      },
+      "Melody Maker": {
+        title: "Melody Maker",
+        supplies: ["Piano, keyboard, or xylophone (or use a free online virtual piano)", "Paper and pencil", "Your voice!"],
+        steps: [
+          "Choose your notes: Pick 5 notes that sound good together (like C-D-E-F-G).",
+          "Hum ideas: Sing little tunes in your head until you find one you like.",
+          "Play it: Find your melody on your instrument, one note at a time.",
+          "Remember it: Play your melody several times so you don't forget it.",
+          "Write it down: Draw simple pictures or symbols to remember which notes go where.",
+          "Share your song: Perform your original melody for family or friends!"
+        ],
+        imageSearchTerm: "child playing keyboard"
+      },
+      "Loud & Soft Challenge": {
+        title: "Loud & Soft Challenge",
+        supplies: ["Any musical instrument or your voice", "Volume control chart (draw soft to loud)"],
+        steps: [
+          "Start with whisper-soft: Play or sing as quietly as possible (pianissimo).",
+          "Gradually get louder: Slowly increase your volume step by step.",
+          "Reach full volume: Play or sing as loud as you safely can (fortissimo).",
+          "Go back down: Gradually get softer again until you're back to a whisper.",
+          "Practice control: Try to hold each volume level steady without jumping.",
+          "Dynamic story: Create a sound story that goes from quiet morning to loud thunderstorm to quiet night."
+        ],
+        imageSearchTerm: "volume music dynamics"
+      },
+      "Musical Notation Art": {
+        title: "Musical Notation Art",
+        supplies: ["Paper", "Pencil and eraser", "Ruler", "Black marker", "Reference sheet of music symbols"],
+        steps: [
+          "Draw staff lines: Use a ruler to draw 5 parallel horizontal lines across your paper.",
+          "Learn the symbols: Look at treble clef, notes, rests, and time signatures.",
+          "Practice drawing: Copy the treble clef symbol several times until you can draw it smoothly.",
+          "Add notes: Draw whole notes, half notes, quarter notes, and eighth notes on the staff.",
+          "Create a pattern: Make a repeating pattern of different note values.",
+          "Compose on paper: Try writing out a simple melody using the notes you've learned!"
+        ],
+        imageSearchTerm: "sheet music notation"
+      },
+      "Harmony Humming": {
+        title: "Harmony Humming",
+        supplies: ["Your voice", "A friend or family member", "A simple song everyone knows"],
+        steps: [
+          "Choose a song: Pick a familiar tune like 'Row, Row, Row Your Boat.'",
+          "Sing the melody: One person sings the main tune.",
+          "Find a harmony note: The second person tries humming a higher or lower note that sounds good with the melody.",
+          "Practice together: Keep singing and adjusting until the notes blend beautifully.",
+          "Try a round: Start the song at different times (like a round) to create harmony.",
+          "Experiment: Try holding one long note while the other person sings the melody."
+        ],
+        imageSearchTerm: "children singing harmony"
+      },
+      "Rubber Band Guitar": {
+        title: "Rubber Band Guitar",
+        supplies: ["Empty tissue box or small cardboard box", "4-6 rubber bands of different thicknesses", "Pencil or cardboard tube", "Scissors (with adult help)"],
+        steps: [
+          "Prepare the box: If using a tissue box, keep the opening as-is. For other boxes, cut a circular sound hole.",
+          "Add the bridge: Place a pencil under the rubber bands near one end to lift them up.",
+          "Stretch rubber bands: Stretch different rubber bands around the box lengthwise over the hole.",
+          "Test the strings: Pluck each rubber band and listen to the different pitches.",
+          "Arrange by pitch: Put thicker/looser bands on one side, thinner/tighter on the other.",
+          "Play your guitar: Pluck the 'strings' to play songs and experiment with pitch!"
+        ],
+        imageSearchTerm: "rubber band guitar craft"
+      },
+      "Soundwalk Adventure": {
+        title: "Soundwalk Adventure",
+        supplies: ["Paper and pencil or recording device", "Your ears!", "A safe place to walk (backyard, park, or neighborhood)"],
+        steps: [
+          "Prepare to listen: Close your eyes for a moment and focus on what you can hear.",
+          "Take a slow walk: Walk quietly and pay attention to every sound around you.",
+          "Identify sounds: Notice high sounds (birds, squeaks) and low sounds (traffic, rumbles).",
+          "Record what you hear: Write down or draw pictures of the sounds you discover.",
+          "Compare sounds: Which sounds were loud? Soft? High? Low? Rhythmic?",
+          "Create a sound map: Draw a map of your walk and label where you heard each sound!"
+        ],
+        imageSearchTerm: "child listening nature sounds"
+      },
+      "Stomp & Clap Patterns": {
+        title: "Stomp & Clap Patterns",
+        supplies: ["Your body!", "Open space", "Friends or family to join (optional)"],
+        steps: [
+          "Learn the basics: Practice stomping (with your feet) and clapping (with your hands).",
+          "Start with two: Try stomp-stomp-clap-clap, repeating it over and over.",
+          "Add complexity: Create patterns like stomp-clap-stomp-clap or stomp-clap-clap-stomp.",
+          "Add snap: Include finger snaps for a third sound in your body percussion.",
+          "Speed challenge: Start slow, then gradually speed up while keeping the pattern steady.",
+          "Create a routine: Combine several patterns into a body percussion performance!"
+        ],
+        imageSearchTerm: "body percussion dance"
+      },
+      "Echo Song Game": {
+        title: "Echo Song Game",
+        supplies: ["Your voice", "A partner or group", "Simple melodies to echo"],
+        steps: [
+          "Start simple: One person sings a short melody (3-4 notes), like 'do-re-mi.'",
+          "Echo back: The other person repeats the exact same melody.",
+          "Take turns: Switch roles - now the other person creates a melody to echo.",
+          "Increase difficulty: Make melodies longer or more complex.",
+          "Add words: Try echoing short phrases like 'Hello friend!' or 'How are you?'",
+          "Create an echo chain: Each person adds one more note to the melody as it goes around!"
+        ],
+        imageSearchTerm: "children singing together"
+      }
+    };
+
+    const data = activityData[activity.name];
+    if (!data) return;
+
+    // Educational facts for each music activity
+    const activityFacts = {
+      "Rhythm Clapping Game": "Rhythm is the heartbeat of music! Every song has a steady beat (pulse) and a rhythm (pattern of sounds). Your heart has rhythm too - it beats about 60-100 times per minute, which is similar to the tempo of many songs! Drummers from West Africa use complex polyrhythms (multiple rhythms at once) that have been passed down for thousands of years.",
+      "Water Glass Xylophone": "Pitch depends on vibration speed! When you tap a glass with less water, it vibrates faster and creates a higher pitch. Glasses with more water vibrate slower and create lower pitches. This is how all instruments work - whether it's strings vibrating, air columns in wind instruments, or metal bars in xylophones! The xylophone was invented in Southeast Asia over 2,000 years ago.",
+      "Shaker Instruments": "Shakers are percussion instruments called 'idiophones' - they make sound by vibrating themselves (not strings or membranes)! The maraca, a traditional shaker from Latin America, was originally made from dried gourds with seeds inside. Different materials inside your shaker create different timbres (sound qualities). Rhythm instruments like shakers are found in every culture on Earth!",
+      "Tempo Walk": "Tempo is the speed of music, measured in BPM (beats per minute)! Classical musicians use Italian words: largo (very slow), adagio (slow), andante (walking pace), allegro (fast), and presto (very fast). Your walking speed naturally matches certain tempos - humans typically walk at about 120 BPM. Tempo affects mood: slow music feels calm, while fast music feels exciting!",
+      "Melody Maker": "A melody is a sequence of single notes that create a tune! Melodies are made from scales - sets of notes that sound good together. The most common scale in Western music has 7 notes before repeating (like do-re-mi-fa-sol-la-ti-do). Composers like Mozart started writing melodies when they were only 5 years old! Every culture has its own musical scales and melody styles.",
+      "Loud & Soft Challenge": "Dynamics means how loud or soft music is! Musicians use Italian terms: pianissimo (pp = very soft), piano (p = soft), mezzo-forte (mf = medium loud), forte (f = loud), and fortissimo (ff = very loud). Dynamics create emotion and drama in music. Crescendo means gradually getting louder, and diminuendo means gradually getting softer. Composers write these instructions directly on sheet music!",
+      "Musical Notation Art": "Musical notation is a written language for music! It developed over 1,000 years ago so musicians could remember and share their compositions. The staff (5 lines) shows pitch - higher notes are placed higher on the staff. The shape of notes shows duration - whole notes last longest, then half notes, quarter notes, and eighth notes. Professional musicians can 'sight-read' music just like you read words in a book!",
+      "Harmony Humming": "Harmony happens when two or more notes are played or sung together! Some note combinations sound consonant (pleasant and restful), while others sound dissonant (tense). The interval (distance) between notes creates different feelings: octaves sound strong, thirds sound happy, and sixths sound sweet. Barbershop quartets sing in tight four-part harmony. Many cultures prefer different harmony styles!",
+      "Rubber Band Guitar": "Guitars and all stringed instruments use vibrating strings to make sound! Thicker strings vibrate slower and create lower pitches; thinner strings vibrate faster and create higher pitches. Tighter strings also create higher pitches. The hollow body of a guitar amplifies (makes louder) the string vibrations. The first stringed instruments were created over 4,000 years ago!",
+      "Soundwalk Adventure": "Our world is full of musical elements! High-pitched sounds come from fast vibrations (birds, squeaks), while low-pitched sounds come from slow vibrations (thunder, truck engines). Loud sounds have strong vibrations; soft sounds have gentle vibrations. Sound travels through air at about 767 miles per hour! Composers like John Cage created music inspired by environmental sounds.",
+      "Stomp & Clap Patterns": "Body percussion uses your body as an instrument! Stomp, clap, snap, and pat create different timbres (sound qualities). The musical group STOMP became famous for making incredible rhythms with everyday objects and body percussion. Many cultures use body percussion: flamenco dancers stomp, Pacific Islanders slap their bodies rhythmically, and African dance often includes clapping patterns.",
+      "Echo Song Game": "Echoing melodies develops your 'musical ear' - the ability to recognize and reproduce pitches! This skill is called 'aural training' and is essential for all musicians. Your brain stores melodies in your memory - that's why you can hum songs long after hearing them. Perfect pitch (the ability to name notes without reference) is rare, but musical memory can be developed by everyone through practice and playing echo games!"
+    };
+
+    // Set activity response to show the mission page
+    setActivityResponse(data);
+    setAiResponse({ type: 'activity', content: data });
+    
+    // Navigate to nugget view (which displays activities)
+    // Create a nugget with an educational fact
+    const activityFact = activityFacts[activity.name] || `${activity.name}: ${activity.description}`;
+    // Extract first sentence for the nugget text (to keep it concise)
+    const firstSentence = activityFact.split(/[.!?]/)[0] + '.';
+    const activityNugget = {
+      text: firstSentence,
+      tags: ["Elements of Music", activity.concept, activity.name],
+      subjectId: 'music',
+      id: Date.now(),
+      searchTerm: data.imageSearchTerm,
+      originalTag: activity.name
+    };
+    
+    setCurrentNugget(activityNugget);
+    setAiContentImage(null);
+    setActivityImage(null);
+    setLearnResponse(null);
+    navigateTo('nugget');
+
+    // Generate image for the activity
+    generateImage(data.title, data.imageSearchTerm, activity.name);
+  };
+
+  const openLanguageActivity = (activity) => {
+    // Predefined language activities for the Elements of Language page
+    const activityData = {
+      "Alphabet Scavenger Hunt": {
+        title: "Alphabet Scavenger Hunt",
+        supplies: ["Paper and pencil", "Your home or classroom", "Timer (optional)", "Camera (optional)"],
+        steps: [
+          "Make your alphabet list: Write all 26 letters from A to Z on your paper.",
+          "Set a time limit: Give yourself 15-30 minutes to complete the hunt.",
+          "Search for objects: Find one object for each letter (A for Apple, B for Book, etc.).",
+          "Write or draw: Next to each letter, write the name or draw a picture of your object.",
+          "Challenge yourself: Try to find objects that are nouns, verbs, AND adjectives!",
+          "Share your findings: Tell someone about the most interesting items you found!"
+        ],
+        imageSearchTerm: "alphabet letters learning"
+      },
+      "Story Starter Dice": {
+        title: "Story Starter Dice",
+        supplies: ["Dice or random number generator", "Paper and pencil", "Imagination!", "Story starter list"],
+        steps: [
+          "Create categories: Make lists for characters (knight, robot, teacher), settings (castle, space, school), and problems (lost treasure, broken spaceship).",
+          "Roll for character: Roll the die to pick your main character from your list.",
+          "Roll for setting: Roll again to choose where your story takes place.",
+          "Roll for problem: Roll one more time to decide what challenge your character faces.",
+          "Write your story: Spend 10-15 minutes writing about your character's adventure.",
+          "Add a twist: Roll one more time to add a surprise ending to your story!"
+        ],
+        imageSearchTerm: "child writing notebook"
+      },
+      "Poetry Slam": {
+        title: "Poetry Slam",
+        supplies: ["Paper and pencil", "Rhyming dictionary (optional)", "Your voice", "An audience (family or friends)"],
+        steps: [
+          "Choose your topic: Pick something you love - pets, nature, food, sports, or feelings.",
+          "Start with rhymes: Make a list of words that rhyme with key words in your topic.",
+          "Write your poem: Create 4-8 lines using rhyming words, rhythm, or repetition.",
+          "Add expression: Mark places to pause, speak loudly, or whisper.",
+          "Practice performing: Read your poem aloud several times with emotion.",
+          "Slam it: Perform your poem for an audience with gestures and vocal variety!"
+        ],
+        imageSearchTerm: "children reading poetry"
+      },
+      "Word Family Trees": {
+        title: "Word Family Trees",
+        supplies: ["Large paper", "Colored pencils or markers", "Dictionary", "Word family reference"],
+        steps: [
+          "Choose a root word: Pick a base word like 'port' (carry), 'graph' (write), or 'bio' (life).",
+          "Draw your tree trunk: Write your root word on a tree trunk in the middle of the paper.",
+          "Grow branches: Add branches for words that contain your root (transport, export, portable).",
+          "Find the meanings: Look up each word and write a short definition on each branch.",
+          "Add leaves: Draw leaves with example sentences using each word.",
+          "Make connections: Use different colors to show words with similar meanings!"
+        ],
+        imageSearchTerm: "word tree diagram"
+      },
+      "Magnetic Poetry": {
+        title: "Magnetic Poetry",
+        supplies: ["Index cards or sticky notes", "Scissors", "Markers", "Magnetic strip or tape (optional)"],
+        steps: [
+          "Create word cards: Write 30-50 words on individual cards (nouns, verbs, adjectives, etc.).",
+          "Include variety: Add articles (a, an, the), prepositions (on, under, with), and conjunctions (and, but).",
+          "Arrange words: Mix up your cards and try arranging them into sentences or poems.",
+          "Break the rules: Create silly combinations or play with word order for fun effects.",
+          "Build a poem: Make a complete poem using 10-15 of your word cards.",
+          "Share and remix: Have a friend rearrange your words to create a new poem!"
+        ],
+        imageSearchTerm: "magnetic words fridge"
+      },
+      "Puppet Show Theater": {
+        title: "Puppet Show Theater",
+        supplies: ["Socks, paper bags, or craft sticks", "Markers, fabric scraps, buttons", "Cardboard box for theater", "Your story idea"],
+        steps: [
+          "Create puppets: Make 2-3 characters using socks, bags, or sticks - give each a personality!",
+          "Plan your story: Decide on a beginning (introduce characters), middle (problem), and end (solution).",
+          "Write dialogue: Practice what each character will say - give them unique voices!",
+          "Build a stage: Cut a window in a cardboard box or use a table as your theater.",
+          "Rehearse your show: Practice your puppet movements and character voices.",
+          "Perform: Present your puppet show to family or friends, and don't forget to bow!"
+        ],
+        imageSearchTerm: "puppet show kids"
+      },
+      "Rhyme Time Match": {
+        title: "Rhyme Time Match",
+        supplies: ["Index cards", "Markers", "List of rhyming words", "A friend to play with (optional)"],
+        steps: [
+          "Make word pairs: Write rhyming words on cards (cat/hat, ring/sing, moon/spoon) - make 10-15 pairs.",
+          "Shuffle the deck: Mix up all the cards face down.",
+          "Play memory: Flip two cards at a time, trying to match rhyming pairs.",
+          "Say the words: When you flip cards, say them out loud to practice phonics.",
+          "Keep matches: If your cards rhyme, keep the pair and take another turn.",
+          "Create a rhyme: After the game, use your matched pairs to write a short rhyming poem!"
+        ],
+        imageSearchTerm: "word cards learning"
+      },
+      "Persuasive Letter Writing": {
+        title: "Persuasive Letter Writing",
+        supplies: ["Paper and pencil", "Envelope (optional)", "Examples of persuasive writing", "Your best reasons!"],
+        steps: [
+          "Choose your goal: Decide what you want to convince someone to do (later bedtime, class pet, field trip).",
+          "Know your audience: Think about who you're writing to and what they care about.",
+          "State your position: Start with a clear sentence: 'I believe that...' or 'I think we should...'",
+          "Give three reasons: List your strongest arguments with specific details and examples.",
+          "Address concerns: Think of objections they might have and explain why they shouldn't worry.",
+          "End with action: Finish with a strong conclusion asking them to agree with you!"
+        ],
+        imageSearchTerm: "child writing letter"
+      },
+      "Sentence Building Game": {
+        title: "Sentence Building Game",
+        supplies: ["Colored paper strips", "Markers", "Scissors", "Sentence pattern guide"],
+        steps: [
+          "Create word strips: Cut paper into strips and write nouns on red, verbs on blue, and adjectives on yellow.",
+          "Make basic sentences: Arrange strips to create simple sentences (The dog runs. The cat sleeps.).",
+          "Add details: Insert adjectives to make descriptions (The fluffy dog runs. The orange cat sleeps.).",
+          "Expand with phrases: Add prepositional phrases (The fluffy dog runs in the park.).",
+          "Try different patterns: Rearrange words to see how many sentences you can make.",
+          "Make it silly: Create funny combinations and read them aloud with expression!"
+        ],
+        imageSearchTerm: "word cards colorful"
+      },
+      "Word Detective": {
+        title: "Word Detective",
+        supplies: ["Dictionary", "Etymology book or website", "Detective notebook and pencil", "Magnifying glass (just for fun!)"],
+        steps: [
+          "Choose mystery words: Pick 5 interesting words you want to investigate (dinosaur, telephone, astronaut).",
+          "Find word origins: Look up where each word came from (Greek? Latin? Another language?).",
+          "Break into parts: Identify prefixes, roots, and suffixes (tele = far, phone = sound).",
+          "Make connections: Find other words that share the same roots or word parts.",
+          "Draw a diagram: Create a visual showing how the word parts combine to make meaning.",
+          "Share discoveries: Teach someone else about the word's history and related words!"
+        ],
+        imageSearchTerm: "dictionary book open"
+      },
+      "Punctuation Practice": {
+        title: "Punctuation Practice",
+        supplies: ["Sentences without punctuation", "Pencil and eraser", "Punctuation reference chart", "Different colored pens"],
+        steps: [
+          "Learn the marks: Review periods, question marks, exclamation points, commas, and quotation marks.",
+          "Read aloud first: Read sentences without punctuation to understand where you naturally pause.",
+          "Add end marks: Put periods, question marks, or exclamation points at the end of sentences.",
+          "Insert commas: Add commas in lists, after introductory words, and in compound sentences.",
+          "Use quotation marks: Show when someone is speaking by putting their words in quotes.",
+          "Create your own: Write 5 sentences and challenge a friend to add the correct punctuation!"
+        ],
+        imageSearchTerm: "punctuation typography"
+      },
+      "Simile & Metaphor Comics": {
+        title: "Simile & Metaphor Comics",
+        supplies: ["Comic strip template or blank paper", "Pencils and markers", "Examples of figurative language", "Imagination"],
+        steps: [
+          "Learn the difference: Similes use 'like' or 'as' (as brave as a lion); metaphors say one thing IS another (he is a lion).",
+          "Brainstorm comparisons: Think of creative ways to describe things (the moon is a spotlight, homework is a mountain).",
+          "Plan your comic: Create a 4-6 panel story that includes at least two similes or metaphors.",
+          "Draw characters: Keep drawings simple - stick figures work great!",
+          "Add speech bubbles: Write dialogue that includes your figurative language.",
+          "Share and explain: Show your comic to others and explain your creative comparisons!"
+        ],
+        imageSearchTerm: "comic book drawing"
+      }
+    };
+
+    // Educational facts for each language activity
+    const activityFacts = {
+      "Alphabet Scavenger Hunt": "The English alphabet has 26 letters, but it comes from the Latin alphabet which was adapted from Greek, which came from Phoenician! The word 'alphabet' itself comes from the first two Greek letters: alpha and beta. Not all languages use the same alphabet - Chinese uses characters (over 50,000 of them!), Arabic has 28 letters written from right to left, and Hawaiian has only 13 letters. Learning letter sounds (phonics) helps you decode new words!",
+      "Story Starter Dice": "Every story has key elements: characters (who), setting (where and when), plot (what happens), conflict (the problem), and resolution (how it's solved). The ancient Greeks identified these elements over 2,000 years ago! Authors use 'story arcs' - their stories rise with tension, reach a climax, then resolve. Random story prompts can boost creativity by forcing your brain to make unexpected connections. Many famous authors use random inspiration!",
+      "Poetry Slam": "Poetry uses special techniques: rhyme (matching sounds), rhythm (beat patterns), alliteration (repeated starting sounds), and imagery (descriptive language). The oldest known poem is the Epic of Gilgamesh, written 4,000 years ago! Poetry slams began in Chicago in 1984, where poets perform their work competitively. Spoken word poetry lets you use your voice, gestures, and emotion to bring words to life. Poetry can be serious, funny, or tell a story!",
+      "Word Family Trees": "Etymology is the study of word origins and how meanings change over time! Many English words come from Latin and Greek roots - knowing these roots helps you understand thousands of words. For example, 'bio' means life (biology, biography, biome), 'graph' means write (autograph, photograph, paragraph), and 'port' means carry (transport, export, portable). About 60% of English words have Latin or Greek origins!",
+      "Magnetic Poetry": "Parts of speech are the building blocks of sentences! Nouns name things, verbs show action, adjectives describe nouns, adverbs describe verbs, prepositions show relationships (on, under, beside), and conjunctions connect ideas (and, but, or). Rearranging words can completely change meaning: 'The dog chased the cat' vs. 'The cat chased the dog.' Poets often play with word order to create interesting effects and emphasize certain words!",
+      "Puppet Show Theater": "Story dialogue brings characters to life! Good dialogue reveals personality, moves the plot forward, and sounds natural. Each character should have a unique voice and way of speaking. Theater comes from ancient Greece, where actors wore masks to show different characters. Puppetry is ancient too - found in Egypt 4,000 years ago! Performing stories helps you understand character motivations and practice public speaking!",
+      "Rhyme Time Match": "Rhyming happens when word endings have the same sound: cat/hat, ring/king, play/day. Rhymes help poetry have rhythm and make language memorable - that's why nursery rhymes and song lyrics stick in your mind! There are different types of rhymes: perfect rhymes (cat/hat), near rhymes (love/move), and internal rhymes (within a line). Dr. Seuss was famous for creating playful, creative rhymes that taught phonics skills!",
+      "Persuasive Letter Writing": "Persuasive writing tries to convince readers to believe or do something! Good persuasion uses three techniques: ethos (credibility - why should they trust you?), pathos (emotion - make them care), and logos (logic - give solid reasons). The ancient Greek philosopher Aristotle defined these 2,300 years ago! Advertisers, politicians, and lawyers all use persuasive writing. Practice helps you communicate effectively and think critically!",
+      "Sentence Building Game": "Sentences have different structures! A simple sentence has one subject and verb (Dogs bark). A compound sentence joins two ideas with 'and,' 'but,' or 'or' (Dogs bark and cats meow). A complex sentence has a main idea plus a dependent clause (When I'm happy, I smile). Varying sentence length and structure makes writing more interesting. The longest sentence ever published was 13,955 words long!",
+      "Word Detective": "Many English words are borrowed from other languages! 'Pizza' and 'piano' come from Italian, 'karate' and 'emoji' from Japanese, 'chocolate' from Nahuatl (Aztec), and 'algebra' from Arabic. English has borrowed from over 350 languages! Prefixes (beginning word parts like 're-' or 'un-') and suffixes (ending word parts like '-tion' or '-ly') change word meanings. Understanding word parts helps you figure out unfamiliar words!",
+      "Punctuation Practice": "Punctuation marks guide readers through sentences! Periods signal stops, commas create pauses, question marks show queries, exclamation points add excitement, and quotation marks indicate speech. The first punctuation was invented by ancient Greeks to help actors know where to pause while reading plays! Missing or misplaced punctuation can completely change meaning: 'Let's eat Grandma!' vs. 'Let's eat, Grandma!' - one comma saves Grandma!",
+      "Simile & Metaphor Comics": "Figurative language creates vivid images in readers' minds! Similes compare using 'like' or 'as' (Her smile was like sunshine). Metaphors say something IS something else (Her smile was sunshine). Other literary devices include personification (giving human qualities to things), hyperbole (exaggeration), and onomatopoeia (sound words like 'boom'). Shakespeare invented over 1,700 new words and phrases we still use today, many using metaphors!"
+    };
+
+    const data = activityData[activity.name];
+    if (!data) {
+      console.error("Activity not found:", activity.name);
+      return;
+    }
+
+    // Set activity response to show the mission page
+    setActivityResponse(data);
+    setAiResponse({ type: 'activity', content: data });
+    
+    // Navigate to nugget view (which displays activities)
+    // Create a nugget with an educational fact
+    const activityFact = activityFacts[activity.name] || `${activity.name}: ${activity.description}`;
+    // Extract first sentence for the nugget text (to keep it concise)
+    const firstSentence = activityFact.split(/[.!?]/)[0] + '.';
+    const activityNugget = {
+      text: firstSentence,
+      tags: ["Elements of Language", activity.concept, activity.name],
+      subjectId: 'words',
       id: Date.now(),
       searchTerm: data.imageSearchTerm,
       originalTag: activity.name
@@ -2654,9 +3496,15 @@ Respond as ${guideName} to help the child.`;
                     onClick={() => { setSelectedSubject(sub); navigateTo('subject-menu'); }}
                     className={`relative p-4 rounded-2xl border-2 ${sub.border} ${sub.color.replace('text', 'bg').replace('100', '50').replace('/50', '/10')} flex flex-col items-center justify-center gap-3 h-32 active:scale-95 transition-transform shadow-sm`}
                 >
-                    <div className={`w-12 h-12 rounded-full ${sub.color} flex items-center justify-center shadow-inner`}>
-                        <sub.icon className="w-6 h-6" />
-                    </div>
+                    {sub.id === 'math' ? (
+                        <div className="w-24 h-24 flex items-center justify-center">
+                            <img src={mathNuggetImg} alt="Math Nugget" className="w-full h-full object-contain drop-shadow-lg" />
+                        </div>
+                    ) : (
+                        <div className={`w-12 h-12 rounded-full ${sub.color} flex items-center justify-center shadow-inner`}>
+                            <sub.icon className="w-6 h-6" />
+                        </div>
+                    )}
                     <span className="font-bold text-slate-800 dark:text-white text-sm">{sub.name}</span>
                 </button>
             ))}
@@ -2683,12 +3531,16 @@ Respond as ${guideName} to help the child.`;
                     <button
                         key={sub.id}
                         onClick={() => { setSelectedSubject(sub); navigateTo('subject-menu'); }}
-                        className="absolute w-20 h-20 -ml-10 -mt-10 rounded-full bg-white dark:bg-slate-800 shadow-xl border-4 flex items-center justify-center hover:scale-125 transition-all duration-300 z-10 group/planet"
-                        style={{ left: `${x}%`, top: `${y}%`, borderColor: 'currentColor' }}
+                        className={`absolute w-20 h-20 -ml-10 -mt-10 ${sub.id === 'math' ? 'bg-transparent border-0 shadow-none' : 'rounded-full bg-white dark:bg-slate-800 border-4 shadow-xl'} flex items-center justify-center hover:scale-125 transition-all duration-300 z-10 group/planet`}
+                        style={{ left: `${x}%`, top: `${y}%`, borderColor: sub.id === 'math' ? 'transparent' : 'currentColor' }}
                     >
-                        <div className={`text-slate-400 group-hover/planet:text-blue-500 transition-colors`}>
-                            <sub.icon className="w-8 h-8" />
-                        </div>
+                        {sub.id === 'math' ? (
+                            <img src={mathNuggetImg} alt="Math Nugget" className="w-32 h-32 object-contain drop-shadow-lg" />
+                        ) : (
+                            <div className={`text-slate-400 group-hover/planet:text-blue-500 transition-colors`}>
+                                <sub.icon className="w-8 h-8" />
+                            </div>
+                        )}
                         <span className="absolute top-full mt-2 font-bold text-xs bg-slate-900 text-white px-2 py-1 rounded opacity-0 group-hover/planet:opacity-100 transition-opacity whitespace-nowrap z-20">
                             {sub.name}
                         </span>
@@ -2952,7 +3804,10 @@ Respond as ${guideName} to help the child.`;
       'elements-of-math': 'from-blue-500 via-cyan-500 to-teal-600',
       'scientific-method': 'from-emerald-400 via-teal-500 to-cyan-600',
       'elements-of-music': 'from-rose-400 via-pink-500 to-fuchsia-600',
-      'elements-of-art': 'from-purple-400 via-pink-500 to-rose-500'
+      'elements-of-art': 'from-purple-400 via-pink-500 to-rose-500',
+      'famous-works-of-art': 'from-yellow-400 via-amber-500 to-orange-600',
+      'art-movements': 'from-fuchsia-400 via-purple-500 to-indigo-600',
+      'wonders-of-the-world': 'from-amber-400 via-yellow-500 to-orange-600'
     };
     
     const iconMap = {
@@ -2961,7 +3816,10 @@ Respond as ${guideName} to help the child.`;
       'elements-of-math': Calculator,
       'scientific-method': Microscope,
       'elements-of-music': Music,
-      'elements-of-art': Palette
+      'elements-of-art': Palette,
+      'famous-works-of-art': Palette,
+      'art-movements': Palette,
+      'wonders-of-the-world': MapIcon
     };
     
     const gradient = gradientMap[topic.id] || 'from-blue-400 via-indigo-500 to-purple-600';
@@ -3266,17 +4124,29 @@ Respond as ${guideName} to help the child.`;
                     </div>
                 ) : null}
 
-                {/* ACTIVITIES TYPE - Special Layout for Elements of Art */}
+                {/* ACTIVITIES TYPE - Special Layout for Elements of Art and Math */}
                 {type === 'activities' && topic.activities ? (
                     <>
-                        {/* Art Activities at the Top */}
+                        {/* Activities at the Top */}
                         <div className="mb-8">
-                            <h2 className="text-2xl font-bold text-slate-800 dark:text-white mb-6">Art Activities to Try</h2>
+                            <h2 className="text-2xl font-bold text-slate-800 dark:text-white mb-6">
+                                {topic.id === 'elements-of-math' ? 'Math Activities to Try' : topic.id === 'elements-of-music' ? 'Music Activities to Try' : topic.id === 'elements-of-language' ? 'Language Activities to Try' : 'Art Activities to Try'}
+                            </h2>
                             <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
                                 {topic.activities.map((activity, index) => (
                                     <button
                                         key={activity.name}
-                                        onClick={() => openArtActivity(activity)}
+                                        onClick={() => {
+                                            if (topic.id === 'elements-of-math') {
+                                                openMathActivity(activity);
+                                            } else if (topic.id === 'elements-of-music') {
+                                                openMusicActivity(activity);
+                                            } else if (topic.id === 'elements-of-language') {
+                                                openLanguageActivity(activity);
+                                            } else {
+                                                openArtActivity(activity);
+                                            }
+                                        }}
                                         className="bg-white dark:bg-slate-800 rounded-2xl shadow-md hover:shadow-xl hover:scale-105 transition-all border-2 border-slate-100 dark:border-slate-700 hover:border-pink-300 dark:hover:border-pink-600 group animate-pop overflow-hidden"
                                         style={{animationDelay: `${index * 0.05}s`}}
                                     >
@@ -3291,7 +4161,7 @@ Respond as ${guideName} to help the child.`;
                                             <h3 className="font-bold text-slate-800 dark:text-white mb-1">{activity.name}</h3>
                                             <p className="text-xs text-slate-600 dark:text-slate-400">{activity.description}</p>
                                             <div className="mt-2 text-xs font-semibold text-purple-600 dark:text-purple-400">
-                                                {activity.element}
+                                                {activity.element || activity.movement || activity.concept}
                                             </div>
                                         </div>
                                     </button>
@@ -3299,33 +4169,155 @@ Respond as ${guideName} to help the child.`;
                             </div>
                         </div>
 
-                        {/* Key Concepts: Elements of Art */}
+                        {/* Key Concepts Section */}
                         <div>
-                            <h2 className="text-2xl font-bold text-slate-800 dark:text-white mb-6">Key Concepts: Elements of Art</h2>
-                            <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-                                {topic.subTopics.map((item, index) => (
-                                    <button
-                                        key={item.name}
-                                        onClick={() => {
-                                            if (apiKey) {
-                                                generateNuggetByTag(item.name, 'art');
-                                            } else {
-                                                showNotification("Add API key to explore topics!");
-                                            }
-                                        }}
-                                        className={`${item.color} text-white rounded-xl p-4 shadow-md hover:shadow-xl hover:scale-105 transition-all border-2 border-transparent hover:border-white/20 group animate-pop text-left`}
-                                        style={{animationDelay: `${index * 0.05}s`}}
-                                    >
-                                        <div className="flex flex-col items-center text-center gap-2">
-                                            <div className="text-3xl">{item.emoji}</div>
-                                            <div>
-                                                <h3 className="font-bold text-white">{item.name}</h3>
-                                                <p className="text-xs text-white/90">{item.description}</p>
+                            <h2 className="text-2xl font-bold text-slate-800 dark:text-white mb-6">
+                                {topic.id === 'elements-of-art' ? 'Key Concepts: Elements of Art' : topic.id === 'art-movements' ? 'Key Concepts: Art Movements' : topic.id === 'elements-of-math' ? 'Key Concepts: Elements of Math' : topic.id === 'elements-of-music' ? 'Key Concepts: Elements of Music' : topic.id === 'elements-of-language' ? 'Key Concepts: Elements of Language' : 'Key Concepts'}
+                            </h2>
+                            
+                            {/* For Elements of Art - use colored boxes with emojis */}
+                            {topic.id === 'elements-of-art' && (
+                                <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+                                    {topic.subTopics.map((item, index) => (
+                                        <button
+                                            key={item.name}
+                                            onClick={() => {
+                                                if (apiKey) {
+                                                    generateNuggetByTag(item.name, 'art');
+                                                } else {
+                                                    showNotification("Add API key to explore topics!");
+                                                }
+                                            }}
+                                            className={`${item.color} text-white rounded-xl p-4 shadow-md hover:shadow-xl hover:scale-105 transition-all border-2 border-transparent hover:border-white/20 group animate-pop text-left`}
+                                            style={{animationDelay: `${index * 0.05}s`}}
+                                        >
+                                            <div className="flex flex-col items-center text-center gap-2">
+                                                <div className="text-3xl">{item.emoji}</div>
+                                                <div>
+                                                    <h3 className="font-bold text-white">{item.name}</h3>
+                                                    <p className="text-xs text-white/90">{item.description}</p>
+                                                </div>
                                             </div>
-                                        </div>
-                                    </button>
-                                ))}
-                            </div>
+                                        </button>
+                                    ))}
+                                </div>
+                            )}
+                            
+                            {/* For Art Movements - use image-based cards */}
+                            {topic.id === 'art-movements' && (
+                                <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+                                    {topic.subTopics.map((item, index) => (
+                                        <button
+                                            key={item.name}
+                                            onClick={() => {
+                                                if (apiKey) {
+                                                    generateNuggetByTag(item.name, 'art');
+                                                } else {
+                                                    showNotification("Add API key to explore topics!");
+                                                }
+                                            }}
+                                            className="bg-white dark:bg-slate-800 rounded-2xl shadow-md hover:shadow-xl hover:scale-105 transition-all overflow-hidden border-2 border-slate-100 dark:border-slate-700 hover:border-purple-300 dark:hover:border-purple-600 group animate-pop"
+                                            style={{animationDelay: `${index * 0.05}s`}}
+                                        >
+                                            <div className="relative w-full h-40 overflow-hidden">
+                                                <img 
+                                                    src={item.image} 
+                                                    alt={item.name}
+                                                    className="w-full h-full object-cover group-hover:scale-110 transition-transform"
+                                                />
+                                            </div>
+                                            <div className="p-4 text-left">
+                                                <h3 className="font-bold text-slate-800 dark:text-white text-sm mb-1">{item.name}</h3>
+                                                <p className="text-xs text-slate-600 dark:text-slate-400">{item.description}</p>
+                                            </div>
+                                        </button>
+                                    ))}
+                                </div>
+                            )}
+                            
+                            {/* For Elements of Math - use colored boxes with emojis */}
+                            {topic.id === 'elements-of-math' && (
+                                <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+                                    {topic.subTopics.map((item, index) => (
+                                        <button
+                                            key={item.name}
+                                            onClick={() => {
+                                                if (apiKey) {
+                                                    generateNuggetByTag(item.name, 'math');
+                                                } else {
+                                                    showNotification("Add API key to explore topics!");
+                                                }
+                                            }}
+                                            className={`${item.color} text-white rounded-xl p-4 shadow-md hover:shadow-xl hover:scale-105 transition-all border-2 border-transparent hover:border-white/20 group animate-pop text-left`}
+                                            style={{animationDelay: `${index * 0.05}s`}}
+                                        >
+                                            <div className="flex flex-col items-center text-center gap-2">
+                                                <div className="text-3xl">{item.emoji}</div>
+                                                <div>
+                                                    <h3 className="font-bold text-white">{item.name}</h3>
+                                                    <p className="text-xs text-white/90">{item.description}</p>
+                                                </div>
+                                            </div>
+                                        </button>
+                                    ))}
+                                </div>
+                            )}
+                            
+                            {/* For Elements of Music - use colored boxes with emojis */}
+                            {topic.id === 'elements-of-music' && (
+                                <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+                                    {topic.subTopics.map((item, index) => (
+                                        <button
+                                            key={item.name}
+                                            onClick={() => {
+                                                if (apiKey) {
+                                                    generateNuggetByTag(item.name, 'music');
+                                                } else {
+                                                    showNotification("Add API key to explore topics!");
+                                                }
+                                            }}
+                                            className={`${item.color} text-white rounded-xl p-4 shadow-md hover:shadow-xl hover:scale-105 transition-all border-2 border-transparent hover:border-white/20 group animate-pop text-left`}
+                                            style={{animationDelay: `${index * 0.05}s`}}
+                                        >
+                                            <div className="flex flex-col items-center text-center gap-2">
+                                                <div className="text-3xl">{item.emoji}</div>
+                                                <div>
+                                                    <h3 className="font-bold text-white">{item.name}</h3>
+                                                    <p className="text-xs text-white/90">{item.description}</p>
+                                                </div>
+                                            </div>
+                                        </button>
+                                    ))}
+                                </div>
+                            )}
+                            
+                            {/* For Elements of Language - use colored boxes with emojis */}
+                            {topic.id === 'elements-of-language' && (
+                                <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+                                    {topic.subTopics.map((item, index) => (
+                                        <button
+                                            key={item.name}
+                                            onClick={() => {
+                                                if (apiKey) {
+                                                    generateNuggetByTag(item.name, 'words');
+                                                } else {
+                                                    showNotification("Add API key to explore topics!");
+                                                }
+                                            }}
+                                            className={`${item.color} text-white rounded-xl p-4 shadow-md hover:shadow-xl hover:scale-105 transition-all border-2 border-transparent hover:border-white/20 group animate-pop text-left`}
+                                            style={{animationDelay: `${index * 0.05}s`}}
+                                        >
+                                            <div className="flex flex-col items-center text-center gap-2">
+                                                <div className="text-3xl">{item.emoji}</div>
+                                                <div>
+                                                    <h3 className="font-bold text-white">{item.name}</h3>
+                                                    <p className="text-xs text-white/90">{item.description}</p>
+                                                </div>
+                                            </div>
+                                        </button>
+                                    ))}
+                                </div>
+                            )}
                         </div>
                     </>
                 ) : null}
@@ -3334,50 +4326,79 @@ Respond as ${guideName} to help the child.`;
                 {type !== 'process' && type !== 'activities' && (
                     <div className="mb-8">
                         <h2 className="text-2xl font-bold text-slate-800 dark:text-white mb-6 text-center">
-                            {type === 'timeline' ? 'Explore Ancient Civilizations' : 'Explore Topics'}
+                            {type === 'timeline' ? 'Explore Ancient Civilizations' : topic.id === 'famous-works-of-art' ? 'Explore the Masterpieces' : topic.id === 'art-movements' ? 'Explore the Styles' : topic.id === 'wonders-of-the-world' ? 'Explore the Wonders' : 'Explore Topics'}
                         </h2>
                         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-                            {topic.subTopics.map((item, index) => (
-                                <button
-                                    key={item.name}
-                                    onClick={() => {
-                                        if (apiKey) {
-                                            // Determine subject based on topic id
-                                            const subjectMap = {
-                                                'ancient-civilizations': 'history',
-                                                'elements-of-language': 'words',
-                                                'elements-of-math': 'math',
-                                                'scientific-method': 'science',
-                                                'elements-of-music': 'music',
-                                                'elements-of-art': 'art'
-                                            };
-                                            // For ancient civilizations timeline type, add context to the tag
-                                            const tag = type === 'timeline' ? `${item.name} ancient civilizations` : item.name;
-                                            generateNuggetByTag(tag, subjectMap[topic.id] || 'science');
-                                        } else {
-                                            showNotification("Add API key to explore topics!");
+                            {topic.subTopics.map((item, index) => {
+                                // Use image-first format for Famous Works, Art Movements, and Wonders of the World
+                                const useImageFormat = topic.id === 'famous-works-of-art' || topic.id === 'art-movements' || topic.id === 'wonders-of-the-world';
+                                
+                                return (
+                                    <button
+                                        key={item.name}
+                                        onClick={() => {
+                                            if (apiKey) {
+                                                // Determine subject based on topic id
+                                                const subjectMap = {
+                                                    'ancient-civilizations': 'history',
+                                                    'elements-of-language': 'words',
+                                                    'elements-of-math': 'math',
+                                                    'scientific-method': 'science',
+                                                    'elements-of-music': 'music',
+                                                    'elements-of-art': 'art',
+                                                    'famous-works-of-art': 'art',
+                                                    'art-movements': 'art',
+                                                    'wonders-of-the-world': 'history'
+                                                };
+                                                // For ancient civilizations timeline type, add context to the tag
+                                                const tag = type === 'timeline' ? `${item.name} ancient civilizations` : item.name;
+                                                generateNuggetByTag(tag, subjectMap[topic.id] || 'science');
+                                            } else {
+                                                showNotification("Add API key to explore topics!");
+                                            }
+                                        }}
+                                        className={useImageFormat 
+                                            ? "bg-white dark:bg-slate-800 rounded-2xl shadow-md hover:shadow-xl hover:scale-105 transition-all border-2 border-slate-100 dark:border-slate-700 hover:border-purple-300 dark:hover:border-purple-600 group animate-pop overflow-hidden"
+                                            : `${item.color ? 'text-white' : 'bg-white dark:bg-slate-800'} rounded-2xl p-6 shadow-md hover:shadow-xl hover:scale-105 transition-all border-2 ${item.color ? item.color : 'border-slate-100 dark:border-slate-700'} hover:border-opacity-80 group animate-pop overflow-hidden`
                                         }
-                                    }}
-                                    className={`${item.color ? 'text-white' : 'bg-white dark:bg-slate-800'} rounded-2xl p-6 shadow-md hover:shadow-xl hover:scale-105 transition-all border-2 ${item.color ? item.color : 'border-slate-100 dark:border-slate-700'} hover:border-opacity-80 group animate-pop overflow-hidden`}
-                                    style={{animationDelay: `${index * 0.05}s`}}
-                                >
-                                    {item.image ? (
-                                        <div className="w-full h-32 mb-3 rounded-lg overflow-hidden">
-                                            <img 
-                                                src={item.image} 
-                                                alt={item.name}
-                                                className="w-full h-full object-cover group-hover:scale-110 transition-transform"
-                                            />
-                                        </div>
-                                    ) : (
-                                        <div className="text-5xl mb-3">{item.emoji}</div>
-                                    )}
-                                    <h3 className={`font-bold mb-1 ${item.color ? 'text-white' : 'text-slate-800 dark:text-white'}`}>
-                                        {item.name}
-                                    </h3>
-                                    <p className={`text-xs ${item.color ? 'text-white/90' : 'text-slate-600 dark:text-slate-400'}`}>{item.description}</p>
-                                </button>
-                            ))}
+                                        style={{animationDelay: `${index * 0.05}s`}}
+                                    >
+                                        {useImageFormat ? (
+                                            <>
+                                                <div className="relative w-full h-32 bg-slate-200 dark:bg-slate-700 overflow-hidden">
+                                                    <img 
+                                                        src={item.image} 
+                                                        alt={item.name}
+                                                        className="w-full h-full object-cover group-hover:scale-110 transition-transform"
+                                                    />
+                                                </div>
+                                                <div className="p-4 text-left">
+                                                    <h3 className="font-bold text-slate-800 dark:text-white mb-1">{item.name}</h3>
+                                                    <p className="text-xs text-slate-600 dark:text-slate-400">{item.description}</p>
+                                                </div>
+                                            </>
+                                        ) : (
+                                            <>
+                                                {item.image ? (
+                                                    <div className="w-full h-32 mb-3 rounded-lg overflow-hidden">
+                                                        <img 
+                                                            src={item.image} 
+                                                            alt={item.name}
+                                                            className="w-full h-full object-cover group-hover:scale-110 transition-transform"
+                                                        />
+                                                    </div>
+                                                ) : (
+                                                    <div className="text-5xl mb-3">{item.emoji}</div>
+                                                )}
+                                                <h3 className={`font-bold mb-1 ${item.color ? 'text-white' : 'text-slate-800 dark:text-white'}`}>
+                                                    {item.name}
+                                                </h3>
+                                                <p className={`text-xs ${item.color ? 'text-white/90' : 'text-slate-600 dark:text-slate-400'}`}>{item.description}</p>
+                                            </>
+                                        )}
+                                    </button>
+                                );
+                            })}
                         </div>
                     </div>
                 )}
@@ -3769,11 +4790,20 @@ Respond as ${guideName} to help the child.`;
   const renderShowMeModal = () => {
       if (!isShowMeOpen) return null;
       
+      // Helper to create a shorter display title
+      const getDisplayTitle = () => {
+          const topic = showMeTopic || currentNugget?.searchTerm || "Images";
+          // Extract first 3-4 meaningful words for display
+          const words = topic.split(/\s+/).filter(w => w.length > 2);
+          if (words.length <= 4) return topic;
+          return words.slice(0, 4).join(' ') + '...';
+      };
+      
       return (
         <div className="fixed inset-0 z-[60] bg-black/90 backdrop-blur-sm flex items-center justify-center p-4 animate-fade-in" onClick={() => setIsShowMeOpen(false)}>
             <div className="w-full max-w-5xl h-[80vh] bg-slate-900 rounded-3xl overflow-hidden flex flex-col" onClick={e => e.stopPropagation()}>
                 <div className="p-4 flex justify-between items-center border-b border-slate-800">
-                    <h3 className="text-white font-bold text-lg">Visual Explorer: {showMeTopic || currentNugget?.searchTerm || "Images"}</h3>
+                    <h3 className="text-white font-bold text-lg">Visual Explorer: {getDisplayTitle()}</h3>
                     <button onClick={() => { setIsShowMeOpen(false); setShowMeImages([]); }} className="p-2 bg-slate-800 rounded-full text-white hover:bg-slate-700"><X className="w-5 h-5" /></button>
                 </div>
                 <div className="flex-1 overflow-y-auto p-4">
@@ -3876,7 +4906,14 @@ Respond as ${guideName} to help the child.`;
         { id: 'browntail', name: 'Brown Tail', image: brownTailImg, requiresUnlock: false, renderBehind: true },
         { id: 'glasses', name: 'Smart Specs', image: glassesImg, requiresUnlock: true },
         { id: 'tophat', name: 'Fancy Hat', image: topHatImg, requiresUnlock: true },
-        { id: 'crown', name: 'Gold Crown', image: crownImg, requiresUnlock: true }
+        { id: 'crown', name: 'Gold Crown', image: crownImg, requiresUnlock: true },
+        { id: 'gamerheadset', name: 'Gamer Headset', image: gamerHeadsetImg, requiresUnlock: true },
+        { id: 'pencil', name: 'Pencil', image: pencilImg, requiresUnlock: true },
+        { id: 'pinumbers', name: 'Pi Numbers', image: piNumbersImg, requiresUnlock: true },
+        { id: 'butterflywings', name: 'Butterfly Wings', image: butterflyWingsImg, requiresUnlock: true, renderBehind: true },
+        { id: 'strongarms', name: 'Strong Arms', image: strongArmsImg, requiresUnlock: true },
+        { id: 'eyebrows', name: 'Eyebrows', image: eyebrowsImg, requiresUnlock: true },
+        { id: 'mouth', name: 'Mouth', image: mouthImg, requiresUnlock: true }
       ]
     };
 
@@ -4029,6 +5066,28 @@ Respond as ${guideName} to help the child.`;
                         />
                       ) : null;
                     })}
+                    {/* Layered Arms Accessory - render behind nugget */}
+                    {selectedAccessories.arms && (() => {
+                      const armsOption = accessoryOptions.arms.find(a => a.id === selectedAccessories.arms);
+                      return armsOption ? (
+                        <img 
+                          src={armsOption.image}
+                          alt={armsOption.name}
+                          className="absolute inset-0 w-full h-full object-contain pointer-events-none"
+                        />
+                      ) : null;
+                    })()}
+                    {/* Layered Legs Accessory - render behind nugget */}
+                    {selectedAccessories.legs && (() => {
+                      const legsOption = accessoryOptions.legs.find(l => l.id === selectedAccessories.legs);
+                      return legsOption ? (
+                        <img 
+                          src={legsOption.image}
+                          alt={legsOption.name}
+                          className="absolute inset-0 w-full h-full object-contain pointer-events-none"
+                        />
+                      ) : null;
+                    })()}
                     {/* Base Nugget */}
                     <img 
                       src={currentNuggetImage} 
@@ -4054,28 +5113,6 @@ Respond as ${guideName} to help the child.`;
                         <img 
                           src={mouthOption.image}
                           alt={mouthOption.name}
-                          className="absolute inset-0 w-full h-full object-contain pointer-events-none"
-                        />
-                      ) : null;
-                    })()}
-                    {/* Layered Arms Accessory */}
-                    {selectedAccessories.arms && (() => {
-                      const armsOption = accessoryOptions.arms.find(a => a.id === selectedAccessories.arms);
-                      return armsOption ? (
-                        <img 
-                          src={armsOption.image}
-                          alt={armsOption.name}
-                          className="absolute inset-0 w-full h-full object-contain pointer-events-none"
-                        />
-                      ) : null;
-                    })()}
-                    {/* Layered Legs Accessory */}
-                    {selectedAccessories.legs && (() => {
-                      const legsOption = accessoryOptions.legs.find(l => l.id === selectedAccessories.legs);
-                      return legsOption ? (
-                        <img 
-                          src={legsOption.image}
-                          alt={legsOption.name}
                           className="absolute inset-0 w-full h-full object-contain pointer-events-none"
                         />
                       ) : null;
