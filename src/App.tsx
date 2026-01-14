@@ -11,6 +11,7 @@ import { createClient } from '@supabase/supabase-js';
 import { projectId, publicAnonKey } from './utils/supabase/info';
 import { AuthModal } from './components/AuthModal';
 import { ImageWithFallback } from './components/figma/ImageWithFallback';
+import { UserAvatar } from './components/UserAvatar';
 
 // Mascot Images
 import spaceNuggetImg from 'figma:asset/9bc58e8692cbac3863bf7255a7cd29b0e4334a64.png';
@@ -24,14 +25,21 @@ import mathNuggetImg from 'figma:asset/6b61b99df97372873886ee032fadd2390c4bbb0c.
 import eyeVertical from 'figma:asset/e51044114d9d56eb4d00716a8fdfa99f5590ce16.png';
 import eyeAngled from 'figma:asset/936f0a47b985a3d05ca017f04ebf53a12ea0d463.png';
 import angryEyebrows from 'figma:asset/0650c8948efd77365d16a26559017dfaed7dd651.png';
+import checkItEyebrows from 'figma:asset/95b3decd4e32af592143d46bf92d0efac77d19d6.png';
+import closedEyes from 'figma:asset/bd12068c6ef8004bd8036d2273b290a8ecae647b.png';
+import raisedEyebrows from 'figma:asset/32536d3e13ff8065c1f6b3de94adfcfb1d5d94d7.png';
+import bottomLashes from 'figma:asset/fa840fa887b5d0d61853c25ca5a626c579bceb85.png';
 // Mouth accessories
 import smileMouth from 'figma:asset/5660787e5ba0950ec04a09d7cf7f064f581302a5.png';
 import frownPng from 'figma:asset/9823b22aa4c9af4c84901143b170ac410d1b8e0f.png';
+import whistlingMouth from 'figma:asset/b3b26b7531fc0a3a2dafdba78851c3b11dc245dc.png';
 // Arms accessories
 import armsImg from 'figma:asset/e1cb00a2a60b8725d4265551a68159cb1070e5f5.png';
 import strongArmsImg from 'figma:asset/aa83107b2cac8a78372e1416c21c4e5425dd0d08.png';
+import dancingArmsImg from 'figma:asset/c73c2cbb94b7cef260d225b251a8ba3024bd705f.png';
 // Legs accessories
 import legsImg from 'figma:asset/74f3553160d988436af237bafb15516d03789825.png';
+import dancingLegsImg from 'figma:asset/7612ba9bd9c06c0dca52c79f56a518289ae3fd29.png';
 // Tail accessories
 import rainbowTailImg from 'figma:asset/2bfa5715385880a8a49bbec1db42b853e2dea6de.png';
 import brownTailImg from 'figma:asset/95a24bc7dd74e427be04f134b6b56c8e106afdde.png';
@@ -44,8 +52,20 @@ import gamerHeadsetImg from 'figma:asset/4d54b6c32044d2cd0525631f5243f89d7610803
 import pencilImg from 'figma:asset/ae24e2649373f3497eda6b88f13d72260f5b9858.png';
 import piNumbersImg from 'figma:asset/66f766bd23d1170e675b0f47042dd9d41de761b3.png';
 import butterflyWingsImg from 'figma:asset/1c6d812fcc1678b6c79aa04a0bae243e4229c95b.png';
+import guitarImg from 'figma:asset/eba644d4dbd366d84c4fb97378444f6ebb84eb30.png';
+import musicHaloImg from 'figma:asset/f0fdfeb1db204bb435c65b21c4ff55d6308023b5.png';
 import eyebrowsImg from 'figma:asset/43d27e6bd06248eac0ec3ad4c33bba18e964a80f.png';
 import mouthImg from 'figma:asset/b411a3156aefa4cccb96eaa7ff2888e020789f95.png';
+import flowerImg from 'figma:asset/8a9966f7a73cee78ede8d57df1e7ccee9743c846.png';
+import partlyCloudyImg from 'figma:asset/4fac133a1210dd897118a93b810e907808131a5e.png';
+import starryNightImg from 'figma:asset/78d169cc3e2dbf37e946d5697339de5be96fff99.png';
+import deedlyStarImg from 'figma:asset/5d92d6aa4ae6ce8e6472c95d618ea708cdfc4201.png';
+import deedlyCloudImg from 'figma:asset/d98a8db4ab1944c679f5084ad7669bb04d4388bf.png';
+// New accessories
+import sunnyDayImg from 'figma:asset/377eff4c0f389d155b7406d1b3ef9fb43c61ab30.png';
+import moonlightImg from 'figma:asset/16527b4eab35de4ddad8510725b1f641bb31ed0a.png';
+import cloudKiteImg from 'figma:asset/3d6e56a08bb224a0508fb165ff77eaa4cb1d5515.png';
+import starWandImg from 'figma:asset/1978798f2b05c0e2bd9e45e42bf4752c9121ea11.png';
 
 // -----------------------------------------------------------------------------
 // 🔧 PARENT SETUP: 
@@ -308,7 +328,7 @@ const CURRICULUM_TOPICS = {
       { name: "Sentence Building Game", emoji: "🔨", description: "Build complete sentences", concept: "Sentence Structure", image: "https://images.unsplash.com/photo-1560113562-a0a37ada6d91?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxzZW50ZW5jZSUyMGJ1aWxkaW5nJTIwYmxvY2tzfGVufDF8fHx8MTc2ODMzMjE0NXww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral" },
       { name: "Word Detective", emoji: "🔎", description: "Discover word meanings and origins", concept: "Etymology", image: "https://images.unsplash.com/photo-1695238666585-ce8de2f39004?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxkaWN0aW9uYXJ5JTIwd29yZHMlMjBib29rfGVufDF8fHx8MTc2ODMzMjE0Nnww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral" },
       { name: "Punctuation Practice", emoji: "❓", description: "Add punctuation to sentences", concept: "Punctuation", image: "https://images.unsplash.com/photo-1612425506252-50b73402c822?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxwdW5jdHVhdGlvbiUyMG1hcmtzJTIwdHlwb2dyYXBoeXxlbnwxfHx8fDE3NjgzMzIxNDZ8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral" },
-      { name: "Simile & Metaphor Comics", emoji: "💭", description: "Create comics with figurative language", concept: "Literary Devices", image: "https://images.unsplash.com/photo-1764885519030-9dc98ab1ee0f?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxjb21pYyUyMHNwZWVjaCUyMGJ1YmJsZXN8ZW58MXx8fHwxNzY4MzMyMTQ2fDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral" },
+      { name: "Simile & Metaphor Comics", emoji: "💭", description: "Create comics with figurative language", concept: "Literary Devices", image: "https://images.unsplash.com/photo-1514189831078-ee41c3568075?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxtZXRhcGhvciUyMHNpbWlsZSUyMGlsbHVzdHJhdGlvbnxlbnwxfHx8fDE3Njg0MjM5Njh8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral" },
     ],
     type: "activities"
   },
@@ -511,13 +531,19 @@ const SHOP_ITEMS = [
   { id: 'glasses', name: 'Smart Specs', cost: 15, currency: 'crumbs', image: glassesImg },
   { id: 'tophat', name: 'Fancy Hat', cost: 20, currency: 'crumbs', image: topHatImg },
   { id: 'crown', name: 'Gold Crown', cost: 25, currency: 'crumbs', image: crownImg },
-  { id: 'gamerheadset', name: 'Gamer Headset', cost: 30, currency: 'crumbs', image: gamerHeadsetImg },
+  { id: 'gamerheadset', name: 'Math Glasses', cost: 30, currency: 'crumbs', image: gamerHeadsetImg },
   { id: 'pencil', name: 'Pencil', cost: 20, currency: 'crumbs', image: pencilImg },
-  { id: 'pinumbers', name: 'Pi Numbers', cost: 35, currency: 'crumbs', image: piNumbersImg },
-  { id: 'butterflywings', name: 'Butterfly Wings', cost: 40, currency: 'crumbs', image: butterflyWingsImg },
-  { id: 'strongarms', name: 'Strong Arms', cost: 25, currency: 'crumbs', image: strongArmsImg },
-  { id: 'eyebrows', name: 'Eyebrows', cost: 15, currency: 'crumbs', image: eyebrowsImg },
-  { id: 'mouth', name: 'Mouth', cost: 15, currency: 'crumbs', image: mouthImg },
+  { id: 'pinumbers', name: 'Pi', cost: 35, currency: 'crumbs', image: piNumbersImg },
+  { id: 'butterflywings', name: 'Fairy Wings', cost: 40, currency: 'crumbs', image: butterflyWingsImg },
+  { id: 'flower', name: 'Flower', cost: 25, currency: 'crumbs', image: flowerImg },
+  { id: 'partlycloudy', name: 'Partly Cloudy', cost: 30, currency: 'crumbs', image: partlyCloudyImg },
+  { id: 'starrynight', name: 'Starry Night', cost: 30, currency: 'crumbs', image: starryNightImg },
+  { id: 'deedlystar', name: 'Deedly Star', cost: 35, currency: 'crumbs', image: deedlyStarImg },
+  { id: 'deedlycloud', name: 'Deedly Cloud', cost: 35, currency: 'crumbs', image: deedlyCloudImg },
+  { id: 'sunnyday', name: 'Sunny Day', cost: 30, currency: 'crumbs', image: sunnyDayImg },
+  { id: 'moonlight', name: 'Moon & Star', cost: 30, currency: 'crumbs', image: moonlightImg },
+  { id: 'cloudkite', name: 'White Deedly Cloud', cost: 25, currency: 'crumbs', image: cloudKiteImg },
+  { id: 'starwand', name: 'Yellow Deedly Star', cost: 25, currency: 'crumbs', image: starWandImg },
 ];
 
 const STARTER_NUGGETS = {
@@ -801,6 +827,58 @@ export default function NuggetsApp() {
   const [user, setUser] = useState(null);
   const [isSaving, setIsSaving] = useState(false);
   const [showAuthModal, setShowAuthModal] = useState(false);
+
+  // Accessory options for avatar customization
+  const accessoryOptions = {
+    eyes: [
+      { id: 'eye-lashes', name: 'Lashes', image: eyeAngled },
+      { id: 'eye-oval', name: 'Oval Eyes', image: eyeVertical },
+      { id: 'eye-angry', name: 'Angry Eyebrows', image: angryEyebrows },
+      { id: 'eyebrows', name: 'Quizzical Eyebrows', image: eyebrowsImg, requiresUnlock: false },
+      { id: 'checkit-eyebrows', name: 'Check It Eyebrows', image: checkItEyebrows, requiresUnlock: false },
+      { id: 'closed-eyes', name: 'Closed Eyes', image: closedEyes, requiresUnlock: false },
+      { id: 'raised-eyebrows', name: 'Raised Eyebrows', image: raisedEyebrows, requiresUnlock: false },
+      { id: 'bottom-lashes', name: 'Bottom Lashes', image: bottomLashes, requiresUnlock: false }
+    ],
+    mouth: [
+      { id: 'mouth-smile', name: 'Smile', image: smileMouth },
+      { id: 'mouth-frown', name: 'Frown', image: frownPng },
+      { id: 'mouth', name: 'Unsure Mouth', image: mouthImg, requiresUnlock: false },
+      { id: 'mouth-whistling', name: 'Whistling', image: whistlingMouth, requiresUnlock: false }
+    ],
+    arms: [
+      { id: 'arms-basic', name: 'Arms', image: armsImg },
+      { id: 'strongarms', name: 'Thinking Arms', image: strongArmsImg, requiresUnlock: false, renderInFront: true },
+      { id: 'dancingarms', name: 'Dancing', image: dancingArmsImg, requiresUnlock: false, renderInFront: true }
+    ],
+    legs: [
+      { id: 'legs-basic', name: 'Legs', image: legsImg },
+      { id: 'dancinglegs', name: 'Dancing', image: dancingLegsImg, requiresUnlock: false }
+    ],
+    accessories: [
+      { id: 'partyhat', name: 'Party Hat', image: partyHatImg, requiresUnlock: false },
+      { id: 'rainbowtail', name: 'Rainbow Tail', image: rainbowTailImg, requiresUnlock: false, renderBehind: true },
+      { id: 'browntail', name: 'Brown Tail', image: brownTailImg, requiresUnlock: false, renderBehind: true },
+      { id: 'glasses', name: 'Smart Specs', image: glassesImg, requiresUnlock: true },
+      { id: 'tophat', name: 'Fancy Hat', image: topHatImg, requiresUnlock: true },
+      { id: 'crown', name: 'Gold Crown', image: crownImg, requiresUnlock: true },
+      { id: 'gamerheadset', name: 'Math Glasses', image: gamerHeadsetImg, requiresUnlock: true },
+      { id: 'pencil', name: 'Pencil', image: pencilImg, requiresUnlock: true },
+      { id: 'pinumbers', name: 'Pi', image: piNumbersImg, requiresUnlock: true },
+      { id: 'butterflywings', name: 'Fairy Wings', image: butterflyWingsImg, requiresUnlock: true, renderBehind: true },
+      { id: 'guitar', name: 'Guitar', image: guitarImg, requiresUnlock: true, renderBehind: true },
+      { id: 'musichalo', name: 'Music Halo', image: musicHaloImg, requiresUnlock: true },
+      { id: 'flower', name: 'Flower', image: flowerImg, requiresUnlock: true },
+      { id: 'partlycloudy', name: 'Partly Cloudy', image: partlyCloudyImg, requiresUnlock: true },
+      { id: 'starrynight', name: 'Starry Night', image: starryNightImg, requiresUnlock: true },
+      { id: 'deedlystar', name: 'Deedly Star', image: deedlyStarImg, requiresUnlock: true, renderBehind: true },
+      { id: 'deedlycloud', name: 'Deedly Cloud', image: deedlyCloudImg, requiresUnlock: true, renderBehind: true },
+      { id: 'sunnyday', name: 'Sunny Day', image: sunnyDayImg, requiresUnlock: true, renderBehind: true },
+      { id: 'moonlight', name: 'Moon & Star', image: moonlightImg, requiresUnlock: true, renderBehind: true },
+      { id: 'cloudkite', name: 'White Deedly Cloud', image: cloudKiteImg, requiresUnlock: true },
+      { id: 'starwand', name: 'Yellow Deedly Star', image: starWandImg, requiresUnlock: true }
+    ]
+  };
 
   // Auth Effect - Initialize Supabase Auth
   useEffect(() => {
@@ -3436,7 +3514,24 @@ Respond as ${guideName} to help the child.`;
              <div className="w-10 h-10 rounded-full bg-gradient-to-br from-blue-500 to-purple-500 flex items-center justify-center text-white font-bold text-xl shadow-lg">N</div>
              <div className="hidden md:block font-bold text-slate-800 dark:text-white leading-tight">Nuggets of<br/>Knowledge</div>
         </div>
-        <div className="flex gap-2">
+        <div className="flex items-center gap-2">
+             {/* User Avatar */}
+             {avatarNuggetType && (
+               <button 
+                 onClick={() => navigateTo('avatar')}
+                 className="hover:scale-110 transition-transform"
+                 title="Customize your avatar"
+               >
+                 <UserAvatar
+                   avatarNuggetType={avatarNuggetType}
+                   selectedAccessories={selectedAccessories}
+                   accessoryOptions={accessoryOptions}
+                   baseNuggetImg={baseNuggetImg}
+                   spicyNuggetImg={spicyNuggetImg}
+                   size="sm"
+                 />
+               </button>
+             )}
              <div className="flex items-center gap-1 bg-white dark:bg-slate-800 px-3 py-1.5 rounded-full border border-slate-200 dark:border-slate-700 shadow-sm">
                 <span className="font-bold text-slate-700 dark:text-white">{starDust}</span>
                 <Sparkles className="w-4 h-4 text-yellow-400 fill-yellow-400" />
@@ -3497,7 +3592,7 @@ Respond as ${guideName} to help the child.`;
                     className={`relative p-4 rounded-2xl border-2 ${sub.border} ${sub.color.replace('text', 'bg').replace('100', '50').replace('/50', '/10')} flex flex-col items-center justify-center gap-3 h-32 active:scale-95 transition-transform shadow-sm`}
                 >
                     {sub.id === 'math' ? (
-                        <div className="w-24 h-24 flex items-center justify-center">
+                        <div className="w-28 h-28 flex items-center justify-center">
                             <img src={mathNuggetImg} alt="Math Nugget" className="w-full h-full object-contain drop-shadow-lg" />
                         </div>
                     ) : (
@@ -3531,11 +3626,11 @@ Respond as ${guideName} to help the child.`;
                     <button
                         key={sub.id}
                         onClick={() => { setSelectedSubject(sub); navigateTo('subject-menu'); }}
-                        className={`absolute w-20 h-20 -ml-10 -mt-10 ${sub.id === 'math' ? 'bg-transparent border-0 shadow-none' : 'rounded-full bg-white dark:bg-slate-800 border-4 shadow-xl'} flex items-center justify-center hover:scale-125 transition-all duration-300 z-10 group/planet`}
+                        className={`absolute ${sub.id === 'math' ? 'w-40 h-40 -ml-20 -mt-20 bg-transparent border-0 shadow-none' : 'w-20 h-20 -ml-10 -mt-10 rounded-full bg-white dark:bg-slate-800 border-4 shadow-xl'} flex items-center justify-center hover:scale-125 transition-all duration-300 z-10 group/planet`}
                         style={{ left: `${x}%`, top: `${y}%`, borderColor: sub.id === 'math' ? 'transparent' : 'currentColor' }}
                     >
                         {sub.id === 'math' ? (
-                            <img src={mathNuggetImg} alt="Math Nugget" className="w-32 h-32 object-contain drop-shadow-lg" />
+                            <img src={mathNuggetImg} alt="Math Nugget" className="w-full h-full object-contain drop-shadow-lg scale-110" />
                         ) : (
                             <div className={`text-slate-400 group-hover/planet:text-blue-500 transition-colors`}>
                                 <sub.icon className="w-8 h-8" />
@@ -3698,6 +3793,22 @@ Respond as ${guideName} to help the child.`;
                     </button>
                 </div>
                 <div className="absolute top-4 right-4 z-10 flex items-center gap-2">
+                    {avatarNuggetType && (
+                      <button 
+                        onClick={() => navigateTo('avatar')}
+                        className="hover:scale-110 transition-transform"
+                        title="Customize your avatar"
+                      >
+                        <UserAvatar
+                          avatarNuggetType={avatarNuggetType}
+                          selectedAccessories={selectedAccessories}
+                          accessoryOptions={accessoryOptions}
+                          baseNuggetImg={baseNuggetImg}
+                          spicyNuggetImg={spicyNuggetImg}
+                          size="xs"
+                        />
+                      </button>
+                    )}
                     <button onClick={() => navigateTo('my-collections')} className="bg-white/90 px-3 py-2 rounded-full shadow-md text-slate-700 hover:scale-110 transition-transform flex items-center gap-2 font-bold text-sm">
                       <Star className="w-4 h-4 text-yellow-400" />
                     </button>
@@ -4416,6 +4527,22 @@ Respond as ${guideName} to help the child.`;
                     <ArrowLeft className="w-5 h-5" /> Back
                 </button>
                 <div className="flex items-center gap-2">
+                  {avatarNuggetType && (
+                    <button 
+                      onClick={() => navigateTo('avatar')}
+                      className="hover:scale-110 transition-transform"
+                      title="Customize your avatar"
+                    >
+                      <UserAvatar
+                        avatarNuggetType={avatarNuggetType}
+                        selectedAccessories={selectedAccessories}
+                        accessoryOptions={accessoryOptions}
+                        baseNuggetImg={baseNuggetImg}
+                        spicyNuggetImg={spicyNuggetImg}
+                        size="sm"
+                      />
+                    </button>
+                  )}
                   <button onClick={() => navigateTo('my-collections')} className="flex items-center gap-2 text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 px-3 py-1.5 rounded-full transition-colors font-bold text-sm">
                     <Star className="w-4 h-4" /> Collections
                   </button>
@@ -4763,6 +4890,22 @@ Respond as ${guideName} to help the child.`;
                   )}
                 </div>
                 <div className="flex items-center gap-2">
+                  {avatarNuggetType && (
+                    <button 
+                      onClick={() => navigateTo('avatar')}
+                      className="hover:scale-110 transition-transform"
+                      title="Customize your avatar"
+                    >
+                      <UserAvatar
+                        avatarNuggetType={avatarNuggetType}
+                        selectedAccessories={selectedAccessories}
+                        accessoryOptions={accessoryOptions}
+                        baseNuggetImg={baseNuggetImg}
+                        spicyNuggetImg={spicyNuggetImg}
+                        size="sm"
+                      />
+                    </button>
+                  )}
                   {title !== 'My Nugget Collection' && title !== 'Word Collection' && title !== 'Mission Log' && (
                     <button onClick={() => navigateTo('my-collections')} className="px-4 py-2 bg-white dark:bg-slate-800 rounded-full shadow-sm hover:shadow-md transition-all flex items-center gap-2 text-slate-700 dark:text-slate-200 font-bold text-sm">
                       <Star className="w-4 h-4 text-yellow-400" /> Collections
@@ -4882,40 +5025,6 @@ Respond as ${guideName} to help the child.`;
       { id: 'legs', label: 'Legs', icon: '🦵' },
       { id: 'accessories', label: 'Accessories', icon: '✨' }
     ];
-
-    // Accessory options for each category
-    const accessoryOptions = {
-      eyes: [
-        { id: 'eye-lashes', name: 'Lashes', image: eyeAngled },
-        { id: 'eye-oval', name: 'Oval Eyes', image: eyeVertical },
-        { id: 'eye-angry', name: 'Angry Eyebrows', image: angryEyebrows }
-      ],
-      mouth: [
-        { id: 'mouth-smile', name: 'Smile', image: smileMouth },
-        { id: 'mouth-frown', name: 'Frown', image: frownPng }
-      ],
-      arms: [
-        { id: 'arms-basic', name: 'Arms', image: armsImg }
-      ],
-      legs: [
-        { id: 'legs-basic', name: 'Legs', image: legsImg }
-      ],
-      accessories: [
-        { id: 'partyhat', name: 'Party Hat', image: partyHatImg, requiresUnlock: false },
-        { id: 'rainbowtail', name: 'Rainbow Tail', image: rainbowTailImg, requiresUnlock: false, renderBehind: true },
-        { id: 'browntail', name: 'Brown Tail', image: brownTailImg, requiresUnlock: false, renderBehind: true },
-        { id: 'glasses', name: 'Smart Specs', image: glassesImg, requiresUnlock: true },
-        { id: 'tophat', name: 'Fancy Hat', image: topHatImg, requiresUnlock: true },
-        { id: 'crown', name: 'Gold Crown', image: crownImg, requiresUnlock: true },
-        { id: 'gamerheadset', name: 'Gamer Headset', image: gamerHeadsetImg, requiresUnlock: true },
-        { id: 'pencil', name: 'Pencil', image: pencilImg, requiresUnlock: true },
-        { id: 'pinumbers', name: 'Pi Numbers', image: piNumbersImg, requiresUnlock: true },
-        { id: 'butterflywings', name: 'Butterfly Wings', image: butterflyWingsImg, requiresUnlock: true, renderBehind: true },
-        { id: 'strongarms', name: 'Strong Arms', image: strongArmsImg, requiresUnlock: true },
-        { id: 'eyebrows', name: 'Eyebrows', image: eyebrowsImg, requiresUnlock: true },
-        { id: 'mouth', name: 'Mouth', image: mouthImg, requiresUnlock: true }
-      ]
-    };
 
     const handleNuggetTypeSelection = (type) => {
       setAvatarNuggetType(type);
@@ -5066,10 +5175,10 @@ Respond as ${guideName} to help the child.`;
                         />
                       ) : null;
                     })}
-                    {/* Layered Arms Accessory - render behind nugget */}
+                    {/* Layered Arms Accessory - render behind nugget (unless renderInFront is true) */}
                     {selectedAccessories.arms && (() => {
                       const armsOption = accessoryOptions.arms.find(a => a.id === selectedAccessories.arms);
-                      return armsOption ? (
+                      return armsOption && !armsOption.renderInFront ? (
                         <img 
                           src={armsOption.image}
                           alt={armsOption.name}
@@ -5113,6 +5222,17 @@ Respond as ${guideName} to help the child.`;
                         <img 
                           src={mouthOption.image}
                           alt={mouthOption.name}
+                          className="absolute inset-0 w-full h-full object-contain pointer-events-none"
+                        />
+                      ) : null;
+                    })()}
+                    {/* Layered Arms Accessory - render in front if specified */}
+                    {selectedAccessories.arms && (() => {
+                      const armsOption = accessoryOptions.arms.find(a => a.id === selectedAccessories.arms);
+                      return armsOption && armsOption.renderInFront ? (
+                        <img 
+                          src={armsOption.image}
+                          alt={armsOption.name}
                           className="absolute inset-0 w-full h-full object-contain pointer-events-none"
                         />
                       ) : null;
@@ -5226,7 +5346,17 @@ Respond as ${guideName} to help the child.`;
                   {/* Placeholder for customization options */}
                   <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
                     {accessoryOptions[avatarCustomizationTab]?.length > 0 ? (
-                      accessoryOptions[avatarCustomizationTab].map((option) => {
+                      accessoryOptions[avatarCustomizationTab]
+                        .sort((a, b) => {
+                          // Sort unlocked items to the top
+                          const aUnlocked = !a.requiresUnlock || inventory.includes(a.id);
+                          const bUnlocked = !b.requiresUnlock || inventory.includes(b.id);
+                          
+                          if (aUnlocked && !bUnlocked) return -1;
+                          if (!aUnlocked && bUnlocked) return 1;
+                          return 0;
+                        })
+                        .map((option) => {
                         // Check if selected - handle both arrays (eyes) and single values (other categories)
                         const currentSelection = selectedAccessories[avatarCustomizationTab];
                         const isSelected = Array.isArray(currentSelection) 
@@ -5246,15 +5376,35 @@ Respond as ${guideName} to help the child.`;
                               setSelectedAccessories(prev => {
                                 const currentValue = prev[avatarCustomizationTab];
                                 
-                                // For eyes (array), add/remove from array
+                                // For eyes (array), special handling for eyebrows
                                 if (Array.isArray(currentValue)) {
-                                  const newArray = isSelected
-                                    ? currentValue.filter(id => id !== option.id)
-                                    : [...currentValue, option.id];
-                                  return {
-                                    ...prev,
-                                    [avatarCustomizationTab]: newArray
-                                  };
+                                  // Check if this is an eyebrow option
+                                  const isEyebrow = option.id === 'eyebrows' || option.id === 'eye-angry' || option.id === 'checkit-eyebrows';
+                                  
+                                  if (isEyebrow) {
+                                    // Only allow one eyebrow at a time
+                                    // Remove any existing eyebrows first
+                                    const withoutEyebrows = currentValue.filter(id => id !== 'eyebrows' && id !== 'eye-angry' && id !== 'checkit-eyebrows');
+                                    
+                                    // If this eyebrow is already selected, remove it; otherwise add it
+                                    const newArray = isSelected
+                                      ? withoutEyebrows
+                                      : [...withoutEyebrows, option.id];
+                                    
+                                    return {
+                                      ...prev,
+                                      [avatarCustomizationTab]: newArray
+                                    };
+                                  } else {
+                                    // For non-eyebrow eye accessories, allow multiple
+                                    const newArray = isSelected
+                                      ? currentValue.filter(id => id !== option.id)
+                                      : [...currentValue, option.id];
+                                    return {
+                                      ...prev,
+                                      [avatarCustomizationTab]: newArray
+                                    };
+                                  }
                                 }
                                 
                                 // For other categories (single value), toggle
@@ -5340,6 +5490,22 @@ Respond as ${guideName} to help the child.`;
                   <h1 className="text-3xl font-black text-slate-800 dark:text-white">Settings</h1>
                 </div>
                 <div className="flex items-center gap-2">
+                  {avatarNuggetType && (
+                    <button 
+                      onClick={() => navigateTo('avatar')}
+                      className="hover:scale-110 transition-transform"
+                      title="Customize your avatar"
+                    >
+                      <UserAvatar
+                        avatarNuggetType={avatarNuggetType}
+                        selectedAccessories={selectedAccessories}
+                        accessoryOptions={accessoryOptions}
+                        baseNuggetImg={baseNuggetImg}
+                        spicyNuggetImg={spicyNuggetImg}
+                        size="sm"
+                      />
+                    </button>
+                  )}
                   <button onClick={() => navigateTo('my-collections')} className="px-4 py-2 bg-white dark:bg-slate-800 rounded-full shadow-sm hover:shadow-md transition-all flex items-center gap-2 text-slate-700 dark:text-slate-200 font-bold text-sm">
                     <Star className="w-4 h-4 text-yellow-400" /> Collections
                   </button>
@@ -5469,9 +5635,27 @@ Respond as ${guideName} to help the child.`;
                   My Collections
                 </h1>
               </div>
-              <button onClick={goHome} className="px-4 py-2 bg-white/90 dark:bg-slate-800 rounded-full shadow-md hover:shadow-lg transition-all flex items-center gap-2 text-slate-700 dark:text-slate-200 font-bold text-sm">
-                Home
-              </button>
+              <div className="flex items-center gap-2">
+                {avatarNuggetType && (
+                  <button 
+                    onClick={() => navigateTo('avatar')}
+                    className="hover:scale-110 transition-transform"
+                    title="Customize your avatar"
+                  >
+                    <UserAvatar
+                      avatarNuggetType={avatarNuggetType}
+                      selectedAccessories={selectedAccessories}
+                      accessoryOptions={accessoryOptions}
+                      baseNuggetImg={baseNuggetImg}
+                      spicyNuggetImg={spicyNuggetImg}
+                      size="sm"
+                    />
+                  </button>
+                )}
+                <button onClick={goHome} className="px-4 py-2 bg-white/90 dark:bg-slate-800 rounded-full shadow-md hover:shadow-lg transition-all flex items-center gap-2 text-slate-700 dark:text-slate-200 font-bold text-sm">
+                  Home
+                </button>
+              </div>
             </div>
 
             <div className="grid md:grid-cols-3 gap-6">
