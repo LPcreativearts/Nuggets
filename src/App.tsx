@@ -117,7 +117,8 @@ import rockImg from 'figma:asset/dbdae624a034a3b515be83215ff0c3bc5d744d27.png';
 // -----------------------------------------------------------------------------
 // 🔧 PARENT SETUP: 
 // Paste your API Key inside the quotes below to keep it saved permanently.
-const HARDCODED_API_KEY = "AIzaSyCDj5t42zj_MgbBR33Zk6QRSWEMhi4pWns"; 
+// Get your free Gemini API key at: https://aistudio.google.com/apikey
+const HARDCODED_API_KEY = ""; 
 // -----------------------------------------------------------------------------
 
 // --- Supabase Setup ---
