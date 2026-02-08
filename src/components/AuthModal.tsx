@@ -121,7 +121,7 @@ export function AuthModal({ onClose, onSuccess, supabase }: AuthModalProps) {
           <div className="w-16 h-16 bg-gradient-to-br from-blue-500 to-purple-500 rounded-full flex items-center justify-center mx-auto mb-4">
             <UserIcon className="w-8 h-8 text-white" />
           </div>
-          <h2 className="text-2xl font-bold text-slate-800 dark:text-white mb-2">
+          <h2 className="text-2xl font-bold text-slate-800 dark:text-white mb-2" style={{ fontFamily: 'var(--font-heading)' }}>
             {isSignUp ? 'Create Account' : 'Welcome Back!'}
           </h2>
           <p className="text-sm text-slate-500 dark:text-slate-400">

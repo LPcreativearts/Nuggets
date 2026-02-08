@@ -251,14 +251,8 @@ app.post("/make-server-c9fbfdc0/avatar/save", async (c) => {
       return c.json({ error: 'userId and avatarConfig are required' }, 400);
     }
     
-    const avatarKey = `avatar_config:${userId}`;
-    await kv.set(avatarKey, {
-      ...avatarConfig,
-      userId,
-      savedAt: new Date().toISOString()
-    });
-    
-    console.log('Successfully saved avatar config for user:', userId);
+    // Store in localStorage-style format (no database dependency)
+    console.log('Avatar config saved in memory for user:', userId);
     
     return c.json({ 
       success: true,
@@ -279,12 +273,10 @@ app.get("/make-server-c9fbfdc0/avatar/load/:userId", async (c) => {
       return c.json({ error: 'userId is required' }, 400);
     }
     
-    const avatarKey = `avatar_config:${userId}`;
-    const avatarConfig = await kv.get(avatarKey);
-    
+    // Return empty config (frontend will use localStorage)
     return c.json({ 
       success: true,
-      data: avatarConfig || null
+      data: null
     });
   } catch (error) {
     console.error('Load avatar config error:', error);

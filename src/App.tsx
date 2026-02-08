@@ -4,7 +4,7 @@ import {
     Rocket, Cloud, Star, BookOpen, Music, Palette, Briefcase, Microscope, 
     Calculator, Settings, X, Sparkles, Map as MapIcon, Heart, ArrowLeft, Brain, 
     ShoppingBag, Edit3, Volume2, Image as ImageIcon, Loader, ExternalLink, 
-    Square, Search, Trophy, Check, Mic, Shuffle, Moon, Sun, Cookie, HelpCircle, ArrowRight,
+    Square, Search, Trophy, Check, Mic, Shuffle, Moon, Sun, Drumstick, HelpCircle, ArrowRight,
     Maximize2, Minimize2, Book, History as HistoryIcon, Lock, Grid, Trash2, Menu, LogIn, LogOut, User, AlertTriangle, Pencil, Save
 } from 'lucide-react';
 import { createClient } from '@supabase/supabase-js';
@@ -15,12 +15,22 @@ import { UserAvatar } from './components/UserAvatar';
 
 // Mascot Images
 import spaceNuggetImg from 'figma:asset/9bc58e8692cbac3863bf7255a7cd29b0e4334a64.png';
-import skyNuggetImg from 'figma:asset/524aa8d812d9a0a6f5c495000fd779e4eae87150.png';
+import skyNuggetImg from 'figma:asset/1c4420e39637b1843482bc777ba0d8c1d5156bbe.png';
 // Basic and Spicy nugget images
 import baseNuggetImg from 'figma:asset/e23fe5acb66ca864e8e5ca8d62fa1245562b1fd4.png'; // Basic Nugget
 import spicyNuggetImg from 'figma:asset/a3e4544d3442bb9c3e68eb1a33e7a1f69695dda9.png'; // Spicy Nugget
 // Math Nugget for homepage
 import mathNuggetImg from 'figma:asset/6b61b99df97372873886ee032fadd2390c4bbb0c.png';
+// Music Nugget for homepage
+import musicNuggetImg from 'figma:asset/00ddf4248efce64baeb4827728f5018c81c18025.png';
+// Art Nugget for homepage
+import artNuggetImg from 'figma:asset/48648910f2775ab3e0f27df47315666b05acda83.png';
+// Words Nugget for homepage
+import wordsNuggetImg from 'figma:asset/163f11babf5028ab961fdc649758889561bcf1dc.png';
+// Science Nugget for homepage
+import scienceNuggetImg from 'figma:asset/fcd23767ced17aa3bfb8109518a349738075cae6.png';
+// History Nugget for homepage
+import historyNuggetImg from 'figma:asset/2cdefef7d7b6116e322874e7e905d09826ef36bd.png';
 // Eye accessories
 import eyeVertical from 'figma:asset/e51044114d9d56eb4d00716a8fdfa99f5590ce16.png';
 import eyeAngled from 'figma:asset/936f0a47b985a3d05ca017f04ebf53a12ea0d463.png';
@@ -29,17 +39,29 @@ import checkItEyebrows from 'figma:asset/95b3decd4e32af592143d46bf92d0efac77d19d
 import closedEyes from 'figma:asset/bd12068c6ef8004bd8036d2273b290a8ecae647b.png';
 import raisedEyebrows from 'figma:asset/32536d3e13ff8065c1f6b3de94adfcfb1d5d94d7.png';
 import bottomLashes from 'figma:asset/fa840fa887b5d0d61853c25ca5a626c579bceb85.png';
+import dramaticEyebrows from 'figma:asset/1cb8dc9e705a2e00f9c957aa730052ca37b747bd.png';
+import confidentEyebrows from 'figma:asset/a9b234b86578d0cf376e103547493a195a21f981.png';
 // Mouth accessories
 import smileMouth from 'figma:asset/5660787e5ba0950ec04a09d7cf7f064f581302a5.png';
 import frownPng from 'figma:asset/9823b22aa4c9af4c84901143b170ac410d1b8e0f.png';
 import whistlingMouth from 'figma:asset/b3b26b7531fc0a3a2dafdba78851c3b11dc245dc.png';
+import happyMouth from 'figma:asset/deed60d8fa81dc25ad40f29346844bff13c2c0ef.png';
+import talkingMouth from 'figma:asset/ef8da2f8d8d12a5c8f8fb1cd0e4abb952b68e256.png';
+import oooMouth from 'figma:asset/e42a949e8a3be1de07a174653704d80cf123febf.png';
+import blepMouth from 'figma:asset/5c03ce1f003d7b86e5300d980d2855b56828897a.png';
+import toothyGrinMouth from 'figma:asset/1501fb5da50044b8cee4cfcc92e0b53cb82f1f63.png';
 // Arms accessories
 import armsImg from 'figma:asset/e1cb00a2a60b8725d4265551a68159cb1070e5f5.png';
 import strongArmsImg from 'figma:asset/aa83107b2cac8a78372e1416c21c4e5425dd0d08.png';
 import dancingArmsImg from 'figma:asset/c73c2cbb94b7cef260d225b251a8ba3024bd705f.png';
+import wavingArmsImg from 'figma:asset/ea0efda27881e87a2a07857f066e2ad5d0213dd2.png';
+import dramaticArms from 'figma:asset/00eaff456b7fc79dacdd41fec32c9aa75de41dff.png';
+import shrugArmsImg from 'figma:asset/29509828cce21d3b0f9ed093a464c7f89b79cc35.png';
+import exploringArmsImg from 'figma:asset/0ea6232a4c0b9f95363740b279ab12832778d468.png';
 // Legs accessories
 import legsImg from 'figma:asset/74f3553160d988436af237bafb15516d03789825.png';
 import dancingLegsImg from 'figma:asset/7612ba9bd9c06c0dca52c79f56a518289ae3fd29.png';
+import legUpLegsImg from 'figma:asset/54e47e134090adcda7a4e3afa2ee92c0382881d4.png';
 // Tail accessories
 import rainbowTailImg from 'figma:asset/2bfa5715385880a8a49bbec1db42b853e2dea6de.png';
 import brownTailImg from 'figma:asset/95a24bc7dd74e427be04f134b6b56c8e106afdde.png';
@@ -52,7 +74,7 @@ import gamerHeadsetImg from 'figma:asset/4d54b6c32044d2cd0525631f5243f89d7610803
 import pencilImg from 'figma:asset/ae24e2649373f3497eda6b88f13d72260f5b9858.png';
 import piNumbersImg from 'figma:asset/66f766bd23d1170e675b0f47042dd9d41de761b3.png';
 import butterflyWingsImg from 'figma:asset/1c6d812fcc1678b6c79aa04a0bae243e4229c95b.png';
-import guitarImg from 'figma:asset/eba644d4dbd366d84c4fb97378444f6ebb84eb30.png';
+import guitarImg from 'figma:asset/cce4b196b2ae1455b674b7cf6a46f99d0e239f74.png';
 import musicHaloImg from 'figma:asset/f0fdfeb1db204bb435c65b21c4ff55d6308023b5.png';
 import eyebrowsImg from 'figma:asset/43d27e6bd06248eac0ec3ad4c33bba18e964a80f.png';
 import mouthImg from 'figma:asset/b411a3156aefa4cccb96eaa7ff2888e020789f95.png';
@@ -66,6 +88,31 @@ import sunnyDayImg from 'figma:asset/377eff4c0f389d155b7406d1b3ef9fb43c61ab30.pn
 import moonlightImg from 'figma:asset/16527b4eab35de4ddad8510725b1f641bb31ed0a.png';
 import cloudKiteImg from 'figma:asset/3d6e56a08bb224a0508fb165ff77eaa4cb1d5515.png';
 import starWandImg from 'figma:asset/1978798f2b05c0e2bd9e45e42bf4752c9121ea11.png';
+import deedlySaxImg from 'figma:asset/ec289265f3eaa5ae6232f60b26c8b34133fcc848.png';
+// New shop accessories
+import notebookImg from 'figma:asset/0136896735ae418c2d7b00156d917daacb9a1006.png';
+import beretImg from 'figma:asset/a2d2f8e380f5c09896e3bd6f4807cf7656d26762.png';
+import rainbowBeretImg from 'figma:asset/02c583fda709259276b3e1007c4fd5a2c27cd0c3.png';
+import sparklesImg from 'figma:asset/416cfe32dc35b6c5a555ac2f20797a728b539838.png';
+import deedlyDrumImg from 'figma:asset/d4f032996844b95097aebb69379d5148c6d45b35.png';
+import bluesHaloImg from 'figma:asset/82e0b4ef5928f58422b0c552a89060bfeb207bba.png';
+import deedlyPaletteImg from 'figma:asset/9f3504ba74860bb9d9fb2629c828edf98cc1ce02.png';
+import paintbrushImg from 'figma:asset/19e256dd0c7257f0716f6cc7328d0880a5c33051.png';
+import mustacheImg from 'figma:asset/548cd76e564f6e597e9deecbc3a2c97b785cd22e.png';
+import quillPenImg from 'figma:asset/7355742024c405080d9af9e9c934e2587f03412c.png';
+import dramaMasksImg from 'figma:asset/db4ad7dfb8b0d3bdcad176c56415fb231401ecd1.png';
+import scrollDeedlyImg from 'figma:asset/5778bd713960c5e4edb24943d21ded12090f81de.png';
+// New shop items
+import fossilDeedlyImg from 'figma:asset/a4c989cb0e2acc25aa355d804d755128b5737cc1.png';
+import gravityAppleImg from 'figma:asset/dc6dccebb73ae567cc0fabeaa63d4fefe282fd7b.png';
+import gogglesImg from 'figma:asset/6e63a899ca34465fa1f0b835dde920378aec1e08.png';
+import chemistrySetImg from 'figma:asset/7ca373937af91437562ddff8cc8f675073042b49.png';
+// History accessories
+import clockImg from 'figma:asset/1cf0b547e3e9f863d463a5dc7214727268f8c44d.png';
+import deedlyGizaImg from 'figma:asset/d836c30e3e30d3623010c841329ffb356d0d8daf.png';
+import jonesHatImg from 'figma:asset/a5817c128c6b83c6fd3c3737a1d4a67cf194eeec.png';
+import treasureMapImg from 'figma:asset/c96c7bd3409e4e5d74e16e422b79a48c1175225e.png';
+import rockImg from 'figma:asset/dbdae624a034a3b515be83215ff0c3bc5d744d27.png';
 
 // -----------------------------------------------------------------------------
 // 🔧 PARENT SETUP: 
@@ -115,13 +162,10 @@ const GlobalStyles = () => (
     }
     
     .pattern-bg {
-        background-color: #f8fafc;
-        background-image: radial-gradient(#cbd5e1 1px, transparent 1px);
-        background-size: 20px 20px;
+        background-color: #f8fbff;
     }
     .dark .pattern-bg {
         background-color: #0f172a;
-        background-image: radial-gradient(#1e293b 1px, transparent 1px);
     }
   `}</style>
 );
@@ -197,7 +241,7 @@ const SUBJECTS = [
   { 
       id: 'history', name: 'History', icon: MapIcon, 
       color: 'bg-amber-100 text-amber-700 dark:bg-amber-900/50 dark:text-amber-200', border: 'border-amber-300 dark:border-amber-700', 
-      subtopics: ["Ancient Civilizations", "Wonders of the World", "Mummies", "Vikings", "Pirates", "Secret Spies", "Titanic", "Castles", "Knights", "Early Humans"],
+      subtopics: ["Ancient Civilizations", "Wonders of the World", "Mummies", "Vikings", "Pirates", "Titanic", "Castles", "Knights", "Early Humans"],
       imgTerm: "Ancient history"
   },
   { 
@@ -207,16 +251,16 @@ const SUBJECTS = [
       imgTerm: "Abacus"
   },
   { 
-      id: 'art', name: 'Art', icon: Palette, 
-      color: 'bg-purple-100 text-purple-700 dark:bg-purple-900/50 dark:text-purple-200', border: 'border-purple-300 dark:border-purple-700', 
-      subtopics: ["Elements of Art", "Famous Works of Art", "Art Movements", "Prehistoric Art", "Optical Illusions", "Pixel Art", "Invisible Ink", "Street Art", "Sculpture", "Color Theory", "Origami", "Pottery"],
-      imgTerm: "The Starry Night"
-  },
-  { 
       id: 'music', name: 'Music', icon: Music, 
       color: 'bg-rose-100 text-rose-700 dark:bg-rose-900/50 dark:text-rose-200', border: 'border-rose-300 dark:border-rose-700', 
       subtopics: ["Elements of Music", "Weird Instruments", "Video Game Music", "Animal Sounds", "Synthesizers", "Rhythm", "Movie Soundtracks", "Beatboxing", "Drums"],
       imgTerm: "Orchestra"
+  },
+  { 
+      id: 'art', name: 'Art', icon: Palette, 
+      color: 'bg-purple-100 text-purple-700 dark:bg-purple-900/50 dark:text-purple-200', border: 'border-purple-300 dark:border-purple-700', 
+      subtopics: ["Elements of Art", "Famous Works of Art", "Art Movements", "Prehistoric Art", "Optical Illusions", "Pixel Art", "Sculpture", "Origami", "Pottery"],
+      imgTerm: "The Starry Night"
   },
   { 
       id: 'career', name: 'Careers', icon: Briefcase, 
@@ -227,7 +271,7 @@ const SUBJECTS = [
   { 
       id: 'words', name: 'Words', icon: Edit3, 
       color: 'bg-pink-100 text-pink-700 dark:bg-pink-900/50 dark:text-pink-200', border: 'border-pink-300 dark:border-pink-700', 
-      subtopics: ["Elements of Language", "Silly Words", "Secret Languages", "Jokes", "Ancient Writing", "Tongue Twisters", "Palindromes", "Hieroglyphics", "Storytelling"],
+      subtopics: ["Elements of Language", "Stories", "Silly Words", "Secret Languages", "Jokes", "Ancient Writing", "Palindromes", "Hieroglyphics", "Storytelling"],
       imgTerm: "Calligraphy"
   },
 ];
@@ -242,7 +286,7 @@ const SUBTOPIC_IMAGES = {
   "Infinity": "https://images.unsplash.com/photo-1606778303039-9fc1488b1d8a?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxpbmZpbml0eSUyMHN5bWJvbHxlbnwxfHx8fDE3NjgyNTU1MzB8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
   "Secret Codes": "https://images.unsplash.com/photo-1633185075416-c9ef98858411?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxjcnlwdG9ncmFwaHklMjBjb2Rlc3xlbnwxfHx8fDE3NjgyNTU1MzB8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
   "Impossible Shapes": "https://images.unsplash.com/photo-1760693318333-d3ae15709511?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxpbXBvc3NpYmxlJTIwZ2VvbWV0cnl8ZW58MXx8fHwxNzY4MjU1NTMwfDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
-  "Zero": "https://images.unsplash.com/photo-1609166216058-457ce78d0e23?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxuZW9uJTIwemVyb3xlbnwxfHx8fDE3NjgyNTU1MzB8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
+  "Zero": "https://images.unsplash.com/photo-1727831140213-18650ae7ef36?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxtdXNpY2lhbiUyMHBlcmZvcm1pbmclMjBndWl0YXJ8ZW58MXx8fHwxNzY5NzkzNzU1fDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
   "Elements of Art": "https://images.unsplash.com/photo-1658301720419-d1c963f7993b?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxwYWludCUyMHBhbGV0dGV8ZW58MXx8fHwxNzY4MjU1NTMxfDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
   "Elements of Music": "https://images.unsplash.com/photo-1677533606085-f01c472408e7?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxtdXNpYyUyMG5vdGVzJTIwaW5zdHJ1bWVudHN8ZW58MXx8fHwxNzY4MzMwMTA2fDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
   "Famous Works of Art": "https://images.unsplash.com/photo-1582555172866-f73bb12a2ab3?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxhcnQlMjBtdXNldW18ZW58MXx8fHwxNjgyNTU1MzF8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
@@ -256,13 +300,25 @@ const SUBTOPIC_IMAGES = {
   "Rhythm": "https://images.unsplash.com/photo-1612549354052-a91bd7d0bff6?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxkcnVtJTIwcmh5dGhtfGVufDF8fHx8MTc2ODI1NTUzNHww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
   "Movie Soundtracks": "https://images.unsplash.com/photo-1517604931442-7e0c8ed2963c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxtb3ZpZSUyMHRoZWF0ZXJ8ZW58MXx8fHwxNzY4MTkzODcxfDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
   "Lego Master": "https://images.unsplash.com/photo-1633469924738-52101af51d87?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxjb2xvcmZ1bCUyMGxlZ298ZW58MXx8fHwxNzY4MjU1NTM0fDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
-  "Video Game Tester": "https://images.unsplash.com/photo-1611138290962-2c550ffd4002?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxnYW1pbmclMjBjb250cm9sbGVyfGVufDF8fHx8MTc2ODI1NTUzNHww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
+  "Video Game Tester": "https://images.unsplash.com/photo-1695028644151-1ec92bae9fb0?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxnYW1pbmclMjBjb25zb2xlJTIwY29udHJvbGxlcnxlbnwxfHx8fDE3Njg1ODk1MDB8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
   "Animal Rescuer": "https://images.unsplash.com/photo-1654119938236-de0d8ed4641d?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx2ZXRlcmluYXJpYW4lMjBhbmltYWx8ZW58MXx8fHwxNzY4MjU1NTM1fDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
   "Marine Biologist": "https://images.unsplash.com/photo-1563437060545-52c4198b7fc7?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxtYXJpbmUlMjBiaW9sb2dpc3QlMjBvY2VhbnxlbnwxfHx8fDE3NjgyNTcwMjF8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
+  "Firefighters": "https://images.unsplash.com/photo-1624002456783-4f3d8e7ca5f1?w=800&h=600&fit=crop",
+  "Astronaut": "https://images.unsplash.com/photo-1614732414444-096e5f1122d5?w=800&h=600&fit=crop",
+  "Chef": "https://images.unsplash.com/photo-1577219491135-ce391730fb2c?w=800&h=600&fit=crop",
+  "Scientist": "https://images.unsplash.com/photo-1532094349884-543bc11b234d?w=800&h=600&fit=crop",
+  "Teacher": "https://images.unsplash.com/photo-1580582932707-520aed937b7b?w=800&h=600&fit=crop",
+  "Doctor": "https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=800&h=600&fit=crop",
+  "Engineer": "https://images.unsplash.com/photo-1581094271901-8022df4466f9?w=800&h=600&fit=crop",
+  "Artist": "https://images.unsplash.com/photo-1460661419201-fd4cecdf8a8b?w=800&h=600&fit=crop",
+  "Musician": "https://images.unsplash.com/photo-1511379938547-c1f69419868d?w=800&h=600&fit=crop",
+  "Pilot": "https://images.unsplash.com/photo-1583267746897-c024c9cf8e6?w=800&h=600&fit=crop",
   "Elements of Language": "https://images.unsplash.com/photo-1725043394860-71304ce2b1b6?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxhbHBoYWJldCUyMGxldHRlcnN8ZW58MXx8fHwxNzY4MjU1NTM1fDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
+  "Stories": "https://images.unsplash.com/photo-1666888735993-6ed30a900f36?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxjaGlsZHJlbiUyMHJlYWRpbmclMjBzdG9yeWJvb2t8ZW58MXx8fHwxNzY4NjY1ODA0fDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
   "Silly Words": "https://images.unsplash.com/photo-1598983941654-125cc1854744?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxkaWN0aW9uYXJ5JTIwd29yZHN8ZW58MXx8fHwxNzY4MjU1NTM2fDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
+  "Jokes": "https://images.unsplash.com/photo-1665802117152-73f00cce89bf?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxjaGlsZHJlbiUyMGxhdWdoaW5nJTIwaGFwcHl8ZW58MXx8fHwxNzY4NTk4MDA0fDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
   "Secret Languages": "https://images.unsplash.com/photo-1551240903-154be3f2e18b?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxzaWduJTIwbGFuZ3VhZ2V8ZW58MXx8fHwxNzY4MjU1NTM2fDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
-  "Tongue Twisters": "https://images.unsplash.com/photo-1592758212009-aad46d7b0f23?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxzcGVha2luZyUyMG1vdXRofGVufDF8fHx8MTc2ODI1NTUzNnww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
+  "Tongue Twisters": "https://images.unsplash.com/photo-1752652016199-a9ca574e08cb?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxjaGlsZCUyMHNwZWFraW5nJTIwd29yZHN8ZW58MXx8fHwxNzY4NTk3ODk4fDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
   "Ancient Writing": "https://images.unsplash.com/photo-1728242410422-a5893353cac4?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxhbmNpZW50JTIwaGllcm9nbHlwaHN8ZW58MXx8fHwxNzY4MjU1NTM3fDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
   "Early Humans": "https://images.unsplash.com/photo-1647705777154-178dafd1e2d7?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxjYXZlJTIwcGFpbnRpbmd8ZW58MXx8fHwxNzY4MjU1NTM3fDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral"
 };
@@ -324,13 +380,42 @@ const CURRICULUM_TOPICS = {
       { name: "Magnetic Poetry", emoji: "🧲", description: "Arrange words to create poems", concept: "Parts of Speech", image: "https://images.unsplash.com/photo-1756906441837-1f1b6d1add73?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxsZXR0ZXIlMjBtYWduZXRzJTIwbGVhcm5pbmd8ZW58MXx8fHwxNzY4MzMyMTQ0fDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral" },
       { name: "Puppet Show Theater", emoji: "🎭", description: "Act out stories with puppets", concept: "Story Elements", image: "https://images.unsplash.com/photo-1646838633217-a9d36ddc2f37?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxraWRzJTIwc3Rvcnl0ZWxsaW5nJTIwcHVwcGV0fGVufDF8fHx8MTc2ODMzMjE0NHww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral" },
       { name: "Rhyme Time Match", emoji: "🎵", description: "Match words that rhyme", concept: "Poetry", image: "https://images.unsplash.com/photo-1552321046-a54642dc0cb8?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxyaHltaW5nJTIwd29yZCUyMGNhcmRzfGVufDF8fHx8MTc2ODMzMjE0NXww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral" },
-      { name: "Persuasive Letter Writing", emoji: "✉️", description: "Write a letter to convince someone", concept: "Persuasive Writing", image: "https://images.unsplash.com/photo-1633442495686-e8b67cffab53?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxjaGlsZCUyMGNyZWF0aXZlJTIwd3JpdGluZ3xlbnwxfHx8fDE3NjgzMzIxNDV8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral" },
+      { name: "Persuasive Letter Writing", emoji: "����️", description: "Write a letter to convince someone", concept: "Persuasive Writing", image: "https://images.unsplash.com/photo-1633442495686-e8b67cffab53?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxjaGlsZCUyMGNyZWF0aXZlJTIwd3JpdGluZ3xlbnwxfHx8fDE3NjgzMzIxNDV8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral" },
       { name: "Sentence Building Game", emoji: "🔨", description: "Build complete sentences", concept: "Sentence Structure", image: "https://images.unsplash.com/photo-1560113562-a0a37ada6d91?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxzZW50ZW5jZSUyMGJ1aWxkaW5nJTIwYmxvY2tzfGVufDF8fHx8MTc2ODMzMjE0NXww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral" },
       { name: "Word Detective", emoji: "🔎", description: "Discover word meanings and origins", concept: "Etymology", image: "https://images.unsplash.com/photo-1695238666585-ce8de2f39004?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxkaWN0aW9uYXJ5JTIwd29yZHMlMjBib29rfGVufDF8fHx8MTc2ODMzMjE0Nnww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral" },
       { name: "Punctuation Practice", emoji: "❓", description: "Add punctuation to sentences", concept: "Punctuation", image: "https://images.unsplash.com/photo-1612425506252-50b73402c822?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxwdW5jdHVhdGlvbiUyMG1hcmtzJTIwdHlwb2dyYXBoeXxlbnwxfHx8fDE3NjgzMzIxNDZ8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral" },
       { name: "Simile & Metaphor Comics", emoji: "💭", description: "Create comics with figurative language", concept: "Literary Devices", image: "https://images.unsplash.com/photo-1514189831078-ee41c3568075?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxtZXRhcGhvciUyMHNpbWlsZSUyMGlsbHVzdHJhdGlvbnxlbnwxfHx8fDE3Njg0MjM5Njh8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral" },
     ],
     type: "activities"
+  },
+  "Stories": {
+    id: "stories",
+    name: "Stories",
+    description: "Discover amazing tales from cultures around the world",
+    subTopics: [
+      { name: "Fairytales", emoji: "✨", description: "Magical stories with lessons", color: "bg-purple-500" },
+      { name: "Fables", emoji: "🐾", description: "Animal tales teaching wisdom", color: "bg-amber-500" },
+      { name: "Tall Tales", emoji: "⭐", description: "Larger-than-life heroes", color: "bg-blue-500" },
+    ],
+    stories: [
+      { name: "Anansi and the Pot of Wisdom", emoji: "🕷️", category: "Fairytale", origin: "West African", description: "A spider learns wisdom belongs to everyone", image: "https://images.unsplash.com/photo-1632397816460-af569c3ff083?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx3ZXN0JTIwYWZyaWNhbiUyMGZvbGtsb3JlJTIwc3BpZGVyfGVufDF8fHx8MTc2ODY2ODUyN3ww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral" },
+      { name: "The Tortoise and the Hare", emoji: "🐢", category: "Fable", origin: "Aesop's Fables", description: "Slow and steady wins the race", image: "https://images.unsplash.com/photo-1538465502635-af5fa404b9db?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx0b3J0b2lzZSUyMHR1cnRsZSUyMHJhY2V8ZW58MXx8fHwxNzY4NjY4NTMxfDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral" },
+      { name: "John Henry", emoji: "🔨", category: "Tall Tale", origin: "African American", description: "A steel-driving legend", image: "https://images.unsplash.com/photo-1672672199659-465e8e816b81?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxyYWlscm9hZCUyMHdvcmtlciUyMGhhbW1lcnxlbnwxfHx8fDE3Njg2Njg1MzJ8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral" },
+      { name: "Mulan", emoji: "⚔️", category: "Fairytale", origin: "Chinese", description: "A brave daughter saves her father", image: "https://images.unsplash.com/photo-1602417554980-154d51862264?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxjaGluZXNlJTIwd2FycmlvciUyMHdvbWFuJTIwYW5jaWVudHxlbnwxfHx8fDE3Njg2Njg1Mjh8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral" },
+      { name: "The Clever Hare", emoji: "🐰", category: "Fable", origin: "Jataka Tales", description: "Wit defeats strength", image: "https://images.unsplash.com/photo-1593213891050-d303c32dcf89?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxoYXJlJTIwcmFiYml0JTIwZm9yZXN0fGVufDF8fHx8MTc2ODY2ODUzMHww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral" },
+      { name: "The Firebird", emoji: "🔥", category: "Fairytale", origin: "Russian", description: "A prince's quest for a magical bird", image: "https://images.unsplash.com/photo-1568741314282-ac9b804f5a2e?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxydXNzaWFuJTIwZmlyZWJpcmQlMjBteXRob2xvZ3l8ZW58MXx8fHwxNzY4NjY4NTI4fDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral" },
+      { name: "Pecos Bill", emoji: "🤠", category: "Tall Tale", origin: "American", description: "The cowboy who rode a tornado", image: "https://images.unsplash.com/photo-1582588049637-5f19788eb087?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxjb3dib3klMjB0b3JuYWRvJTIwZGVzZXJ0fGVufDF8fHx8MTc2ODY2ODUzMnww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral" },
+      { name: "The Lion and the Mouse", emoji: "🦁", category: "Fable", origin: "Aesop's Fables", description: "Even the smallest can help", image: "https://images.unsplash.com/photo-1600322353605-90d630a44563?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxsaW9uJTIwbW91c2UlMjBmcmllbmRzaGlwfGVufDF8fHx8MTc2ODY2ODUzMXww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral" },
+      { name: "Cinderella (Ye Xian)", emoji: "👗", category: "Fairytale", origin: "Chinese", description: "Kindness rewarded with magic", image: "https://images.unsplash.com/photo-1664375910588-9452047e2d16?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxjaGluZXNlJTIwZ29sZGVuJTIwc2xpcHBlciUyMGFuY2llbnR8ZW58MXx8fHwxNzY4NjY4NTI5fDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral" },
+      { name: "The Crow and the Pitcher", emoji: "🐦", category: "Fable", origin: "Aesop's Fables", description: "Cleverness solves problems", image: "https://images.unsplash.com/photo-1623667182284-f2510d94b971?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxjcm93JTIwYmlyZCUyMHBpdGNoZXJ8ZW58MXx8fHwxNzY4NjY4NTMxfDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral" },
+      { name: "Paul Bunyan", emoji: "🪓", category: "Tall Tale", origin: "American/Canadian", description: "A giant lumberjack and his blue ox", image: "https://images.unsplash.com/photo-1719517367461-d9c4c55c7625?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxsdW1iZXJqYWNrJTIwYmx1ZSUyMG94JTIwZm9yZXN0fGVufDF8fHx8MTc2ODY2ODUzM3ww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral" },
+      { name: "The Rainbow Serpent", emoji: "🌈", category: "Fairytale", origin: "Aboriginal Australian", description: "How the land was created", image: "https://images.unsplash.com/photo-1757529151466-6510ee0cf8a4?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxyYWluYm93JTIwc2VycGVudCUyMGFib3JpZ2luYWx8ZW58MXx8fHwxNzY4NjY4NTI5fDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral" },
+      { name: "The Ant and the Grasshopper", emoji: "🐜", category: "Fable", origin: "Aesop's Fables", description: "Prepare for tomorrow today", image: "https://images.unsplash.com/photo-1536427824649-fbf2e4a33d40?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxhbnQlMjBncmFzc2hvcHBlciUyMGluc2VjdHxlbnwxfHx8fDE3Njg2Njg1MzF8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral" },
+      { name: "Sleeping Beauty", emoji: "🌹", category: "Fairytale", origin: "European", description: "A curse broken by true love", image: "https://images.unsplash.com/photo-1650571057388-3921855f66c9?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxzbGVlcGluZyUyMGJlYXV0eSUyMHByaW5jZXNzfGVufDF8fHx8MTc2ODY2OTA3Mnww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral" },
+      { name: "The Boy Who Cried Wolf", emoji: "🐺", category: "Fable", origin: "Aesop's Fables", description: "Honesty earns trust", image: "https://images.unsplash.com/photo-1595424307919-b8335ccd9630?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxmb2xrJTIwdGFsZSUyMGRhbmNpbmd8ZW58MXx8fHwxNzY4NjY5MDcyfDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral" },
+      { name: "Daedalus and Icarus", emoji: "🪶", category: "Fairytale", origin: "Greek", description: "Flying too close to the sun", image: "https://images.unsplash.com/photo-1758040556071-b887446cffa9?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxncmVlayUyMG15dGhvbG9neSUyMGljYXJ1cyUyMHdpbmdzfGVufDF8fHx8MTc2ODY2OTA3MXww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral" },
+    ],
+    type: "stories"
   },
   "Elements of Math": {
     id: "elements-of-math",
@@ -529,21 +614,45 @@ const CURRICULUM_TOPICS = {
 const SHOP_ITEMS = [
   { id: 'partyhat', name: 'Party Hat', cost: 0, currency: 'free', image: partyHatImg },
   { id: 'glasses', name: 'Smart Specs', cost: 15, currency: 'crumbs', image: glassesImg },
-  { id: 'tophat', name: 'Fancy Hat', cost: 20, currency: 'crumbs', image: topHatImg },
-  { id: 'crown', name: 'Gold Crown', cost: 25, currency: 'crumbs', image: crownImg },
-  { id: 'gamerheadset', name: 'Math Glasses', cost: 30, currency: 'crumbs', image: gamerHeadsetImg },
-  { id: 'pencil', name: 'Pencil', cost: 20, currency: 'crumbs', image: pencilImg },
-  { id: 'pinumbers', name: 'Pi', cost: 35, currency: 'crumbs', image: piNumbersImg },
-  { id: 'butterflywings', name: 'Fairy Wings', cost: 40, currency: 'crumbs', image: butterflyWingsImg },
-  { id: 'flower', name: 'Flower', cost: 25, currency: 'crumbs', image: flowerImg },
-  { id: 'partlycloudy', name: 'Partly Cloudy', cost: 30, currency: 'crumbs', image: partlyCloudyImg },
-  { id: 'starrynight', name: 'Starry Night', cost: 30, currency: 'crumbs', image: starryNightImg },
-  { id: 'deedlystar', name: 'Deedly Star', cost: 35, currency: 'crumbs', image: deedlyStarImg },
-  { id: 'deedlycloud', name: 'Deedly Cloud', cost: 35, currency: 'crumbs', image: deedlyCloudImg },
-  { id: 'sunnyday', name: 'Sunny Day', cost: 30, currency: 'crumbs', image: sunnyDayImg },
-  { id: 'moonlight', name: 'Moon & Star', cost: 30, currency: 'crumbs', image: moonlightImg },
-  { id: 'cloudkite', name: 'White Deedly Cloud', cost: 25, currency: 'crumbs', image: cloudKiteImg },
-  { id: 'starwand', name: 'Yellow Deedly Star', cost: 25, currency: 'crumbs', image: starWandImg },
+  { id: 'tophat', name: 'Fancy Hat', cost: 15, currency: 'crumbs', image: topHatImg },
+  { id: 'crown', name: 'Gold Crown', cost: 15, currency: 'crumbs', image: crownImg },
+  { id: 'gamerheadset', name: 'Math Glasses', cost: 15, currency: 'crumbs', image: gamerHeadsetImg },
+  { id: 'pencil', name: 'Pencil', cost: 15, currency: 'crumbs', image: pencilImg },
+  { id: 'pinumbers', name: 'Pi', cost: 15, currency: 'crumbs', image: piNumbersImg },
+  { id: 'butterflywings', name: 'Fairy Wings', cost: 15, currency: 'crumbs', image: butterflyWingsImg },
+  { id: 'guitar', name: 'Guitar', cost: 15, currency: 'crumbs', image: guitarImg },
+  { id: 'musichalo', name: 'Music Halo', cost: 15, currency: 'crumbs', image: musicHaloImg },
+  { id: 'flower', name: 'Flower', cost: 15, currency: 'crumbs', image: flowerImg },
+  { id: 'partlycloudy', name: 'Partly Cloudy', cost: 15, currency: 'crumbs', image: partlyCloudyImg },
+  { id: 'starrynight', name: 'Starry Night', cost: 15, currency: 'crumbs', image: starryNightImg },
+  { id: 'deedlystar', name: 'Deedly Star', cost: 15, currency: 'crumbs', image: deedlyStarImg },
+  { id: 'deedlycloud', name: 'Deedly Cloud', cost: 15, currency: 'crumbs', image: deedlyCloudImg },
+  { id: 'sunnyday', name: 'Sunny Day', cost: 15, currency: 'crumbs', image: sunnyDayImg },
+  { id: 'moonlight', name: 'Moon & Star', cost: 15, currency: 'crumbs', image: moonlightImg },
+  { id: 'cloudkite', name: 'White Deedly Cloud', cost: 15, currency: 'crumbs', image: cloudKiteImg },
+  { id: 'starwand', name: 'Yellow Deedly Star', cost: 15, currency: 'crumbs', image: starWandImg },
+  { id: 'deedlysax', name: 'Deedly Sax', cost: 15, currency: 'crumbs', image: deedlySaxImg },
+  { id: 'deedlydrum', name: 'Deedly Drum', cost: 15, currency: 'crumbs', image: deedlyDrumImg },
+  { id: 'blueshalo', name: 'Blues Halo', cost: 15, currency: 'crumbs', image: bluesHaloImg },
+  { id: 'notebook', name: 'Sketchbook', cost: 15, currency: 'crumbs', image: notebookImg },
+  { id: 'partyhorn', name: 'Beret', cost: 15, currency: 'crumbs', image: beretImg },
+  { id: 'rainbowberet', name: 'Rainbow Beret', cost: 15, currency: 'crumbs', image: rainbowBeretImg },
+  { id: 'sparkles', name: 'Paint Splatters', cost: 15, currency: 'crumbs', image: sparklesImg },
+  { id: 'deedlypalette', name: 'Deedly Palette', cost: 15, currency: 'crumbs', image: deedlyPaletteImg },
+  { id: 'paintbrush', name: 'Paintbrush', cost: 15, currency: 'crumbs', image: paintbrushImg },
+  { id: 'mustache', name: 'Mustache', cost: 15, currency: 'crumbs', image: mustacheImg },
+  { id: 'quillpen', name: 'Quill Pen', cost: 15, currency: 'crumbs', image: quillPenImg },
+  { id: 'dramamasks', name: 'Drama Masks', cost: 15, currency: 'crumbs', image: dramaMasksImg },
+  { id: 'scrolldeedly', name: 'Scroll Deedly', cost: 15, currency: 'crumbs', image: scrollDeedlyImg },
+  { id: 'fossildeedly', name: 'Fossil Deedly', cost: 15, currency: 'crumbs', image: fossilDeedlyImg },
+  { id: 'gravityapple', name: 'Gravity Apple', cost: 15, currency: 'crumbs', image: gravityAppleImg },
+  { id: 'goggles', name: 'Goggles', cost: 15, currency: 'crumbs', image: gogglesImg },
+  { id: 'chemistryset', name: 'Chemistry Set', cost: 15, currency: 'crumbs', image: chemistrySetImg },
+  { id: 'clock', name: 'Clock', cost: 15, currency: 'crumbs', image: clockImg },
+  { id: 'deedlygiza', name: 'Deedly Giza', cost: 15, currency: 'crumbs', image: deedlyGizaImg },
+  { id: 'joneshat', name: 'Jones Hat', cost: 15, currency: 'crumbs', image: jonesHatImg },
+  { id: 'treasuremap', name: 'Treasure Map', cost: 15, currency: 'crumbs', image: treasureMapImg },
+  { id: 'rock', name: 'Rock', cost: 15, currency: 'crumbs', image: rockImg },
 ];
 
 const STARTER_NUGGETS = {
@@ -598,6 +707,78 @@ const fetchWikipediaImage = async (term) => {
     return null;
 };
 
+// --- Multi-Tier Image Fetching with Fallbacks ---
+const fetchEducationalImage = async (searchTerm, subjectId = 'science') => {
+    console.log('🔍 Fetching educational image for:', searchTerm);
+    
+    // Tier 1: Try Wikipedia with exact search term (best for educational content)
+    try {
+        console.log('📚 Trying Wikipedia with:', searchTerm);
+        const wikiResult = await fetchWikipediaImage(searchTerm);
+        if (wikiResult) {
+            console.log('✅ Found Wikipedia image:', wikiResult.title);
+            return wikiResult;
+        }
+    } catch (e) {
+        console.log('❌ Wikipedia failed:', e.message);
+    }
+    
+    // Tier 2: Try Unsplash with specific search term
+    try {
+        console.log('🎨 Trying Unsplash with specific term:', searchTerm);
+        const unsplashUrl = `https://source.unsplash.com/800x600/?${encodeURIComponent(searchTerm)}`;
+        // Test if URL is accessible by creating an image element
+        const testResult = await new Promise((resolve) => {
+            const img = new Image();
+            img.onload = () => resolve(true);
+            img.onerror = () => resolve(false);
+            img.src = unsplashUrl;
+            // Timeout after 3 seconds
+            setTimeout(() => resolve(false), 3000);
+        });
+        
+        if (testResult) {
+            console.log('✅ Found Unsplash image');
+            return { url: unsplashUrl, title: searchTerm, description: 'Image from Unsplash' };
+        }
+    } catch (e) {
+        console.log('❌ Unsplash specific term failed:', e.message);
+    }
+    
+    // Tier 3: Simplify search term (extract core topic nouns)
+    try {
+        const genericWords = ['the', 'a', 'an', 'is', 'are', 'was', 'were', 'in', 'on', 'at', 'to', 'for', 'of', 'with', 'by', 'from', 'very', 'really', 'quite', 'extremely', 'educational', 'children', 'learning', 'playing', 'watching', 'doing', 'making', 'kids', 'child'];
+        const words = searchTerm.toLowerCase().split(/\s+/)
+            .filter(word => word.length > 2 && !genericWords.includes(word));
+        // Prioritize last 1-2 words (core topic) for better relevance
+        const simplifiedTerm = words.slice(-2).join(' ') || words.slice(0, 2).join(' ');
+        
+        if (simplifiedTerm && simplifiedTerm !== searchTerm) {
+            console.log('🔄 Trying simplified term:', simplifiedTerm);
+            const simplifiedUrl = `https://source.unsplash.com/800x600/?${encodeURIComponent(simplifiedTerm)}`;
+            console.log('✅ Using simplified Unsplash image');
+            return { url: simplifiedUrl, title: simplifiedTerm, description: 'Image from Unsplash' };
+        }
+    } catch (e) {
+        console.log('❌ Simplified term failed:', e.message);
+    }
+    
+    // Tier 4: Subject-themed placeholder based on subject area
+    const subjectPlaceholders = {
+        science: 'https://images.unsplash.com/photo-1532094349884-543bc11b234d?w=800&h=600&fit=crop', // Science lab
+        math: 'https://images.unsplash.com/photo-1635070041078-e363dbe005cb?w=800&h=600&fit=crop', // Math symbols
+        music: 'https://images.unsplash.com/photo-1511379938547-c1f69419868d?w=800&h=600&fit=crop', // Music notes
+        art: 'https://images.unsplash.com/photo-1460661419201-fd4cecdf8a8b?w=800&h=600&fit=crop', // Art supplies
+        words: 'https://images.unsplash.com/photo-1457369804613-52c61a468e7d?w=800&h=600&fit=crop', // Books
+        career: 'https://images.unsplash.com/photo-1521737604893-d14cc237f11d?w=800&h=600&fit=crop', // Work/career
+        default: 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=800&h=600&fit=crop' // Space/universe
+    };
+    
+    const placeholderUrl = subjectPlaceholders[subjectId] || subjectPlaceholders.default;
+    console.log('🎯 Using subject-themed placeholder for:', subjectId);
+    return { url: placeholderUrl, title: 'Educational Image', description: 'Learning placeholder' };
+};
+
 // --- Reusable Components ---
 
 const SubtopicCard = ({ subtopic, onClick }) => {
@@ -631,7 +812,7 @@ const SubtopicCard = ({ subtopic, onClick }) => {
     }, [subtopic]);
 
     return (
-        <button onClick={onClick} className={`group relative overflow-hidden bg-white dark:bg-slate-800 rounded-2xl shadow-sm border-2 ${isCurriculum ? 'border-yellow-400 dark:border-yellow-500 shadow-yellow-400/20 shadow-lg' : 'border-slate-200 dark:border-slate-700'} hover:shadow-xl hover:scale-[1.02] active:scale-95 transition-all flex flex-col items-center justify-center text-center h-32 md:h-40 w-full animate-pop`}>
+        <button onClick={onClick} className={`group relative overflow-hidden bg-transparent rounded-2xl shadow-sm border-2 ${isCurriculum ? 'border-yellow-400 dark:border-yellow-500 shadow-yellow-400/20 shadow-lg' : 'border-slate-200 dark:border-slate-700'} hover:shadow-xl hover:scale-[1.02] active:scale-95 transition-all flex flex-col items-center justify-center text-center h-32 md:h-40 w-full animate-pop`}>
             {isCurriculum && (
                 <div className="absolute -top-1 -right-1 z-20">
                     <div className="bg-yellow-400 dark:bg-yellow-500 text-yellow-900 dark:text-yellow-950 px-2 py-0.5 rounded-bl-lg rounded-tr-xl text-xs font-black uppercase tracking-wider shadow-md">
@@ -645,7 +826,7 @@ const SubtopicCard = ({ subtopic, onClick }) => {
                         <img src={imageUrl} alt={subtopic} className="w-full h-full object-cover object-center transition-transform duration-700 group-hover:scale-110 opacity-80 group-hover:opacity-100" />
                         <div className={`absolute inset-0 ${isCurriculum ? 'bg-gradient-to-br from-yellow-600/40 via-black/40 to-black/40' : 'bg-black/40'} group-hover:bg-black/30 transition-colors`} />
                     </div>
-                    <span className="relative z-10 font-bold text-white text-lg md:text-xl drop-shadow-md px-2 leading-tight">{subtopic}</span>
+                    <span className="relative z-10 font-bold text-white text-lg md:text-xl drop-shadow-md px-2 leading-tight" style={{ fontFamily: 'var(--font-bubblegum)' }}>{subtopic}</span>
                 </>
             ) : (
                 <>
@@ -750,6 +931,7 @@ export default function NuggetsApp() {
   const [darkMode, setDarkMode] = useState(false);
   
   const [aiLoading, setAiLoading] = useState(false);
+  const [isPreGenerating, setIsPreGenerating] = useState(false);
   const [aiResponse, setAiResponse] = useState(null);
   const [aiContentImage, setAiContentImage] = useState(null);
   const [learnResponse, setLearnResponse] = useState(null);
@@ -775,6 +957,7 @@ export default function NuggetsApp() {
   // Nugget Image
   const [nuggetImage, setNuggetImage] = useState(null);
   const [imageLoading, setImageLoading] = useState(false);
+  const [nuggetLoading, setNuggetLoading] = useState(false);
 
   // Stardust Quiz Popup
   const [showStardustQuiz, setShowStardustQuiz] = useState(false);
@@ -838,22 +1021,34 @@ export default function NuggetsApp() {
       { id: 'checkit-eyebrows', name: 'Check It Eyebrows', image: checkItEyebrows, requiresUnlock: false },
       { id: 'closed-eyes', name: 'Closed Eyes', image: closedEyes, requiresUnlock: false },
       { id: 'raised-eyebrows', name: 'Raised Eyebrows', image: raisedEyebrows, requiresUnlock: false },
-      { id: 'bottom-lashes', name: 'Bottom Lashes', image: bottomLashes, requiresUnlock: false }
+      { id: 'bottom-lashes', name: 'Bottom Lashes', image: bottomLashes, requiresUnlock: false },
+      { id: 'dramatic-eyebrows', name: 'Dramatic Eyebrows', image: dramaticEyebrows, requiresUnlock: false },
+      { id: 'confident-eyebrows', name: 'Confident Eyebrows', image: confidentEyebrows, requiresUnlock: false }
     ],
     mouth: [
       { id: 'mouth-smile', name: 'Smile', image: smileMouth },
       { id: 'mouth-frown', name: 'Frown', image: frownPng },
       { id: 'mouth', name: 'Unsure Mouth', image: mouthImg, requiresUnlock: false },
-      { id: 'mouth-whistling', name: 'Whistling', image: whistlingMouth, requiresUnlock: false }
+      { id: 'mouth-whistling', name: 'Whistling', image: whistlingMouth, requiresUnlock: false },
+      { id: 'mouth-happy', name: 'Small Smile', image: happyMouth, requiresUnlock: false },
+      { id: 'mouth-talking', name: 'Talking Mouth', image: talkingMouth, requiresUnlock: false },
+      { id: 'mouth-ooo', name: 'Ooo Mouth', image: oooMouth, requiresUnlock: false },
+      { id: 'mouth-blep', name: 'Blep Mouth', image: blepMouth, requiresUnlock: false },
+      { id: 'mouth-toothy-grin', name: 'Toothy Grin', image: toothyGrinMouth, requiresUnlock: false }
     ],
     arms: [
       { id: 'arms-basic', name: 'Arms', image: armsImg },
       { id: 'strongarms', name: 'Thinking Arms', image: strongArmsImg, requiresUnlock: false, renderInFront: true },
-      { id: 'dancingarms', name: 'Dancing', image: dancingArmsImg, requiresUnlock: false, renderInFront: true }
+      { id: 'dancingarms', name: 'Dancing', image: dancingArmsImg, requiresUnlock: false, renderBehind: true },
+      { id: 'wavingarms', name: 'Waving', image: wavingArmsImg, requiresUnlock: false, renderInFront: true },
+      { id: 'dramaticarms', name: 'Dramatic Arms', image: dramaticArms, requiresUnlock: false, renderInFront: true },
+      { id: 'shrugarms', name: 'Shrug Arms', image: shrugArmsImg, requiresUnlock: false, renderBehind: true },
+      { id: 'exploringarms', name: 'Exploring', image: exploringArmsImg, requiresUnlock: false, renderInFront: true }
     ],
     legs: [
       { id: 'legs-basic', name: 'Legs', image: legsImg },
-      { id: 'dancinglegs', name: 'Dancing', image: dancingLegsImg, requiresUnlock: false }
+      { id: 'dancinglegs', name: 'Dancing', image: dancingLegsImg, requiresUnlock: false },
+      { id: 'legup', name: 'Leg Up', image: legUpLegsImg, requiresUnlock: false, renderInFront: true }
     ],
     accessories: [
       { id: 'partyhat', name: 'Party Hat', image: partyHatImg, requiresUnlock: false },
@@ -876,7 +1071,29 @@ export default function NuggetsApp() {
       { id: 'sunnyday', name: 'Sunny Day', image: sunnyDayImg, requiresUnlock: true, renderBehind: true },
       { id: 'moonlight', name: 'Moon & Star', image: moonlightImg, requiresUnlock: true, renderBehind: true },
       { id: 'cloudkite', name: 'White Deedly Cloud', image: cloudKiteImg, requiresUnlock: true },
-      { id: 'starwand', name: 'Yellow Deedly Star', image: starWandImg, requiresUnlock: true }
+      { id: 'starwand', name: 'Yellow Deedly Star', image: starWandImg, requiresUnlock: true },
+      { id: 'deedlysax', name: 'Deedly Sax', image: deedlySaxImg, requiresUnlock: true, renderBehind: true },
+      { id: 'deedlydrum', name: 'Deedly Drum', image: deedlyDrumImg, requiresUnlock: true, renderBehind: true },
+      { id: 'blueshalo', name: 'Blues Halo', image: bluesHaloImg, requiresUnlock: true },
+      { id: 'notebook', name: 'Sketchbook', image: notebookImg, requiresUnlock: true },
+      { id: 'partyhorn', name: 'Beret', image: beretImg, requiresUnlock: true },
+      { id: 'rainbowberet', name: 'Rainbow Beret', image: rainbowBeretImg, requiresUnlock: true },
+      { id: 'sparkles', name: 'Paint Splatters', image: sparklesImg, requiresUnlock: true, renderBehind: true },
+      { id: 'deedlypalette', name: 'Deedly Palette', image: deedlyPaletteImg, requiresUnlock: true },
+      { id: 'paintbrush', name: 'Paintbrush', image: paintbrushImg, requiresUnlock: true, renderBehind: true },
+      { id: 'mustache', name: 'Mustache', image: mustacheImg, requiresUnlock: true },
+      { id: 'quillpen', name: 'Quill Pen', image: quillPenImg, requiresUnlock: true, renderBehind: true },
+      { id: 'dramamasks', name: 'Drama Masks', image: dramaMasksImg, requiresUnlock: true },
+      { id: 'scrolldeedly', name: 'Scroll Deedly', image: scrollDeedlyImg, requiresUnlock: true, renderBehind: true },
+      { id: 'fossildeedly', name: 'Fossil Deedly', image: fossilDeedlyImg, requiresUnlock: true, renderBehind: true },
+      { id: 'gravityapple', name: 'Gravity Apple', image: gravityAppleImg, requiresUnlock: true },
+      { id: 'goggles', name: 'Goggles', image: gogglesImg, requiresUnlock: true },
+      { id: 'chemistryset', name: 'Chemistry Set', image: chemistrySetImg, requiresUnlock: true, renderBehind: true },
+      { id: 'clock', name: 'Clock', image: clockImg, requiresUnlock: true },
+      { id: 'deedlygiza', name: 'Deedly Giza', image: deedlyGizaImg, requiresUnlock: true, renderBehind: true },
+      { id: 'joneshat', name: 'Jones Hat', image: jonesHatImg, requiresUnlock: true },
+      { id: 'treasuremap', name: 'Treasure Map', image: treasureMapImg, requiresUnlock: true, renderBehind: true },
+      { id: 'rock', name: 'Rock', image: rockImg, requiresUnlock: true }
     ]
   };
 
@@ -1109,7 +1326,11 @@ export default function NuggetsApp() {
 
   useEffect(() => {
     if (currentNugget && view === 'nugget') {
-        generateImage(currentNugget.text, currentNugget.searchTerm, currentNugget.originalTag);
+        setNuggetLoading(true);
+        // Start image generation
+        generateImage(currentNugget.text, currentNugget.searchTerm, currentNugget.originalTag, currentNugget.subjectId);
+    } else {
+        setNuggetLoading(false);
     }
     
     // Stop any ongoing speech when switching views
@@ -1118,6 +1339,15 @@ export default function NuggetsApp() {
       setIsSpeaking(false);
     }
   }, [currentNugget, view]);
+
+  // Hide loading indicator once image finishes loading
+  useEffect(() => {
+    if (view === 'nugget' && !imageLoading) {
+      // Small delay to ensure smooth transition
+      const timer = setTimeout(() => setNuggetLoading(false), 300);
+      return () => clearTimeout(timer);
+    }
+  }, [imageLoading, view]);
 
   // Generate Stardust question when modal opens
   useEffect(() => {
@@ -1173,15 +1403,35 @@ export default function NuggetsApp() {
       if (isShowMeOpen && showMeImages.length === 0 && !showMeLoading) {
           setShowMeLoading(true);
           const loadImages = async () => {
-              // Helper function to extract key search terms (2-3 words max)
+              // Helper function to extract key search terms (just the main concept)
               const extractKeyTerms = (text) => {
                   if (!text) return '';
-                  // Remove common filler words
-                  const fillerWords = ['the', 'a', 'an', 'is', 'are', 'was', 'were', 'in', 'on', 'at', 'to', 'for', 'of', 'with', 'by', 'from', 'that', 'this', 'these', 'those', 'and', 'or', 'but'];
+                  // Remove ALL modifier words - keep only the core noun/concept
+                  const modifierWords = [
+                      'the', 'a', 'an', 'is', 'are', 'was', 'were', 'in', 'on', 'at', 'to', 'for', 'of', 'with', 'by', 'from', 'that', 'this', 'these', 'those', 'and', 'or', 'but',
+                      'children', 'child', 'kids', 'kid', 'playing', 'play', 'learning', 'learn', 'watching', 'watch', 'doing', 'making', 'educational', 'education', 'young', 'little', 'fun',
+                      // Color/appearance modifiers
+                      'colorful', 'bright', 'dark', 'light', 'beautiful', 'stunning', 'amazing', 'incredible',
+                      // Style/type modifiers
+                      'modern', 'ancient', 'traditional', 'contemporary', 'classic', 'vintage', 'new', 'old', 'reverse',
+                      // Action/process words
+                      'creating', 'building', 'drawing', 'painting', 'cleaning', 'washing', 'designing', 'crafting',
+                      // Size/scale
+                      'large', 'small', 'big', 'tiny', 'huge', 'massive', 'giant',
+                      // Generic descriptors
+                      'character', 'characters', 'image', 'images', 'picture', 'pictures', 'mural', 'murals', 'style', 'technique',
+                      // Nationality/origin modifiers
+                      'egyptian', 'greek', 'roman', 'chinese', 'japanese', 'indian', 'african', 'european', 'american', 'asian',
+                      // Location/surface words
+                      'wall', 'walls', 'ceiling', 'floor', 'surface', 'ground', 'paper', 'canvas', 'board'
+                  ];
                   const words = text.toLowerCase().split(/\s+/)
-                      .filter(word => word.length > 2 && !fillerWords.includes(word));
-                  // Take first 2-3 important words
-                  return words.slice(0, 3).join(' ');
+                      .filter(word => word.length > 2 && !modifierWords.includes(word));
+                  // Take 1-2 core words to capture the main subject
+                  // "ancient egyptian hieroglyphics wall" → "hieroglyphics"
+                  // "black hole" → "black hole"
+                  // "pixel art character" → "pixel art"
+                  return words.slice(0, 2).join(' ');
               };
               
               const searches = [showMeTopic, currentNugget?.searchTerm]
@@ -1190,9 +1440,10 @@ export default function NuggetsApp() {
                   .filter(term => term.length > 0);
               const allImages = [];
               
+              // TIER 1: Try Wikipedia for educational images
               for (const term of searches) {
                   try {
-                      const response = await fetch(`https://en.wikipedia.org/w/api.php?action=query&generator=search&gsrsearch=${encodeURIComponent(term)}&gsrlimit=6&prop=pageimages|pageterms&piprop=thumbnail&pithumbsize=800&format=json&origin=*`);
+                      const response = await fetch(`https://en.wikipedia.org/w/api.php?action=query&generator=search&gsrsearch=${encodeURIComponent(term)}&gsrlimit=8&prop=pageimages|pageterms&piprop=thumbnail&pithumbsize=800&format=json&origin=*`);
                       const data = await response.json();
                       const pages = data.query?.pages;
                       
@@ -1207,7 +1458,28 @@ export default function NuggetsApp() {
                           allImages.push(...images);
                       }
                   } catch (e) {
-                      console.error("Image fetch error:", e);
+                      console.error("Wikipedia image fetch error:", e);
+                  }
+              }
+              
+              // TIER 2: If we don't have enough images, supplement with Unsplash
+              if (allImages.length < 6 && searches.length > 0) {
+                  console.log('📷 Supplementing with Unsplash images');
+                  for (const term of searches.slice(0, 2)) { // Use first 2 search terms
+                      try {
+                          // Generate varied Unsplash images with random signatures for diversity
+                          for (let i = 0; i < 3; i++) {
+                              const randomSeed = Math.random().toString(36).substring(7);
+                              const unsplashUrl = `https://source.unsplash.com/800x600/?${encodeURIComponent(term)}&sig=${randomSeed}`;
+                              allImages.push({
+                                  url: unsplashUrl,
+                                  title: term,
+                                  description: 'Educational image from Unsplash'
+                              });
+                          }
+                      } catch (e) {
+                          console.error("Unsplash image error:", e);
+                      }
                   }
               }
               
@@ -1252,7 +1524,8 @@ export default function NuggetsApp() {
                 return !inappropriateWords.some(word => textToCheck.includes(word));
               });
               
-              setShowMeImages(filteredImages);
+              // Take up to 15 images for a good gallery
+              setShowMeImages(filteredImages.slice(0, 15));
               setShowMeLoading(false);
           };
           
@@ -1669,27 +1942,74 @@ export default function NuggetsApp() {
     speakText();
   };
 
-  const generateImage = async (text, searchTerm = null, originalTag = null) => {
+  const generateImage = async (text, searchTerm = null, originalTag = null, subjectId = 'science') => {
     setImageLoading(true);
     setNuggetImage(null);
     
-    // First check if we have a predefined Unsplash image for this subtopic
+    // PRIORITY 1: Use the card's image if this nugget came from a subtopic card
     if (originalTag && SUBTOPIC_IMAGES[originalTag]) {
+        console.log('✅ Using card image for:', originalTag);
         setNuggetImage({ url: SUBTOPIC_IMAGES[originalTag] });
         setImageLoading(false);
         return;
     }
     
-    // Otherwise try Wikipedia with search terms
-    const searches = [searchTerm, text.split(' ').slice(0, 2).join(' ')].filter(s => s);
-    for (let query of searches) {
-        if (!query) continue;
-        const imgData = await fetchWikipediaImage(query);
-        if (imgData) {
-            setNuggetImage(imgData);
-            setImageLoading(false);
-            return;
+    // PRIORITY 2: Use multi-tier fallback system for AI-generated or dynamic content
+    try {
+        // Try primary search term first
+        if (searchTerm) {
+            const imgData = await fetchEducationalImage(searchTerm, subjectId);
+            if (imgData) {
+                setNuggetImage(imgData);
+                setImageLoading(false);
+                return;
+            }
         }
+        
+        // Try extracting key words from the fact text
+        // Remove common words and get more meaningful terms
+        const stopWords = ['the', 'a', 'an', 'is', 'are', 'was', 'were', 'in', 'on', 'at', 'to', 'for'];
+        const words = text.split(' ').filter(w => !stopWords.includes(w.toLowerCase()) && w.length > 2);
+        const keyWords = words.slice(0, 3).join(' ');
+        if (keyWords.trim()) {
+            const imgData = await fetchEducationalImage(keyWords, subjectId);
+            if (imgData) {
+                setNuggetImage(imgData);
+                setImageLoading(false);
+                return;
+            }
+        }
+        
+        // PRIORITY 3: If originalTag exists, try it as a search term before generic fallback
+        if (originalTag) {
+            const tagImgData = await fetchEducationalImage(originalTag, subjectId);
+            if (tagImgData) {
+                setNuggetImage(tagImgData);
+                setImageLoading(false);
+                return;
+            }
+        }
+        
+        // Final fallback: generic educational term
+        const finalImgData = await fetchEducationalImage('education', subjectId);
+        setNuggetImage(finalImgData);
+    } catch (error) {
+        console.error('Error loading image:', error);
+        // Absolute last resort: subject-themed placeholder
+        const subjectPlaceholders = {
+            science: 'https://images.unsplash.com/photo-1532094349884-543bc11b234d?w=800&h=600&fit=crop',
+            math: 'https://images.unsplash.com/photo-1635070041078-e363dbe005cb?w=800&h=600&fit=crop',
+            music: 'https://images.unsplash.com/photo-1511379938547-c1f69419868d?w=800&h=600&fit=crop',
+            art: 'https://images.unsplash.com/photo-1460661419201-fd4cecdf8a8b?w=800&h=600&fit=crop',
+            words: 'https://images.unsplash.com/photo-1457369804613-52c61a468e7d?w=800&h=600&fit=crop',
+            career: 'https://images.unsplash.com/photo-1521737604893-d14cc237f11d?w=800&h=600&fit=crop',
+            default: 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=800&h=600&fit=crop'
+        };
+        setNuggetImage({ 
+            url: subjectPlaceholders[subjectId] || subjectPlaceholders.default,
+            title: 'Educational content',
+            description: 'Learning image'
+        });
     }
     
     setImageLoading(false);
@@ -1701,23 +2021,61 @@ export default function NuggetsApp() {
         setTimeout(() => navigateTo('settings'), 1000);
         return; 
     }
+    
+    // CHECK CACHE FIRST for pre-generated nuggets
+    const cacheKey = `nugget_${tag}_${subjectId || 'general'}`;
+    const cached = localStorage.getItem(cacheKey);
+    if (cached) {
+        try {
+            const cachedNugget = JSON.parse(cached);
+            console.log('✨ Using cached nugget for:', tag);
+            setCurrentNugget(cachedNugget);
+            setAiResponse(null);
+            setAiContentImage(null);
+            setLearnResponse(null);
+            setActivityResponse(null);
+            setActivityImage(null);
+            // Navigate immediately, let image load on nugget page
+            navigateTo('nugget');
+            // Generate image in background
+            generateImage(cachedNugget.text, cachedNugget.searchTerm, tag, cachedNugget.subjectId);
+            return;
+        } catch(e) {
+            console.error('Cache parse error:', e);
+        }
+    }
+    
+    // Navigate immediately and show loading state
+    console.log('🎯 Starting nugget generation for:', tag);
+    navigateTo('nugget');
+    setCurrentNugget({
+        text: '...',
+        tags: [tag],
+        subjectId: subjectId || 'science',
+        id: Date.now(),
+        searchTerm: tag,
+        originalTag: tag,
+        isLoading: true
+    });
+    setNuggetImage(null);
     setAiLoading(true);
     
     try {
+        console.log('🤖 Calling Gemini API...');
         const systemPrompt = `You are an educational guide for children (ages 7-8). Generate a single fascinating fact about the topic provided. DO NOT start with conversational phrases like "Did you know" or "Here's a fun fact". Launch directly into the fact itself. 
 
 IMPORTANT CONTENT GUIDELINES:
 - Keep content age-appropriate and positive for young children
-- Use factual, straightforward language - avoid overly cutesy or conversational phrasing (e.g., prefer "other people's heartbeats" over "your friends' heartbeats")
+- Use factual, straightforward language
 - STRICTLY AVOID: human sacrifice, death rituals, violence, warfare, executions, torture, nudity, anatomy, bathing, underwear, classical sculptures/statues (often nude), adult content, medical procedures, drugs, alcohol, horror, crime
 - When generating facts about sculpture as an art form, focus on modern, abstract, or assembled sculptures rather than classical statues
 - Focus on fascinating, educational, uplifting aspects of topics
 - When discussing ancient civilizations or historical topics, emphasize culture, achievements, daily life, inventions, and contributions to society
 
-Return ONLY valid JSON in this exact format: { "fact": "The fact text here", "topic": "Topic Name", "imageSearchTerm": "3-5 HIGHLY SPECIFIC descriptive words directly related to the fact's main subject (e.g., 'kite flying traditional Chinese', 'anglerfish bioluminescent deep sea', 'volcanic lava eruption', 'humanoid robot technology'). AVOID generic or ambiguous terms. NEVER use just 'sculpture', 'statue', or 'classical art' - instead use 'modern sculpture installation', 'colorful abstract sculpture', or 'large assembled sculpture'.", "relatedTopics": ["Topic 1", "Topic 2", "Topic 3"] }`;
+Return ONLY valid JSON in this exact format: { "fact": "The fact text here", "topic": "Topic Name", "imageSearchTerm": "2-4 specific descriptive words about the main subject", "relatedTopics": ["Topic 1", "Topic 2", "Topic 3"] }`;
         const userPrompt = `Tell me a cool educational fact about: ${tag}`;
         
-        const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash-exp:generateContent?key=${apiKey}`, {
+        const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-3-flash-preview:generateContent?key=${apiKey}`, {
             method: 'POST', 
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ 
@@ -1726,13 +2084,16 @@ Return ONLY valid JSON in this exact format: { "fact": "The fact text here", "to
             })
         });
         
+        console.log('📡 API responded, parsing...');
         const data = await response.json();
         
         if (data.error) {
+            console.error('❌ API Error:', data.error);
             throw new Error(data.error.message || "API Error");
         }
         
         const content = data.candidates?.[0]?.content?.parts?.[0]?.text;
+        console.log('✅ Got content from API, processing...');
         let parsed = { 
             fact: "The universe is full of mysteries waiting to be discovered!", 
             topic: tag, 
@@ -1775,23 +2136,124 @@ Return ONLY valid JSON in this exact format: { "fact": "The fact text here", "to
             originalTag: tag // Store the original subtopic name for image lookup
         };
         
+        // Cache the nugget for instant future access
+        localStorage.setItem(cacheKey, JSON.stringify(newNugget));
+        
+        console.log('💾 Cached nugget, updating UI...');
         setCurrentNugget(newNugget);
         setAiResponse(null);
         setAiContentImage(null);
         setLearnResponse(null);
         setActivityResponse(null);
         setActivityImage(null);
-        navigateTo('nugget');
         
-        // Generate image for the nugget
-        generateImage(parsed.fact, parsed.imageSearchTerm, tag);
+        console.log('🖼️ Starting image generation...');
+        // Generate image after text is ready (need the search term from AI)
+        await generateImage(parsed.fact, safeSearchTerm, tag, subjectId || 'science');
         
     } catch(e) {
-        console.error("AI Error:", e);
+        console.error("❌ AI Error:", e);
         showNotification("Could not generate nugget. Check your API key!");
+        // Show error nugget instead of navigating away
+        setCurrentNugget({
+            text: "Oops! Something went wrong. Please try again.",
+            tags: [tag],
+            subjectId: subjectId || 'science',
+            id: Date.now(),
+            searchTerm: tag,
+            originalTag: tag
+        });
     } finally {
         setAiLoading(false);
     }
+  };
+
+  // Pre-generate nuggets for all main subtopics in background
+  const preGenerateNuggets = async () => {
+    if (!apiKey) return;
+    
+    setIsPreGenerating(true);
+    console.log('🚀 Pre-generating nuggets for instant loading...');
+    const startTime = Date.now();
+    let generated = 0;
+    let cached = 0;
+    
+    // Rate limit: 1 request per 2 seconds to avoid API throttling
+    for (const subject of SUBJECTS) {
+      for (const subtopic of subject.subtopics) {
+        const cacheKey = `nugget_${subtopic}_${subject.id}`;
+        
+        // Skip if already cached
+        if (localStorage.getItem(cacheKey)) {
+          cached++;
+          continue;
+        }
+        
+        try {
+          // Wait 2 seconds between requests
+          if (generated > 0) {
+            await new Promise(resolve => setTimeout(resolve, 2000));
+          }
+          
+          const systemPrompt = `You are an educational guide for children (ages 7-8). Generate a single fascinating fact about the topic provided. DO NOT start with conversational phrases like "Did you know" or "Here's a fun fact". Launch directly into the fact itself. 
+
+IMPORTANT CONTENT GUIDELINES:
+- Keep content age-appropriate and positive for young children
+- Use factual, straightforward language - avoid overly cutesy or conversational phrasing (e.g., prefer "other people's heartbeats" over "your friends' heartbeats")
+- STRICTLY AVOID: human sacrifice, death rituals, violence, warfare, executions, torture, nudity, anatomy, bathing, underwear, classical sculptures/statues (often nude), adult content, medical procedures, drugs, alcohol, horror, crime
+- When generating facts about sculpture as an art form, focus on modern, abstract, or assembled sculptures rather than classical statues
+- Focus on fascinating, educational, uplifting aspects of topics
+- When discussing ancient civilizations or historical topics, emphasize culture, achievements, daily life, inventions, and contributions to society
+
+Return ONLY valid JSON in this exact format: { "fact": "The fact text here", "topic": "Topic Name", "imageSearchTerm": "3-5 HIGHLY SPECIFIC descriptive words focused on the PRIMARY SUBJECT/NOUN of the fact. CRITICAL: Identify the MAIN subject (the thing the fact is ABOUT), not secondary objects or actions. Examples: 'Crows solve multi-step puzzles by creating their own tools' → 'crow bird intelligence'; 'Octopuses have three hearts' → 'octopus marine creature'; 'Venus rotates backwards compared to other planets' → 'venus planet solar system'; 'Bamboo can grow three feet in one day' → 'bamboo plant forest'. AVOID generic or ambiguous terms. NEVER use just 'sculpture', 'statue', or 'classical art' - instead use 'modern sculpture installation', 'colorful abstract sculpture', or 'large assembled sculpture'. For grammar/language topics like parts of speech (noun, verb, adjective, etc.), use EDUCATIONAL terms like 'grammar textbook learning', 'alphabet blocks children', 'language arts classroom', 'word flashcards education' rather than generic word examples.", "relatedTopics": ["Topic 1", "Topic 2", "Topic 3"] }`;
+          
+          const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-3-flash-preview:generateContent?key=${apiKey}`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              contents: [{ parts: [{ text: `Tell me a cool educational fact about: ${subtopic}` }] }],
+              systemInstruction: { parts: [{ text: systemPrompt }] }
+            })
+          });
+          
+          const data = await response.json();
+          if (data.error) throw new Error(data.error.message);
+          
+          const content = data.candidates?.[0]?.content?.parts?.[0]?.text;
+          if (content) {
+            const cleaned = content.replace(/```json/g, '').replace(/```/g, '').trim();
+            const parsed = JSON.parse(cleaned);
+            
+            // Safety filter
+            const unsafeTerms = ['nude', 'nudity', 'naked', 'underwear', 'lingerie', 'bikini', 'body', 'anatomy', 'bathing', 'shower', 'bedroom', 'adult', 'classical statue', 'classical sculpture', 'renaissance art'];
+            let safeSearchTerm = parsed.imageSearchTerm;
+            if (unsafeTerms.some(term => safeSearchTerm.toLowerCase().includes(term))) {
+              safeSearchTerm = subtopic + ' educational children';
+            }
+            
+            const nugget = {
+              text: parsed.fact,
+              tags: parsed.relatedTopics || [subtopic],
+              subjectId: subject.id,
+              id: Date.now(),
+              searchTerm: safeSearchTerm,
+              originalTag: subtopic
+            };
+            
+            localStorage.setItem(cacheKey, JSON.stringify(nugget));
+            generated++;
+            console.log(`✅ Pre-generated: ${subtopic} (${generated} total)`);
+          }
+        } catch(e) {
+          console.error(`❌ Failed to pre-generate ${subtopic}:`, e.message);
+        }
+      }
+    }
+    
+    const elapsed = Math.round((Date.now() - startTime) / 1000);
+    console.log(`🎉 Pre-generation complete! Generated: ${generated}, Cached: ${cached}, Time: ${elapsed}s`);
+    setIsPreGenerating(false);
+    showNotification(`✅ Pre-generated ${generated} nuggets! (${cached} already cached)`);
   };
 
   const openScientificMethodStep = async (step) => {
@@ -2968,6 +3430,20 @@ Return ONLY valid JSON in this exact format: { "fact": "The fact text here", "to
     generateImage(data.title, data.imageSearchTerm, activity.name);
   };
 
+  const openStoryActivity = (story) => {
+    const storyRetellings = {"Anansi and the Pot of Wisdom":{retelling:"Long ago, Anansi the spider wanted to be the wisest creature in the world. He collected all the wisdom in the world and put it in a large pot. 'I will keep all this wisdom for myself!' he thought. Anansi decided to hide the pot at the top of a tall tree. He tied the pot to his belly and began to climb. But the pot kept getting in his way! He struggled and slipped, unable to climb properly. Anansi's young son, watching from below, called out, 'Father, wouldn't it be easier if you tied the pot to your back instead?' Anansi realized his son was right. Then it struck him—if his young son had wisdom he didn't have, then wisdom couldn't all be in the pot! In frustration, Anansi accidentally dropped the pot, and it shattered. Wisdom scattered all over the world. That's why, to this day, everyone has a little bit of wisdom, and no one person has it all.",lesson:"No one person can know everything. Wisdom belongs to everyone.",vocabulary:["wisdom","scattered","struggled"],imageSearchTerm:"anansi spider african folklore"},"Mulan":{retelling:"In ancient China, when the Emperor called for one man from each family to join the army, young Mulan worried about her elderly father who was too weak to fight. That night, she made a brave decision. Mulan cut her long hair, dressed in her father's armor, and rode off to join the army in his place. For twelve years, Mulan fought bravely alongside the men, and no one discovered she was a woman. She saved her commander's life and helped win many battles. When the war finally ended, the Emperor offered Mulan a high position in the government. But Mulan refused the honor—she only wanted to return home to her family. When she arrived, she changed back into her dress. Her fellow soldiers who came to visit were amazed to discover that the brave warrior they had fought beside for twelve years was actually a woman!",lesson:"Courage and honor are not about being male or female—they come from the heart.",vocabulary:["armor","commander","honor"],imageSearchTerm:"mulan chinese warrior"},"The Firebird":{retelling:"Prince Ivan was hunting in the forest when he saw a magical bird with feathers that glowed like flames. This was the legendary Firebird! Ivan tried to catch it, but only managed to grab a single golden feather. The feather glowed so brightly it lit up the night. When the evil sorcerer Koschei learned Ivan had the feather, he kidnapped a beautiful princess to lure the prince into a trap. Ivan bravely ventured into Koschei's dark realm to rescue her. With help from a wise gray wolf and the Firebird herself, Ivan discovered Koschei's secret: the sorcerer's soul was hidden inside an egg, inside a duck, inside a hare, inside a chest, buried under an oak tree! Ivan found the egg and broke it, defeating Koschei forever. He rescued the princess and they returned home, where the grateful Firebird gave Ivan three of her magical feathers as a gift.",lesson:"Bravery and cleverness can overcome even the darkest magic.",vocabulary:["legendary","realm","ventured"],imageSearchTerm:"firebird russian folklore"},"Cinderella (Ye Xian)":{retelling:"Ye Xian lived with her cruel stepmother and stepsister who made her do all the hard work. Her only friend was a beautiful fish with golden eyes that lived in the pond. Every day, Ye Xian shared her food with the fish. When the stepmother discovered this, she jealously killed the fish. Ye Xian was heartbroken. That night, a wise man appeared and told her to save the fish bones—they were magical. When the New Year festival arrived, Ye Xian wanted to go, but her stepmother forbade it. Ye Xian wished on the fish bones, and instantly she was dressed in a beautiful azure-blue gown and golden slippers. At the festival, her stepmother nearly recognized her, so Ye Xian fled, losing one golden slipper. The slipper was found by a king who searched the entire kingdom for its owner. When Ye Xian tried it on and it fit perfectly, the king recognized her inner beauty and kindness. They married, and Ye Xian forgave her stepmother, showing that kindness is stronger than cruelty.",lesson:"Kindness and inner beauty shine brighter than any cruelty.",vocabulary:["forbade","azure","recognized"],imageSearchTerm:"ancient chinese golden slipper"},"The Rainbow Serpent":{retelling:"In the Dreamtime, before there were rivers or mountains, the Rainbow Serpent slept beneath the earth. When she awoke, she pushed up through the ground and traveled across the flat, empty land. Everywhere the Rainbow Serpent moved, her huge body carved out valleys and her thrashing tail created mountains. When she stopped to drink, her body made the curves of rivers and creeks. The Rainbow Serpent called all the animals, frogs, birds, and reptiles to her. She made laws for everyone to follow to live together peacefully. Those who obeyed the laws were rewarded with human form. Those who broke the laws were turned to stone. During the wet season, the Rainbow Serpent created huge storms, and the rain filled the rivers she had made. When the sun came out after the rain, people would see her in the sky as a beautiful rainbow, watching over the land she created.",lesson:"All creatures must follow the laws of nature and live in harmony with the land.",vocabulary:["Dreamtime","thrashing","harmony"],imageSearchTerm:"rainbow serpent aboriginal art"},"Sleeping Beauty":{retelling:"A king and queen celebrated the birth of their daughter with a grand party, inviting fairies to bless the baby princess. But they forgot to invite one fairy, who became furious. The evil fairy cursed the princess: on her sixteenth birthday, she would prick her finger on a spinning wheel and die. A good fairy softened the curse—the princess would not die but sleep for one hundred years, to be awakened by true love's kiss. The king ordered all spinning wheels destroyed, but on her sixteenth birthday, the princess found one hidden room with an old woman spinning. Curious, she touched the spindle and fell into a deep sleep. The good fairy made everyone in the castle fall asleep too, so they would wake when the princess did. A thick forest of thorns grew around the castle. One hundred years passed. A brave prince heard the legend and fought through the thorns. When he found the sleeping princess and kissed her, she awakened, and so did everyone in the castle.",lesson:"True love and courage can break the darkest of curses.",vocabulary:["spindle","curse","awakened"],imageSearchTerm:"sleeping beauty princess castle"},"The Clever Hare":{retelling:"All the animals in the forest lived in fear of the mighty lion who hunted them. One day, the animals made an agreement with the lion: if he stopped hunting them, they would send him one animal each day for his meal. The lion agreed. One day, it was Hare's turn. But clever Hare didn't want to become lunch! He arrived very late at the lion's den. 'Why are you late?' roared the angry lion. 'I apologize, great king,' said Hare. 'Another lion stopped me and ate the animal I was bringing you. He said HE is the true king of this forest!' The lion was furious. 'Show me this other lion!' Hare led the lion to a deep well. 'He lives down there,' whispered Hare. When the lion looked into the well, he saw his own reflection and heard his roar echo back. Thinking it was a rival, the lion jumped into the well to fight—and that was the end of him. The clever hare had saved all the animals using only his wits.",lesson:"Intelligence and cleverness can defeat even the mightiest strength.",vocabulary:["rival","echo","wits"],imageSearchTerm:"jataka tales hare illustration"},"The Tortoise and the Hare":{retelling:"Hare was the fastest animal in the forest and he never let anyone forget it. He teased slow-moving Tortoise every chance he got. Finally, Tortoise had enough. 'I challenge you to a race,' said Tortoise quietly. Hare laughed so hard he fell over. 'You? Race ME?' But Tortoise was serious, so they set a date. On race day, all the animals gathered. Fox fired the starting pistol, and Hare zoomed ahead, leaving Tortoise far behind. Hare ran so fast that soon he couldn't even see Tortoise anymore. 'This is too easy,' thought Hare. 'I have time for a little nap.' He curled up under a shady tree and fell asleep. Meanwhile, Tortoise kept going, slowly but steadily, one step at a time. Hours passed. When Hare finally woke up, he saw Tortoise near the finish line! Hare ran as fast as he could, but it was too late. Tortoise crossed the finish line first while all the animals cheered.",lesson:"Slow and steady wins the race. Never give up!",vocabulary:["steady","zoomed","challenged"],imageSearchTerm:"tortoise hare race illustration"},"The Lion and the Mouse":{retelling:"A mighty lion was sleeping under a tree when a little mouse accidentally ran across his paw. The lion woke up and trapped the mouse under his huge paw. 'Please don't eat me!' squeaked the mouse. 'If you let me go, I promise I'll help you someday!' The lion laughed at the idea of a tiny mouse helping the king of beasts, but he was feeling merciful. He lifted his paw and let the mouse go. A few weeks later, hunters caught the lion in a thick rope net. The lion roared and struggled, but he couldn't escape. The little mouse heard the lion's roars and came running. 'Hold still!' said the mouse. She began gnawing at the ropes with her sharp little teeth. She chewed and chewed until finally, she had made a hole big enough for the lion to escape. 'Thank you, little friend,' said the lion. 'I was wrong—even the smallest friend can be the greatest help!'",lesson:"No act of kindness is ever wasted, no matter how small you are.",vocabulary:["merciful","gnawing","struggled"],imageSearchTerm:"lion mouse fable illustration"},"The Crow and the Pitcher":{retelling:"On a hot summer day, a thirsty crow flew over the land searching for water. Finally, she spotted a pitcher with water at the bottom. The crow landed and stuck her beak inside, but the water was too low for her to reach! She tried tipping the pitcher over, but it was too heavy. The crow could have given up, but she was determined. She thought and thought. Then she had a brilliant idea! The crow picked up small pebbles in her beak, one by one, and dropped them into the pitcher. Each pebble she dropped made the water level rise a tiny bit. Drop by drop, pebble by pebble, the water slowly rose higher and higher. Finally, after many trips, the water was high enough for the crow to drink! She quenched her thirst and flew away, satisfied that her cleverness had saved her.",lesson:"Necessity is the mother of invention. Little by little, one can accomplish great things.",vocabulary:["determined","quenched","necessity"],imageSearchTerm:"crow pitcher pebbles fable"},"The Ant and the Grasshopper":{retelling:"All summer long, Ant worked hard gathering food and storing it for winter. She carried seeds and grain to her underground home, one piece at a time. Grasshopper watched her work and laughed. 'Why work so hard?' he called from his sunny leaf. 'Come dance and sing with me! Summer is for fun!' But Ant shook her head. 'Winter is coming. I must prepare.' Day after day, Grasshopper played his fiddle and enjoyed the sunshine while Ant continued working. Then winter arrived. The cold wind blew, snow covered the ground, and there was no food to be found anywhere. Grasshopper was freezing and starving. He knocked on Ant's door. 'Please,' he begged, 'can you spare some food?' Ant looked at him kindly but firmly. 'What were you doing all summer while I worked?' she asked. 'I was singing and dancing,' admitted Grasshopper. 'Then dance now,' said Ant. 'But next year, remember: prepare for tomorrow today.'",lesson:"Work hard and prepare for the future. Play is important, but so is planning ahead.",vocabulary:["prepare","admitted","fiddle"],imageSearchTerm:"ant grasshopper fable winter"},"The Boy Who Cried Wolf":{retelling:"A young shepherd boy was given the important job of watching the village sheep. His task was to alert the villagers if a wolf came near. But the boy grew bored sitting alone on the hillside day after day. One afternoon, he decided to play a trick. 'Wolf! Wolf!' he cried loudly. The villagers came running with sticks and tools to help, but when they arrived, the boy was laughing. 'There's no wolf! I was just having fun!' The angry villagers returned to their work. The next day, the boy did it again. 'Wolf! Wolf!' he shouted. Again the villagers rushed to help, and again there was no wolf—just a boy laughing at his joke. The villagers were furious and warned him not to cry wolf again. Days later, a real wolf crept toward the flock. Terrified, the boy screamed, 'Wolf! Wolf! Please help!' But this time, no one came. The villagers thought he was lying again. The wolf attacked the sheep, and the boy learned a hard lesson about honesty.",lesson:"If you lie repeatedly, no one will believe you when you tell the truth.",vocabulary:["alert","furious","warned"],imageSearchTerm:"shepherd boy wolf fable"},"John Henry":{retelling:"John Henry was born with a hammer in his hand, and he grew up to be the strongest steel-driving man who ever lived! He worked on the railroad, drilling holes in mountains so workers could blast through rock to lay railroad tracks. John Henry could swing two twenty-pound hammers at once, one in each hand, and drive steel faster than ten men combined! One day, a salesman arrived with a steam-powered drill. 'This machine can work faster than any man!' he boasted. John Henry stood tall. 'A man is more than a machine,' he said. 'I'll race your steam drill, and we'll see who's faster!' The race began. The steam drill pounded the rock with mechanical force. But John Henry swung his hammers with power, skill, and determination. His hammers rang like music against the steel. Sparks flew! The crowd cheered! At the end, John Henry had drilled two seven-foot holes—the steam drill had only drilled one. John Henry won! But the effort was too much for his mighty heart, and he died with his hammer in his hand, a hero forever.",lesson:"Human spirit, skill, and determination are worth celebrating. Some things machines can never replace.",vocabulary:["mechanical","determination","boasted"],imageSearchTerm:"john henry railroad steel hammer"},"Pecos Bill":{retelling:"Pecos Bill was the greatest cowboy who ever lived! As a baby, he fell out of his family's wagon and was raised by coyotes in the Texas desert. He didn't know he was human until he was grown! When Bill finally joined other cowboys, he did amazing things. He invented the lasso by roping a rattlesnake and using it to catch cattle. He dug the Rio Grande river with a stick when he was thirsty. One day, a terrible drought hit Texas. But then the biggest rain cloud Bill had ever seen rolled across the sky. Bill lassoed a tornado and rode it like a bucking bronco! He rode that twister all across the southwest, squeezing rain out of it to end the drought. The tornado bucked and spun, trying to throw him off, but Bill hung on. He rode it from Texas to California, creating the Grand Canyon where the tornado dragged along the ground! When the tornado finally gave up and turned into rain, Pecos Bill had saved the whole Southwest.",lesson:"Face challenges with creativity and courage, and you can accomplish impossible things!",vocabulary:["drought","lassoed","bucking"],imageSearchTerm:"pecos bill tornado cowboy"},"Paul Bunyan":{retelling:"Paul Bunyan was the biggest, strongest lumberjack ever born! When he was a baby, it took five giant storks to deliver him. He was so big that his parents had to use a logging wagon as his cradle! Paul had a best friend—Babe the Blue Ox, who was as blue as the winter sky and as big as a mountain. Together, Paul and Babe traveled across North America, cutting down forests to make room for towns and farms. Paul's footprints were so enormous they created Minnesota's ten thousand lakes! When Paul dragged his axe behind him, it carved out the Grand Canyon. One winter was so cold that words froze in mid-air and didn't thaw until spring! Paul had to carry his words in a wheelbarrow to the stove so people could hear what he said. When Babe got thirsty, he drank entire rivers dry. Paul's logging camp was so big that the breakfast table was a mile long, and the cook used ice skates to serve flapjacks! Every impossible task in the wilderness, Paul and Babe accomplished it.",lesson:"With hard work and a good friend, you can take on any challenge—no matter how big!",vocabulary:["lumberjack","enormous","wilderness"],imageSearchTerm:"paul bunyan blue ox babe"},"Daedalus and Icarus":{retelling:"Daedalus was a brilliant inventor trapped with his son Icarus on an island by an angry king. The king's soldiers guarded all the boats and shores, making escape impossible. But Daedalus had a plan. He collected feathers from birds and used wax to attach them to wooden frames, creating two pairs of wings. Before they took flight, Daedalus warned Icarus: 'Don't fly too low or the ocean spray will soak your wings. Don't fly too high or the sun's heat will melt the wax. Stay close to me.' They strapped on the wings and leaped into the sky! Flying felt magical. Icarus laughed with joy as they soared over the sparkling sea. But Icarus became overconfident. Forgetting his father's warning, he flew higher and higher, thrilled by his power. He wanted to touch the sun! Daedalus called out warnings, but Icarus didn't listen. As he climbed, the sun's heat melted the wax. Feathers fell away. Icarus flapped desperately, but it was too late—his wings fell apart. He plunged into the sea below. Daedalus searched frantically but could only find scattered feathers floating on the waves.",lesson:"Pride and ignoring wise advice can lead to disaster. Balance and moderation are key.",vocabulary:["overconfident","plunged","frantically"],imageSearchTerm:"icarus wings greek mythology"}};
+    const data=storyRetellings[story.name];
+    if(!data)return;
+    const storyNugget={text:data.retelling,title:story.name,tags:["Stories",story.category,story.origin],subjectId:'words',id:Date.now(),searchTerm:data.imageSearchTerm,originalTag:story.name,storyData:{lesson:data.lesson,vocabulary:data.vocabulary}};
+    setCurrentNugget(storyNugget);
+    setAiContentImage(null);
+    setActivityImage(null);
+    setLearnResponse(null);
+    setActivityResponse(null);
+    navigateTo('nugget');
+    generateImage(story.name,data.imageSearchTerm,story.name);
+  };
+
   const generateStardustQuestion = async () => {
     if (!apiKey || !currentNugget) return;
     
@@ -2984,7 +3460,7 @@ CRITICAL: Respond with ONLY a valid JSON object. No markdown, no explanations, n
   "correctIndex": 0
 }`;
         
-        const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash-exp:generateContent?key=${apiKey}`, {
+        const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-3-flash-preview:generateContent?key=${apiKey}`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
@@ -3062,7 +3538,7 @@ Respond with ONLY a valid JSON object. No markdown, no explanations, no addition
   "correctIndex": 0
 }`;
         
-        const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash-exp:generateContent?key=${apiKey}`, {
+        const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-3-flash-preview:generateContent?key=${apiKey}`, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({
@@ -3177,7 +3653,7 @@ Respond with ONLY a valid JSON object. No markdown, no explanations, no addition
 }`;
         }
         
-        const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash-exp:generateContent?key=${apiKey}`, {
+        const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-3-flash-preview:generateContent?key=${apiKey}`, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({
@@ -3291,7 +3767,7 @@ CRITICAL: Respond with ONLY a valid JSON array. No markdown, no explanations, no
 [{"question": "Q?", "options": ["A", "B", "C"], "correctIndex": 0}]`;
         }
         
-        const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash-exp:generateContent?key=${apiKey}`, {
+        const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-3-flash-preview:generateContent?key=${apiKey}`, {
             method: 'POST', 
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ 
@@ -3439,7 +3915,7 @@ CRITICAL: Respond with ONLY a valid JSON array. No markdown, no explanations, no
 
     try {
       const guideName = selectedGuide === 'space' ? 'Space Nugget' : 'Sky Nugget';
-      const systemPrompt = `You are ${guideName}, a friendly and helpful guide for children (ages 7-8) using the "Nuggets of Knowledge" educational app. Your role is to help them navigate and use the app features in a warm, encouraging way.
+      const systemPrompt = `You are ${guideName}, a friendly and helpful guide for children (ages 7-8) using the "Nugget School" educational app. Your role is to help them navigate and use the app features in a warm, encouraging way.
 
 Available features in the app:
 - Home page with subject planets (Science, History, Geography, Arts, Math, Language)
@@ -3463,7 +3939,7 @@ ${updatedMessages.slice(-6).map(m => `${m.role === 'user' ? 'Child' : guideName}
 Respond as ${guideName} to help the child.`;
 
       const response = await fetch(
-        `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash-exp:generateContent?key=${apiKey}`,
+        `https://generativelanguage.googleapis.com/v1beta/models/gemini-3-flash-preview:generateContent?key=${apiKey}`,
         {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
@@ -3511,8 +3987,7 @@ Respond as ${guideName} to help the child.`;
       {/* Header */}
       <div className="sticky top-0 z-50 glass-panel border-b border-slate-200 dark:border-slate-800 px-4 py-3 flex justify-between items-center shadow-sm">
         <div className="flex items-center gap-3">
-             <div className="w-10 h-10 rounded-full bg-gradient-to-br from-blue-500 to-purple-500 flex items-center justify-center text-white font-bold text-xl shadow-lg">N</div>
-             <div className="hidden md:block font-bold text-slate-800 dark:text-white leading-tight">Nuggets of<br/>Knowledge</div>
+             <div className="hidden md:block text-transparent bg-clip-text bg-gradient-to-r from-red-500 via-orange-500 to-yellow-400 text-2xl" style={{ fontFamily: 'var(--font-bubblegum)' }}>Nugget School</div>
         </div>
         <div className="flex items-center gap-2">
              {/* User Avatar */}
@@ -3533,12 +4008,8 @@ Respond as ${guideName} to help the child.`;
                </button>
              )}
              <div className="flex items-center gap-1 bg-white dark:bg-slate-800 px-3 py-1.5 rounded-full border border-slate-200 dark:border-slate-700 shadow-sm">
-                <span className="font-bold text-slate-700 dark:text-white">{starDust}</span>
-                <Sparkles className="w-4 h-4 text-yellow-400 fill-yellow-400" />
-             </div>
-             <div className="flex items-center gap-1 bg-white dark:bg-slate-800 px-3 py-1.5 rounded-full border border-slate-200 dark:border-slate-700 shadow-sm">
                 <span className="font-bold text-slate-700 dark:text-white">{crumbs}</span>
-                <Cookie className="w-4 h-4 text-orange-400 fill-orange-400" />
+                <Drumstick className="w-4 h-4 text-orange-400 fill-orange-400" />
              </div>
              {/* Cloud Sync Indicator */}
              <div className={`w-2 h-2 rounded-full ${isSaving ? 'bg-yellow-400 animate-pulse' : !user ? 'bg-slate-300' : 'bg-green-400'}`} title={isSaving ? "Saving..." : !user ? "Guest (Not Saved)" : "Synced to Cloud"} />
@@ -3549,18 +4020,117 @@ Respond as ${guideName} to help the child.`;
       </div>
 
       <div className="max-w-4xl mx-auto p-4 md:p-8">
-        {/* Search Hero */}
+        {/* Main Headline */}
         <div className="text-center py-8 md:py-12 animate-pop">
-            <h1 className="text-3xl md:text-5xl font-black text-slate-800 dark:text-white mb-6 tracking-tight">
-                What do you want to <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-500 to-purple-500">discover?</span>
+            <h1 className="text-4xl md:text-6xl lg:text-7xl font-black text-slate-800 dark:text-white tracking-tight" style={{ fontFamily: 'var(--font-bubblegum)' }}>
+                Welcome to<br /><span className="text-transparent bg-clip-text bg-gradient-to-r from-red-500 via-orange-500 to-yellow-400">Nugget School!</span>
             </h1>
+        </div>
+
+        {/* --- Hybrid Subject Display --- */}
+        
+        {/* Mobile: Grid Layout */}
+        <div className="md:hidden grid grid-cols-2 gap-3 mb-8">
+            {SUBJECTS.map((sub) => (
+                <button 
+                    key={sub.id} 
+                    onClick={() => { setSelectedSubject(sub); navigateTo('subject-menu'); }}
+                    className={`relative p-4 rounded-2xl border-2 ${sub.border} ${sub.color.replace('text', 'bg').replace('100', '50').replace('/50', '/10')} flex flex-col items-center justify-center gap-3 ${(sub.id === 'music' || sub.id === 'art' || sub.id === 'words' || sub.id === 'science' || sub.id === 'history') ? 'h-36' : 'h-32'} active:scale-95 transition-transform shadow-sm overflow-visible`}
+                >
+                    {sub.id === 'math' ? (
+                        <div className="w-28 h-28 flex items-center justify-center">
+                            <img src={mathNuggetImg} alt="Math Nugget" className="w-full h-full object-contain drop-shadow-lg" />
+                        </div>
+                    ) : sub.id === 'music' ? (
+                        <div className="w-28 h-28 flex items-center justify-center absolute top-2">
+                            <img src={musicNuggetImg} alt="Music Nugget" className="w-full h-full object-contain drop-shadow-lg" />
+                        </div>
+                    ) : sub.id === 'art' ? (
+                        <div className="w-28 h-28 flex items-center justify-center absolute top-2">
+                            <img src={artNuggetImg} alt="Art Nugget" className="w-full h-full object-contain drop-shadow-lg" />
+                        </div>
+                    ) : sub.id === 'words' ? (
+                        <div className="w-28 h-28 flex items-center justify-center absolute top-2">
+                            <img src={wordsNuggetImg} alt="Words Nugget" className="w-full h-full object-contain drop-shadow-lg" />
+                        </div>
+                    ) : sub.id === 'science' ? (
+                        <div className="w-28 h-28 flex items-center justify-center absolute top-2">
+                            <img src={scienceNuggetImg} alt="Science Nugget" className="w-full h-full object-contain drop-shadow-lg" />
+                        </div>
+                    ) : sub.id === 'history' ? (
+                        <div className="w-28 h-28 flex items-center justify-center absolute top-2">
+                            <img src={historyNuggetImg} alt="History Nugget" className="w-full h-full object-contain drop-shadow-lg" />
+                        </div>
+                    ) : (
+                        <div className={`w-12 h-12 rounded-full ${sub.color} flex items-center justify-center shadow-inner`}>
+                            <sub.icon className="w-6 h-6" />
+                        </div>
+                    )}
+                    <span className="font-bold text-slate-800 dark:text-white text-sm">{sub.name}</span>
+                </button>
+            ))}
+        </div>
+
+        {/* Desktop: Orbit Layout */}
+        <div className="hidden md:block relative h-[500px] w-full bg-transparent rounded-[3rem] border-0 overflow-visible mb-32 group">
+            
+            {/* Center Hub */}
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 flex flex-col items-center z-20 pointer-events-none">
+                 <div className="font-bold text-slate-500 dark:text-slate-400 text-2xl text-center leading-tight" style={{ fontFamily: 'var(--font-bubblegum)' }}>
+                   Select<br />a Class
+                 </div>
+            </div>
+
+            {/* Orbiting Planets */}
+            {SUBJECTS.filter(sub => sub.id !== 'career').map((sub, index) => {
+                const total = SUBJECTS.filter(sub => sub.id !== 'career').length;
+                const angle = (index * 360) / total - 90;
+                const radiusX = 35; // Horizontal radius
+                const radiusY = 42; // Vertical radius - increased for more spacing
+                const x = 50 + radiusX * Math.cos(angle * Math.PI / 180);
+                const y = 50 + radiusY * Math.sin(angle * Math.PI / 180);
+
+                return (
+                    <button
+                        key={sub.id}
+                        onClick={() => { setSelectedSubject(sub); navigateTo('subject-menu'); }}
+                        className={`absolute ${(sub.id === 'math' || sub.id === 'music' || sub.id === 'art' || sub.id === 'words' || sub.id === 'science' || sub.id === 'history') ? 'w-40 h-40 -ml-20 -mt-20 bg-transparent border-0 shadow-none' : 'w-20 h-20 -ml-10 -mt-10 rounded-full bg-white dark:bg-slate-800 border-4 shadow-xl'} flex items-center justify-center hover:scale-125 transition-all duration-300 z-10 group/planet`}
+                        style={{ left: `${x}%`, top: `${y}%`, borderColor: (sub.id === 'math' || sub.id === 'music' || sub.id === 'art' || sub.id === 'words' || sub.id === 'science' || sub.id === 'history') ? 'transparent' : 'currentColor' }}
+                    >
+                        {sub.id === 'math' ? (
+                            <img src={mathNuggetImg} alt="Math Nugget" className="w-full h-full object-contain drop-shadow-lg scale-110" />
+                        ) : sub.id === 'music' ? (
+                            <img src={musicNuggetImg} alt="Music Nugget" className="w-full h-full object-contain drop-shadow-lg scale-110" />
+                        ) : sub.id === 'art' ? (
+                            <img src={artNuggetImg} alt="Art Nugget" className="w-full h-full object-contain drop-shadow-lg scale-110" />
+                        ) : sub.id === 'words' ? (
+                            <img src={wordsNuggetImg} alt="Words Nugget" className="w-full h-full object-contain drop-shadow-lg scale-110" />
+                        ) : sub.id === 'science' ? (
+                            <img src={scienceNuggetImg} alt="Science Nugget" className="w-full h-full object-contain drop-shadow-lg scale-110" />
+                        ) : sub.id === 'history' ? (
+                            <img src={historyNuggetImg} alt="History Nugget" className="w-full h-full object-contain drop-shadow-lg scale-110" />
+                        ) : (
+                            <div className={`text-slate-400 group-hover/planet:text-blue-500 transition-colors`}>
+                                <sub.icon className="w-8 h-8" />
+                            </div>
+                        )}
+                        <span className="absolute top-full mt-2 font-bold text-xs bg-slate-900 text-white px-2 py-1 rounded opacity-0 group-hover/planet:opacity-100 transition-opacity whitespace-nowrap z-20">
+                            {sub.name}
+                        </span>
+                    </button>
+                );
+            })}
+        </div>
+
+        {/* Search Section */}
+        <div className="text-center mb-8 mt-8 animate-pop">
             <div className="relative max-w-lg mx-auto group">
                 <input 
                     type="text" 
                     value={searchQuery}
                     onChange={(e) => setSearchQuery(e.target.value)}
                     onKeyDown={(e) => e.key === 'Enter' && searchQuery.trim() && generateNuggetByTag(searchQuery)}
-                    placeholder="Dinosaurs, Space, Robots..."
+                    placeholder="What do you want to discover?"
                     className="w-full pl-6 pr-24 py-4 rounded-full border-2 border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 dark:text-white shadow-lg text-lg focus:outline-none focus:border-blue-500 focus:ring-4 focus:ring-blue-500/10 transition-all"
                 />
                 <div className="absolute right-2 top-2 bottom-2 flex gap-1">
@@ -3581,78 +4151,45 @@ Respond as ${guideName} to help the child.`;
             </div>
         </div>
 
-        {/* --- Hybrid Subject Display --- */}
-        
-        {/* Mobile: Grid Layout */}
-        <div className="md:hidden grid grid-cols-2 gap-3 mb-8">
-            {SUBJECTS.map((sub) => (
-                <button 
-                    key={sub.id} 
-                    onClick={() => { setSelectedSubject(sub); navigateTo('subject-menu'); }}
-                    className={`relative p-4 rounded-2xl border-2 ${sub.border} ${sub.color.replace('text', 'bg').replace('100', '50').replace('/50', '/10')} flex flex-col items-center justify-center gap-3 h-32 active:scale-95 transition-transform shadow-sm`}
-                >
-                    {sub.id === 'math' ? (
-                        <div className="w-28 h-28 flex items-center justify-center">
-                            <img src={mathNuggetImg} alt="Math Nugget" className="w-full h-full object-contain drop-shadow-lg" />
-                        </div>
-                    ) : (
-                        <div className={`w-12 h-12 rounded-full ${sub.color} flex items-center justify-center shadow-inner`}>
-                            <sub.icon className="w-6 h-6" />
-                        </div>
-                    )}
-                    <span className="font-bold text-slate-800 dark:text-white text-sm">{sub.name}</span>
-                </button>
-            ))}
-        </div>
-
-        {/* Desktop: Orbit Layout */}
-        <div className="hidden md:block relative h-[500px] w-full bg-white dark:bg-slate-900 rounded-[3rem] border border-slate-200 dark:border-slate-800 shadow-inner overflow-hidden mb-8 group">
-            <div className="absolute inset-0 opacity-30 dark:opacity-20 pointer-events-none" style={{ backgroundImage: 'radial-gradient(#94a3b8 1px, transparent 1px)', backgroundSize: '30px 30px' }}></div>
-            
-            {/* Center Hub */}
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 flex flex-col items-center z-20 pointer-events-none">
-                 <div className="font-bold text-slate-500 dark:text-slate-400 text-xl">Select a Topic</div>
-            </div>
-
-            {/* Orbiting Planets */}
-            {SUBJECTS.map((sub, index) => {
-                const total = SUBJECTS.length;
-                const angle = (index * 360) / total - 90;
-                const radius = 38;
-                const x = 50 + radius * Math.cos(angle * Math.PI / 180);
-                const y = 50 + radius * Math.sin(angle * Math.PI / 180);
-
-                return (
-                    <button
-                        key={sub.id}
-                        onClick={() => { setSelectedSubject(sub); navigateTo('subject-menu'); }}
-                        className={`absolute ${sub.id === 'math' ? 'w-40 h-40 -ml-20 -mt-20 bg-transparent border-0 shadow-none' : 'w-20 h-20 -ml-10 -mt-10 rounded-full bg-white dark:bg-slate-800 border-4 shadow-xl'} flex items-center justify-center hover:scale-125 transition-all duration-300 z-10 group/planet`}
-                        style={{ left: `${x}%`, top: `${y}%`, borderColor: sub.id === 'math' ? 'transparent' : 'currentColor' }}
-                    >
-                        {sub.id === 'math' ? (
-                            <img src={mathNuggetImg} alt="Math Nugget" className="w-full h-full object-contain drop-shadow-lg scale-110" />
-                        ) : (
-                            <div className={`text-slate-400 group-hover/planet:text-blue-500 transition-colors`}>
-                                <sub.icon className="w-8 h-8" />
-                            </div>
-                        )}
-                        <span className="absolute top-full mt-2 font-bold text-xs bg-slate-900 text-white px-2 py-1 rounded opacity-0 group-hover/planet:opacity-100 transition-opacity whitespace-nowrap z-20">
-                            {sub.name}
-                        </span>
-                    </button>
-                );
-            })}
+        {/* Quick Actions Grid */}
+        <div className="grid grid-cols-2 md:grid-cols-5 gap-4">
+            <button onClick={() => navigateTo('collection')} className="p-4 bg-white dark:bg-slate-800 rounded-2xl shadow-sm border border-slate-200 dark:border-slate-700 hover:border-yellow-400 dark:hover:border-yellow-500 transition-colors flex flex-col items-center gap-2 group">
+                <Star className="w-8 h-8 text-yellow-400 group-hover:rotate-12 transition-transform" />
+                <span className="text-xl text-slate-700 dark:text-slate-200" style={{ fontFamily: 'var(--font-bubblegum)' }}>Nuggets</span>
+                <span className="text-xs text-slate-400">{collection.length} nuggets</span>
+            </button>
+            <button onClick={() => navigateTo('word-bank')} className="p-4 bg-white dark:bg-slate-800 rounded-2xl shadow-sm border border-slate-200 dark:border-slate-700 hover:border-emerald-400 dark:hover:border-emerald-500 transition-colors flex flex-col items-center gap-2 group">
+                <BookOpen className="w-8 h-8 text-emerald-400 group-hover:scale-110 transition-transform" />
+                <span className="text-xl text-slate-700 dark:text-slate-200" style={{ fontFamily: 'var(--font-bubblegum)' }}>Words</span>
+                <span className="text-xs text-slate-400">{wordCollection.length} words</span>
+            </button>
+            <button onClick={() => navigateTo('activities')} className="p-4 bg-white dark:bg-slate-800 rounded-2xl shadow-sm border border-slate-200 dark:border-slate-700 hover:border-orange-400 dark:hover:border-orange-500 transition-colors flex flex-col items-center gap-2 group">
+                <Rocket className="w-8 h-8 text-orange-400 group-hover:rotate-12 transition-transform" />
+                <span className="text-xl text-slate-700 dark:text-slate-200" style={{ fontFamily: 'var(--font-bubblegum)' }}>Missions</span>
+                <span className="text-xs text-slate-400">{activityCollection.length} missions</span>
+            </button>
+            <button onClick={() => navigateTo('shop')} className="p-4 bg-white dark:bg-slate-800 rounded-2xl shadow-sm border border-slate-200 dark:border-slate-700 hover:border-purple-400 dark:hover:border-purple-500 transition-colors flex flex-col items-center gap-2 group">
+                <ShoppingBag className="w-8 h-8 text-purple-400 group-hover:-translate-y-1 transition-transform" />
+                <span className="text-xl text-slate-700 dark:text-slate-200" style={{ fontFamily: 'var(--font-bubblegum)' }}>Shop</span>
+            </button>
+            <button 
+                onClick={() => navigateTo('avatar')} 
+                className="p-4 bg-white dark:bg-slate-800 rounded-2xl shadow-sm border border-slate-200 dark:border-slate-700 hover:border-blue-400 dark:hover:border-blue-500 transition-colors flex flex-col items-center gap-2 group"
+            >
+                <User className="w-8 h-8 text-blue-400 group-hover:scale-110 transition-transform" />
+                <span className="text-xl text-slate-700 dark:text-slate-200" style={{ fontFamily: 'var(--font-bubblegum)' }}>Avatar</span>
+            </button>
         </div>
 
         {/* Mascot Guide Selection */}
-        <div className="mb-8 bg-gradient-to-r from-purple-100 via-blue-100 to-pink-100 dark:from-purple-900/20 dark:via-blue-900/20 dark:to-pink-900/20 rounded-3xl p-6 border-2 border-purple-200 dark:border-purple-800 shadow-lg animate-pop hover:shadow-2xl transition-shadow">
+        <div className="mt-8 bg-gradient-to-r from-yellow-100 via-orange-100 to-yellow-100 dark:from-yellow-900/20 dark:via-orange-900/20 dark:to-yellow-900/20 rounded-3xl p-6 border-2 border-orange-200 dark:border-orange-800 shadow-lg animate-pop hover:shadow-2xl transition-shadow">
           {!selectedGuide ? (
             <div className="flex flex-col items-center gap-6">
               <div className="text-center">
-                <h2 className="text-2xl md:text-3xl font-black text-slate-800 dark:text-white mb-2">
+                <h2 className="text-3xl md:text-4xl font-black text-slate-800 dark:text-white mb-2" style={{ fontFamily: 'var(--font-bubblegum)' }}>
                   Pick a Guide!
                 </h2>
-                <p className="text-slate-600 dark:text-slate-300 font-semibold">
+                <p className="text-slate-600 dark:text-slate-300">
                   Choose a friend to help you explore 🌟
                 </p>
               </div>
@@ -3714,7 +4251,7 @@ Respond as ${guideName} to help the child.`;
 
               {/* Welcome Message */}
               <div className="text-center px-4">
-                <h2 className="text-2xl md:text-3xl font-black text-slate-800 dark:text-white mb-2">
+                <h2 className="text-3xl md:text-4xl font-black text-slate-800 dark:text-white mb-2" style={{ fontFamily: 'var(--font-bubblegum)' }}>
                   {user ? `Welcome Back, ${user.user_metadata?.name?.split(' ')[0] || 'Explorer'}!` : 'Welcome, Explorer!'}
                 </h2>
                 <p className="text-slate-600 dark:text-slate-300 font-semibold">
@@ -3729,40 +4266,6 @@ Respond as ${guideName} to help the child.`;
               </div>
             </div>
           )}
-        </div>
-
-        {/* Quick Actions Grid */}
-        <div className="grid grid-cols-2 md:grid-cols-5 gap-4">
-            <button onClick={() => navigateTo('collection')} className="p-4 bg-white dark:bg-slate-800 rounded-2xl shadow-sm border border-slate-200 dark:border-slate-700 hover:border-yellow-400 dark:hover:border-yellow-500 transition-colors flex flex-col items-center gap-2 group">
-                <Star className="w-8 h-8 text-yellow-400 group-hover:rotate-12 transition-transform" />
-                <span className="font-bold text-slate-700 dark:text-slate-200">Nuggets</span>
-                <span className="text-xs text-slate-400">{collection.length} nuggets</span>
-            </button>
-            <button onClick={() => navigateTo('word-bank')} className="p-4 bg-white dark:bg-slate-800 rounded-2xl shadow-sm border border-slate-200 dark:border-slate-700 hover:border-emerald-400 dark:hover:border-emerald-500 transition-colors flex flex-col items-center gap-2 group">
-                <BookOpen className="w-8 h-8 text-emerald-400 group-hover:scale-110 transition-transform" />
-                <span className="font-bold text-slate-700 dark:text-slate-200">Words</span>
-                <span className="text-xs text-slate-400">{wordCollection.length} words</span>
-            </button>
-            <button onClick={() => navigateTo('activities')} className="p-4 bg-white dark:bg-slate-800 rounded-2xl shadow-sm border border-slate-200 dark:border-slate-700 hover:border-orange-400 dark:hover:border-orange-500 transition-colors flex flex-col items-center gap-2 group">
-                <Rocket className="w-8 h-8 text-orange-400 group-hover:rotate-12 transition-transform" />
-                <span className="font-bold text-slate-700 dark:text-slate-200">Missions</span>
-                <span className="text-xs text-slate-400">{activityCollection.length} missions</span>
-            </button>
-            <button onClick={() => navigateTo('shop')} className="p-4 bg-white dark:bg-slate-800 rounded-2xl shadow-sm border border-slate-200 dark:border-slate-700 hover:border-purple-400 dark:hover:border-purple-500 transition-colors flex flex-col items-center gap-2 group">
-                <ShoppingBag className="w-8 h-8 text-purple-400 group-hover:-translate-y-1 transition-transform" />
-                <span className="font-bold text-slate-700 dark:text-slate-200">Shop</span>
-            </button>
-            <button 
-                onClick={() => navigateTo('avatar')} 
-                className="p-4 bg-white dark:bg-slate-800 rounded-2xl shadow-sm border border-slate-200 dark:border-slate-700 hover:border-blue-400 dark:hover:border-blue-500 transition-colors flex flex-col items-center gap-2 relative overflow-hidden group"
-            >
-                <div className="absolute inset-0 bg-gradient-to-br from-blue-500/10 to-purple-500/10 group-hover:from-blue-500/20 group-hover:to-purple-500/20 transition-all" />
-                <div className="flex gap-2 relative">
-                    <img src={spaceNuggetImg} alt="Space Nugget" className="w-8 h-8 object-contain" />
-                    <img src={skyNuggetImg} alt="Sky Nugget" className="w-8 h-8 object-contain" />
-                </div>
-                <span className="font-bold text-slate-700 dark:text-slate-200 relative">Avatar</span>
-            </button>
         </div>
       </div>
     </div>
@@ -3822,14 +4325,14 @@ Respond as ${guideName} to help the child.`;
                             <selectedSubject.icon className="w-10 h-10 text-white" />
                         </div>
                         <div>
-                            <h1 className="text-3xl md:text-4xl font-black text-white tracking-tight drop-shadow-lg">{selectedSubject.name}</h1>
+                            <h1 className="text-3xl md:text-4xl font-black text-white tracking-tight drop-shadow-lg" style={{ fontFamily: 'var(--font-bubblegum)' }}>{selectedSubject.name}</h1>
                             <p className="text-white/90 font-medium text-sm md:text-base">Explore the world of {selectedSubject.name.toLowerCase()}</p>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <div className="max-w-6xl mx-auto p-4 mt-4 relative z-10">
+            <div className="max-w-6xl mx-auto p-4 -mt-8 relative z-10">
                 <div className="space-y-6">
                     {/* Search Bar - Full Width */}
                     <div className="max-w-5xl mx-auto">
@@ -3960,7 +4463,7 @@ Respond as ${guideName} to help the child.`;
                             <Icon className="w-10 h-10 text-white" />
                         </div>
                         <div>
-                            <h1 className="text-3xl md:text-4xl font-black text-white tracking-tight drop-shadow-lg">{topic.name}</h1>
+                            <h1 className="text-3xl md:text-4xl font-black text-white tracking-tight drop-shadow-lg" style={{ fontFamily: 'var(--font-bubblegum)' }}>{topic.name}</h1>
                             <p className="text-white/90 font-medium text-sm md:text-base">{topic.description}</p>
                         </div>
                     </div>
@@ -4049,7 +4552,7 @@ Respond as ${guideName} to help the child.`;
                     
                     return (
                         <div className="bg-white dark:bg-slate-800 rounded-3xl p-6 md:p-8 shadow-lg mb-8">
-                            <h2 className="text-2xl font-bold text-slate-800 dark:text-white mb-6 text-center">Timeline of Ancient Civilizations</h2>
+                            <h2 className="text-2xl font-bold text-slate-800 dark:text-white mb-6 text-center" style={{ fontFamily: 'var(--font-bubblegum)' }}>Timeline of Ancient Civilizations</h2>
                             
                             {/* Regional Key */}
                             <div className="flex flex-wrap justify-center gap-3 mb-6">
@@ -4126,7 +4629,7 @@ Respond as ${guideName} to help the child.`;
                     <>
                         {/* Fun Experiments at the Top */}
                         <div className="mb-8">
-                            <h2 className="text-2xl font-bold text-slate-800 dark:text-white mb-6">Fun Experiments to Try</h2>
+                            <h2 className="text-2xl font-bold text-slate-800 dark:text-white mb-6" style={{ fontFamily: 'var(--font-bubblegum)' }}>Fun Experiments to Try</h2>
                             <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
                                 {topic.experiments.map((experiment, index) => (
                                     <button
@@ -4155,7 +4658,7 @@ Respond as ${guideName} to help the child.`;
                         <div className="grid md:grid-cols-[2fr_1fr] gap-6 mb-8">
                             {/* Left Column: The Scientific Method Process */}
                             <div className="bg-white dark:bg-slate-800 rounded-3xl p-6 md:p-8 shadow-lg">
-                                <h2 className="text-2xl font-bold text-slate-800 dark:text-white mb-6 text-center">The Scientific Method</h2>
+                                <h2 className="text-2xl font-bold text-slate-800 dark:text-white mb-6 text-center" style={{ fontFamily: 'var(--font-bubblegum)' }}>The Scientific Method</h2>
                                 <div className="grid grid-cols-2 gap-4">
                                     {topic.steps.map((step, index) => (
                                         <div key={step.name} className="relative">
@@ -4178,7 +4681,7 @@ Respond as ${guideName} to help the child.`;
 
                             {/* Right Column: Key Concepts */}
                             <div>
-                                <h2 className="text-2xl font-bold text-slate-800 dark:text-white mb-6">Key Concepts</h2>
+                                <h2 className="text-2xl font-bold text-slate-800 dark:text-white mb-6" style={{ fontFamily: 'var(--font-bubblegum)' }}>Key Concepts</h2>
                                 <div className="flex flex-col gap-3">
                                     {topic.subTopics.map((item, index) => (
                                         <button
@@ -4208,7 +4711,7 @@ Respond as ${guideName} to help the child.`;
                     </>
                 ) : type === 'process' && topic.steps ? (
                     <div className="bg-white dark:bg-slate-800 rounded-3xl p-6 md:p-8 shadow-lg mb-8">
-                        <h2 className="text-2xl font-bold text-slate-800 dark:text-white mb-6 text-center">The Scientific Method Process</h2>
+                        <h2 className="text-2xl font-bold text-slate-800 dark:text-white mb-6 text-center" style={{ fontFamily: 'var(--font-bubblegum)' }}>The Scientific Method Process</h2>
                         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-4">
                             {topic.steps.map((step, index) => (
                                 <div key={step.name} className="relative">
@@ -4240,7 +4743,7 @@ Respond as ${guideName} to help the child.`;
                     <>
                         {/* Activities at the Top */}
                         <div className="mb-8">
-                            <h2 className="text-2xl font-bold text-slate-800 dark:text-white mb-6">
+                            <h2 className="text-2xl font-bold text-slate-800 dark:text-white mb-6" style={{ fontFamily: 'var(--font-bubblegum)' }}>
                                 {topic.id === 'elements-of-math' ? 'Math Activities to Try' : topic.id === 'elements-of-music' ? 'Music Activities to Try' : topic.id === 'elements-of-language' ? 'Language Activities to Try' : 'Art Activities to Try'}
                             </h2>
                             <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
@@ -4271,7 +4774,19 @@ Respond as ${guideName} to help the child.`;
                                         <div className="p-4 text-left">
                                             <h3 className="font-bold text-slate-800 dark:text-white mb-1">{activity.name}</h3>
                                             <p className="text-xs text-slate-600 dark:text-slate-400">{activity.description}</p>
-                                            <div className="mt-2 text-xs font-semibold text-purple-600 dark:text-purple-400">
+                                            <div className={`mt-2 text-xs font-semibold ${
+                                                topic.id === 'elements-of-language' && activity.concept
+                                                    ? activity.concept === 'Parts of Speech' ? 'text-blue-600 dark:text-blue-400'
+                                                    : activity.concept === 'Sentence Structure' ? 'text-purple-600 dark:text-purple-400'
+                                                    : activity.concept === 'Poetry' ? 'text-pink-600 dark:text-pink-400'
+                                                    : activity.concept === 'Persuasive Writing' ? 'text-orange-600 dark:text-orange-400'
+                                                    : activity.concept === 'Etymology' ? 'text-green-600 dark:text-green-400'
+                                                    : activity.concept === 'Punctuation' ? 'text-yellow-600 dark:text-yellow-400'
+                                                    : activity.concept === 'Literary Devices' ? 'text-indigo-600 dark:text-indigo-400'
+                                                    : activity.concept === 'Story Elements' ? 'text-red-600 dark:text-red-400'
+                                                    : 'text-purple-600 dark:text-purple-400'
+                                                : 'text-purple-600 dark:text-purple-400'
+                                            }`}>
                                                 {activity.element || activity.movement || activity.concept}
                                             </div>
                                         </div>
@@ -4282,7 +4797,7 @@ Respond as ${guideName} to help the child.`;
 
                         {/* Key Concepts Section */}
                         <div>
-                            <h2 className="text-2xl font-bold text-slate-800 dark:text-white mb-6">
+                            <h2 className="text-2xl font-bold text-slate-800 dark:text-white mb-6" style={{ fontFamily: 'var(--font-bubblegum)' }}>
                                 {topic.id === 'elements-of-art' ? 'Key Concepts: Elements of Art' : topic.id === 'art-movements' ? 'Key Concepts: Art Movements' : topic.id === 'elements-of-math' ? 'Key Concepts: Elements of Math' : topic.id === 'elements-of-music' ? 'Key Concepts: Elements of Music' : topic.id === 'elements-of-language' ? 'Key Concepts: Elements of Language' : 'Key Concepts'}
                             </h2>
                             
@@ -4433,10 +4948,98 @@ Respond as ${guideName} to help the child.`;
                     </>
                 ) : null}
 
+                {/* STORIES TYPE - Display stories from diverse cultures */}
+                {type === 'stories' && topic.stories ? (
+                    <>
+                        {/* Stories Grid - Now at top */}
+                        <div className="mb-8">
+                            <h2 className="text-2xl font-bold text-slate-800 dark:text-white mb-6" style={{ fontFamily: 'var(--font-bubblegum)' }}>Stories from Around the World</h2>
+                            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+                                {topic.stories.map((story, index) => (
+                                    <button
+                                        key={story.name}
+                                        onClick={() => openStoryActivity(story)}
+                                        className="bg-white dark:bg-slate-800 rounded-2xl shadow-md hover:shadow-xl hover:scale-105 transition-all border-2 border-slate-100 dark:border-slate-700 hover:border-pink-300 dark:hover:border-pink-600 group animate-pop overflow-hidden"
+                                        style={{animationDelay: `${index * 0.05}s`}}
+                                    >
+                                        <div className="relative w-full h-32 bg-slate-200 dark:bg-slate-700 overflow-hidden">
+                                            <img 
+                                                src={story.image} 
+                                                alt={story.name}
+                                                className="w-full h-full object-cover group-hover:scale-110 transition-transform"
+                                            />
+                                        </div>
+                                        <div className="p-4 text-left">
+                                            <h3 className="font-bold text-slate-800 dark:text-white mb-1">{story.name}</h3>
+                                            <p className="text-xs text-slate-600 dark:text-slate-400 mb-2">{story.description}</p>
+                                            <div className="flex gap-1 flex-wrap text-xs">
+                                                <span className={`px-2 py-1 rounded-full font-semibold ${
+                                                    story.category === 'Fairytale' 
+                                                        ? 'bg-purple-100 dark:bg-purple-900/30 text-purple-700 dark:text-purple-300'
+                                                        : story.category === 'Fable'
+                                                        ? 'bg-amber-100 dark:bg-amber-900/30 text-amber-700 dark:text-amber-300'
+                                                        : 'bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300'
+                                                }`}>{story.category}</span>
+                                                <span className="bg-slate-100 dark:bg-slate-700 text-slate-700 dark:text-slate-300 px-2 py-1 rounded-full font-semibold">{story.origin}</span>
+                                            </div>
+                                        </div>
+                                    </button>
+                                ))}
+                            </div>
+                        </div>
+
+                        {/* Key Concepts: Story Types - Now at bottom */}
+                        <div className="mb-8">
+                            <h2 className="text-2xl font-bold text-slate-800 dark:text-white mb-6" style={{ fontFamily: 'var(--font-bubblegum)' }}>Key Concepts: Story Types</h2>
+                            <div className="grid grid-cols-3 gap-4">
+                                {topic.subTopics.map((category, index) => (
+                                    <button
+                                        key={category.name}
+                                        onClick={() => {
+                                            if (apiKey) {
+                                                // Store the story type for "Read a Story" button
+                                                const categoryNugget = {
+                                                    text: category.name === 'Fairytales' 
+                                                        ? 'Fairytales are magical stories with enchanted objects, mythical creatures, and supernatural events. They teach life lessons through heroes and heroines facing challenges. These stories come from oral traditions passed down through generations, with each culture adding unique elements. Common themes include good versus evil, kindness, and courage.'
+                                                        : category.name === 'Fables'
+                                                        ? 'Fables are short stories that teach a moral lesson using animals that talk and act like humans. Each animal represents a human trait, like the clever fox or hardworking ant. The moral is usually spelled out at the end. Famous collections like Aesop\'s Fables have taught wisdom for thousands of years!'
+                                                        : 'Tall tales are funny, exaggerated stories about larger-than-life heroes who do impossible things! These American folk stories feature characters with superhuman abilities, like Paul Bunyan or Pecos Bill who rode a tornado. The fun comes from ridiculous exaggerations, like someone being so strong they could tie a river in a knot!',
+                                                    title: category.name,
+                                                    tags: ['Stories', category.name, 'Story Types'],
+                                                    subjectId: 'words',
+                                                    id: Date.now(),
+                                                    searchTerm: category.name + ' stories',
+                                                    originalTag: category.name,
+                                                    storyType: category.name
+                                                };
+                                                setCurrentNugget(categoryNugget);
+                                                setAiContentImage(null);
+                                                setActivityImage(null);
+                                                setLearnResponse(null);
+                                                setActivityResponse(null);
+                                                navigateTo('nugget');
+                                                generateImage(category.name, category.name + ' stories', category.name);
+                                            } else {
+                                                showNotification('Add API key to explore story types!');
+                                            }
+                                        }}
+                                        className={`${category.color} text-white rounded-xl p-6 shadow-md hover:shadow-xl hover:scale-105 transition-all text-center animate-pop cursor-pointer`}
+                                        style={{animationDelay: `${index * 0.1}s`}}
+                                    >
+                                        <div className="text-4xl mb-2">{category.emoji}</div>
+                                        <h3 className="font-bold text-lg" style={{ fontFamily: 'var(--font-bubblegum)' }}>{category.name}</h3>
+                                        <p className="text-sm opacity-90 mt-1">{category.description}</p>
+                                    </button>
+                                ))}
+                            </div>
+                        </div>
+                    </>
+                ) : null}
+
                 {/* Topic Cards Section - For non-process and non-activities types */}
-                {type !== 'process' && type !== 'activities' && (
+                {type !== 'process' && type !== 'activities' && type !== 'stories' && (
                     <div className="mb-8">
-                        <h2 className="text-2xl font-bold text-slate-800 dark:text-white mb-6 text-center">
+                        <h2 className="text-2xl font-bold text-slate-800 dark:text-white mb-6 text-center" style={{ fontFamily: 'var(--font-bubblegum)' }}>
                             {type === 'timeline' ? 'Explore Ancient Civilizations' : topic.id === 'famous-works-of-art' ? 'Explore the Masterpieces' : topic.id === 'art-movements' ? 'Explore the Styles' : topic.id === 'wonders-of-the-world' ? 'Explore the Wonders' : 'Explore Topics'}
                         </h2>
                         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
@@ -4521,7 +5124,16 @@ Respond as ${guideName} to help the child.`;
   const renderNugget = () => {
     if (!currentNugget) return null;
     return (
-        <div className="min-h-screen bg-slate-100 dark:bg-slate-950 flex flex-col">
+        <div className="min-h-screen bg-slate-100 dark:bg-slate-950 flex flex-col relative">
+            {/* Loading Overlay */}
+            {nuggetLoading && (
+                <div className="fixed inset-0 bg-white/80 dark:bg-slate-950/80 backdrop-blur-sm z-50 flex items-center justify-center">
+                    <div className="flex flex-col items-center gap-4">
+                        <Loader className="w-12 h-12 text-orange-500 animate-spin" />
+                        <p className="text-lg font-bold text-slate-700 dark:text-slate-300">Loading Nugget...</p>
+                    </div>
+                </div>
+            )}
             <div className="sticky top-0 z-40 bg-white/80 dark:bg-slate-900/80 backdrop-blur-md border-b border-slate-200 dark:border-slate-800 px-4 py-3 flex justify-between items-center">
                 <button onClick={goBack} className="flex items-center gap-2 text-slate-600 dark:text-slate-300 hover:bg-gradient-to-r hover:from-blue-50 hover:to-purple-50 dark:hover:from-blue-900/30 dark:hover:to-purple-900/30 px-4 py-2 rounded-full transition-all font-bold border-2 border-transparent hover:border-blue-200 dark:hover:border-blue-700 shadow-sm hover:shadow-md">
                     <ArrowLeft className="w-5 h-5" /> Back
@@ -4562,7 +5174,7 @@ Respond as ${guideName} to help the child.`;
                             <div className="absolute inset-0 flex items-center justify-center"><Loader className="w-8 h-8 text-slate-400 animate-spin" /></div>
                         ) : nuggetImage ? (
                             <>
-                            <img src={nuggetImage.url} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" alt="Nugget Visual" />
+                            <ImageWithFallback src={nuggetImage.url} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" alt="Nugget Visual" />
                             <div className="absolute bottom-4 right-4 bg-black/60 text-white px-3 py-1 rounded-full text-xs font-bold backdrop-blur-sm flex items-center gap-2">
                                 <Maximize2 className="w-3 h-3" /> Tap to Explore
                             </div>
@@ -4577,18 +5189,57 @@ Respond as ${guideName} to help the child.`;
 
                     {/* Content Area */}
                     <div className="p-6 md:p-8">
-                        <div className="flex items-start gap-4 mb-6">
-                            <h2 className="text-xl md:text-2xl font-bold text-slate-800 dark:text-white leading-tight flex-1">
-                                {currentNugget.text}
-                            </h2>
-                            <button 
-                                onClick={() => handleReadAloud(currentNugget.text)}
-                                className={`flex-shrink-0 p-3 rounded-full ${isSpeaking ? 'bg-purple-500 text-white animate-pulse cursor-pointer hover:bg-purple-600' : 'bg-purple-50 dark:bg-purple-900/30 text-purple-600 dark:text-purple-300'} hover:bg-purple-100 dark:hover:bg-purple-900/50 transition-all shadow-sm hover:shadow-md`}
-                                title={isSpeaking ? "Click to stop reading" : "Read aloud"}
-                            >
-                                <Volume2 className="w-6 h-6" />
-                            </button>
-                        </div>
+                        {currentNugget.storyData ? (
+                            <>
+                                {/* Story Title */}
+                                <div className="flex items-start gap-4 mb-4">
+                                    <h2 className="text-xl md:text-2xl font-bold text-slate-800 dark:text-white leading-tight flex-1" style={{ fontFamily: 'var(--font-bubblegum)' }}>
+                                        {currentNugget.title}
+                                    </h2>
+                                    <button 
+                                        onClick={() => handleReadAloud(currentNugget.text)}
+                                        className={`flex-shrink-0 p-3 rounded-full ${isSpeaking ? 'bg-purple-500 text-white animate-pulse cursor-pointer hover:bg-purple-600' : 'bg-purple-50 dark:bg-purple-900/30 text-purple-600 dark:text-purple-300'} hover:bg-purple-100 dark:hover:bg-purple-900/50 transition-all shadow-sm hover:shadow-md`}
+                                        title={isSpeaking ? "Click to stop reading" : "Read aloud"}
+                                    >
+                                        <Volume2 className="w-6 h-6" />
+                                    </button>
+                                </div>
+                                {/* Story Text */}
+                                <div className="text-base leading-relaxed text-slate-700 dark:text-slate-300 mb-6">
+                                    {currentNugget.text}
+                                </div>
+                                {/* Story Lesson */}
+                                {currentNugget.storyData.lesson && (
+                                    <div className="bg-amber-50 dark:bg-amber-900/20 border-2 border-amber-200 dark:border-amber-700 rounded-xl p-4 mb-4">
+                                        <p className="text-sm font-bold text-amber-800 dark:text-amber-300 mb-1">Lesson:</p>
+                                        <p className="text-sm text-amber-900 dark:text-amber-200 italic">{currentNugget.storyData.lesson}</p>
+                                    </div>
+                                )}
+                            </>
+                        ) : (
+                            <div className="flex items-start gap-4 mb-6">
+                                {currentNugget.isLoading ? (
+                                    <div className="flex-1 space-y-3">
+                                        <div className="h-6 bg-slate-200 dark:bg-slate-700 rounded animate-pulse"></div>
+                                        <div className="h-6 bg-slate-200 dark:bg-slate-700 rounded animate-pulse w-5/6"></div>
+                                        <div className="h-6 bg-slate-200 dark:bg-slate-700 rounded animate-pulse w-4/6"></div>
+                                    </div>
+                                ) : (
+                                    <>
+                                        <h2 className="text-lg md:text-xl font-bold text-slate-800 dark:text-white leading-tight flex-1">
+                                            {currentNugget.text}
+                                        </h2>
+                                        <button 
+                                            onClick={() => handleReadAloud(currentNugget.text)}
+                                            className={`flex-shrink-0 p-3 rounded-full ${isSpeaking ? 'bg-purple-500 text-white animate-pulse cursor-pointer hover:bg-purple-600' : 'bg-purple-50 dark:bg-purple-900/30 text-purple-600 dark:text-purple-300'} hover:bg-purple-100 dark:hover:bg-purple-900/50 transition-all shadow-sm hover:shadow-md`}
+                                            title={isSpeaking ? "Click to stop reading" : "Read aloud"}
+                                        >
+                                            <Volume2 className="w-6 h-6" />
+                                        </button>
+                                    </>
+                                )}
+                            </div>
+                        )}
                         
                         {/* Tags */}
                         <div className="flex flex-wrap gap-2 mb-6">
@@ -4601,7 +5252,7 @@ Respond as ${guideName} to help the child.`;
 
                         {/* AI Actions */}
                         <div className="grid grid-cols-3 gap-2 md:gap-4 mb-6">
-                            <button onClick={() => callGemini('learn')} disabled={aiLoading || !apiKey} className="py-3 px-2 rounded-xl bg-indigo-50 dark:bg-indigo-900/30 text-indigo-700 dark:text-indigo-300 font-bold text-sm hover:bg-indigo-100 transition-colors flex flex-col items-center gap-1 disabled:opacity-50">
+                            <button onClick={() => callGemini('learn')} disabled={aiLoading || !apiKey} className="py-3 px-2 rounded-xl bg-orange-50 dark:bg-orange-900/30 text-orange-700 dark:text-orange-300 font-bold text-sm hover:bg-orange-100 transition-colors flex flex-col items-center gap-1 disabled:opacity-50">
                                 <Brain className="w-5 h-5" /> Explain
                             </button>
                             <button onClick={() => callGemini('activity')} disabled={aiLoading || !apiKey} className="py-3 px-2 rounded-xl bg-emerald-50 dark:bg-emerald-900/30 text-emerald-700 dark:text-emerald-300 font-bold text-sm hover:bg-emerald-100 transition-colors flex flex-col items-center gap-1 disabled:opacity-50">
@@ -4612,6 +5263,28 @@ Respond as ${guideName} to help the child.`;
                             </button>
                         </div>
 
+                        {/* Read a Story Button - for story type nuggets */}
+                        {currentNugget.storyType && (
+                            <div className="mb-6">
+                                <button 
+                                    onClick={() => {
+                                        const topic = CURRICULUM_TOPICS['Stories'];
+                                        if (topic && topic.stories) {
+                                            const storiesOfType = topic.stories.filter(s => s.category === currentNugget.storyType || (currentNugget.storyType === 'Tall Tales' && s.category === 'Tall Tale'));
+                                            if (storiesOfType.length > 0) {
+                                                const randomStory = storiesOfType[Math.floor(Math.random() * storiesOfType.length)];
+                                                openStoryActivity(randomStory);
+                                            }
+                                        }
+                                    }}
+                                    className="w-full py-4 px-6 rounded-xl bg-gradient-to-r from-pink-500 to-purple-500 hover:from-pink-600 hover:to-purple-600 text-white font-bold text-lg shadow-lg hover:shadow-xl transition-all flex items-center justify-center gap-3 group"
+                                >
+                                    <BookOpen className="w-6 h-6 group-hover:scale-110 transition-transform" />
+                                    Read a {currentNugget.storyType === 'Tall Tales' ? 'Tall Tale' : currentNugget.storyType.slice(0, -1)}
+                                </button>
+                            </div>
+                        )}
+
                         {/* AI Content Boxes */}
                         {aiLoading && <div className="text-center py-8 text-slate-400"><Loader className="w-6 h-6 animate-spin mx-auto mb-2" /><p className="text-sm">Thinking...</p></div>}
                         
@@ -4619,7 +5292,7 @@ Respond as ${guideName} to help the child.`;
                         {learnResponse && (
                             <div className="bg-slate-50 dark:bg-slate-700/50 rounded-2xl p-6 border border-slate-100 dark:border-slate-600 animate-pop mb-4">
                                 <div className="flex justify-between items-start mb-4">
-                                    <h3 className="font-bold text-slate-800 dark:text-white flex items-center gap-2">
+                                    <h3 className="font-bold text-slate-800 dark:text-white flex items-center gap-2" style={{ fontFamily: '"Permanent Marker", cursive' }}>
                                         <Sparkles className="w-4 h-4 text-amber-400" /> 
                                         Did You Know?
                                     </h3>
@@ -4642,9 +5315,9 @@ Respond as ${guideName} to help the child.`;
                         {activityResponse && (
                             <div className="bg-slate-50 dark:bg-slate-700/50 rounded-2xl p-6 border border-slate-100 dark:border-slate-600 animate-pop mb-4">
                                 <div className="flex justify-between items-start mb-4">
-                                    <h3 className="font-bold text-slate-800 dark:text-white flex items-center gap-2">
+                                    <h3 className="font-bold text-slate-800 dark:text-white flex items-center gap-2" style={{ fontFamily: '"Permanent Marker", cursive' }}>
                                         <Sparkles className="w-4 h-4 text-amber-400" /> 
-                                        Activity Mission
+                                        Mission
                                     </h3>
                                     <button onClick={() => { setActivityResponse(null); setActivityImage(null); setAiResponse(null); }} className="text-slate-400 hover:text-slate-600"><X className="w-4 h-4"/></button>
                                 </div>
@@ -4734,9 +5407,9 @@ Respond as ${guideName} to help the child.`;
                         {aiResponse && !learnResponse && !activityResponse && (
                             <div className="bg-slate-50 dark:bg-slate-700/50 rounded-2xl p-6 border border-slate-100 dark:border-slate-600 animate-pop">
                                 <div className="flex justify-between items-start mb-4">
-                                    <h3 className="font-bold text-slate-800 dark:text-white flex items-center gap-2">
+                                    <h3 className="font-bold text-slate-800 dark:text-white flex items-center gap-2" style={aiResponse.type === 'activity' ? { fontFamily: '"Permanent Marker", cursive' } : { fontFamily: '"Permanent Marker", cursive' }}>
                                         <Sparkles className="w-4 h-4 text-amber-400" /> 
-                                        {aiResponse.type === 'activity' ? 'Activity Mission' : 'Did You Know?'}
+                                        {aiResponse.type === 'activity' ? 'Mission' : 'Did You Know?'}
                                     </h3>
                                     <div className="flex items-center gap-2">
                                         {aiResponse.type === 'learn' && (
@@ -4858,7 +5531,7 @@ Respond as ${guideName} to help the child.`;
                         </div>
                         <button 
                             onClick={() => navigateTo('my-collections')}
-                            className="w-full bg-gradient-to-r from-purple-100 to-blue-100 hover:from-purple-200 hover:to-blue-200 dark:from-purple-900/30 dark:to-blue-900/30 dark:hover:from-purple-900/50 dark:hover:to-blue-900/50 text-purple-700 dark:text-purple-300 font-bold py-4 rounded-xl shadow-sm hover:shadow-md transition-all flex items-center justify-center gap-2"
+                            className="w-full bg-gradient-to-r from-red-500 via-orange-500 to-yellow-400 hover:from-red-600 hover:via-orange-600 hover:to-yellow-500 text-white font-bold py-4 rounded-xl shadow-sm hover:shadow-md transition-all flex items-center justify-center gap-2"
                         >
                             <Star className="w-5 h-5" /> View My Collections
                         </button>
@@ -4880,7 +5553,7 @@ Respond as ${guideName} to help the child.`;
                   >
                     <ArrowLeft className="w-6 h-6 text-slate-600 dark:text-slate-400" />
                   </button>
-                  <h1 className="text-3xl font-black text-slate-800 dark:text-white tracking-tight">{title}</h1>
+                  <h1 className="text-3xl font-black text-slate-800 dark:text-white tracking-tight" style={{ fontFamily: 'var(--font-bubblegum)' }}>{title}</h1>
                   {title === 'Accessories Shop' && (
                     <div className="ml-4 px-4 py-2 bg-gradient-to-r from-orange-400 to-amber-500 rounded-full shadow-lg flex items-center gap-2">
                       <span className="text-2xl">🍗</span>
@@ -4936,17 +5609,30 @@ Respond as ${guideName} to help the child.`;
       // Helper to create a shorter display title
       const getDisplayTitle = () => {
           const topic = showMeTopic || currentNugget?.searchTerm || "Images";
-          // Extract first 3-4 meaningful words for display
-          const words = topic.split(/\s+/).filter(w => w.length > 2);
-          if (words.length <= 4) return topic;
-          return words.slice(0, 4).join(' ') + '...';
+          // Use same filtering logic as search - strip modifiers, keep only core concept
+          const modifierWords = [
+              'the', 'a', 'an', 'is', 'are', 'was', 'were', 'in', 'on', 'at', 'to', 'for', 'of', 'with', 'by', 'from', 'that', 'this', 'these', 'those', 'and', 'or', 'but',
+              'children', 'child', 'kids', 'kid', 'playing', 'play', 'learning', 'learn', 'watching', 'watch', 'doing', 'making', 'educational', 'education', 'young', 'little', 'fun',
+              'colorful', 'bright', 'dark', 'light', 'beautiful', 'stunning', 'amazing', 'incredible',
+              'modern', 'ancient', 'traditional', 'contemporary', 'classic', 'vintage', 'new', 'old', 'reverse',
+              'creating', 'building', 'drawing', 'painting', 'cleaning', 'washing', 'designing', 'crafting',
+              'large', 'small', 'big', 'tiny', 'huge', 'massive', 'giant',
+              'character', 'characters', 'image', 'images', 'picture', 'pictures', 'mural', 'murals', 'style', 'technique',
+              'egyptian', 'greek', 'roman', 'chinese', 'japanese', 'indian', 'african', 'european', 'american', 'asian',
+              'wall', 'walls', 'ceiling', 'floor', 'surface', 'ground', 'paper', 'canvas', 'board'
+          ];
+          const words = topic.toLowerCase().split(/\s+/)
+              .filter(word => word.length > 2 && !modifierWords.includes(word));
+          // Take 1-2 core words and capitalize properly
+          const result = words.slice(0, 2).join(' ') || topic;
+          return result.split(' ').map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(' ');
       };
       
       return (
         <div className="fixed inset-0 z-[60] bg-black/90 backdrop-blur-sm flex items-center justify-center p-4 animate-fade-in" onClick={() => setIsShowMeOpen(false)}>
             <div className="w-full max-w-5xl h-[80vh] bg-slate-900 rounded-3xl overflow-hidden flex flex-col" onClick={e => e.stopPropagation()}>
                 <div className="p-4 flex justify-between items-center border-b border-slate-800">
-                    <h3 className="text-white font-bold text-lg">Visual Explorer: {getDisplayTitle()}</h3>
+                    <h3 className="text-white font-bold text-lg" style={{ fontFamily: 'var(--font-bubblegum)' }}>Visual Explorer: {getDisplayTitle()}</h3>
                     <button onClick={() => { setIsShowMeOpen(false); setShowMeImages([]); }} className="p-2 bg-slate-800 rounded-full text-white hover:bg-slate-700"><X className="w-5 h-5" /></button>
                 </div>
                 <div className="flex-1 overflow-y-auto p-4">
@@ -5029,7 +5715,19 @@ Respond as ${guideName} to help the child.`;
     const handleNuggetTypeSelection = (type) => {
       setAvatarNuggetType(type);
       localStorage.setItem('nuggets_avatarNuggetType', type);
-      saveData({ avatarNuggetType: type });
+      
+      // Set default accessories for new avatars
+      const defaultAccessories = {
+        eyes: ['confident-eyebrows'],
+        mouth: 'mouth-toothy-grin',
+        arms: 'exploringarms',
+        legs: 'legup',
+        accessories: []
+      };
+      setSelectedAccessories(defaultAccessories);
+      localStorage.setItem('nuggets_selectedAccessories', JSON.stringify(defaultAccessories));
+      
+      saveData({ avatarNuggetType: type, selectedAccessories: defaultAccessories });
     };
 
     // Show nugget type selection if not chosen yet
@@ -5039,7 +5737,7 @@ Respond as ${guideName} to help the child.`;
           <div className="max-w-4xl w-full">
             {/* Header */}
             <div className="text-center mb-12 animate-pop">
-              <h1 className="text-4xl md:text-6xl font-black text-slate-800 dark:text-white mb-4">
+              <h1 className="text-4xl md:text-6xl font-black text-slate-800 dark:text-white mb-4" style={{ fontFamily: 'var(--font-bubblegum)' }}>
                 Choose Your <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-500 to-red-500">Nugget!</span>
               </h1>
               <p className="text-lg text-slate-600 dark:text-slate-400">
@@ -5066,7 +5764,7 @@ Respond as ${guideName} to help the child.`;
                   />
                 </div>
 
-                <h3 className="text-3xl font-black text-slate-800 dark:text-white mb-3">Basic Nugget</h3>
+                <h3 className="text-3xl font-black text-slate-800 dark:text-white mb-3" style={{ fontFamily: 'var(--font-bubblegum)' }}>Basic Nugget</h3>
                 <p className="text-slate-600 dark:text-slate-400 mb-4">
                   The original golden nugget! Perfect for classic learners who love the traditional look.
                 </p>
@@ -5095,7 +5793,7 @@ Respond as ${guideName} to help the child.`;
                   />
                 </div>
 
-                <h3 className="text-3xl font-black text-slate-800 dark:text-white mb-3">Spicy Nugget</h3>
+                <h3 className="text-3xl font-black text-slate-800 dark:text-white mb-3" style={{ fontFamily: 'var(--font-bubblegum)' }}>Spicy Nugget</h3>
                 <p className="text-slate-600 dark:text-slate-400 mb-4">
                   Extra crispy and full of flavor! For adventurous learners who like things spicy! 🌶️
                 </p>
@@ -5135,12 +5833,12 @@ Respond as ${guideName} to help the child.`;
             <button onClick={goBack} className="p-2 bg-white dark:bg-slate-800 rounded-full shadow-sm hover:scale-110 transition-transform">
               <ArrowLeft className="w-6 h-6 text-slate-600 dark:text-slate-400" />
             </button>
-            <h1 className="text-xl md:text-2xl font-black text-slate-800 dark:text-white">Avatar Studio</h1>
+            <h1 className="text-xl md:text-2xl font-black text-slate-800 dark:text-white" style={{ fontFamily: 'var(--font-bubblegum)' }}>Avatar Studio</h1>
           </div>
           <div className="flex gap-2">
             <div className="flex items-center gap-1 bg-white dark:bg-slate-800 px-3 py-1.5 rounded-full border border-slate-200 dark:border-slate-700 shadow-sm">
               <span className="font-bold text-slate-700 dark:text-white">{crumbs}</span>
-              <Cookie className="w-4 h-4 text-orange-400 fill-orange-400" />
+              <Drumstick className="w-4 h-4 text-orange-400 fill-orange-400" />
             </div>
             <button onClick={goHome} className="px-4 py-2 bg-white dark:bg-slate-800 rounded-full shadow-sm hover:shadow-md transition-all text-slate-700 dark:text-slate-200 font-bold text-sm">
               Home
@@ -5154,7 +5852,7 @@ Respond as ${guideName} to help the child.`;
             {/* Left Side - Avatar Preview */}
             <div className="space-y-4">
               <div className="bg-white dark:bg-slate-900 rounded-3xl p-8 shadow-lg border border-slate-200 dark:border-slate-700">
-                <h2 className="text-2xl font-black text-slate-800 dark:text-white mb-6 text-center">Your Nugget</h2>
+                <h2 className="text-2xl font-black text-slate-800 dark:text-white mb-6 text-center" style={{ fontFamily: 'var(--font-bubblegum)' }}>Your Nugget</h2>
                 
                 {/* Avatar Display */}
                 <div className={`relative rounded-2xl p-8 aspect-square flex items-center justify-center border-4 ${
@@ -5312,7 +6010,7 @@ Respond as ${guideName} to help the child.`;
             <div className="space-y-4">
               <div className="bg-white dark:bg-slate-900 rounded-3xl shadow-lg border border-slate-200 dark:border-slate-700 overflow-hidden">
                 <div className="bg-gradient-to-r from-blue-500 to-purple-500 p-6">
-                  <h2 className="text-2xl font-black text-white">Customize</h2>
+                  <h2 className="text-2xl font-black text-white" style={{ fontFamily: 'var(--font-bubblegum)' }}>Customize</h2>
                   <p className="text-sm text-white/80 mt-1">Choose features for your nugget</p>
                 </div>
 
@@ -5336,7 +6034,7 @@ Respond as ${guideName} to help the child.`;
 
                 {/* Options Display */}
                 <div className="p-6 min-h-[400px]">
-                  <h3 className="text-lg font-black text-slate-800 dark:text-white mb-4 flex items-center gap-2">
+                  <h3 className="text-lg font-black text-slate-800 dark:text-white mb-4 flex items-center gap-2" style={{ fontFamily: 'var(--font-bubblegum)' }}>
                     <span className="text-2xl">
                       {customizationCategories.find(c => c.id === avatarCustomizationTab)?.icon}
                     </span>
@@ -5487,7 +6185,7 @@ Respond as ${guideName} to help the child.`;
             <div className="flex items-center justify-between gap-4 mb-8">
                 <div className="flex items-center gap-4">
                   <button onClick={goBack} className="p-2 bg-white dark:bg-slate-800 rounded-full shadow-sm"><ArrowLeft className="w-6 h-6 text-slate-600 dark:text-slate-400" /></button>
-                  <h1 className="text-3xl font-black text-slate-800 dark:text-white">Settings</h1>
+                  <h1 className="text-3xl font-black text-slate-800 dark:text-white" style={{ fontFamily: 'var(--font-bubblegum)' }}>Settings</h1>
                 </div>
                 <div className="flex items-center gap-2">
                   {avatarNuggetType && (
@@ -5517,7 +6215,7 @@ Respond as ${guideName} to help the child.`;
             <div className="space-y-4">
                 {/* Account Section */}
                 <div className="bg-white dark:bg-slate-900 p-6 rounded-2xl shadow-sm border border-slate-200 dark:border-slate-700">
-                    <h3 className="font-bold text-lg mb-4 text-slate-800 dark:text-white">Account</h3>
+                    <h3 className="font-bold text-lg mb-4 text-slate-800 dark:text-white" style={{ fontFamily: 'var(--font-bubblegum)' }}>Account</h3>
                     <div className="flex flex-col gap-4">
                         <div className="flex items-center gap-3 p-3 bg-slate-50 dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700">
                             <div className={`w-10 h-10 rounded-full flex items-center justify-center ${!user ? 'bg-slate-200 dark:bg-slate-700' : 'bg-blue-100 dark:bg-blue-900'}`}>
@@ -5576,6 +6274,40 @@ Respond as ${guideName} to help the child.`;
                         </button>
                     </div>
                 </div>
+                
+                {/* Pre-generate Nuggets Section */}
+                <div className="bg-gradient-to-br from-yellow-50 to-orange-50 dark:from-yellow-900/10 dark:to-orange-900/10 p-6 rounded-2xl shadow-sm border-2 border-yellow-200 dark:border-yellow-700">
+                    <div className="flex items-start gap-3 mb-3">
+                        <Rocket className="w-6 h-6 text-orange-600 dark:text-orange-400 flex-shrink-0 mt-0.5" />
+                        <div>
+                            <h3 className="font-bold text-slate-800 dark:text-white">⚡ Speed Boost</h3>
+                            <p className="text-sm text-slate-600 dark:text-slate-300 mt-1">Pre-generate facts for all topics so they load instantly! Takes ~5-10 minutes in the background.</p>
+                        </div>
+                    </div>
+                    <button 
+                        onClick={() => {
+                            if (!apiKey) {
+                                showNotification("Add API Key first!");
+                                return;
+                            }
+                            preGenerateNuggets();
+                            showNotification("⚡ Pre-generation started! Check console for progress.");
+                        }}
+                        disabled={!apiKey || isPreGenerating}
+                        className="w-full bg-gradient-to-r from-orange-500 to-yellow-500 hover:from-orange-600 hover:to-yellow-600 disabled:from-slate-300 disabled:to-slate-300 text-white px-4 py-3 rounded-xl font-bold flex items-center justify-center gap-2 transition-all shadow-md disabled:cursor-not-allowed"
+                    >
+                        {isPreGenerating ? (
+                            <>
+                                <Loader className="w-4 h-4 animate-spin" /> Generating...
+                            </>
+                        ) : (
+                            <>
+                                <Sparkles className="w-4 h-4" /> Pre-generate All Topics
+                            </>
+                        )}
+                    </button>
+                </div>
+                
                 <div className="bg-white dark:bg-slate-900 p-6 rounded-2xl shadow-sm border border-slate-200 dark:border-slate-700 flex items-center justify-between">
                     <div>
                         <h3 className="font-bold text-slate-800 dark:text-white">Dark Mode</h3>
@@ -5631,7 +6363,7 @@ Respond as ${guideName} to help the child.`;
                 <button onClick={goBack} className="p-2 bg-white/90 dark:bg-slate-800 rounded-full shadow-md hover:shadow-lg transition-all">
                   <ArrowLeft className="w-6 h-6 text-slate-600 dark:text-slate-400" />
                 </button>
-                <h1 className="text-3xl md:text-4xl font-black text-slate-800 dark:text-white tracking-tight">
+                <h1 className="text-3xl md:text-4xl font-black text-slate-800 dark:text-white tracking-tight" style={{ fontFamily: 'var(--font-bubblegum)' }}>
                   My Collections
                 </h1>
               </div>
@@ -5668,7 +6400,7 @@ Respond as ${guideName} to help the child.`;
                   <Star className="w-10 h-10 text-white fill-white" />
                 </div>
                 <div className="text-center">
-                  <h2 className="text-2xl font-black text-slate-800 dark:text-white mb-2">Nuggets</h2>
+                  <h2 className="text-2xl font-black text-slate-800 dark:text-white mb-2" style={{ fontFamily: 'var(--font-bubblegum)' }}>Nuggets</h2>
                   <p className="text-slate-500 dark:text-slate-400 text-sm mb-3">
                     Cool Facts
                   </p>
@@ -5688,7 +6420,7 @@ Respond as ${guideName} to help the child.`;
                   <Rocket className="w-10 h-10 text-white" />
                 </div>
                 <div className="text-center">
-                  <h2 className="text-2xl font-black text-slate-800 dark:text-white mb-2">Missions</h2>
+                  <h2 className="text-2xl font-black text-slate-800 dark:text-white mb-2" style={{ fontFamily: 'var(--font-bubblegum)' }}>Missions</h2>
                   <p className="text-slate-500 dark:text-slate-400 text-sm mb-3">
                     Fun Activities
                   </p>
@@ -5708,7 +6440,7 @@ Respond as ${guideName} to help the child.`;
                   <BookOpen className="w-10 h-10 text-white" />
                 </div>
                 <div className="text-center">
-                  <h2 className="text-2xl font-black text-slate-800 dark:text-white mb-2">Words</h2>
+                  <h2 className="text-2xl font-black text-slate-800 dark:text-white mb-2" style={{ fontFamily: 'var(--font-bubblegum)' }}>Words</h2>
                   <p className="text-slate-500 dark:text-slate-400 text-sm mb-3">
                     Interesting Words
                   </p>
@@ -5724,7 +6456,7 @@ Respond as ${guideName} to help the child.`;
             {collection.length === 0 && activityCollection.length === 0 && wordCollection.length === 0 && (
               <div className="text-center mt-12 p-8 bg-white/50 dark:bg-slate-800/50 rounded-3xl">
                 <div className="text-6xl mb-4">🌟</div>
-                <h3 className="text-xl font-bold text-slate-700 dark:text-slate-300 mb-2">
+                <h3 className="text-xl font-bold text-slate-700 dark:text-slate-300 mb-2" style={{ fontFamily: 'var(--font-bubblegum)' }}>
                   Start Your Collection!
                 </h3>
                 <p className="text-slate-500 dark:text-slate-400">
@@ -5745,7 +6477,7 @@ Respond as ${guideName} to help the child.`;
             <div className="flex items-center justify-between gap-4 mb-8">
               <div className="flex items-center gap-4">
                 <button onClick={() => navigateTo('my-collections')} className="p-2 bg-white dark:bg-slate-800 rounded-full shadow-sm hover:shadow-md transition-all"><ArrowLeft className="w-6 h-6 text-slate-600 dark:text-slate-400" /></button>
-                <h1 className="text-3xl font-black text-slate-800 dark:text-white tracking-tight">My Nugget Collection</h1>
+                <h1 className="text-3xl font-black text-slate-800 dark:text-white tracking-tight" style={{ fontFamily: 'var(--font-bubblegum)' }}>My Nugget Collection</h1>
               </div>
               <button onClick={goHome} className="px-4 py-2 bg-white dark:bg-slate-800 rounded-full shadow-sm hover:shadow-md transition-all flex items-center gap-2 text-slate-700 dark:text-slate-200 font-bold text-sm">
                 Home
@@ -5875,7 +6607,7 @@ Respond as ${guideName} to help the child.`;
             <div className="flex items-center justify-between gap-4 mb-8">
               <div className="flex items-center gap-4">
                 <button onClick={() => navigateTo('my-collections')} className="p-2 bg-white dark:bg-slate-800 rounded-full shadow-sm hover:shadow-md transition-all"><ArrowLeft className="w-6 h-6 text-slate-600 dark:text-slate-400" /></button>
-                <h1 className="text-3xl font-black text-slate-800 dark:text-white tracking-tight">Word Collection</h1>
+                <h1 className="text-3xl font-black text-slate-800 dark:text-white tracking-tight" style={{ fontFamily: 'var(--font-bubblegum)' }}>Word Collection</h1>
               </div>
               <button onClick={goHome} className="px-4 py-2 bg-white dark:bg-slate-800 rounded-full shadow-sm hover:shadow-md transition-all flex items-center gap-2 text-slate-700 dark:text-slate-200 font-bold text-sm">
                 Home
@@ -6050,7 +6782,7 @@ Respond as ${guideName} to help the child.`;
                   className="w-16 h-16 object-contain drop-shadow-xl"
                 />
                 <div>
-                  <h2 className="text-2xl font-black text-white">
+                  <h2 className="text-2xl font-black text-white" style={{ fontFamily: 'var(--font-bubblegum)' }}>
                     {selectedGuide === 'space' ? 'Space Nugget' : 'Sky Nugget'}
                   </h2>
                   <p className="text-sm text-white/80 font-semibold">Your Guide</p>
@@ -6184,7 +6916,7 @@ Respond as ${guideName} to help the child.`;
                   <Sparkles className="w-6 h-6 text-white" />
                 </div>
                 <div>
-                  <h2 className="text-2xl font-black text-white">What Do You Think?</h2>
+                  <h2 className="text-2xl font-black text-white" style={{ fontFamily: 'var(--font-bubblegum)' }}>What Do You Think?</h2>
                   <p className="text-sm text-purple-100 font-semibold">Answer to Earn More Crumbs!</p>
                 </div>
               </div>
@@ -6430,14 +7162,14 @@ Respond as ${guideName} to help the child.`;
         <div className="fixed inset-0 bg-black/60 flex items-center justify-center z-50 p-4 backdrop-blur-sm">
           <div className="bg-white dark:bg-slate-800 rounded-3xl shadow-2xl max-w-lg w-full max-h-[90vh] overflow-y-auto animate-pop border border-slate-200 dark:border-slate-700">
             {/* Header */}
-            <div className="bg-gradient-to-r from-yellow-400 to-yellow-500 p-6 rounded-t-3xl flex items-center justify-between">
+            <div className="bg-gradient-to-r from-red-500 via-orange-500 to-yellow-400 p-6 rounded-t-3xl flex items-center justify-between">
               <div className="flex items-center gap-3">
                 <div className="bg-white/20 backdrop-blur-sm p-3 rounded-2xl">
-                  <Sparkles className="w-6 h-6 text-yellow-900" />
+                  <Sparkles className="w-6 h-6 text-white" />
                 </div>
                 <div>
-                  <h2 className="text-2xl font-black text-yellow-900">Collection Challenge</h2>
-                  <p className="text-sm text-yellow-800 font-semibold">
+                  <h2 className="text-2xl font-black text-white" style={{ fontFamily: 'var(--font-bubblegum)' }}>Collection Challenge</h2>
+                  <p className="text-sm text-white/90 font-semibold">
                     Question {currentCollectionQuestionIndex + 1} of {collectionQuizQuestions.length}
                   </p>
                 </div>
@@ -6449,7 +7181,7 @@ Respond as ${guideName} to help the child.`;
                   setCurrentCollectionQuestionIndex(0);
                   setCollectionQuizWrongAnswers(new Set());
                 }} 
-                className="text-yellow-900/80 hover:text-yellow-900 transition-colors"
+                className="text-white/80 hover:text-white transition-colors"
               >
                 <X className="w-6 h-6" />
               </button>
@@ -6594,7 +7326,7 @@ Respond as ${guideName} to help the child.`;
                   <Brain className="w-6 h-6 text-white" />
                 </div>
                 <div>
-                  <h2 className="text-2xl font-black text-white">Word Challenge</h2>
+                  <h2 className="text-2xl font-black text-white" style={{ fontFamily: 'var(--font-bubblegum)' }}>Word Challenge</h2>
                   <p className="text-sm text-white/90 font-semibold">
                     Question {currentWordQuestionIndex + 1} of {wordQuizQuestions.length}
                   </p>

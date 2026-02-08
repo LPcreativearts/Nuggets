@@ -1,7 +1,11 @@
 @custom-variant dark (&:is(.dark *));
 
+@import url('https://fonts.googleapis.com/css2?family=Patrick+Hand&family=Bubblegum+Sans&family=Permanent+Marker&display=swap');
+
 :root {
   --font-size: 16px;
+  --font-heading: 'Patrick Hand', 'Trebuchet MS', cursive;
+  --font-bubblegum: 'Permanent Marker', cursive;
   --background: #ffffff;
   --foreground: oklch(0.145 0 0);
   --card: #ffffff;
