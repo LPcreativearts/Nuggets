@@ -113,14 +113,6 @@ import deedlyGizaImg from 'figma:asset/d836c30e3e30d3623010c841329ffb356d0d8daf.
 import jonesHatImg from 'figma:asset/a5817c128c6b83c6fd3c3737a1d4a67cf194eeec.png';
 import treasureMapImg from 'figma:asset/c96c7bd3409e4e5d74e16e422b79a48c1175225e.png';
 import rockImg from 'figma:asset/dbdae624a034a3b515be83215ff0c3bc5d744d27.png';
-
-// -----------------------------------------------------------------------------
-// 🔧 PARENT SETUP: 
-// Paste your API Key inside the quotes below to keep it saved permanently.
-// Get your free Gemini API key at: https://aistudio.google.com/apikey
-const HARDCODED_API_KEY = ""; 
-// -----------------------------------------------------------------------------
-
 // --- Supabase Setup ---
 const supabaseUrl = `https://${projectId}.supabase.co`;
 const supabase = createClient(supabaseUrl, publicAnonKey);
@@ -1174,11 +1166,9 @@ export default function NuggetsApp() {
     const savedActivityCollection = localStorage.getItem('nuggets_activityCollection');
     if (savedActivityCollection) setActivityCollection(JSON.parse(savedActivityCollection));
     
-    if (HARDCODED_API_KEY) setApiKey(HARDCODED_API_KEY);
-    else {
-        const savedKey = localStorage.getItem('gemini_api_key');
-        if (savedKey) setApiKey(savedKey);
-    }
+    const savedKey = localStorage.getItem('gemini_api_key');
+    if (savedKey) setApiKey(savedKey);
+    
     const savedDust = localStorage.getItem('nuggets_stardust');
     if (savedDust) setStarDust(parseInt(savedDust));
     const savedCrumbs = localStorage.getItem('nuggets_crumbs');
