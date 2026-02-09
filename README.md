@@ -1,7 +1,7 @@
 
-  # Nuggets
+  # NuggetSchool
 
-  This is a code bundle for Nuggets. The original project is available at https://www.figma.com/design/3fphbKLGyWtQnCVK4AwxCi/Nuggets.
+  This is a code bundle for NuggetSchool. The original project is available at https://www.figma.com/design/3fphbKLGyWtQnCVK4AwxCi/NuggetSchool.
 
   ## Running the code
 

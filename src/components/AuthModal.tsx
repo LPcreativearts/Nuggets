@@ -23,39 +23,10 @@ export function AuthModal({ onClose, onSuccess, supabase }: AuthModalProps) {
 
     try {
       if (isSignUp) {
-        // Call server to sign up new user with auto-confirmed email
-        const response = await fetch(
-          `https://${projectId}.supabase.co/functions/v1/make-server-c9fbfdc0/signup`,
-          {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json',
-              'Authorization': `Bearer ${publicAnonKey}`
-            },
-            body: JSON.stringify({
-              email,
-              password,
-              displayName: displayName || email.split('@')[0]
-            })
-          }
-        );
-
-        const data = await response.json();
-
-        if (!response.ok || data.error) {
-          throw new Error(data.error || 'Signup failed');
-        }
-
-        // Now sign in the newly created user
-        const { error: signInError } = await supabase.auth.signInWithPassword({
-          email,
-          password
-        });
-
-        if (signInError) throw signInError;
-        
-        onSuccess("Account created successfully! ✨");
-        onClose();
+        // Disable signups for experimental environment
+        setError('New signups are not available yet. This is an experimental test environment.');
+        setLoading(false);
+        return;
       } else {
         // Call server to auto-confirm email if needed
         try {
@@ -115,6 +86,13 @@ export function AuthModal({ onClose, onSuccess, supabase }: AuthModalProps) {
         >
           <X className="w-6 h-6" />
         </button>
+
+        {/* Experimental Environment Notice */}
+        <div className="bg-amber-50 dark:bg-amber-900/20 border border-amber-200 dark:border-amber-800 rounded-xl p-3 mb-6">
+          <p className="text-xs text-amber-800 dark:text-amber-200 text-center font-medium">
+            🧪 Experimental Test Environment - New signups not available yet
+          </p>
+        </div>
 
         {/* Title */}
         <div className="text-center mb-8">

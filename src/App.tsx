@@ -959,6 +959,7 @@ export default function NuggetsApp() {
   const [nuggetImage, setNuggetImage] = useState(null);
   const [imageLoading, setImageLoading] = useState(false);
   const [nuggetLoading, setNuggetLoading] = useState(false);
+  const [imageError, setImageError] = useState(false); // Track if the main image failed to load
 
   // Stardust Quiz Popup
   const [showStardustQuiz, setShowStardustQuiz] = useState(false);
@@ -1327,11 +1328,10 @@ export default function NuggetsApp() {
 
   useEffect(() => {
     if (currentNugget && view === 'nugget') {
-        setNuggetLoading(true);
-        // Start image generation
+        // Reset error state for new nugget
+        setImageError(false);
+        // Start image generation immediately but don't block the UI with full-screen loader
         generateImage(currentNugget.text, currentNugget.searchTerm, currentNugget.originalTag, currentNugget.subjectId);
-    } else {
-        setNuggetLoading(false);
     }
     
     // Stop any ongoing speech when switching views
@@ -1340,15 +1340,6 @@ export default function NuggetsApp() {
       setIsSpeaking(false);
     }
   }, [currentNugget, view]);
-
-  // Hide loading indicator once image finishes loading
-  useEffect(() => {
-    if (view === 'nugget' && !imageLoading) {
-      // Small delay to ensure smooth transition
-      const timer = setTimeout(() => setNuggetLoading(false), 300);
-      return () => clearTimeout(timer);
-    }
-  }, [imageLoading, view]);
 
   // Generate Stardust question when modal opens
   useEffect(() => {
@@ -5126,15 +5117,7 @@ Respond as ${guideName} to help the child.`;
     if (!currentNugget) return null;
     return (
         <div className="min-h-screen bg-slate-100 dark:bg-slate-950 flex flex-col relative">
-            {/* Loading Overlay */}
-            {nuggetLoading && (
-                <div className="fixed inset-0 bg-white/80 dark:bg-slate-950/80 backdrop-blur-sm z-50 flex items-center justify-center">
-                    <div className="flex flex-col items-center gap-4">
-                        <Loader className="w-12 h-12 text-orange-500 animate-spin" />
-                        <p className="text-lg font-bold text-slate-700 dark:text-slate-300">Loading Nugget...</p>
-                    </div>
-                </div>
-            )}
+            {/* Removed full-screen loading overlay for faster perceived performance */}
             <div className="sticky top-0 z-40 bg-white/80 dark:bg-slate-900/80 backdrop-blur-md border-b border-slate-200 dark:border-slate-800 px-4 py-3 flex justify-between items-center">
                 <button onClick={goBack} className="flex items-center gap-2 text-slate-600 dark:text-slate-300 hover:bg-gradient-to-r hover:from-blue-50 hover:to-purple-50 dark:hover:from-blue-900/30 dark:hover:to-purple-900/30 px-4 py-2 rounded-full transition-all font-bold border-2 border-transparent hover:border-blue-200 dark:hover:border-blue-700 shadow-sm hover:shadow-md">
                     <ArrowLeft className="w-5 h-5" /> Back
@@ -5172,19 +5155,45 @@ Respond as ${guideName} to help the child.`;
                     {/* Image Area */}
                     <div className="relative aspect-[4/3] w-full bg-slate-100 dark:bg-slate-900 group cursor-pointer" onClick={() => { setShowMeImages([]); setIsShowMeOpen(true); setShowMeTopic(currentNugget.searchTerm || currentNugget.text); }}>
                         {imageLoading ? (
-                            <div className="absolute inset-0 flex items-center justify-center"><Loader className="w-8 h-8 text-slate-400 animate-spin" /></div>
-                        ) : nuggetImage ? (
+                            <div className="absolute inset-0 flex items-center justify-center bg-gradient-to-br from-slate-100 to-slate-200 dark:from-slate-800 dark:to-slate-900 animate-pulse">
+                                <Loader className="w-8 h-8 text-slate-400 animate-spin" />
+                            </div>
+                        ) : (nuggetImage && !imageError) ? (
                             <>
-                            <ImageWithFallback src={nuggetImage.url} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" alt="Nugget Visual" />
+                            <img 
+                                src={nuggetImage.url} 
+                                className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" 
+                                alt="Nugget Visual" 
+                                onError={() => setImageError(true)}
+                            />
                             <div className="absolute bottom-4 right-4 bg-black/60 text-white px-3 py-1 rounded-full text-xs font-bold backdrop-blur-sm flex items-center gap-2">
                                 <Maximize2 className="w-3 h-3" /> Tap to Explore
                             </div>
                             </>
                         ) : (
-                            <div className="absolute inset-0 flex items-center justify-center flex-col gap-2 text-slate-400">
-                                <ImageIcon className="w-12 h-12 opacity-50" />
-                                <span className="text-sm font-medium">No Image Found</span>
+                            <>
+                            {/* Fallback to category default image */}
+                            <img 
+                                src={(() => {
+                                    const subjectPlaceholders = {
+                                        science: 'https://images.unsplash.com/photo-1532094349884-543bc11b234d?w=800&h=600&fit=crop',
+                                        history: 'https://images.unsplash.com/photo-1461360370896-922624d12aa1?w=800&h=600&fit=crop',
+                                        math: 'https://images.unsplash.com/photo-1635070041078-e363dbe005cb?w=800&h=600&fit=crop',
+                                        music: 'https://images.unsplash.com/photo-1511379938547-c1f69419868d?w=800&h=600&fit=crop',
+                                        art: 'https://images.unsplash.com/photo-1460661419201-fd4cecdf8a8b?w=800&h=600&fit=crop',
+                                        words: 'https://images.unsplash.com/photo-1457369804613-52c61a468e7d?w=800&h=600&fit=crop',
+                                        career: 'https://images.unsplash.com/photo-1521737604893-d14cc237f11d?w=800&h=600&fit=crop',
+                                        default: 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=800&h=600&fit=crop'
+                                    };
+                                    return subjectPlaceholders[currentNugget.subjectId] || subjectPlaceholders.default;
+                                })()}
+                                className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 opacity-75" 
+                                alt="Category Image" 
+                            />
+                            <div className="absolute bottom-4 right-4 bg-black/60 text-white px-3 py-1 rounded-full text-xs font-bold backdrop-blur-sm flex items-center gap-2">
+                                <Maximize2 className="w-3 h-3" /> Tap to Explore
                             </div>
+                            </>
                         )}
                     </div>
 
@@ -5271,10 +5280,14 @@ Respond as ${guideName} to help the child.`;
                                     onClick={() => {
                                         const topic = CURRICULUM_TOPICS['Stories'];
                                         if (topic && topic.stories) {
-                                            const storiesOfType = topic.stories.filter(s => s.category === currentNugget.storyType || (currentNugget.storyType === 'Tall Tales' && s.category === 'Tall Tale'));
+                                            // Convert plural to singular for matching: "Fables" -> "Fable", "Fairytales" -> "Fairytale"
+                                            const categoryToMatch = currentNugget.storyType === 'Tall Tales' ? 'Tall Tale' : currentNugget.storyType.slice(0, -1);
+                                            const storiesOfType = topic.stories.filter(s => s.category === categoryToMatch);
                                             if (storiesOfType.length > 0) {
                                                 const randomStory = storiesOfType[Math.floor(Math.random() * storiesOfType.length)];
                                                 openStoryActivity(randomStory);
+                                            } else {
+                                                showNotification('No stories found for this category');
                                             }
                                         }
                                     }}
@@ -5391,7 +5404,7 @@ Respond as ${guideName} to help the child.`;
                                                 const newCollection = [...activityCollection, activityData];
                                                 saveActivityCollection(newCollection);
                                                 updateCrumbs(5);
-                                                showNotification("Mission Saved! +5 Crumbs 🍪");
+                                                showNotification("Mission Saved! +5 Crumbs 🍗");
                                             } else {
                                                 showNotification("Already saved!");
                                             }
@@ -5475,7 +5488,7 @@ Respond as ${guideName} to help the child.`;
                                                     const newCollection = [...activityCollection, activityData];
                                                     saveActivityCollection(newCollection);
                                                     updateCrumbs(5);
-                                                    showNotification("Mission Saved! +5 Crumbs 🍪");
+                                                    showNotification("Mission Saved! +5 Crumbs 🍗");
                                                 } else {
                                                     showNotification("Already saved!");
                                                 }
@@ -5501,7 +5514,7 @@ Respond as ${guideName} to help the child.`;
                                         const newCollection = [...collection, {...currentNugget, id: Date.now(), date: new Date().toLocaleDateString()}];
                                         saveCollection(newCollection);
                                         updateCrumbs(5);
-                                        showNotification("Collected! +5 Crumbs 🍪");
+                                        showNotification("Collected! +5 Crumbs 🍗");
                                         // Open Stardust quiz popup
                                         setShowStardustQuiz(true);
                                         setStardustQuizType(null);
@@ -7099,7 +7112,7 @@ Respond as ${guideName} to help the child.`;
                   if (hasValidTextAnswer || hasCorrectMCQ) {
                     setStardustQuizSubmitted(true);
                     updateCrumbs(10);
-                    showNotification("Great job! +10 Crumbs 🍪");
+                    showNotification("Great job! +10 Crumbs 🍗");
                     
                     // Save the user's answer with the nugget if they provided one
                     if (hasValidTextAnswer && currentNugget) {
@@ -7266,7 +7279,7 @@ Respond as ${guideName} to help the child.`;
                     } else {
                       // All questions complete
                       updateCrumbs(20);
-                      showNotification("Awesome! +20 Crumbs 🍪");
+                      showNotification("Awesome! +20 Crumbs 🍗");
                       setTimeout(() => {
                         setShowCollectionQuiz(false);
                         setCollectionQuizQuestions([]);
@@ -7443,7 +7456,7 @@ Respond as ${guideName} to help the child.`;
                     } else {
                       // All questions complete
                       updateCrumbs(20);
-                      showNotification("Amazing! +20 Crumbs 🍪");
+                      showNotification("Amazing! +20 Crumbs 🍗");
                       setTimeout(() => {
                         setShowWordQuiz(false);
                         setWordQuizQuestions([]);
