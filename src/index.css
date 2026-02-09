@@ -1551,6 +1551,10 @@
     border-color: var(--color-orange-200);
   }
 
+  .border-orange-600 {
+    border-color: var(--color-orange-600);
+  }
+
   .border-pink-300 {
     border-color: var(--color-pink-300);
   }
@@ -1561,10 +1565,6 @@
 
   .border-purple-300 {
     border-color: var(--color-purple-300);
-  }
-
-  .border-purple-600 {
-    border-color: var(--color-purple-600);
   }
 
   .border-purple-700 {
@@ -2330,11 +2330,6 @@
     }
   }
 
-  .to-blue-500 {
-    --tw-gradient-to: var(--color-blue-500);
-    --tw-gradient-stops: var(--tw-gradient-via-stops, var(--tw-gradient-position), var(--tw-gradient-from) var(--tw-gradient-from-position), var(--tw-gradient-to) var(--tw-gradient-to-position));
-  }
-
   .to-blue-600 {
     --tw-gradient-to: var(--color-blue-600);
     --tw-gradient-stops: var(--tw-gradient-via-stops, var(--tw-gradient-position), var(--tw-gradient-from) var(--tw-gradient-from-position), var(--tw-gradient-to) var(--tw-gradient-to-position));
@@ -2836,10 +2831,6 @@
 
   .text-pink-700 {
     color: var(--color-pink-700);
-  }
-
-  .text-purple-100 {
-    color: var(--color-purple-100);
   }
 
   .text-purple-400 {
@@ -3390,6 +3381,12 @@
   }
 
   @media (hover: hover) {
+    .hover\:border-orange-300:hover {
+      border-color: var(--color-orange-300);
+    }
+  }
+
+  @media (hover: hover) {
     .hover\:border-orange-400:hover {
       border-color: var(--color-orange-400);
     }
@@ -3482,6 +3479,12 @@
   @media (hover: hover) {
     .hover\:bg-orange-100:hover {
       background-color: var(--color-orange-100);
+    }
+  }
+
+  @media (hover: hover) {
+    .hover\:bg-orange-200:hover {
+      background-color: var(--color-orange-200);
     }
   }
 
@@ -3638,13 +3641,6 @@
   }
 
   @media (hover: hover) {
-    .hover\:from-purple-600:hover {
-      --tw-gradient-from: var(--color-purple-600);
-      --tw-gradient-stops: var(--tw-gradient-via-stops, var(--tw-gradient-position), var(--tw-gradient-from) var(--tw-gradient-from-position), var(--tw-gradient-to) var(--tw-gradient-to-position));
-    }
-  }
-
-  @media (hover: hover) {
     .hover\:from-red-600:hover {
       --tw-gradient-from: var(--color-red-600);
       --tw-gradient-stops: var(--tw-gradient-via-stops, var(--tw-gradient-position), var(--tw-gradient-from) var(--tw-gradient-from-position), var(--tw-gradient-to) var(--tw-gradient-to-position));
@@ -3669,13 +3665,6 @@
   @media (hover: hover) {
     .hover\:to-amber-600:hover {
       --tw-gradient-to: var(--color-amber-600);
-      --tw-gradient-stops: var(--tw-gradient-via-stops, var(--tw-gradient-position), var(--tw-gradient-from) var(--tw-gradient-from-position), var(--tw-gradient-to) var(--tw-gradient-to-position));
-    }
-  }
-
-  @media (hover: hover) {
-    .hover\:to-blue-600:hover {
-      --tw-gradient-to: var(--color-blue-600);
       --tw-gradient-stops: var(--tw-gradient-via-stops, var(--tw-gradient-position), var(--tw-gradient-from) var(--tw-gradient-from-position), var(--tw-gradient-to) var(--tw-gradient-to-position));
     }
   }
@@ -3857,6 +3846,10 @@
     .focus\:ring-blue-500\/10:focus {
       --tw-ring-color: color-mix(in oklab, var(--color-blue-500) 10%, transparent);
     }
+  }
+
+  .focus\:ring-orange-500:focus {
+    --tw-ring-color: var(--color-orange-500);
   }
 
   .focus\:ring-purple-500:focus {
@@ -4243,6 +4236,10 @@
     }
   }
 
+  .dark\:bg-orange-900:is(.dark *) {
+    background-color: var(--color-orange-900);
+  }
+
   .dark\:bg-orange-900\/10:is(.dark *) {
     background-color: color-mix(in srgb, oklch(.408 .123 38.172) 10%, transparent);
   }
@@ -4271,10 +4268,6 @@
     .dark\:bg-pink-900\/50:is(.dark *) {
       background-color: color-mix(in oklab, var(--color-pink-900) 50%, transparent);
     }
-  }
-
-  .dark\:bg-purple-900:is(.dark *) {
-    background-color: var(--color-purple-900);
   }
 
   .dark\:bg-purple-900\/20:is(.dark *) {
@@ -4751,6 +4744,12 @@
   }
 
   @media (hover: hover) {
+    .dark\:hover\:border-orange-600:is(.dark *):hover {
+      border-color: var(--color-orange-600);
+    }
+  }
+
+  @media (hover: hover) {
     .dark\:hover\:border-pink-600:is(.dark *):hover {
       border-color: var(--color-pink-600);
     }
@@ -4793,8 +4792,8 @@
   }
 
   @media (hover: hover) {
-    .dark\:hover\:bg-purple-800:is(.dark *):hover {
-      background-color: var(--color-purple-800);
+    .dark\:hover\:bg-orange-800:is(.dark *):hover {
+      background-color: var(--color-orange-800);
     }
   }
 

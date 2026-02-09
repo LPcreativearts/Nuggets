@@ -6924,14 +6924,14 @@ Respond as ${guideName} to help the child.`;
         <div className="fixed inset-0 bg-black/60 flex items-center justify-center z-50 p-4 backdrop-blur-sm">
           <div className="bg-white dark:bg-slate-800 rounded-3xl shadow-2xl max-w-lg w-full max-h-[90vh] overflow-y-auto animate-pop border border-slate-200 dark:border-slate-700">
             {/* Header */}
-            <div className="bg-gradient-to-r from-purple-500 to-blue-500 p-6 rounded-t-3xl flex items-center justify-between">
+            <div className="bg-gradient-to-r from-red-500 via-orange-500 to-yellow-400 p-6 rounded-t-3xl flex items-center justify-between">
               <div className="flex items-center gap-3">
                 <div className="bg-white/20 backdrop-blur-sm p-3 rounded-2xl">
                   <Sparkles className="w-6 h-6 text-white" />
                 </div>
                 <div>
                   <h2 className="text-2xl font-black text-white" style={{ fontFamily: 'var(--font-bubblegum)' }}>What Do You Think?</h2>
-                  <p className="text-sm text-purple-100 font-semibold">Answer to Earn More Crumbs!</p>
+                  <p className="text-sm text-white/90 font-semibold">Answer to Earn More Crumbs!</p>
                 </div>
               </div>
               <button onClick={() => setShowStardustQuiz(false)} className="text-white/80 hover:text-white transition-colors">
@@ -6950,7 +6950,7 @@ Respond as ${guideName} to help the child.`;
                     value={freeformAnswer}
                     onChange={(e) => setFreeformAnswer(e.target.value)}
                     placeholder="Type or speak your thoughts here..."
-                    className="w-full p-4 pr-12 border-2 border-slate-200 dark:border-slate-600 rounded-xl focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent bg-slate-50 dark:bg-slate-900 text-slate-800 dark:text-slate-200 min-h-[60px] resize-none"
+                    className="w-full p-4 pr-12 border-2 border-slate-200 dark:border-slate-600 rounded-xl focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent bg-slate-50 dark:bg-slate-900 text-slate-800 dark:text-slate-200 min-h-[60px] resize-none"
                   />
                   <button
                     onClick={startListening}
@@ -6958,11 +6958,11 @@ Respond as ${guideName} to help the child.`;
                     className={`absolute right-2 top-2 p-2 rounded-full transition-colors ${
                       isListening 
                         ? 'bg-red-500 animate-pulse' 
-                        : 'bg-purple-100 dark:bg-purple-900 hover:bg-purple-200 dark:hover:bg-purple-800'
+                        : 'bg-orange-100 dark:bg-orange-900 hover:bg-orange-200 dark:hover:bg-orange-800'
                     }`}
                     title="Speech to text"
                   >
-                    <Mic className={`w-5 h-5 ${isListening ? 'text-white' : 'text-purple-600 dark:text-purple-300'}`} />
+                    <Mic className={`w-5 h-5 ${isListening ? 'text-white' : 'text-orange-600 dark:text-orange-300'}`} />
                   </button>
                 </div>
               </div>
@@ -6974,7 +6974,7 @@ Respond as ${guideName} to help the child.`;
                 </label>
                 {stardustQuizLoading ? (
                   <div className="flex flex-col items-center justify-center py-6 bg-white dark:bg-slate-800 rounded-xl">
-                    <Loader className="w-6 h-6 text-purple-600 animate-spin mb-2" />
+                    <Loader className="w-6 h-6 text-orange-600 animate-spin mb-2" />
                     <p className="text-sm text-slate-600 dark:text-slate-400">Generating question...</p>
                   </div>
                 ) : stardustQuestion ? (
@@ -7043,9 +7043,9 @@ Respond as ${guideName} to help the child.`;
                             
                             speechSynthesis.speak(utterance);
                           }}
-                          className="flex-shrink-0 p-2 bg-purple-100 dark:bg-purple-900 rounded-full hover:bg-purple-200 dark:hover:bg-purple-800 transition-colors"
+                          className="flex-shrink-0 p-2 bg-orange-100 dark:bg-orange-900 rounded-full hover:bg-orange-200 dark:hover:bg-orange-800 transition-colors"
                         >
-                          <Volume2 className="w-4 h-4 text-purple-600 dark:text-purple-300" />
+                          <Volume2 className="w-4 h-4 text-orange-600 dark:text-orange-300" />
                         </button>
                       </div>
                     </div>
@@ -7069,8 +7069,8 @@ Respond as ${guideName} to help the child.`;
                                 : isSelected && isCorrect
                                 ? 'bg-green-500 text-white shadow-lg border-2 border-green-600'
                                 : isSelected
-                                ? 'bg-purple-500 text-white shadow-lg border-2 border-purple-600'
-                                : 'bg-white dark:bg-slate-700 hover:bg-slate-50 dark:hover:bg-slate-600 text-slate-800 dark:text-slate-200 shadow border-2 border-slate-200 dark:border-slate-600 hover:border-purple-300 dark:hover:border-purple-600 hover:shadow-lg hover:-translate-y-0.5'
+                                ? 'bg-gradient-to-r from-red-500 via-orange-500 to-yellow-400 text-white shadow-lg border-2 border-orange-600'
+                                : 'bg-white dark:bg-slate-700 hover:bg-slate-50 dark:hover:bg-slate-600 text-slate-800 dark:text-slate-200 shadow border-2 border-slate-200 dark:border-slate-600 hover:border-orange-300 dark:hover:border-orange-600 hover:shadow-lg hover:-translate-y-0.5'
                             }`}
                           >
                             <div className="flex items-center justify-between">
@@ -7146,10 +7146,10 @@ Respond as ${guideName} to help the child.`;
                     showNotification("Please answer the question or write something thoughtful!");
                   }
                 }}
-                className="w-full bg-gradient-to-r from-purple-500 to-blue-500 hover:from-purple-600 hover:to-blue-600 text-white font-bold py-4 px-6 rounded-xl shadow-lg hover:shadow-xl hover:-translate-y-1 transition-all flex items-center justify-center gap-2"
+                className="w-full bg-gradient-to-r from-red-500 via-orange-500 to-yellow-400 hover:from-red-600 hover:via-orange-600 hover:to-yellow-500 text-white font-bold py-4 px-6 rounded-xl shadow-lg hover:shadow-xl hover:-translate-y-1 transition-all flex items-center justify-center gap-2"
               >
                 <Sparkles className="w-5 h-5" />
-                Submit for +10 Crumbs!
+                Submit for +10 Crumbs! 🍗
               </button>
 
               {/* Skip Button */}
