@@ -157,8 +157,15 @@ app.get("/make-server-c9fbfdc0/progress/:userId", async (c) => {
       return c.json({ error: 'No user token provided', success: false }, 401);
     }
     
-    // Use service role client to verify the user's token
-    const { data: { user }, error: authError } = await supabase.auth.getUser(userToken);
+    // Use anon client to verify the user's token
+    const { data: { user }, error: authError } = await anonSupabase.auth.getUser(userToken);
+    
+    console.log('Token extracted, length:', userToken.length);
+    
+    console.log('Auth check - user found:', !!user);
+    console.log('Auth check - user id:', user?.id);
+    console.log('Auth error:', authError?.message);
+    console.log('Auth error details:', JSON.stringify(authError, null, 2));
     
     if (authError) {
       console.error('Get progress auth error:', authError);
@@ -202,8 +209,8 @@ app.post("/make-server-c9fbfdc0/progress/:userId", async (c) => {
     
     console.log('Token extracted, length:', userToken.length);
     
-    // Use service role client to verify the user's token
-    const { data: { user }, error: authError } = await supabase.auth.getUser(userToken);
+    // Use anon client to verify the user's token
+    const { data: { user }, error: authError } = await anonSupabase.auth.getUser(userToken);
     
     console.log('Auth check - user found:', !!user);
     console.log('Auth check - user id:', user?.id);

@@ -3584,15 +3584,15 @@ Respond with ONLY a valid JSON object. No markdown, no explanations, no addition
       return;
     }
     
-    if (wordCollection.length < 4) {
-      showNotification("Collect at least 4 words first!");
+    if (wordCollection.length < 5) {
+      showNotification("Collect at least 5 words first!");
       return;
     }
     
     setAiLoading(true);
     
     try {
-      // Select 4 random words from collection that haven't been used recently
+      // Select 5 random words from collection that haven't been used recently
       const availableWords = wordCollection.filter(word => !usedWordIds.has(word.word));
       
       // If we don't have enough unused words, reset the used set
@@ -3668,7 +3668,7 @@ Respond with ONLY a valid JSON object. No markdown, no explanations, no addition
         }
       }
       
-      if (questions.length === 4) {
+      if (questions.length === 5) {
         setWordQuizQuestions(questions);
         setCurrentWordQuestionIndex(0);
         setWordQuizWrongAnswers(new Set());
@@ -3678,7 +3678,7 @@ Respond with ONLY a valid JSON object. No markdown, no explanations, no addition
         setUsedWordIds(new Set([...usedWordIds, ...selectedWords.map(w => w.word)]));
         
         // Reset used words if we've used most of them
-        if (usedWordIds.size + 4 >= wordCollection.length) {
+        if (usedWordIds.size + 5 >= wordCollection.length) {
           setUsedWordIds(new Set());
         }
       } else {
