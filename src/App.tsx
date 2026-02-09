@@ -1006,6 +1006,7 @@ export default function NuggetsApp() {
   const [currentWordQuestionIndex, setCurrentWordQuestionIndex] = useState(0);
   const [selectedWordAnswer, setSelectedWordAnswer] = useState(null);
   const [wordQuizWrongAnswers, setWordQuizWrongAnswers] = useState(new Set());
+  const [wordQuizSubmitted, setWordQuizSubmitted] = useState(false);
   const [usedWordIds, setUsedWordIds] = useState(new Set());
 
   // Auth
@@ -3672,6 +3673,8 @@ Respond with ONLY a valid JSON object. No markdown, no explanations, no addition
         setWordQuizQuestions(questions);
         setCurrentWordQuestionIndex(0);
         setWordQuizWrongAnswers(new Set());
+        setSelectedWordAnswer(null);
+        setWordQuizSubmitted(false);
         setShowWordQuiz(true);
         
         // Mark these words as used
@@ -3975,7 +3978,7 @@ Respond as ${guideName} to help the child.`;
   // --- Views ---
 
   const renderHome = () => (
-    <div className="min-h-screen bg-slate-50 dark:bg-slate-950 pattern-bg overflow-x-hidden transition-colors duration-500">
+    <div className="min-h-screen bg-slate-50 dark:bg-slate-800 pattern-bg overflow-x-hidden transition-colors duration-500">
       {/* Header */}
       <div className="sticky top-0 z-50 glass-panel border-b border-slate-200 dark:border-slate-800 px-4 py-3 flex justify-between items-center shadow-sm">
         <div className="flex items-center gap-3">
@@ -4278,7 +4281,7 @@ Respond as ${guideName} to help the child.`;
     };
     
     return (
-        <div className="min-h-screen bg-slate-50 dark:bg-slate-950 pattern-bg pb-20">
+        <div className="min-h-screen bg-slate-50 dark:bg-slate-800 pattern-bg pb-20">
             {/* Header */}
             <div className={`relative h-32 md:h-40 ${gradients[selectedSubject.id] || gradients.science} overflow-hidden`}>
                 <div className="absolute inset-0 bg-gradient-to-b from-white/10 to-transparent" />
@@ -4432,7 +4435,7 @@ Respond as ${guideName} to help the child.`;
     const Icon = iconMap[topic.id] || BookOpen;
     
     return (
-        <div className="min-h-screen bg-slate-50 dark:bg-slate-950 pb-20">
+        <div className="min-h-screen bg-slate-50 dark:bg-slate-800 pb-20">
             {/* Header */}
             <div className={`relative h-40 md:h-48 bg-gradient-to-br ${gradient} overflow-hidden`}>
                 <div className="absolute inset-0 bg-gradient-to-b from-white/10 to-transparent" />
@@ -5116,7 +5119,7 @@ Respond as ${guideName} to help the child.`;
   const renderNugget = () => {
     if (!currentNugget) return null;
     return (
-        <div className="min-h-screen bg-slate-100 dark:bg-slate-950 flex flex-col relative">
+        <div className="min-h-screen bg-slate-100 dark:bg-slate-800 flex flex-col relative">
             {/* Removed full-screen loading overlay for faster perceived performance */}
             <div className="sticky top-0 z-40 bg-white/80 dark:bg-slate-900/80 backdrop-blur-md border-b border-slate-200 dark:border-slate-800 px-4 py-3 flex justify-between items-center">
                 <button onClick={goBack} className="flex items-center gap-2 text-slate-600 dark:text-slate-300 hover:bg-gradient-to-r hover:from-blue-50 hover:to-purple-50 dark:hover:from-blue-900/30 dark:hover:to-purple-900/30 px-4 py-2 rounded-full transition-all font-bold border-2 border-transparent hover:border-blue-200 dark:hover:border-blue-700 shadow-sm hover:shadow-md">
@@ -5557,7 +5560,7 @@ Respond as ${guideName} to help the child.`;
   };
 
   const renderGridPage = (title, items, renderItem, emptyMsg) => (
-    <div className="min-h-screen bg-slate-50 dark:bg-slate-950 p-4 md:p-8">
+    <div className="min-h-screen bg-slate-50 dark:bg-slate-800 p-4 md:p-8">
         <div className="max-w-6xl mx-auto">
             <div className="flex items-center justify-between gap-4 mb-8">
                 <div className="flex items-center gap-4">
@@ -5747,7 +5750,7 @@ Respond as ${guideName} to help the child.`;
     // Show nugget type selection if not chosen yet
     if (!avatarNuggetType) {
       return (
-        <div className="min-h-screen bg-slate-50 dark:bg-slate-950 pattern-bg overflow-x-hidden transition-colors duration-500 flex items-center justify-center p-4">
+        <div className="min-h-screen bg-slate-50 dark:bg-slate-800 pattern-bg overflow-x-hidden transition-colors duration-500 flex items-center justify-center p-4">
           <div className="max-w-4xl w-full">
             {/* Header */}
             <div className="text-center mb-12 animate-pop">
@@ -5840,7 +5843,7 @@ Respond as ${guideName} to help the child.`;
     const nuggetDisplayName = avatarNuggetType === 'spicy' ? 'Spicy Nugget' : 'Basic Nugget';
 
     return (
-      <div className="min-h-screen bg-slate-50 dark:bg-slate-950 pattern-bg overflow-x-hidden transition-colors duration-500">
+      <div className="min-h-screen bg-slate-50 dark:bg-slate-800 pattern-bg overflow-x-hidden transition-colors duration-500">
         {/* Header */}
         <div className="sticky top-0 z-50 glass-panel border-b border-slate-200 dark:border-slate-800 px-4 py-3 flex justify-between items-center shadow-sm">
           <div className="flex items-center gap-3">
@@ -6194,7 +6197,7 @@ Respond as ${guideName} to help the child.`;
   };
 
   const renderSettings = () => (
-      <div className="min-h-screen bg-slate-50 dark:bg-slate-950 p-4 md:p-8">
+      <div className="min-h-screen bg-slate-50 dark:bg-slate-800 p-4 md:p-8">
           <div className="max-w-2xl mx-auto">
             <div className="flex items-center justify-between gap-4 mb-8">
                 <div className="flex items-center gap-4">
@@ -6486,7 +6489,7 @@ Respond as ${guideName} to help the child.`;
       {view === 'curriculum' && renderCurriculum()}
       {view === 'nugget' && renderNugget()}
       {view === 'collection' && (
-        <div className="min-h-screen bg-slate-50 dark:bg-slate-950 p-4 md:p-8">
+        <div className="min-h-screen bg-slate-50 dark:bg-slate-800 p-4 md:p-8">
           <div className="max-w-6xl mx-auto">
             <div className="flex items-center justify-between gap-4 mb-8">
               <div className="flex items-center gap-4">
@@ -6616,7 +6619,7 @@ Respond as ${guideName} to help the child.`;
           </div>
       ), "Check back later for more!")}
       {view === 'word-bank' && (
-        <div className="min-h-screen bg-slate-50 dark:bg-slate-950 p-4 md:p-8">
+        <div className="min-h-screen bg-slate-50 dark:bg-slate-800 p-4 md:p-8">
           <div className="max-w-6xl mx-auto">
             <div className="flex items-center justify-between gap-4 mb-8">
               <div className="flex items-center gap-4">
@@ -7352,6 +7355,8 @@ Respond as ${guideName} to help the child.`;
                   setWordQuizQuestions([]);
                   setCurrentWordQuestionIndex(0);
                   setWordQuizWrongAnswers(new Set());
+                  setSelectedWordAnswer(null);
+                  setWordQuizSubmitted(false);
                 }} 
                 className="text-white/80 hover:text-white transition-colors"
               >
@@ -7403,37 +7408,53 @@ Respond as ${guideName} to help the child.`;
               {/* Answer Options */}
               <div className="space-y-3">
                 {wordQuizQuestions[currentWordQuestionIndex].options.map((option, index) => {
-                  const isSelected = selectedWordAnswer === index;
                   const isWrong = wordQuizWrongAnswers.has(`${currentWordQuestionIndex}-${index}`);
-                  const isCorrect = index === wordQuizQuestions[currentWordQuestionIndex].correctIndex;
-                  const showFeedback = wordQuizWrongAnswers.size > 0;
+                  const isSelected = selectedWordAnswer === index;
+                  const isCorrect = wordQuizSubmitted && isSelected && index === wordQuizQuestions[currentWordQuestionIndex].correctIndex;
                   
                   return (
                     <button
                       key={index}
                       onClick={() => {
-                        if (!showFeedback) {
-                          setSelectedWordAnswer(index);
-                        }
+                        if (isWrong) return;
+                        setSelectedWordAnswer(index);
                       }}
-                      disabled={showFeedback && !isCorrect}
+                      disabled={isWrong}
                       className={`w-full p-4 rounded-xl font-semibold text-left transition-all ${
-                        showFeedback && isCorrect
-                          ? 'bg-green-500 text-white border-2 border-green-600 shadow-lg'
-                          : showFeedback && isWrong
-                          ? 'bg-red-500 text-white border-2 border-red-600 line-through'
+                        isWrong
+                          ? 'bg-slate-200 dark:bg-slate-700 text-slate-400 dark:text-slate-500 cursor-not-allowed border-2 border-slate-300 dark:border-slate-600 line-through opacity-60'
+                          : isCorrect
+                          ? 'bg-green-500 text-white shadow-lg border-2 border-green-600'
                           : isSelected
-                          ? 'bg-emerald-100 dark:bg-emerald-900/30 text-slate-800 dark:text-white border-2 border-emerald-400 shadow-md'
-                          : 'bg-white dark:bg-slate-700 hover:bg-slate-50 dark:hover:bg-slate-600 text-slate-800 dark:text-white border-2 border-slate-200 dark:border-slate-600 hover:border-emerald-300 hover:shadow-md active:scale-[0.98]'
+                          ? 'bg-gradient-to-r from-emerald-400 to-teal-500 text-white shadow-lg border-2 border-emerald-600'
+                          : 'bg-white dark:bg-slate-700 hover:bg-slate-50 dark:hover:bg-slate-600 text-slate-800 dark:text-slate-200 shadow border-2 border-slate-200 dark:border-slate-600 hover:border-emerald-300 dark:hover:border-emerald-600 hover:shadow-lg hover:-translate-y-0.5'
                       }`}
                     >
-                      {option}
+                      <div className="flex items-center justify-between">
+                        <span>{option}</span>
+                        {isCorrect && <Check className="w-5 h-5 flex-shrink-0" />}
+                      </div>
                     </button>
                   );
                 })}
               </div>
 
-              {/* Feedback */}
+              {/* Feedback Messages */}
+              {wordQuizSubmitted && selectedWordAnswer === wordQuizQuestions[currentWordQuestionIndex].correctIndex && (
+                <div className="bg-green-100 dark:bg-green-900/30 border-2 border-green-500 dark:border-green-700 rounded-xl p-4 text-center animate-pop">
+                  <p className="text-green-800 dark:text-green-200 font-bold flex items-center justify-center gap-2">
+                    <Check className="w-5 h-5" /> Correct! Great job!
+                  </p>
+                </div>
+              )}
+              {wordQuizWrongAnswers.size > 0 && (
+                <div className="text-center">
+                  <p className="text-sm text-slate-600 dark:text-slate-400">
+                    Try again - you've got this! 💪
+                  </p>
+                </div>
+              )}
+
               {/* Submit Button */}
               <button
                 onClick={() => {
@@ -7445,14 +7466,17 @@ Respond as ${guideName} to help the child.`;
                   const isCorrect = selectedWordAnswer === wordQuizQuestions[currentWordQuestionIndex].correctIndex;
                   
                   if (isCorrect) {
-                    // Correct answer
+                    // Correct answer - show feedback first
+                    setWordQuizSubmitted(true);
+                    
                     if (currentWordQuestionIndex < wordQuizQuestions.length - 1) {
                       // Move to next question
                       setTimeout(() => {
                         setCurrentWordQuestionIndex(currentWordQuestionIndex + 1);
                         setSelectedWordAnswer(null);
                         setWordQuizWrongAnswers(new Set());
-                      }, 1200);
+                        setWordQuizSubmitted(false);
+                      }, 1500);
                     } else {
                       // All questions complete
                       updateCrumbs(20);
@@ -7463,30 +7487,22 @@ Respond as ${guideName} to help the child.`;
                         setCurrentWordQuestionIndex(0);
                         setSelectedWordAnswer(null);
                         setWordQuizWrongAnswers(new Set());
-                      }, 1500);
+                        setWordQuizSubmitted(false);
+                      }, 2000);
                     }
                   } else {
-                    // Wrong answer - mark it
+                    // Wrong answer - mark it and allow retry
+                    setWordQuizSubmitted(true);
                     setWordQuizWrongAnswers(new Set([...wordQuizWrongAnswers, `${currentWordQuestionIndex}-${selectedWordAnswer}`]));
+                    setSelectedWordAnswer(null);
+                    showNotification("Not quite! Try again - you've got this! 💪");
+                    setTimeout(() => setWordQuizSubmitted(false), 500);
                   }
                 }}
-                disabled={selectedWordAnswer === null || wordQuizWrongAnswers.size > 0}
-                className={`w-full py-4 rounded-xl font-bold text-lg transition-all ${
-                  selectedWordAnswer === null || wordQuizWrongAnswers.size > 0
-                    ? 'bg-slate-300 dark:bg-slate-700 text-slate-500 cursor-not-allowed'
-                    : 'bg-gradient-to-r from-emerald-400 to-green-400 hover:from-emerald-500 hover:to-green-500 text-emerald-900 shadow-lg hover:shadow-xl active:scale-[0.98]'
-                }`}
+                className="w-full py-4 rounded-xl font-bold text-lg transition-all bg-gradient-to-r from-emerald-400 to-green-400 hover:from-emerald-500 hover:to-green-500 text-emerald-900 shadow-lg hover:shadow-xl active:scale-[0.98]"
               >
-                {wordQuizWrongAnswers.size > 0 ? 'Try Another Answer!' : 'Submit Answer'}
+                Submit Answer
               </button>
-
-              {wordQuizWrongAnswers.size > 0 && (
-                <div className="text-center">
-                  <p className="text-sm text-slate-600 dark:text-slate-400">
-                    Keep trying - you can do it! 💪
-                  </p>
-                </div>
-              )}
 
               {/* Exit Button */}
               <div className="pt-4 border-t border-slate-200 dark:border-slate-700">
@@ -7497,6 +7513,7 @@ Respond as ${guideName} to help the child.`;
                     setCurrentWordQuestionIndex(0);
                     setSelectedWordAnswer(null);
                     setWordQuizWrongAnswers(new Set());
+                    setWordQuizSubmitted(false);
                   }}
                   className="w-full px-4 py-3 text-slate-500 dark:text-slate-400 hover:text-slate-700 dark:hover:text-slate-200 font-semibold text-sm transition-colors rounded-lg hover:bg-slate-100 dark:hover:bg-slate-700/50"
                 >
