@@ -291,4 +291,137 @@ app.get("/make-server-c9fbfdc0/avatar/load/:userId", async (c) => {
   }
 });
 
+// Beta tester signup endpoint
+app.post("/make-server-c9fbfdc0/beta-signup", async (c) => {
+  try {
+    const formData = await c.req.json();
+    
+    // Validate required fields
+    if (!formData.name || !formData.email) {
+      return c.json({ error: 'Name and email are required' }, 400);
+    }
+    
+    if (!formData.email.includes('@')) {
+      return c.json({ error: 'Please enter a valid email address' }, 400);
+    }
+
+    // Store in KV store with timestamp-based key for uniqueness
+    const timestamp = new Date().toISOString();
+    const key = `beta_signup_${timestamp}_${formData.email.replace(/[^a-zA-Z0-9]/g, '_')}`;
+    
+    const signupData = {
+      ...formData,
+      submittedAt: timestamp,
+      status: 'pending'
+    };
+    
+    await kv.set(key, signupData);
+    
+    console.log('Beta signup stored:', key);
+
+    // Send confirmation email via Resend
+    const resendApiKey = Deno.env.get('RESEND_API_KEY');
+    
+    if (resendApiKey) {
+      try {
+        const emailResponse = await fetch('https://api.resend.com/emails', {
+          method: 'POST',
+          headers: {
+            'Authorization': `Bearer ${resendApiKey}`,
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({
+            from: 'Nugget School <onboarding@resend.dev>', // Change this to your verified domain
+            to: formData.email,
+            subject: '🎉 Welcome to the Nugget School Beta!',
+            html: `
+              <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px;">
+                <div style="background: linear-gradient(to right, #ef4444, #f97316, #facc15); padding: 30px; border-radius: 20px; text-align: center; margin-bottom: 20px;">
+                  <h1 style="color: white; margin: 0; font-size: 32px;">🚀 You're In!</h1>
+                </div>
+                
+                <div style="background: #f8fafc; padding: 30px; border-radius: 20px; border: 2px solid #e2e8f0;">
+                  <p style="font-size: 18px; color: #334155; margin-top: 0;">Hi ${formData.name}! 👋</p>
+                  
+                  <p style="font-size: 16px; color: #475569; line-height: 1.6;">
+                    Thank you for signing up to be a beta tester for <strong>Nugget School</strong>! 
+                    We're thrilled to have you join us on this adventure to make learning fun again.
+                  </p>
+                  
+                  <div style="background: white; padding: 20px; border-radius: 15px; margin: 20px 0; border: 2px solid #fed7aa;">
+                    <h2 style="color: #ea580c; margin-top: 0; font-size: 20px;">What's Next?</h2>
+                    <ul style="color: #475569; line-height: 1.8; padding-left: 20px;">
+                      <li>We'll review your application and get back to you soon</li>
+                      <li>You'll receive beta access credentials via email</li>
+                      <li>Free access throughout the beta period</li>
+                      <li>Direct line to our team for feedback and support</li>
+                    </ul>
+                  </div>
+                  
+                  <p style="font-size: 16px; color: #475569; line-height: 1.6;">
+                    <strong>Built with all minds in mind</strong> – your insights will help us create an 
+                    educational experience that truly works for everyone.
+                  </p>
+                  
+                  <p style="font-size: 16px; color: #475569; margin-bottom: 0;">
+                    Questions? Just reply to this email – we're here to help!
+                  </p>
+                  
+                  <p style="font-size: 16px; color: #475569; margin-top: 30px;">
+                    Keep learning,<br>
+                    <strong>The Nugget School Team</strong> 🍗
+                  </p>
+                </div>
+                
+                <p style="text-align: center; color: #94a3b8; font-size: 12px; margin-top: 20px;">
+                  This email was sent because you signed up for the Nugget School beta program.
+                </p>
+              </div>
+            `
+          })
+        });
+
+        if (!emailResponse.ok) {
+          const errorData = await emailResponse.json();
+          console.error('Resend API error:', errorData);
+          // Don't fail the signup if email fails
+          return c.json({ 
+            success: true, 
+            emailSent: false,
+            message: 'Signup successful, but confirmation email failed to send'
+          });
+        }
+
+        const emailData = await emailResponse.json();
+        console.log('Confirmation email sent:', emailData);
+        
+        return c.json({ 
+          success: true,
+          emailSent: true,
+          message: 'Thank you for signing up! Check your email for confirmation.'
+        });
+      } catch (emailError) {
+        console.error('Error sending confirmation email:', emailError);
+        // Don't fail the signup if email fails
+        return c.json({ 
+          success: true,
+          emailSent: false,
+          message: 'Signup successful, but confirmation email failed to send'
+        });
+      }
+    } else {
+      console.warn('RESEND_API_KEY not configured - skipping confirmation email');
+      return c.json({ 
+        success: true,
+        emailSent: false,
+        message: 'Signup successful (email not configured)'
+      });
+    }
+    
+  } catch (error) {
+    console.error('Beta signup error:', error);
+    return c.json({ error: 'Failed to process signup: ' + error.message }, 500);
+  }
+});
+
 Deno.serve(app.fetch);

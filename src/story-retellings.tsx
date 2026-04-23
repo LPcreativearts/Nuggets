@@ -1,7 +1,5 @@
 // Full story retellings data for openStoryActivity function
-// To be added to App.tsx after openLanguageActivity function (around line 2996)
-
-const STORY_RETELLINGS = {
+export const STORY_RETELLINGS: Record<string, { retelling: string; lesson: string; vocabulary: string[]; imageSearchTerm: string }> = {
   "Anansi and the Pot of Wisdom": {
     title: "Anansi and the Pot of Wisdom",
     category: "Fairytale",
